@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "UKRide - London Taxi Services"
+version = "1.0.0"
+id = "artifacts/ukride"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24027
+
+[services.development]
+run = "pnpm --filter @workspace/ukride run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ukride", "run", "build" ]
+publicDir = "artifacts/ukride/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24027"
+BASE_PATH = "/"

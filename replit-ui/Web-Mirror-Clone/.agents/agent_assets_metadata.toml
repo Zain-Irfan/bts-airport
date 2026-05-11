@@ -1,0 +1,98 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "dCecVjg_gbFhjGUIeKXcY"
+uri = "file://artifacts/ukride/public/hero-bg.jpg"
+type = "image"
+title = "london at night aerial view blur"
+
+[[outputs]]
+id = "QiEgTRPdQoeCXM_6L2Eiz"
+uri = "file://artifacts/ukride/public/perfect-taxi.jpg"
+type = "image"
+title = "business man entering luxury black car"
+
+[[outputs]]
+id = "gIi-BeOCZzdWitktbMVQq"
+uri = "file://artifacts/ukride/public/fleet.jpg"
+type = "image"
+title = "fleet of luxury black cars parked"
+
+[[outputs]]
+id = "yHBkwXw3-fxi9rB8kbsQ4"
+uri = "file://artifacts/ukride/public/airport_1.jpg"
+type = "image"
+title = "airport terminal exterior"
+
+[[outputs]]
+id = "T1ST4pxmECfZgs9GZhiHB"
+uri = "file://artifacts/ukride/public/airport_2.jpg"
+type = "image"
+title = "airport terminal exterior"
+
+[[outputs]]
+id = "awCYI4m_wu07f45SIRRF0"
+uri = "file://artifacts/ukride/public/airport_3.jpg"
+type = "image"
+title = "airport terminal exterior"
+
+[[outputs]]
+id = "6FVErpgqSUjwX7a4MAssl"
+uri = "file://artifacts/ukride/public/airport_4.jpg"
+type = "image"
+title = "airport terminal exterior"
+
+[[outputs]]
+id = "fqdoLsodKKRImvQPHOtmb"
+uri = "file://artifacts/ukride/public/airport_5.jpg"
+type = "image"
+title = "airport terminal exterior"
+
+[[outputs]]
+id = "xp6ab0DiJNWtcpvRjpXDG"
+uri = "file://artifacts/ukride/public/airport_6.jpg"
+type = "image"
+title = "airport terminal exterior"
+
+[[outputs]]
+id = "6GgP5MjC_pBJHQQwXAcMp"
+uri = "file://artifacts/ukride/public/saloon.jpg"
+type = "image"
+title = "luxury black saloon car side view"
+
+[[outputs]]
+id = "6Gx5wdE5ZcPwFmA29ze2P"
+uri = "file://artifacts/ukride/public/executive.jpg"
+type = "image"
+title = "luxury black executive car mercedes side view"
+
+[[outputs]]
+id = "ypi2H4GqgkYDIR68AtQAL"
+uri = "file://artifacts/ukride/public/estate.jpg"
+type = "image"
+title = "luxury black estate car side view"
+
+[[outputs]]
+id = "lVzN_RcK60qZqV8IavXUl"
+uri = "file://artifacts/ukride/public/mpv.jpg"
+type = "image"
+title = "luxury black mpV mercedes v class side view"
+
+[[outputs]]
+id = "pCsvUgsaZvHQq8drohP9r"
+uri = "file://artifacts/ukride/public/chauffeur.jpg"
+type = "image"
+title = "chauffeur opening door of luxury black car"
+
+[[outputs]]
+id = "9AWdTOpbppFZFE20ML-UF"
+uri = "file://artifacts/ukride/public/app-mockup.jpg"
+type = "image"
+title = "smartphone showing taxi booking app mockup"
+
+[[outputs]]
+id = "ExQwe_6GjL6tWiy4qwvc5"
+uri = "file://artifacts/ukride/public/cta-bg.jpg"
+type = "image"
+title = "london street night taxi"
