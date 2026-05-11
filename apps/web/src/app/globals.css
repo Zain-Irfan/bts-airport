@@ -44,6 +44,10 @@
   --color-elevated-foreground: hsl(var(--elevated-foreground));
 
   --color-silver-light: hsl(var(--silver-light));
+  --color-graphite: hsl(var(--graphite));
+  --color-graphite-foreground: hsl(var(--graphite-foreground));
+  --color-platinum: hsl(var(--platinum));
+  --color-text-secondary: hsl(var(--text-secondary));
 
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
@@ -79,23 +83,30 @@
 
 /*
   ─────────────────────────────────────────────────────────────────────
-  UKride — Luxury Deep-Purple Identity
+  UKride — Luxury Dark UI · Deep-Purple Design System
   ─────────────────────────────────────────────────────────────────────
-  Brand palette (dominant → supporting):
-    Deep Purple   #4B0082  primary brand color (CTAs, accents, glow)
-    Royal Purple  #3B0A57  rich saturated band
-    Dark Purple   #2A1238  section background
-    Onyx Black    #0D0D0F  deepest shadow / contrast
-    Charcoal      #1A1A1D  blended depth band
-    Silver        #C0C0C0  refinement borders, micro accents
-    Platinum      #A5A7AA  secondary chrome
-    White Silver  #F8F8F8  primary heading text
-  Text:
-    headings  #F8F8F8   body  #D1D5DB   accent  #C0C0C0
+  Global color balance:
+    45%  black / charcoal / graphite section bases
+    35%  deep-purple gradient bands, cards, CTAs, ambient glow
+    20%  silver / platinum text, borders, refinement
+  Palette (raw tokens map to spec hex):
+    Deep Purple   #4B0082  brand accent (CTAs, glow, focus)
+    Royal Purple  #3B0A57  rich gradient band
+    Dark Purple   #2A1238  cinematic section band
+    Onyx          #0D0D0F  deepest base
+    Charcoal      #1A1A1D  alt section base
+    Graphite      #2D2D33  elevated surface (neutral)
+    Silver        #C0C0C0  micro accents
+    Platinum      #A5A7AA  secondary text / chrome
+    White Silver  #F8F8F8  headings
+  Type ladder:
+    headings  #F8F8F8   body  #D1D5DB
+    secondary #A5A7AA   accent #C0C0C0
   Direction:
-    Purple dominates the experience. Black brings depth & contrast.
-    Silver is reserved for refinement (thin borders, chrome edges,
-    accent text). No neon. No gaming. Cinematic, immersive, modern.
+    Black + charcoal carry most of the surface area. Deep purple
+    shows up as gradient bands, glass cards, CTAs, hero ambients,
+    and focus glow. Silver/platinum live on thin borders, accent
+    text, dividers, and chrome edges. Cinematic. Corporate. No neon.
 */
 :root {
   --button-outline: rgba(192, 192, 192, 0.10);
@@ -107,58 +118,78 @@
   --elevate-2: rgba(155, 81, 224, 0.11);
 
   /* Raw brand tokens (kept in sync with #hex spec) */
-  --brand-deep: #4B0082;       /* Deep Purple */
-  --brand-royal: #3B0A57;      /* Royal Purple */
-  --brand-dark: #2A1238;       /* Dark Purple */
-  --brand-onyx: #0D0D0F;       /* Onyx Black */
-  --brand-charcoal: #1A1A1D;   /* Charcoal */
-  --brand-silver: #C0C0C0;     /* Silver */
-  --brand-platinum: #A5A7AA;   /* Platinum */
+  --brand-deep: #4B0082;          /* Deep Purple */
+  --brand-royal: #3B0A57;         /* Royal Purple */
+  --brand-dark: #2A1238;          /* Dark Purple */
+  --brand-onyx: #0D0D0F;          /* Onyx Black */
+  --brand-charcoal: #1A1A1D;      /* Charcoal */
+  --brand-graphite: #2D2D33;      /* Graphite */
+  --brand-silver: #C0C0C0;        /* Silver */
+  --brand-platinum: #A5A7AA;      /* Platinum */
   --brand-white-silver: #F8F8F8;
 
-  /* Glass / surface fills */
+  /* Glass / surface fills (used by .ukride-card, .ukride-glass, etc.) */
   --glass-purple-strong: rgba(75, 0, 130, 0.22);
-  --glass-purple-soft: rgba(75, 0, 130, 0.12);
+  --glass-purple-soft: rgba(75, 0, 130, 0.16);
   --glass-dark-purple: rgba(43, 18, 56, 0.55);
-  --silver-border: rgba(192, 192, 192, 0.12);
-  --silver-border-strong: rgba(192, 192, 192, 0.22);
+  --glass-graphite: rgba(45, 45, 51, 0.55);
 
-  /* Page background — dark plum, leans purple-tinted black */
-  --background: 273 35% 7%;
+  /* Silver hairlines (refinement) */
+  --silver-border: rgba(192, 192, 192, 0.10);
+  --silver-border-strong: rgba(192, 192, 192, 0.20);
+  --silver-border-bold: rgba(192, 192, 192, 0.32);
+
+  /* Purple hairlines (accent) */
+  --purple-border: rgba(75, 0, 130, 0.28);
+  --purple-border-soft: rgba(75, 0, 130, 0.14);
+
+  /* Page base — onyx black with faint plum hint (#0E0C12-ish) */
+  --background: 270 12% 5.5%;
   --foreground: 0 0% 97.3%;
-  /* Soft purple-tinted border (very subtle) */
-  --border: 275 28% 22%;
+  /* Subtle silver-purple border (very faint) */
+  --border: 270 14% 18%;
 
-  /* Card — rich plum, brighter than section bands */
-  --card: 277 45% 14%;
+  /* Card surface (overlaid by .ukride-card purple glass gradient) */
+  --card: 277 42% 13%;
   --card-foreground: 0 0% 97.3%;
-  --card-border: 275 32% 26%;
+  --card-border: 275 28% 22%;
 
-  --elevated: 276 42% 18%;
+  --elevated: 240 8% 16%;
   --elevated-foreground: 0 0% 97.3%;
 
-  --sidebar: 273 35% 7%;
+  /* Graphite #2D2D33 — neutral elevated panels */
+  --graphite: 240 7% 19%;
+  --graphite-foreground: 0 0% 97.3%;
+
+  /* Platinum #A5A7AA — secondary text */
+  --platinum: 220 4% 66%;
+  --text-secondary: 220 4% 66%;
+
+  --sidebar: 270 12% 5.5%;
   --sidebar-foreground: 0 0% 97.3%;
-  --sidebar-border: 275 28% 22%;
+  --sidebar-border: 270 14% 18%;
   --sidebar-primary: 275 100% 26%;
   --sidebar-primary-foreground: 0 0% 97.3%;
   --sidebar-accent: 275 100% 26%;
   --sidebar-accent-foreground: 0 0% 97.3%;
   --sidebar-ring: 275 80% 45%;
 
-  --popover: 277 45% 14%;
+  --popover: 240 8% 12%;
   --popover-foreground: 0 0% 97.3%;
-  --popover-border: 275 32% 26%;
+  --popover-border: 270 14% 22%;
 
-  /* Primary band — deep royal purple base for hero / footer / cta band */
-  --primary: 278 65% 9%;
+  /* Primary band — cinematic deep royal-purple (hero / CTA / footer base).
+     Combine with `ukride-luxury-section-1/2/3` for richer gradients. */
+  --primary: 278 60% 9%;
   --primary-foreground: 0 0% 97.3%;
 
-  /* Alternate section band — Dark Purple #2A1238 */
-  --secondary: 277 52% 14.5%;
+  /* Secondary alt band — Charcoal #1A1A1D with faint plum tint.
+     Keeps alternating sections neutral so purple stays special. */
+  --secondary: 270 8% 11%;
   --secondary-foreground: 0 0% 97.3%;
 
-  --muted: 275 38% 13%;
+  /* Muted — Graphite-leaning panels */
+  --muted: 240 6% 14%;
   /* Body text #D1D5DB */
   --muted-foreground: 220 9% 83%;
 
@@ -169,16 +200,16 @@
   /* Silver #C0C0C0 — chrome-edge refinement */
   --silver-light: 0 0% 75%;
 
-  /* Brighter royal purple — used for badges, link text, icon glow */
-  --highlight: 273 75% 42%;
+  /* Brighter royal purple — badges, link text, icon glow */
+  --highlight: 275 80% 38%;
   --highlight-foreground: 0 0% 97.3%;
   /* Sophisticated violet glow (controlled, not neon) */
-  --highlight-soft: 270 70% 56%;
+  --highlight-soft: 273 70% 54%;
 
   --destructive: 0 62% 50%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 275 32% 26%;
+  --input: 270 14% 22%;
   --ring: 275 80% 50%;
   --chart-1: 275 100% 26%;
   --chart-2: 0 0% 75%;
@@ -211,14 +242,14 @@
 }
 
 .dark {
-  --background: 273 35% 6%;
+  --background: 270 12% 4.5%;
   --foreground: 0 0% 97.3%;
-  --card: 277 45% 13%;
-  --primary: 278 65% 8%;
-  --secondary: 277 52% 13%;
-  --muted: 275 38% 12%;
-  --border: 275 28% 20%;
-  --input: 275 32% 24%;
+  --card: 277 42% 12%;
+  --primary: 278 60% 8%;
+  --secondary: 270 8% 10%;
+  --muted: 240 6% 13%;
+  --border: 270 14% 16%;
+  --input: 270 14% 20%;
 }
 
 @layer base {
@@ -247,14 +278,14 @@
   body {
     @apply min-h-screen font-sans text-foreground antialiased;
     background-color: hsl(var(--background));
-    /* Cinematic deep-purple ambient lighting — fixed across scroll.
-       Layered: top-left royal glow, bottom-right deep purple, central plum,
-       plus a soft onyx vignette to anchor depth. */
+    /* Cinematic ambient — controlled purple atmosphere over a neutral
+       onyx base. The body stays mostly black/charcoal; purple shows up
+       as soft directional pools that anchor depth without dominating. */
     background-image:
-      radial-gradient(68vw 58vh at 12% -4%, hsl(275 90% 26% / 0.32), transparent 62%),
-      radial-gradient(62vw 56vh at 92% 102%, hsl(278 75% 22% / 0.28), transparent 60%),
-      radial-gradient(52vw 48vh at 50% 48%, hsl(273 60% 28% / 0.14), transparent 70%),
-      radial-gradient(110vw 90vh at 50% 50%, transparent 55%, hsl(240 8% 4% / 0.55) 100%);
+      radial-gradient(58vw 50vh at 12% -6%, hsl(275 90% 24% / 0.22), transparent 60%),
+      radial-gradient(54vw 48vh at 94% 104%, hsl(278 75% 20% / 0.20), transparent 60%),
+      radial-gradient(42vw 38vh at 50% 52%, hsl(273 60% 26% / 0.08), transparent 70%),
+      radial-gradient(110vw 92vh at 50% 50%, transparent 55%, hsl(240 8% 3% / 0.6) 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
     font-feature-settings: "kern" 1, "liga" 1, "ss01" 1;
@@ -271,12 +302,12 @@
   h4 {
     font-family: var(--app-font-display);
     font-weight: 600;
+    color: var(--brand-white-silver);
     letter-spacing: -0.02em;
     line-height: 1.08;
   }
 
   h1 {
-    @apply text-foreground;
     letter-spacing: -0.025em;
   }
 
@@ -323,20 +354,51 @@
 
 /* Premium surfaces */
 @layer components {
-  /* Glass navbar — deep royal purple-tinted */
+  /* Glass navbar — black base with subtle purple tint + silver hairline */
   .ukride-glass-nav {
-    background: linear-gradient(
-      180deg,
-      hsl(278 60% 9% / 0.92),
-      hsl(277 55% 7% / 0.78)
-    );
+    position: relative;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(13, 13, 15, 0.86) 0%,
+        rgba(26, 26, 29, 0.74) 100%
+      );
     border-bottom: 1px solid var(--silver-border);
-    backdrop-filter: blur(24px) saturate(170%);
-    -webkit-backdrop-filter: blur(24px) saturate(170%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     box-shadow:
-      0 10px 36px rgb(0 0 0 / 0.5),
-      0 1px 0 rgb(192 192 192 / 0.06) inset,
-      0 0 0 1px rgb(75 0 130 / 0.08) inset;
+      0 10px 36px rgb(0 0 0 / 0.55),
+      0 1px 0 rgb(192 192 192 / 0.08) inset;
+  }
+
+  .ukride-glass-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* Soft purple horizon — almost imperceptible but adds brand atmosphere */
+    background:
+      radial-gradient(60% 100% at 50% 100%, rgba(75, 0, 130, 0.12), transparent 65%);
+  }
+
+  .ukride-glass-nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    pointer-events: none;
+    /* Hairline glow under the silver border */
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(75, 0, 130, 0.45) 25%,
+      rgba(155, 81, 224, 0.55) 50%,
+      rgba(75, 0, 130, 0.45) 75%,
+      transparent 100%
+    );
+    opacity: 0.55;
   }
 
   /* Cinematic image treatment — deeper violet wash for hero imagery */
@@ -404,39 +466,50 @@
     z-index: 1;
   }
 
-  /* Luxury card surface — purple-tinted glass with thin silver edge */
+  /* Luxury card surface — purple-tinted glass over charcoal,
+     with thin silver hairline & soft purple bloom. */
   .ukride-card {
     position: relative;
     background:
       linear-gradient(
         135deg,
-        rgba(75, 0, 130, 0.18) 0%,
-        rgba(43, 18, 56, 0.55) 100%
+        rgba(75, 0, 130, 0.16) 0%,
+        rgba(43, 18, 56, 0.42) 55%,
+        rgba(26, 26, 29, 0.6) 100%
       ),
-      hsl(var(--card));
+      linear-gradient(180deg, hsl(240 8% 9% / 0.55), hsl(240 8% 7% / 0.6));
     border: 1px solid var(--silver-border);
     border-radius: calc(var(--radius) + 0.25rem);
-    backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.06),
-      inset 0 0 0 1px rgb(75 0 130 / 0.08),
-      0 28px 72px -24px rgb(0 0 0 / 0.65),
-      0 10px 32px -10px rgb(75 0 130 / 0.32);
+      inset 0 1px 0 rgb(192 192 192 / 0.07),
+      inset 0 0 0 1px rgb(75 0 130 / 0.06),
+      0 28px 72px -24px rgb(0 0 0 / 0.7),
+      0 10px 32px -10px rgb(75 0 130 / 0.28);
     transition:
       transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
       box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.45s ease;
+      border-color 0.45s ease,
+      background 0.6s ease;
   }
 
   .ukride-card:hover {
     transform: translateY(-3px);
     border-color: var(--silver-border-strong);
+    background:
+      linear-gradient(
+        135deg,
+        rgba(75, 0, 130, 0.22) 0%,
+        rgba(43, 18, 56, 0.5) 55%,
+        rgba(26, 26, 29, 0.62) 100%
+      ),
+      linear-gradient(180deg, hsl(240 8% 11% / 0.6), hsl(240 8% 8% / 0.65));
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.09),
-      inset 0 0 0 1px rgb(75 0 130 / 0.14),
-      0 40px 96px -28px rgb(0 0 0 / 0.72),
-      0 18px 52px -12px rgb(75 0 130 / 0.48);
+      inset 0 1px 0 rgb(192 192 192 / 0.1),
+      inset 0 0 0 1px rgb(75 0 130 / 0.16),
+      0 40px 96px -28px rgb(0 0 0 / 0.75),
+      0 18px 52px -12px rgb(75 0 130 / 0.45);
   }
 
   /* Premium divider with purple/silver glow — for section separators */
@@ -753,6 +826,198 @@
 
   .ukride-text-platinum {
     color: var(--brand-platinum);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     NEUTRAL DARK SECTIONS — give the site its black/charcoal balance.
+     Use these on alt sections so the layout doesn't drown in purple.
+     ───────────────────────────────────────────────────────────────── */
+
+  /* Charcoal section with a faint purple shoulder glow.
+     Drop on any <section> to get black-dominant + hint of brand. */
+  .ukride-section-charcoal {
+    position: relative;
+    background:
+      linear-gradient(180deg, #131316 0%, #1A1A1D 100%);
+    isolation: isolate;
+  }
+
+  .ukride-section-charcoal::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(45vw 35vh at 95% 0%, rgba(75, 0, 130, 0.18), transparent 60%),
+      radial-gradient(40vw 32vh at 5% 100%, rgba(43, 18, 56, 0.32), transparent 60%);
+    z-index: -1;
+  }
+
+  /* Onyx section — deepest black band, anchors a page visually. */
+  .ukride-section-onyx {
+    position: relative;
+    background:
+      linear-gradient(180deg, #0A0A0D 0%, #0D0D0F 100%);
+    isolation: isolate;
+  }
+
+  .ukride-section-onyx::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(60vw 40vh at 50% 0%, rgba(75, 0, 130, 0.12), transparent 70%);
+    z-index: -1;
+  }
+
+  /* Graphite panel — slightly raised, neutral surface for content blocks */
+  .ukride-section-graphite {
+    background: linear-gradient(180deg, #232328 0%, #2D2D33 100%);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     SUBTLE TECH GRID — for hero overlays / premium agency feel.
+     Faint silver lines on a transparent background; pair with
+     `ukride-luxury-section-*` or any dark section.
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-grid-bg {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .ukride-grid-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(192, 192, 192, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192, 192, 192, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 75%);
+  }
+
+  .ukride-grid-bg > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     SECONDARY DARK BUTTON / OUTLINE CTA
+     For pages that need a non-purple primary action paired with a
+     primary purple CTA — gives sophisticated dark+silver contrast.
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-cta-dark {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--brand-white-silver);
+    background: linear-gradient(180deg, #1A1A1D 0%, #0D0D0F 100%);
+    border: 1px solid var(--silver-border-strong);
+    box-shadow:
+      inset 0 1px 0 rgb(192 192 192 / 0.12),
+      0 6px 22px -8px rgb(0 0 0 / 0.6);
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s ease,
+      border-color 0.35s ease,
+      background 0.45s ease;
+  }
+
+  .ukride-cta-dark:hover {
+    border-color: var(--silver-border-bold);
+    background: linear-gradient(180deg, #232328 0%, #14141A 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(192 192 192 / 0.18),
+      0 12px 32px -10px rgb(75 0 130 / 0.5),
+      0 4px 14px -4px rgb(0 0 0 / 0.6);
+    transform: translateY(-1px);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PILL BADGE — for "About us", "Services" eyebrow chips
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brand-silver);
+    background: rgba(75, 0, 130, 0.18);
+    border: 1px solid var(--silver-border);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    box-shadow:
+      inset 0 1px 0 rgb(192 192 192 / 0.06),
+      0 4px 18px -6px rgb(75 0 130 / 0.4);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     ICON HALO — circular surface for feature icons with subtle glow
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-icon-halo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    color: var(--brand-silver);
+    background: linear-gradient(
+      135deg,
+      rgba(75, 0, 130, 0.32) 0%,
+      rgba(43, 18, 56, 0.4) 100%
+    );
+    border: 1px solid var(--silver-border-strong);
+    box-shadow:
+      inset 0 1px 0 rgb(192 192 192 / 0.1),
+      inset 0 0 0 1px rgb(75 0 130 / 0.2),
+      0 8px 24px -10px rgb(75 0 130 / 0.55);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     INPUT — luxury dark style (extends form-field-light look)
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-input {
+    border-radius: calc(var(--radius) - 2px);
+    border: 1px solid var(--silver-border);
+    background-color: rgba(13, 13, 15, 0.65);
+    color: hsl(var(--foreground));
+    box-shadow:
+      inset 0 1px 0 rgb(192 192 192 / 0.05),
+      inset 0 0 0 1px rgb(75 0 130 / 0.06);
+    transition:
+      border-color 0.35s ease,
+      box-shadow 0.35s ease,
+      background-color 0.35s ease;
+  }
+
+  .ukride-input::placeholder {
+    color: var(--brand-platinum);
+    opacity: 0.65;
+  }
+
+  .ukride-input:hover {
+    border-color: var(--silver-border-strong);
+  }
+
+  .ukride-input:focus,
+  .ukride-input:focus-visible {
+    outline: none;
+    border-color: hsl(var(--highlight-soft) / 0.55);
+    box-shadow:
+      inset 0 1px 0 rgb(192 192 192 / 0.06),
+      0 0 0 3px hsl(var(--highlight) / 0.28);
   }
 }
 

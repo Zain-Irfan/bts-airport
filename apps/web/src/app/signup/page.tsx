@@ -1,72 +1,78 @@
 import Link from "next/link";
+import { Sparkles } from "lucide-react";
 import { FullFooterSection } from "@/components/FullFooterSection";
-import { MainNav } from "@/components/MainNav";
+import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { SignupPhoneInput } from "@/components/auth/SignupPhoneInput";
 
 export default function SignupPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full ukride-glass-nav">
-        <div className="container mx-auto flex h-20 items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground text-xs font-bold">
-              UR
-            </div>
-            <span className="text-2xl font-bold tracking-tight text-foreground">UKRide</span>
-          </Link>
-          <MainNav />
-          <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="hidden sm:inline-flex min-h-9 items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-bold text-accent-foreground"
-            >
-              Log In
-            </Link>
-            <Link
-              href="/signup"
-              className="inline-flex min-h-9 items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-bold text-accent-foreground"
-            >
-              Sign Up
-            </Link>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteTopHeader loginLabel="Log In" />
 
-      <main className="py-14">
+      <main className="ukride-hero-ambient relative py-16 md:py-24">
         <div className="mx-auto w-full max-w-md px-4">
-          <div className="rounded-2xl border border-white/[0.08] bg-card p-6 text-foreground shadow-lg">
-            <h1 className="text-2xl font-bold tracking-tight text-foreground">Create Account</h1>
-            <p className="mt-2 text-sm text-muted-foreground">
+          <div className="mb-6 text-center">
+            <p className="ukride-pill mx-auto">
+              <Sparkles className="h-3.5 w-3.5" />
+              Create account
+            </p>
+            <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              Join UKride
+            </h1>
+            <p className="mt-3 text-sm leading-6 text-[#D1D5DB]">
               Register to book rides faster and manage your journeys.
             </p>
+          </div>
 
-            <form className="mt-6 space-y-4">
-              <Field label="First Name">
-                <input type="text" placeholder="First name" className={inputClass} />
-              </Field>
-              <Field label="Last Name">
-                <input type="text" placeholder="Last name" className={inputClass} />
-              </Field>
+          <div className="ukride-card p-7">
+            <form className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field label="First name">
+                  <input
+                    type="text"
+                    placeholder="First name"
+                    className={inputClass}
+                  />
+                </Field>
+                <Field label="Last name">
+                  <input
+                    type="text"
+                    placeholder="Last name"
+                    className={inputClass}
+                  />
+                </Field>
+              </div>
               <Field label="Email">
-                <input type="email" placeholder="you@example.com" className={inputClass} />
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  className={inputClass}
+                />
               </Field>
-              <Field label="Phone Number">
+              <Field label="Phone number">
                 <SignupPhoneInput />
               </Field>
               <Field label="Password">
-                <input type="password" placeholder="••••••••" className={inputClass} />
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  className={inputClass}
+                />
               </Field>
               <button
                 type="button"
-                className="inline-flex h-11 w-full items-center justify-center rounded-lg bg-accent text-accent-foreground font-bold hover:bg-accent/90"
+                className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-xl border border-[rgba(192,192,192,0.25)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] text-sm font-bold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_10px_32px_-10px_rgba(75,0,130,0.6)] transition-all duration-300 hover:-translate-y-px hover:border-[rgba(192,192,192,0.4)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),0_18px_44px_-12px_rgba(75,0,130,0.8),0_0_0_3px_rgba(75,0,130,0.18)]"
               >
                 Create account
               </button>
             </form>
 
-            <p className="mt-5 text-sm text-muted-foreground">
+            <p className="mt-6 text-center text-sm text-[#A5A7AA]">
               Already have an account?{" "}
-              <Link href="/login" className="font-semibold text-highlight hover:underline">
+              <Link
+                href="/login"
+                className="font-semibold text-[#C0C0C0] transition-colors hover:text-[#F8F8F8]"
+              >
                 Log in
               </Link>
             </p>
@@ -88,7 +94,9 @@ function Field({
 }) {
   return (
     <label className="block space-y-1.5">
-      <span className="text-xs font-semibold text-muted-foreground">{label}</span>
+      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+        {label}
+      </span>
       {children}
     </label>
   );
@@ -96,4 +104,3 @@ function Field({
 
 const inputClass =
   "form-field-light h-11 w-full rounded-lg px-3 text-sm outline-none transition";
-

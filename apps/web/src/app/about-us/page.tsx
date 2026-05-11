@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ShieldCheck, Clock3, BadgeCheck, Users } from "lucide-react";
+import { ShieldCheck, Clock3, BadgeCheck, Users, Sparkles } from "lucide-react";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { Button } from "@/components/ui/button";
@@ -10,82 +10,117 @@ export default function AboutUsPage() {
       <SiteTopHeader />
 
       <main>
-        <section className="bg-primary text-primary-foreground py-20">
-          <div className="container mx-auto px-4 text-center max-w-4xl">
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent">About Us</p>
-            <h1 className="mt-3 text-4xl md:text-5xl font-extrabold tracking-tight">
-              Trusted London Transfers, Built Around You
+        {/* ── Hero ── */}
+        <section className="ukride-hero-ambient ukride-luxury-section-2 ukride-grid-bg relative overflow-hidden py-24 md:py-32">
+          <div className="container mx-auto max-w-4xl px-4 text-center">
+            <p className="ukride-pill mx-auto">
+              <Sparkles className="h-3.5 w-3.5" />
+              About us
+            </p>
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_24px_rgba(75,0,130,0.45)] md:text-5xl lg:text-6xl">
+              Trusted London transfers, built around you
             </h1>
-            <p className="mt-6 text-lg text-primary-foreground/80">
-              UKRide delivers dependable taxi and airport transfer services across London,
-              combining professional drivers, clear pricing, and a modern booking experience.
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-[#D1D5DB]">
+              UKride delivers dependable taxi and airport transfer services
+              across London — combining professional drivers, transparent
+              pricing, and a modern booking experience.
             </p>
           </div>
         </section>
 
-        <section className="py-24 md:py-32 bg-secondary">
-          <div className="container mx-auto px-4 grid gap-10 md:grid-cols-2 items-center">
-            <img
-              src="/perfect-taxi.jpg"
-              alt="UKRide professional transfer"
-              className="h-[360px] w-full rounded-2xl object-cover shadow-lg"
-            />
-            <div className="space-y-5">
-              <h2 className="text-3xl font-bold text-foreground">Who We Are</h2>
-              <p className="text-muted-foreground">
-                We are a London-focused transport team dedicated to premium airport and city transfers.
-                From early-morning flights to late-night pickups, we manage every journey with reliability and care.
+        {/* ── Who we are ── */}
+        <section className="ukride-section-charcoal relative py-24 md:py-32">
+          <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
+            <div className="ukride-purple-glow relative overflow-hidden rounded-3xl">
+              <img
+                src="/perfect-taxi.jpg"
+                alt="UKRide professional transfer"
+                className="h-[420px] w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(13,13,15,0.4)_100%)]" />
+            </div>
+            <div className="space-y-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
+                Who we are
               </p>
-              <p className="text-muted-foreground">
-                Our mission is simple: make travel effortless. With licensed drivers, quality vehicles,
-                and responsive support, we ensure passengers get to their destination on time and in comfort.
+              <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+                London-focused transport, finished with care
+              </h2>
+              <p className="text-[#D1D5DB]">
+                We are a London-focused transport team dedicated to premium
+                airport and city transfers. From early-morning flights to
+                late-night pickups, every journey is managed with reliability
+                and care.
               </p>
-              <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
-                <Link href="/taxi-quote">Book a Taxi</Link>
-              </Button>
+              <p className="text-[#A5A7AA]">
+                Our mission is simple: make travel effortless. With licensed
+                drivers, quality vehicles, and responsive support, passengers
+                arrive on time and in comfort.
+              </p>
+              <div className="pt-2">
+                <Button asChild size="lg">
+                  <Link href="/taxi-quote">Book a Taxi</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="py-20 bg-background">
+        {/* ── Why choose us ── */}
+        <section className="ukride-section-onyx relative py-24 md:py-28">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-foreground text-center mb-12">Why Choose UKRide</h2>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              <Card
-                icon={<ShieldCheck className="h-7 w-7 text-accent" />}
-                title="Licensed Drivers"
-                desc="Professional, vetted, and customer-focused chauffeurs for every trip."
+            <div className="mx-auto mb-12 max-w-2xl text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
+                Why UKride
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+                The standards behind every ride
+              </h2>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+              <AboutCard
+                icon={<ShieldCheck className="h-5 w-5" />}
+                title="Licensed drivers"
+                desc="Professional, vetted, customer-focused chauffeurs on every trip."
               />
-              <Card
-                icon={<Clock3 className="h-7 w-7 text-accent" />}
-                title="24/7 Availability"
-                desc="Round-the-clock service for airport transfers and local journeys."
+              <AboutCard
+                icon={<Clock3 className="h-5 w-5" />}
+                title="24/7 availability"
+                desc="Round-the-clock service for airport transfers and city journeys."
               />
-              <Card
-                icon={<BadgeCheck className="h-7 w-7 text-accent" />}
-                title="Transparent Pricing"
+              <AboutCard
+                icon={<BadgeCheck className="h-5 w-5" />}
+                title="Transparent pricing"
                 desc="Clear fares with no hidden surprises, including key transfer costs."
               />
-              <Card
-                icon={<Users className="h-7 w-7 text-accent" />}
-                title="Customer First"
+              <AboutCard
+                icon={<Users className="h-5 w-5" />}
+                title="Customer first"
                 desc="Supportive service from booking confirmation to final drop-off."
               />
             </div>
           </div>
         </section>
 
-        <section className="py-24 md:py-32 bg-secondary">
-          <div className="container mx-auto px-4 text-center max-w-3xl">
-            <h2 className="text-3xl font-bold text-foreground">Our Promise</h2>
-            <p className="mt-5 text-muted-foreground leading-8">
-              Every UKRide booking is handled with precision, punctuality, and professionalism.
-              Whether you need an airport transfer, business ride, or point-to-point travel,
-              we are committed to delivering a smooth and premium experience every mile.
+        {/* ── Promise ── */}
+        <section className="ukride-section-charcoal relative py-24 md:py-32">
+          <div className="container mx-auto max-w-3xl px-4 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
+              Our promise
             </p>
-            <Button asChild className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link href="/#quote">Get Instant Quote</Link>
-            </Button>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              Precision, punctuality, professionalism
+            </h2>
+            <p className="mt-5 text-[#D1D5DB] leading-8">
+              Every UKRide booking is handled with care. Airport transfers,
+              business rides, or point-to-point travel — we deliver a smooth,
+              premium experience every mile.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg">
+                <Link href="/#quote">Get Instant Quote</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
@@ -95,7 +130,7 @@ export default function AboutUsPage() {
   );
 }
 
-function Card({
+function AboutCard({
   icon,
   title,
   desc,
@@ -105,11 +140,12 @@ function Card({
   desc: string;
 }) {
   return (
-    <div className="rounded-2xl border border-white/[0.08] bg-card p-6 shadow-sm">
-      <div className="mb-3">{icon}</div>
-      <div className="text-lg font-semibold text-foreground">{title}</div>
-      <div className="mt-2 text-sm leading-6 text-muted-foreground">{desc}</div>
+    <div className="ukride-card p-6">
+      <span className="ukride-icon-halo mb-4 h-11 w-11">{icon}</span>
+      <h3 className="text-lg font-semibold tracking-tight text-[#F8F8F8]">
+        {title}
+      </h3>
+      <p className="mt-2 text-sm leading-6 text-[#D1D5DB]">{desc}</p>
     </div>
   );
 }
-
