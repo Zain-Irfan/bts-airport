@@ -1,14 +1,10 @@
 import path from "node:path";
 import type { NextConfig } from "next";
 
-// Monorepo root (parent of `apps/`) — must match for tracing + Turbopack.
-const monorepoRoot = path.join(process.cwd(), "../..");
-
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: monorepoRoot,
-  turbopack: {
-    root: monorepoRoot,
-  },
+  // Monorepo: correct serverless file tracing when app lives in `apps/web`.
+  // Do not set `turbopack.root` to the repo root — it makes Turbopack scan all of `replit-ui/` etc. and can fail on Vercel.
+  outputFileTracingRoot: path.join(process.cwd(), "../.."),
 };
 
 export default nextConfig;
