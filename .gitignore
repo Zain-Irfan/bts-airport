@@ -1,0 +1,27 @@
+# root ignore (monorepo)
+
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# env
+.env*
+
+# vercel
+.vercel
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+
+# archives (avoid accidental huge commits)
+*.zip
+
