@@ -108,7 +108,7 @@ export default function TaxiBookingAppPage() {
               </div>
             </div>
             <div className="relative flex justify-center">
-              <div className="absolute top-1/2 left-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(75,0,130,0.55)] blur-3xl opacity-50"></div>
+              <div className="absolute top-1/2 left-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(45,45,51,0.6)] blur-3xl opacity-50"></div>
               <img
                 src="/app-mockup.jpg"
                 alt="UKride app preview"

@@ -7,7 +7,7 @@ import { SignupPhoneInput } from "@/components/auth/SignupPhoneInput";
 export default function SignupPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <SiteTopHeader loginLabel="Log In" />
+      <SiteTopHeader />
 
       <main className="ukride-hero-ambient relative py-16 md:py-24">
         <div className="mx-auto w-full max-w-md px-4">

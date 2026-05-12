@@ -52,7 +52,7 @@ export default function LondonTaxiPage() {
         <div className="container relative z-10 mx-auto px-4">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center rounded-full border border-[rgba(192,192,192,0.22)] bg-[rgba(75,0,130,0.18)] px-3 py-1 text-sm shadow-[0_4px_18px_-6px_rgba(75,0,130,0.55)] backdrop-blur">
+              <div className="inline-flex items-center rounded-full border border-[rgba(192,192,192,0.22)] bg-[rgba(45,45,51,0.55)] px-3 py-1 text-sm shadow-[0_4px_18px_-6px_rgba(0,0,0,0.4)] backdrop-blur">
                 <Star className="mr-2 h-4 w-4 fill-[#C0C0C0] text-[#C0C0C0]" />
                 <span className="font-semibold text-[#F8F8F8]">4.9</span>
                 <span className="mx-2 text-[#C0C0C0]/60">|</span>

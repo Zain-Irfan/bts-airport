@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { SiteHeader } from "@/components/SiteHeader";
+import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -74,7 +74,7 @@ export default function Home() {
       </a>
 
       {/* 1. Header */}
-      <SiteHeader />
+      <SiteTopHeader />
 
       {/* 2. Hero Section & 3. Booking Form */}
       <section className="ukride-hero-ambient ukride-luxury-section-1 relative pt-16 pb-32 text-primary-foreground lg:pt-24 lg:pb-40">
@@ -90,14 +90,14 @@ export default function Home() {
         <div className="container relative z-20 mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
             <div className="space-y-8">
-              <div className="inline-flex items-center rounded-full border border-[rgba(192,192,192,0.18)] bg-[rgba(75,0,130,0.22)] px-3 py-1 text-sm shadow-[0_4px_18px_-6px_rgba(75,0,130,0.55)] backdrop-blur-sm">
+              <div className="inline-flex items-center rounded-full border border-[rgba(192,192,192,0.18)] bg-[rgba(45,45,51,0.55)] px-3 py-1 text-sm shadow-[0_4px_18px_-6px_rgba(0,0,0,0.4)] backdrop-blur-sm">
                 <Star className="mr-2 h-4 w-4 fill-highlight text-highlight" />
                 <span className="font-semibold">4.9</span>
                 <span className="mx-2 text-[#C0C0C0]/60">|</span>
                 <span className="text-[#F8F8F8]/90">1538+ Google Reviews</span>
               </div>
 
-              <h1 className="text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_20px_rgba(75,0,130,0.35)] sm:text-5xl lg:text-6xl">
+              <h1 className="text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)] sm:text-5xl lg:text-6xl">
                 London Taxi Services <br />
                 <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">
                   — Anytime You Need
@@ -609,7 +609,7 @@ export default function Home() {
                     <h3 className="text-xl font-semibold tracking-tight text-[#F8F8F8]">
                       {vehicle.name}
                     </h3>
-                    <span className="rounded-full border border-[rgba(192,192,192,0.18)] bg-[rgba(75,0,130,0.18)] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#C0C0C0]">
+                    <span className="rounded-full border border-[rgba(192,192,192,0.18)] bg-[rgba(45,45,51,0.5)] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#C0C0C0]">
                       Premium
                     </span>
                   </div>
@@ -682,7 +682,7 @@ export default function Home() {
               </div>
             </div>
             <div className="relative flex justify-center mt-12 md:mt-0">
-              <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(75,0,130,0.55)] blur-3xl opacity-50"></div>
+              <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(45,45,51,0.6)] blur-3xl opacity-50"></div>
               <img
                 src="/app-mockup.jpg"
                 alt="App Mockup"

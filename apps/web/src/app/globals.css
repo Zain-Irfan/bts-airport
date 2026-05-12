@@ -137,10 +137,10 @@
   --text-accent: #C0C0C0;
 
   /* Glass / surface fills (used by .ukride-card, .ukride-glass, etc.) */
-  --glass-purple-strong: rgba(75, 0, 130, 0.22);
-  --glass-purple-soft: rgba(75, 0, 130, 0.16);
-  --glass-dark-purple: rgba(43, 18, 56, 0.55);
-  --glass-graphite: rgba(45, 45, 51, 0.55);
+  --glass-purple-strong: rgba(75, 0, 130, 0.10);
+  --glass-purple-soft: rgba(75, 0, 130, 0.06);
+  --glass-dark-purple: rgba(43, 18, 56, 0.22);
+  --glass-graphite: rgba(45, 45, 51, 0.65);
 
   /* Silver hairlines (refinement) */
   --silver-border: rgba(192, 192, 192, 0.10);
@@ -288,12 +288,11 @@
   body {
     @apply min-h-screen font-sans text-foreground antialiased;
     background-color: hsl(var(--background));
-    /* Executive ambient — controlled purple atmosphere over an onyx base.
-       Pure black/charcoal carries the surface area; purple is reserved
-       as subtle directional pools that add depth without dominating. */
+    /* Executive ambient — pure dark metallic base with very faint purple edge.
+       Graphite/silver carry the atmosphere; purple is almost invisible here. */
     background-image:
-      radial-gradient(48vw 42vh at 10% -8%, hsl(275 90% 22% / 0.18), transparent 60%),
-      radial-gradient(46vw 42vh at 96% 106%, hsl(278 75% 18% / 0.16), transparent 60%),
+      radial-gradient(48vw 42vh at 10% -8%, hsl(220 6% 14% / 0.35), transparent 60%),
+      radial-gradient(46vw 42vh at 96% 106%, hsl(240 6% 10% / 0.3), transparent 60%),
       radial-gradient(110vw 92vh at 50% 50%, transparent 55%, hsl(240 8% 2% / 0.7) 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -391,9 +390,8 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    /* Soft purple horizon — almost imperceptible but adds brand atmosphere */
     background:
-      radial-gradient(60% 100% at 50% 100%, rgba(75, 0, 130, 0.12), transparent 65%);
+      radial-gradient(60% 100% at 50% 100%, rgba(192, 192, 192, 0.03), transparent 65%);
   }
 
   .ukride-glass-nav::after {
@@ -404,16 +402,15 @@
     bottom: -1px;
     height: 1px;
     pointer-events: none;
-    /* Hairline glow under the silver border */
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(75, 0, 130, 0.45) 25%,
-      rgba(155, 81, 224, 0.55) 50%,
-      rgba(75, 0, 130, 0.45) 75%,
+      rgba(192, 192, 192, 0.18) 25%,
+      rgba(192, 192, 192, 0.28) 50%,
+      rgba(192, 192, 192, 0.18) 75%,
       transparent 100%
     );
-    opacity: 0.55;
+    opacity: 0.6;
   }
 
   /* Cinematic image treatment — deeper violet wash for hero imagery */
@@ -426,12 +423,12 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at top right, hsl(275 90% 38% / 0.28), transparent 55%),
-      radial-gradient(ellipse at bottom left, hsl(278 70% 22% / 0.32), transparent 55%),
+      radial-gradient(ellipse at top right, hsl(220 6% 20% / 0.3), transparent 55%),
+      radial-gradient(ellipse at bottom left, hsl(240 6% 12% / 0.35), transparent 55%),
       linear-gradient(
         180deg,
-        hsl(278 60% 8% / 0.55),
-        hsl(278 60% 6% / 0.95)
+        hsl(240 7% 6% / 0.55),
+        hsl(240 7% 4% / 0.92)
       );
   }
 
@@ -458,7 +455,7 @@
     max-height: 860px;
     background: radial-gradient(
       circle at center,
-      hsl(275 90% 38% / 0.32),
+      hsl(220 6% 20% / 0.3),
       transparent 60%
     );
   }
@@ -471,7 +468,7 @@
     max-height: 820px;
     background: radial-gradient(
       circle at center,
-      hsl(278 75% 28% / 0.28),
+      hsl(240 6% 14% / 0.25),
       transparent 60%
     );
   }
@@ -481,27 +478,25 @@
     z-index: 1;
   }
 
-  /* Luxury card surface — purple-tinted glass over charcoal,
-     with thin silver hairline & soft purple bloom. */
+  /* Luxury card surface — graphite glass with silver hairline.
+     Purple tint is near-zero; metallic depth comes from charcoal/silver. */
   .ukride-card {
     position: relative;
     background:
       linear-gradient(
         135deg,
-        rgba(75, 0, 130, 0.16) 0%,
-        rgba(43, 18, 56, 0.42) 55%,
-        rgba(26, 26, 29, 0.6) 100%
-      ),
-      linear-gradient(180deg, hsl(240 8% 9% / 0.55), hsl(240 8% 7% / 0.6));
+        rgba(45, 45, 51, 0.55) 0%,
+        rgba(26, 26, 29, 0.72) 55%,
+        rgba(13, 13, 15, 0.8) 100%
+      );
     border: 1px solid var(--silver-border);
     border-radius: calc(var(--radius) + 0.25rem);
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.07),
-      inset 0 0 0 1px rgb(75 0 130 / 0.06),
       0 28px 72px -24px rgb(0 0 0 / 0.7),
-      0 10px 32px -10px rgb(75 0 130 / 0.28);
+      0 10px 32px -10px rgb(0 0 0 / 0.35);
     transition:
       transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
       box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
@@ -515,16 +510,14 @@
     background:
       linear-gradient(
         135deg,
-        rgba(75, 0, 130, 0.22) 0%,
-        rgba(43, 18, 56, 0.5) 55%,
-        rgba(26, 26, 29, 0.62) 100%
-      ),
-      linear-gradient(180deg, hsl(240 8% 11% / 0.6), hsl(240 8% 8% / 0.65));
+        rgba(45, 45, 51, 0.62) 0%,
+        rgba(26, 26, 29, 0.78) 55%,
+        rgba(13, 13, 15, 0.82) 100%
+      );
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.1),
-      inset 0 0 0 1px rgb(75 0 130 / 0.16),
-      0 40px 96px -28px rgb(0 0 0 / 0.75),
-      0 18px 52px -12px rgb(75 0 130 / 0.45);
+      0 40px 96px -28px rgb(0 0 0 / 0.78),
+      0 18px 52px -12px rgb(75 0 130 / 0.2);
   }
 
   /* Premium divider with purple/silver glow — for section separators */
@@ -593,11 +586,10 @@
   .form-field-light {
     border-radius: calc(var(--radius) - 2px);
     border: 1px solid var(--silver-border) !important;
-    background-color: hsl(278 55% 9% / 0.65) !important;
+    background-color: rgba(13, 13, 15, 0.65) !important;
     color: hsl(var(--foreground)) !important;
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.05),
-      inset 0 0 0 1px rgb(75 0 130 / 0.06);
+      inset 0 1px 0 rgb(192 192 192 / 0.05);
     transition:
       border-color 0.35s ease,
       box-shadow 0.35s ease,
@@ -612,7 +604,7 @@
   .booking-field:hover,
   .form-field-light:hover {
     border-color: var(--silver-border-strong) !important;
-    background-color: hsl(278 55% 11% / 0.7) !important;
+    background-color: rgba(26, 26, 29, 0.7) !important;
   }
 
   .booking-field:focus-visible,
@@ -633,13 +625,13 @@
      LUXURY UTILITY SURFACES
      ───────────────────────────────────────────────────────────────── */
 
-  /* Purple-tinted glass container — for ad-hoc panels & cards */
+  /* Graphite glass container — dark metallic surface */
   .ukride-glass {
     background:
       linear-gradient(
         135deg,
-        rgba(75, 0, 130, 0.18) 0%,
-        rgba(43, 18, 56, 0.45) 100%
+        rgba(45, 45, 51, 0.5) 0%,
+        rgba(26, 26, 29, 0.7) 100%
       );
     border: 1px solid var(--silver-border);
     border-radius: calc(var(--radius) + 0.25rem);
@@ -648,15 +640,15 @@
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.06),
       0 24px 64px -24px rgb(0 0 0 / 0.6),
-      0 8px 28px -10px rgb(75 0 130 / 0.34);
+      0 8px 28px -10px rgb(0 0 0 / 0.3);
   }
 
   .ukride-glass-strong {
     background:
       linear-gradient(
         135deg,
-        rgba(75, 0, 130, 0.26) 0%,
-        rgba(43, 18, 56, 0.6) 100%
+        rgba(45, 45, 51, 0.6) 0%,
+        rgba(26, 26, 29, 0.78) 100%
       );
     border: 1px solid var(--silver-border-strong);
     border-radius: calc(var(--radius) + 0.25rem);
@@ -664,17 +656,17 @@
     -webkit-backdrop-filter: blur(22px) saturate(170%);
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.08),
-      inset 0 0 0 1px rgb(75 0 130 / 0.18),
       0 36px 88px -28px rgb(0 0 0 / 0.7),
-      0 14px 40px -12px rgb(75 0 130 / 0.45);
+      0 14px 40px -12px rgb(0 0 0 / 0.4);
   }
 
-  /* Luxury section backgrounds — alternate purple gradient bands.
-     Variant 1: dark purple → deep purple diagonal (cinematic) */
+  /* Luxury section backgrounds — dark metallic gradient bands.
+     Purple appears only as a very faint ambient edge, not as the surface.
+     Variant 1: onyx → charcoal diagonal with faint purple horizon */
   .ukride-luxury-section,
   .ukride-luxury-section-1 {
     background:
-      linear-gradient(135deg, #2A1238 0%, #4B0082 100%);
+      linear-gradient(135deg, #0D0D0F 0%, #1A1A1D 50%, #232328 100%);
     position: relative;
     isolation: isolate;
   }
@@ -685,15 +677,15 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(60vw 50vh at 18% 0%, rgb(155 81 224 / 0.18), transparent 60%),
-      radial-gradient(50vw 45vh at 92% 100%, rgb(43 18 56 / 0.55), transparent 60%);
+      radial-gradient(50vw 40vh at 18% 0%, rgb(75 0 130 / 0.08), transparent 60%),
+      radial-gradient(45vw 38vh at 92% 100%, rgb(45 45 51 / 0.35), transparent 60%);
     z-index: -1;
   }
 
-  /* Variant 2: onyx → royal purple vertical (dramatic) */
+  /* Variant 2: deep onyx → graphite vertical (dramatic) */
   .ukride-luxury-section-2 {
     background:
-      linear-gradient(180deg, #14081F 0%, #3B0A57 100%);
+      linear-gradient(180deg, #0A0A0D 0%, #1A1A1D 50%, #2D2D33 100%);
     position: relative;
     isolation: isolate;
   }
@@ -703,15 +695,15 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(55vw 45vh at 50% 0%, rgb(75 0 130 / 0.32), transparent 60%),
-      radial-gradient(40vw 38vh at 50% 100%, rgb(13 13 15 / 0.6), transparent 60%);
+      radial-gradient(50vw 40vh at 50% 0%, rgb(75 0 130 / 0.06), transparent 60%),
+      radial-gradient(40vw 38vh at 50% 100%, rgb(13 13 15 / 0.5), transparent 60%);
     z-index: -1;
   }
 
-  /* Variant 3: charcoal blended with deep purple (elegant midtone) */
+  /* Variant 3: charcoal → graphite (elegant metallic midtone) */
   .ukride-luxury-section-3 {
     background:
-      linear-gradient(135deg, #1A1A1D 0%, #4B0082 100%);
+      linear-gradient(135deg, #131316 0%, #1A1A1D 50%, #2D2D33 100%);
     position: relative;
     isolation: isolate;
   }
@@ -721,8 +713,8 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(50vw 42vh at 85% 0%, rgb(155 81 224 / 0.2), transparent 60%),
-      radial-gradient(55vw 48vh at 5% 100%, rgb(13 13 15 / 0.55), transparent 60%);
+      radial-gradient(45vw 35vh at 85% 0%, rgb(75 0 130 / 0.06), transparent 60%),
+      radial-gradient(50vw 40vh at 5% 100%, rgb(13 13 15 / 0.4), transparent 60%);
     z-index: -1;
   }
 
@@ -788,8 +780,8 @@
       0 18px 48px -10px rgb(75 0 130 / 0.6);
   }
 
-  /* Hero ambient lighting — drop into any hero <section> for
-     cinematic deep-purple atmosphere + soft top-left royal glow. */
+  /* Hero ambient lighting — subtle metallic depth with a whisper of purple.
+     Dark charcoal atmosphere dominates; purple is barely perceptible. */
   .ukride-hero-ambient {
     position: relative;
     isolation: isolate;
@@ -809,15 +801,15 @@
     inset: -25% -10% auto -10%;
     height: 75%;
     background:
-      radial-gradient(50vw 40vh at 18% 30%, rgb(75 0 130 / 0.55), transparent 60%),
-      radial-gradient(40vw 36vh at 82% 20%, rgb(155 81 224 / 0.32), transparent 60%);
+      radial-gradient(50vw 40vh at 18% 30%, rgb(45 45 51 / 0.5), transparent 60%),
+      radial-gradient(40vw 36vh at 82% 20%, rgb(75 0 130 / 0.1), transparent 60%);
   }
 
   .ukride-hero-ambient::after {
     inset: auto -10% -25% -10%;
     height: 60%;
     background:
-      radial-gradient(55vw 45vh at 70% 80%, rgb(59 10 87 / 0.55), transparent 60%),
+      radial-gradient(55vw 45vh at 70% 80%, rgb(26 26 29 / 0.6), transparent 60%),
       radial-gradient(45vw 38vh at 10% 90%, rgb(13 13 15 / 0.7), transparent 60%);
   }
 
@@ -826,12 +818,12 @@
     z-index: 1;
   }
 
-  /* Soft purple glow utility — wrap around media/content blocks */
+  /* Subtle glow utility — wrap around media/content blocks */
   .ukride-purple-glow {
     box-shadow:
       0 0 0 1px var(--silver-border),
-      0 20px 60px -20px rgb(75 0 130 / 0.55),
-      0 8px 24px -8px rgb(0 0 0 / 0.55);
+      0 20px 60px -20px rgb(0 0 0 / 0.6),
+      0 8px 24px -8px rgb(75 0 130 / 0.15);
   }
 
   /* Silver chrome accent text */
@@ -863,8 +855,8 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(45vw 35vh at 95% 0%, rgba(75, 0, 130, 0.18), transparent 60%),
-      radial-gradient(40vw 32vh at 5% 100%, rgba(43, 18, 56, 0.32), transparent 60%);
+      radial-gradient(45vw 35vh at 95% 0%, rgba(45, 45, 51, 0.25), transparent 60%),
+      radial-gradient(40vw 32vh at 5% 100%, rgba(75, 0, 130, 0.05), transparent 60%);
     z-index: -1;
   }
 
@@ -882,7 +874,7 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(60vw 40vh at 50% 0%, rgba(75, 0, 130, 0.12), transparent 70%);
+      radial-gradient(60vw 40vh at 50% 0%, rgba(45, 45, 51, 0.15), transparent 70%);
     z-index: -1;
   }
 
@@ -968,13 +960,13 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--brand-silver);
-    background: rgba(75, 0, 130, 0.18);
-    border: 1px solid var(--silver-border);
+    background: rgba(45, 45, 51, 0.55);
+    border: 1px solid var(--silver-border-strong);
     backdrop-filter: blur(10px) saturate(140%);
     -webkit-backdrop-filter: blur(10px) saturate(140%);
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.06),
-      0 4px 18px -6px rgb(75 0 130 / 0.4);
+      inset 0 1px 0 rgb(192 192 192 / 0.08),
+      0 4px 18px -6px rgb(0 0 0 / 0.4);
   }
 
   /* ─────────────────────────────────────────────────────────────────
@@ -990,14 +982,13 @@
     color: var(--brand-silver);
     background: linear-gradient(
       135deg,
-      rgba(75, 0, 130, 0.32) 0%,
-      rgba(43, 18, 56, 0.4) 100%
+      rgba(45, 45, 51, 0.6) 0%,
+      rgba(26, 26, 29, 0.7) 100%
     );
     border: 1px solid var(--silver-border-strong);
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.1),
-      inset 0 0 0 1px rgb(75 0 130 / 0.2),
-      0 8px 24px -10px rgb(75 0 130 / 0.55);
+      0 8px 24px -10px rgb(0 0 0 / 0.5);
   }
 
   /* ─────────────────────────────────────────────────────────────────
@@ -1058,14 +1049,14 @@
   .ukride-faq-item:hover {
     border-color: var(--silver-border-strong);
     background:
-      linear-gradient(180deg, rgba(43, 18, 56, 0.5) 0%, rgba(26, 26, 29, 0.78) 100%);
+      linear-gradient(180deg, rgba(45, 45, 51, 0.45) 0%, rgba(26, 26, 29, 0.78) 100%);
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.07),
-      0 12px 36px -14px rgb(75 0 130 / 0.4);
+      0 12px 36px -14px rgb(0 0 0 / 0.4);
   }
 
   .ukride-faq-item[data-state="open"] {
-    border-color: rgba(155, 81, 224, 0.42);
+    border-color: rgba(192, 192, 192, 0.25);
   }
 
   /* ─────────────────────────────────────────────────────────────────
@@ -1109,7 +1100,7 @@
     pointer-events: none;
     background:
       linear-gradient(180deg, transparent 40%, rgba(13, 13, 15, 0.75) 100%),
-      linear-gradient(135deg, rgba(75, 0, 130, 0.18) 0%, transparent 60%);
+      linear-gradient(135deg, rgba(45, 45, 51, 0.12) 0%, transparent 60%);
   }
 
   .ukride-vehicle-media img {
@@ -1300,7 +1291,7 @@
   border: 1px solid var(--silver-border);
   border-right: 0;
   border-radius: 0.5rem 0 0 0.5rem;
-  background: hsl(278 55% 9% / 0.75);
+  background: rgba(13, 13, 15, 0.75);
   color: hsl(var(--foreground));
 }
 
@@ -1309,7 +1300,7 @@
   height: 2.75rem;
   border: 1px solid var(--silver-border);
   border-radius: 0.5rem;
-  background: hsl(278 55% 9% / 0.65) !important;
+  background: rgba(13, 13, 15, 0.65) !important;
   color: hsl(var(--foreground)) !important;
   font-size: 0.875rem;
   transition:
@@ -1333,15 +1324,100 @@
   box-shadow: 0 20px 48px rgb(0 0 0 / 0.55);
 }
 
-@keyframes ukride-loader {
+/* ─── Route loader: top progress bar ─── */
+.ukride-topbar-track {
+  background: rgba(75, 0, 130, 0.12);
+}
+
+.ukride-topbar-fill {
+  background: linear-gradient(90deg, transparent, #9B51E0 40%, #C0C0C0 75%, transparent);
+  animation: ukride-topbar 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes ukride-topbar {
   0% {
-    transform: translateX(-65%);
-  }
-  50% {
-    transform: translateX(85%);
+    transform: translateX(-100%);
   }
   100% {
-    transform: translateX(-65%);
+    transform: translateX(100%);
+  }
+}
+
+/* ─── Route loader: spinning ring ─── */
+.ukride-loader-spin {
+  animation: ukride-spin 0.9s linear infinite;
+}
+
+@keyframes ukride-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ─── Route loader: subtle ring pulse ─── */
+.ukride-loader-ring > div:first-child {
+  animation: ukride-ring-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ukride-ring-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+/* ─── Route loader: dot pulse ─── */
+.ukride-dot-pulse {
+  animation: ukride-dot 1.2s ease-in-out infinite;
+}
+
+@keyframes ukride-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+/* ─── Skeleton shimmer for page loading states ─── */
+.ukride-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: rgba(192, 192, 192, 0.06);
+  border-radius: 0.375rem;
+}
+
+.ukride-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(192, 192, 192, 0.06) 40%,
+    rgba(192, 192, 192, 0.1) 50%,
+    rgba(192, 192, 192, 0.06) 60%,
+    transparent 100%
+  );
+  animation: ukride-shimmer-slide 1.8s ease-in-out infinite;
+}
+
+@keyframes ukride-shimmer-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
 

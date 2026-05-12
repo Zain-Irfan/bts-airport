@@ -22,7 +22,7 @@ export function FullFooterSection() {
             <span className="block h-1.5 w-1.5 rounded-full bg-[#C0C0C0]" />
             Private Chauffeur
           </p>
-          <h2 className="mx-auto mb-6 max-w-3xl text-4xl font-semibold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_28px_rgba(75,0,130,0.45)] md:text-6xl">
+          <h2 className="mx-auto mb-6 max-w-3xl text-4xl font-semibold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_28px_rgba(0,0,0,0.45)] md:text-6xl">
             Ready to ride in quiet luxury?
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-[#D1D5DB] md:text-xl">
@@ -251,7 +251,7 @@ function ContactRow({
   );
   return (
     <li className="group flex items-start gap-3">
-      <span className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-md border border-[rgba(192,192,192,0.14)] bg-[rgba(75,0,130,0.22)] text-[#C0C0C0]">
+      <span className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-md border border-[rgba(192,192,192,0.14)] bg-[rgba(45,45,51,0.5)] text-[#C0C0C0]">
         {icon}
       </span>
       <span className="flex flex-col gap-0.5">

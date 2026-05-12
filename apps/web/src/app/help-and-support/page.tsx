@@ -15,7 +15,7 @@ export default function HelpAndSupportPage() {
               <Headphones className="h-3.5 w-3.5" />
               Help &amp; support
             </p>
-            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_24px_rgba(75,0,130,0.45)] md:text-5xl">
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)] md:text-5xl">
               We&apos;re here, around the clock
             </h1>
             <p className="mt-5 text-lg leading-7 text-[#D1D5DB]">

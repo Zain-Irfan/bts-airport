@@ -17,7 +17,7 @@ export default function AboutUsPage() {
               <Sparkles className="h-3.5 w-3.5" />
               About us
             </p>
-            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_24px_rgba(75,0,130,0.45)] md:text-5xl lg:text-6xl">
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)] md:text-5xl lg:text-6xl">
               Trusted London transfers, built around you
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-[#D1D5DB]">
