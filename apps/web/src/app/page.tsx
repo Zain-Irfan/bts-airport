@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { MainNav } from "@/components/MainNav";
+import { SiteHeader } from "@/components/SiteHeader";
+import { FullFooterSection } from "@/components/FullFooterSection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -31,7 +32,6 @@ import {
   Clock,
   Users,
   Briefcase,
-  Plane,
   Star,
   Phone,
   ChevronDown,
@@ -40,7 +40,6 @@ import {
   Zap,
 } from "lucide-react";
 import { format } from "date-fns";
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { GooglePlacesInput } from "@/components/forms/GooglePlacesInput";
 
@@ -75,33 +74,7 @@ export default function Home() {
       </a>
 
       {/* 1. Header */}
-      <header className="ukride-glass-nav sticky top-0 z-50 w-full">
-        <div className="container mx-auto flex h-20 items-center justify-between px-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-highlight text-highlight-foreground">
-              <Plane className="h-6 w-6" />
-            </div>
-            <span className="text-2xl font-bold tracking-tight text-foreground">
-              BTS
-            </span>
-          </div>
-          <MainNav />
-          <div className="flex items-center gap-4">
-            <Button
-              asChild
-              className="hidden border border-highlight/40 sm:inline-flex bg-accent text-accent-foreground hover:bg-accent/90"
-            >
-              <Link href="/login">Log In</Link>
-            </Button>
-            <Button
-              asChild
-              className="border border-highlight/40 bg-accent text-accent-foreground hover:bg-accent/90"
-            >
-              <Link href="/signup">Sign Up</Link>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* 2. Hero Section & 3. Booking Form */}
       <section className="ukride-hero-ambient ukride-luxury-section-1 relative pt-16 pb-32 text-primary-foreground lg:pt-24 lg:pb-40">
@@ -396,43 +369,43 @@ export default function Home() {
       </section>
 
       {/* 5. Pre-Book Taxis Section */}
-      <section className="border-t border-white/[0.06] bg-background py-24 text-foreground">
+      <section className="ukride-section-onyx ukride-grid-bg relative border-t border-[rgba(192,192,192,0.06)] py-24 text-foreground md:py-32">
         <div className="container mx-auto max-w-4xl px-4 text-center">
-          <h2 className="mx-auto mb-6 w-max border-b-4 border-highlight pb-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Pre-Book Taxis Online with UK Ride
+          <span className="ukride-pill mb-6">Pre-book online</span>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            Pre-Book Taxis Online with UKRide
           </h2>
-          <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-            UK Ride is your trusted partner for all transport needs across
-            London and its major airports. Whether you're heading to a crucial
-            business meeting, catching a flight from Heathrow, or simply
-            exploring the city, our pre-booking platform ensures a seamless,
-            comfortable journey from start to finish.
+          <div className="ukride-divider mx-auto mt-6 w-24" />
+          <p className="mt-8 text-lg leading-relaxed text-[#CFCFCF]">
+            UKRide is your trusted partner for executive transport across
+            London and its major airports. Whether you&apos;re heading to a
+            crucial business meeting, catching a flight from Heathrow, or
+            simply exploring the city, our pre-booking platform ensures a
+            seamless, comfortable journey from start to finish.
           </p>
-          <p className="mb-10 text-lg leading-relaxed text-muted-foreground">
-            With transparent pricing, professional drivers, and a diverse fleet
-            tailored to your requirements, we take the stress out of London
-            travel. Secure your ride in minutes and experience transport the way
-            it should be.
+          <p className="mt-4 text-lg leading-relaxed text-[#CFCFCF]">
+            With transparent pricing, professional drivers, and a diverse
+            fleet tailored to your requirements, we take the stress out of
+            London travel.
           </p>
-          <Button
-            asChild
-            size="lg"
-            className="border border-highlight/45 bg-accent px-8 text-accent-foreground shadow-md shadow-highlight/20 hover:bg-accent/90"
-          >
-            <Link href="/taxi-quote">Book a Taxi</Link>
-          </Button>
+          <div className="mt-10">
+            <Button asChild size="lg" className="h-12 px-8 text-sm font-semibold tracking-wide">
+              <Link href="/taxi-quote">Book a Taxi</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* 6. Perfect Taxi Service Section */}
-      <section className="border-t border-white/[0.06] bg-secondary py-24 text-foreground">
+      <section className="ukride-section-charcoal relative border-t border-[rgba(192,192,192,0.06)] py-24 text-foreground md:py-32">
         <div className="container mx-auto px-4">
           <div className="grid items-center gap-12 md:grid-cols-2">
             <div className="space-y-6">
-              <h2 className="border-l-4 border-highlight pl-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              <span className="ukride-pill">Every journey</span>
+              <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
                 Find the Perfect Taxi Service for Every Journey
               </h2>
-              <p className="text-lg leading-relaxed text-muted-foreground">
+              <p className="text-lg leading-relaxed text-[#CFCFCF]">
                 Our services are designed to cater to every specific
                 requirement. From standard point-to-point transfers to extensive
                 corporate roadshows, we have the logistical capability and the
@@ -446,50 +419,51 @@ export default function Home() {
                   "Dedicated account management for corporate clients",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-6 w-6 shrink-0 text-highlight" />
-                    <span className="font-medium text-foreground/90">{item}</span>
+                    <CheckCircle2 className="h-6 w-6 shrink-0 text-[#C0C0C0]" />
+                    <span className="font-medium text-[#E5E7EB]">{item}</span>
                   </li>
                 ))}
               </ul>
               <div className="pt-6">
-                <Button
-                  size="lg"
-                  className="border border-highlight/45 bg-accent text-accent-foreground shadow-md shadow-highlight/20 hover:bg-accent/90"
-                >
-                  Explore Services
+                <Button asChild size="lg" className="h-12 px-8 text-sm font-semibold tracking-wide">
+                  <Link href="/services">Explore Services</Link>
                 </Button>
               </div>
             </div>
-            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-xl">
+            <div className="ukride-purple-glow relative h-[500px] overflow-hidden rounded-2xl">
               <img
                 src="/perfect-taxi.jpg"
                 alt="Perfect Taxi Service"
                 className="absolute inset-0 h-full w-full object-cover"
               />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
             </div>
           </div>
         </div>
       </section>
 
       {/* 7. Why UK Ride Section */}
-      <section className="border-t border-white/[0.06] bg-secondary py-28 text-foreground md:py-36">
+      <section className="ukride-section-onyx relative border-t border-[rgba(192,192,192,0.06)] py-28 text-foreground md:py-36">
         <div className="container mx-auto px-4">
           <div className="grid items-center gap-12 md:grid-cols-2 flex-row-reverse">
-            <div className="order-2 md:order-1 relative h-[500px] rounded-2xl overflow-hidden shadow-xl">
+            <div className="ukride-purple-glow order-2 md:order-1 relative h-[500px] rounded-2xl overflow-hidden">
               <img
                 src="/fleet.jpg"
                 alt="UKRide Fleet"
                 className="absolute inset-0 h-full w-full object-cover"
               />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
             </div>
             <div className="order-1 space-y-6 md:order-2">
-              <h2 className="border-l-4 border-highlight pl-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                Why UK Ride is the Right Choice
+              <span className="ukride-pill">Why UKride</span>
+              <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+                Why UKride is the Right Choice
               </h2>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                We don't just provide a ride; we provide a reliable transport
-                partnership. With a focus on professionalism, punctuality, and
-                comfort, UKRide stands out as London's premier transfer service.
+              <p className="text-lg leading-relaxed text-[#CFCFCF]">
+                We don&apos;t just provide a ride; we provide a reliable
+                transport partnership. With a focus on professionalism,
+                punctuality, and comfort, UKride stands out as London&apos;s
+                premier transfer service.
               </p>
               <ul className="space-y-4 pt-4">
                 {[
@@ -499,17 +473,13 @@ export default function Home() {
                   "Complimentary Meet & Greet Service",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-6 w-6 shrink-0 text-highlight" />
-                    <span className="font-medium text-foreground/90">{item}</span>
+                    <CheckCircle2 className="h-6 w-6 shrink-0 text-[#C0C0C0]" />
+                    <span className="font-medium text-[#E5E7EB]">{item}</span>
                   </li>
                 ))}
               </ul>
               <div className="pt-6">
-                <Button
-                  asChild
-                  size="lg"
-                  className="border border-highlight/45 bg-accent text-accent-foreground shadow-md shadow-highlight/20 hover:bg-accent/90"
-                >
+                <Button asChild size="lg" className="h-12 px-8 text-sm font-semibold tracking-wide">
                   <Link href="/taxi-quote">Book a Taxi</Link>
                 </Button>
               </div>
@@ -519,16 +489,18 @@ export default function Home() {
       </section>
 
       {/* 8. London Airport Transfers */}
-      <section className="border-t border-white/[0.06] bg-secondary py-28 text-foreground md:py-36">
+      <section className="ukride-section-charcoal relative border-t border-[rgba(192,192,192,0.06)] py-28 text-foreground md:py-36">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="mx-auto mb-4 w-max border-b-4 border-highlight pb-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            <span className="ukride-pill">Airport transfers</span>
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               London Airport Transfers
             </h2>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              Reliable, punctual transfers to and from all major London airports.
-              We monitor your flight to ensure we're there exactly when you need
-              us.
+            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <p className="mt-6 text-lg leading-relaxed text-[#CFCFCF]">
+              Reliable, punctual transfers to and from all major London
+              airports. We monitor your flight to ensure we&apos;re there
+              exactly when you need us.
             </p>
           </div>
 
@@ -571,45 +543,46 @@ export default function Home() {
                 slug: "southend",
               },
             ].map((airport, i) => (
-              <Card
+              <Link
                 key={i}
-                className="overflow-hidden group cursor-pointer transition-all"
+                href={`/airport-transfers/${airport.slug}`}
+                className="ukride-vehicle-card group block"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 z-10 bg-[rgba(43,18,56,0.35)] transition-colors group-hover:bg-[rgba(75,0,130,0.32)]" />
+                <div className="ukride-vehicle-media relative h-48">
                   <img
                     src={airport.img}
                     alt={airport.name}
-                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <CardContent className="p-6 text-foreground">
-                  <h3 className="mb-2 text-xl font-bold tracking-tight text-foreground">
+                <div className="space-y-3 p-6">
+                  <h3 className="text-xl font-semibold tracking-tight text-[#F8F8F8]">
                     {airport.name}
                   </h3>
-                  <p className="text-muted-foreground">{airport.desc}</p>
-                  <Button asChild variant="link" className="no-default-active-elevate no-default-hover-elevate mt-4 cursor-pointer bg-transparent px-0 font-semibold text-highlight no-underline hover:bg-transparent hover:text-highlight/85 hover:no-underline focus:bg-transparent active:bg-transparent">
-                    <Link href={`/airport-transfers/${airport.slug}`}>
-                      Book Transfer &rarr;
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+                  <p className="text-sm text-[#CFCFCF]">{airport.desc}</p>
+                  <div className="flex items-center gap-2 pt-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#C0C0C0] transition-colors group-hover:text-[#F8F8F8]">
+                    Book transfer
+                    <span aria-hidden className="text-[#9b51e0]">&rarr;</span>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* 9. Vehicle Fleet Section */}
-      <section className="border-t border-white/[0.06] bg-secondary py-24 text-foreground">
+      <section className="ukride-section-onyx relative border-t border-[rgba(192,192,192,0.06)] py-24 text-foreground md:py-32">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="mx-auto mb-4 w-max border-b-4 border-highlight pb-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Luxury Vehicles for Every Desire
+            <span className="ukride-pill">Luxury fleet</span>
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              Luxury Vehicles for Every Occasion
             </h2>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              From eco-friendly electrics to spacious minivans, our immaculately
-              maintained fleet is ready to serve.
+            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <p className="mt-6 text-lg leading-relaxed text-[#CFCFCF]">
+              From eco-friendly electrics to spacious minivans, our
+              immaculately maintained fleet is ready to serve.
             </p>
           </div>
 
@@ -623,92 +596,97 @@ export default function Home() {
               { name: "Electric", pax: 4, hand: 2, lug: 1, img: "/saloon.jpg" },
               { name: "Chauffeur", pax: 4, hand: 1, lug: 2, img: "/chauffeur.jpg" },
             ].map((vehicle, i) => (
-              <Card key={i} className="text-card-foreground">
-                <div className="p-6 pb-0">
-                  <h3 className="mb-1 text-xl font-bold tracking-tight text-foreground">{vehicle.name}</h3>
-                  <div className="mb-4 flex gap-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Users className="h-4 w-4" /> {vehicle.pax}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Briefcase className="h-4 w-4" /> {vehicle.hand}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Briefcase className="h-4 w-4" /> {vehicle.lug}
-                    </span>
-                  </div>
-                </div>
-                <div className="px-6 pb-6">
+              <div key={i} className="ukride-vehicle-card group">
+                <div className="ukride-vehicle-media relative h-44">
                   <img
                     src={vehicle.img}
                     alt={vehicle.name}
-                    className="w-full h-32 object-cover rounded-md mb-4"
+                    className="h-full w-full object-cover"
                   />
-                  <Button className="w-full border border-highlight/40 bg-accent text-accent-foreground shadow-sm shadow-highlight/15 hover:bg-accent/90">
-                    Book {vehicle.name}
+                </div>
+                <div className="space-y-4 p-6">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-xl font-semibold tracking-tight text-[#F8F8F8]">
+                      {vehicle.name}
+                    </h3>
+                    <span className="rounded-full border border-[rgba(192,192,192,0.18)] bg-[rgba(75,0,130,0.18)] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#C0C0C0]">
+                      Premium
+                    </span>
+                  </div>
+                  <div className="flex gap-5 text-sm text-[#A5A7AA]">
+                    <span className="flex items-center gap-1.5">
+                      <Users className="h-4 w-4" /> {vehicle.pax}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Briefcase className="h-4 w-4" /> {vehicle.hand}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Briefcase className="h-4 w-4" /> {vehicle.lug}
+                    </span>
+                  </div>
+                  <Button asChild className="w-full">
+                    <Link href="/taxi-quote">Book {vehicle.name}</Link>
                   </Button>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* 10. Why Choose UKRide Section */}
-      <section className="border-t border-white/[0.06] bg-secondary py-28 text-foreground md:py-36">
+      <section className="ukride-section-charcoal relative border-t border-[rgba(192,192,192,0.06)] py-28 text-foreground md:py-36">
         <div className="container mx-auto max-w-4xl px-4 text-center">
-          <h2 className="mx-auto mb-6 w-max border-b-4 border-highlight pb-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          <span className="ukride-pill mb-6">Local expertise</span>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
             Why Choose UKRide for Your London Travel?
           </h2>
-          <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-            Navigating London's busy streets and airports requires local expertise
-            and reliable logistics. We've built our reputation on ensuring every
-            passenger reaches their destination comfortably and safely. Our
-            advanced booking system, flight monitoring technology, and dedicated
-            customer support team work in tandem to deliver an unparalleled
-            service experience.
+          <div className="ukride-divider mx-auto mt-6 w-24" />
+          <p className="mt-8 text-lg leading-relaxed text-[#CFCFCF]">
+            Navigating London&apos;s busy streets and airports requires local
+            expertise and reliable logistics. We&apos;ve built our reputation
+            on ensuring every passenger reaches their destination comfortably
+            and safely. Our advanced booking system, flight monitoring
+            technology, and dedicated customer support team work in tandem to
+            deliver an unparalleled service experience.
           </p>
-          <p className="text-lg leading-relaxed text-muted-foreground">
-            Whether you are a solo traveler, a family on vacation, or a corporate
-            team, we have the right vehicle and the right driver for you.
-            Experience the UKRide difference today.
+          <p className="mt-4 text-lg leading-relaxed text-[#CFCFCF]">
+            Whether you are a solo traveler, a family on vacation, or a
+            corporate team, we have the right vehicle and the right driver for
+            you. Experience the UKRide difference today.
           </p>
         </div>
       </section>
 
       {/* 11. App Download Section */}
-      <section className="ukride-hero-ambient ukride-luxury-section-3 py-24 text-primary-foreground overflow-hidden">
+      <section className="ukride-hero-ambient ukride-luxury-section-3 relative overflow-hidden py-24 text-primary-foreground md:py-32">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <h2 className="border-l-4 border-highlight pl-4 text-3xl font-bold text-[#F8F8F8] md:text-5xl">
-                Get an Instant Quote with the UKRide App!
+            <div className="space-y-7">
+              <span className="ukride-pill">UKRide app</span>
+              <h2 className="text-3xl font-bold text-[#F8F8F8] md:text-5xl">
+                Get an Instant Quote with the UKRide App
               </h2>
-              <p className="text-lg text-[#D1D5DB]">
-                Book your ride faster, track your driver in real-time, and manage
-                all your bookings from your pocket. Available on iOS and Android.
+              <p className="text-lg text-[#CFCFCF]">
+                Book your ride faster, track your driver in real-time, and
+                manage all your bookings from your pocket. Available on iOS
+                and Android.
               </p>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <Button
-                  size="lg"
-                  className="h-14 border border-highlight/45 bg-accent px-8 text-accent-foreground shadow-md shadow-highlight/20 hover:bg-accent/90"
-                >
+              <div className="flex flex-wrap gap-4 pt-2">
+                <Button size="lg" className="h-12 px-7 text-sm font-semibold tracking-wide">
                   App Store
                 </Button>
-                <Button
-                  size="lg"
-                  className="h-14 border border-highlight/45 bg-accent px-8 text-accent-foreground shadow-md shadow-highlight/20 hover:bg-accent/90"
-                >
+                <Button size="lg" variant="outline" className="h-12 px-7 text-sm font-semibold tracking-wide">
                   Google Play
                 </Button>
               </div>
             </div>
             <div className="relative flex justify-center mt-12 md:mt-0">
-              <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-highlight blur-3xl opacity-25"></div>
+              <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(75,0,130,0.55)] blur-3xl opacity-50"></div>
               <img
                 src="/app-mockup.jpg"
                 alt="App Mockup"
-                className="relative z-10 w-[280px] h-[580px] object-cover rounded-[3rem] border-[8px] border-primary-foreground/20 shadow-2xl"
+                className="relative z-10 w-[280px] h-[580px] object-cover rounded-[3rem] border-[8px] border-[rgba(192,192,192,0.18)] shadow-[0_36px_88px_-28px_rgba(0,0,0,0.75),0_18px_52px_-12px_rgba(75,0,130,0.55)]"
               />
             </div>
           </div>
@@ -716,214 +694,65 @@ export default function Home() {
       </section>
 
       {/* 12. FAQ Accordion */}
-      <section className="border-t border-white/[0.06] bg-secondary py-28 text-foreground md:py-36">
+      <section className="ukride-section-onyx relative border-t border-[rgba(192,192,192,0.06)] py-28 text-foreground md:py-36">
         <div className="container mx-auto max-w-3xl px-4">
-          <div className="mb-16 text-center">
-            <h2 className="mx-auto mb-4 w-max border-b-4 border-highlight pb-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          <div className="mb-14 text-center">
+            <span className="ukride-pill mb-6">Frequently asked</span>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <p className="mt-6 text-lg leading-relaxed text-[#CFCFCF]">
               Everything you need to know about booking with UKRide.
             </p>
           </div>
 
           <Accordion type="single" collapsible className="w-full">
             {[
-              "How far in advance should I book my airport transfer?",
-              "What happens if my flight is delayed?",
-              "Are your prices fixed or metered?",
-              "Do you provide child seats?",
-              "How do I find my driver at the airport?",
-              "What payment methods do you accept?",
-              "Can I cancel or amend my booking?",
-              "Is the 45-minute waiting time really free?",
-            ].map((q, i) => (
+              {
+                q: "How far in advance should I book my airport transfer?",
+                a: "We recommend pre-booking at least 6–12 hours in advance to lock the best vehicle and a fixed fare. Last-minute bookings are also accepted when we have availability.",
+              },
+              {
+                q: "What happens if my flight is delayed?",
+                a: "We monitor your flight in real-time and automatically adjust the pickup so your driver is there when you land — no extra charges for monitored airport delays.",
+              },
+              {
+                q: "Are your prices fixed or metered?",
+                a: "All UKride airport and pre-booked transfers are quoted at a fixed fare. The price you confirm at booking is the price you pay — taxes, tolls and parking included.",
+              },
+              {
+                q: "Do you provide child seats?",
+                a: "Yes — infant, child and booster seats are available on request during booking, free of charge.",
+              },
+              {
+                q: "How do I find my driver at the airport?",
+                a: "Standard pickups meet you at the designated terminal pickup zone. Meet-and-greet drivers wait inside arrivals with a UKride name board.",
+              },
+              {
+                q: "What payment methods do you accept?",
+                a: "We accept all major credit/debit cards, Apple Pay, Google Pay and corporate account billing for business clients.",
+              },
+              {
+                q: "Can I cancel or amend my booking?",
+                a: "You can amend or cancel free of charge up to the cut-off window defined in our terms — typically 3 hours before pickup for London and 7 hours for out-of-London journeys.",
+              },
+              {
+                q: "Is the 45-minute waiting time really free?",
+                a: "Yes. We include up to 45 free waiting minutes for Heathrow arrivals and 30 minutes for other London airports — measured from your actual landing time.",
+              },
+            ].map((item, i) => (
               <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger className="py-4 text-left text-lg font-medium text-foreground hover:text-highlight hover:no-underline">
-                  {q}
-                </AccordionTrigger>
-                <AccordionContent className="leading-relaxed text-muted-foreground">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
-                </AccordionContent>
+                <AccordionTrigger>{item.q}</AccordionTrigger>
+                <AccordionContent>{item.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
       </section>
 
-      {/* 13. CTA Banner */}
-      <section className="ukride-hero-ambient ukride-luxury-section-2 py-24 relative overflow-hidden flex items-center justify-center min-h-[420px]">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <img
-            src="/cta-bg.jpg"
-            alt="London taxi at night"
-            className="ukride-media-cinematic absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-[0.35]"
-          />
-          <div className="ukride-media-overlay" />
-        </div>
-        <div className="container relative z-20 text-center px-4">
-          <h2 className="mx-auto mb-6 w-max border-b-4 border-highlight pb-2 text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_24px_rgba(75,0,130,0.45)] md:text-5xl">
-            ARE YOU READY TO HIRE?
-          </h2>
-          <p className="text-xl text-[#D1D5DB] max-w-2xl mx-auto mb-10">
-            Experience the pinnacle of London transport. Professional, reliable,
-            and always on time.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="h-14 border-2 border-[rgba(192,192,192,0.32)] bg-accent px-10 text-lg font-bold text-accent-foreground shadow-[0_18px_48px_-10px_rgba(75,0,130,0.7),0_0_0_4px_rgba(75,0,130,0.22)] hover:bg-accent/90"
-          >
-            <Link href="/taxi-quote">Book a Taxi Now</Link>
-          </Button>
-        </div>
-      </section>
-
-      {/* 14. Footer */}
-      <footer className="bg-primary text-primary-foreground pt-20 pb-10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            <div className="space-y-3 text-primary-foreground/85">
-              <h4 className="text-3xl font-bold mb-4 text-primary-foreground">Contact Us</h4>
-              <p className="text-primary-foreground/70">support@ukride.uk</p>
-              <div className="pt-2 space-y-2">
-                <p className="text-primary-foreground/70">Call Us Now:</p>
-                <p>+44 7700 1409 00</p>
-                <p>+44 2080 5090 14</p>
-              </div>
-              <div className="pt-2">
-                <h4 className="text-3xl font-bold text-primary-foreground">UKride Address</h4>
-                <p className="mt-2 text-primary-foreground/70">
-                  450 Bath Rd, London UB7 0EB, United Kingdom
-                </p>
-              </div>
-              <p className="text-primary-foreground/70 max-w-xs">
-                Bookings handled by licensed operator&apos;s companies.
-              </p>
-              <div className="flex gap-4 pt-2">
-                <a
-                  href="#"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-primary-foreground/30 transition-colors hover:border-highlight hover:bg-highlight hover:text-highlight-foreground"
-                >
-                  <FaFacebookF className="h-4 w-4" />
-                </a>
-                <a
-                  href="#"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-primary-foreground/30 transition-colors hover:border-highlight hover:bg-highlight hover:text-highlight-foreground"
-                >
-                  <FaInstagram className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="mb-6 text-3xl font-bold text-highlight">London Airport</h4>
-              <ul className="space-y-3 text-primary-foreground/70">
-                <li>
-                  <Link href="/airport-transfers/london-city" className="hover:text-highlight transition-colors">
-                    London City Airport Transfers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/airport-transfers/heathrow" className="hover:text-highlight transition-colors">
-                    Heathrow Airport Transfers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/airport-transfers/gatwick" className="hover:text-highlight transition-colors">
-                    Gatwick Airport Transfers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/airport-transfers/luton" className="hover:text-highlight transition-colors">
-                    Luton Airport Transfers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/airport-transfers/southend" className="hover:text-highlight transition-colors">
-                    Southend Airport Transfers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/airport-transfers/stansted" className="hover:text-highlight transition-colors">
-                    Stansted Airport Transfers
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="mb-6 text-3xl font-bold text-highlight">Plan Your Journey</h4>
-              <ul className="space-y-3 text-primary-foreground/70">
-                <li>
-                  <Link href="/london-hotel-transfers/" className="hover:text-highlight transition-colors">
-                    London Hotel Transfer
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/london-station-taxi/" className="hover:text-highlight transition-colors">
-                    London Station Taxi
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/london-taxi/" className="hover:text-highlight transition-colors">
-                    London Taxi
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/taxi-quote" className="hover:text-highlight transition-colors">
-                    Taxi Quote
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/taxi-booking-app/" className="hover:text-highlight transition-colors">
-                    Taxi Booking App
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="mb-6 text-3xl font-bold text-highlight">Useful Links</h4>
-              <ul className="space-y-3 text-primary-foreground/70">
-                <li>
-                  <Link href="/terms-and-conditions" className="hover:text-highlight transition-colors">
-                    Customer T&C
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/privacy-policy" className="hover:text-highlight transition-colors">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/taxi-fare-calculator/" className="hover:text-highlight transition-colors">
-                    Taxi Fare Calculator
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/drive-with-us/" className="hover:text-highlight transition-colors">
-                    Drive With Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog/" className="hover:text-highlight transition-colors">
-                    Blog
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/50">
-            <p>Copyright © 2025 UkRide. All rights reserved.</p>
-            <p>Designed for professional transport.</p>
-          </div>
-        </div>
-      </footer>
+      {/* 13. Footer + CTA */}
+      <FullFooterSection />
     </div>
   );
 }

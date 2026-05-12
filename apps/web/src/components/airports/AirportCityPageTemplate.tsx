@@ -1,12 +1,15 @@
 import Link from "next/link";
 import {
-  BadgeDollarSign,
-  CarFront,
-  Clock3,
-  Phone,
+  Plane,
   ShieldCheck,
   Star,
+  Phone,
+  Car,
+  ThumbsUp,
+  BadgeDollarSign,
   UserRoundCheck,
+  CarFront,
+  Clock3,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FullFooterSection } from "@/components/FullFooterSection";
@@ -19,9 +22,102 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { ServiceContent } from "@/app/services/service-content";
 
-export function ServiceDetailTemplate({ content }: { content: ServiceContent }) {
+export type AirportCityContent = {
+  /** Display name e.g. "Heathrow", "Gatwick" */
+  airportName: string;
+  /** Pill text e.g. "Heathrow transfers" */
+  pillLabel: string;
+  /** Hero h1 e.g. "Book your Heathrow airport transfer" */
+  headline: React.ReactNode;
+  /** Hero subtitle */
+  subtitle: string;
+  /** Hero ambient image path */
+  heroImage: string;
+  /** Long-form intro paragraphs */
+  intro: string[];
+  /** Reliable & comfortable body paragraphs */
+  reliable: string[];
+  /** Inter-airport transfer body paragraphs */
+  interAirport: string[];
+  /** Gateway / closing body paragraphs */
+  gateway: string[];
+  /** Side images for the storytelling stack */
+  storyImages?: {
+    intro: string;
+    reliable: string;
+    inter: string;
+    gateway: string;
+  };
+  /** FAQ list */
+  faqs: { q: string; a: string }[];
+  /** Optional: include terminals bullet list (Heathrow uses this) */
+  terminals?: string[];
+};
+
+const DEFAULT_STORY_IMAGES = {
+  intro: "/perfect-taxi.jpg",
+  reliable: "/airport_5.jpg",
+  inter: "/airport_3.jpg",
+  gateway: "/airport_6.jpg",
+};
+
+const FEATURE_ROW = [
+  {
+    title: "45-min grace period",
+    desc: "Free 45-minute waiting on every airport pickup — stress-free arrivals.",
+    icon: UserRoundCheck,
+  },
+  {
+    title: "Premium vehicles",
+    desc: "Road-ready, immaculately maintained cars for every journey.",
+    icon: CarFront,
+  },
+  {
+    title: "24/7 availability",
+    desc: "Pre-booked transfers around the clock, every day of the year.",
+    icon: Clock3,
+  },
+  {
+    title: "Lowest fare guarantee",
+    desc: "Transparent pricing with no hidden charges, ever.",
+    icon: BadgeDollarSign,
+  },
+];
+
+const FLEET = [
+  { name: "Saloon", img: "/saloon.jpg" },
+  { name: "MPV", img: "/mpv.jpg" },
+  { name: "Estate", img: "/estate.jpg" },
+  { name: "Chauffeur", img: "/chauffeur.jpg" },
+];
+
+const VALUE_PROPS = [
+  {
+    title: "Punctuality guaranteed",
+    desc: "Intelligent dispatch and live tracking keep every pickup on time.",
+    icon: Plane,
+  },
+  {
+    title: "Meet and greet",
+    desc: "Optional in-terminal meet-and-greet with a name board for a seamless arrival.",
+    icon: Car,
+  },
+  {
+    title: "Why choose UKride",
+    desc: "Licensed drivers, premium fleet, monitored journeys — built around your trip.",
+    icon: ThumbsUp,
+  },
+  {
+    title: "Transparent pricing",
+    desc: "All-inclusive fares — local taxes, tolls, parking, and VAT included.",
+    icon: BadgeDollarSign,
+  },
+];
+
+export function AirportCityPageTemplate({ content }: { content: AirportCityContent }) {
+  const story = content.storyImages ?? DEFAULT_STORY_IMAGES;
+
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <a
@@ -40,7 +136,7 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       <section className="ukride-hero-ambient ukride-luxury-section-1 ukride-grid-bg relative overflow-hidden py-20 lg:py-28">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src="/hero-bg.jpg"
+            src={content.heroImage}
             alt=""
             aria-hidden
             className="ukride-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
@@ -55,9 +151,9 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
                 <span className="mx-2 text-[#C0C0C0]/60">|</span>
                 <span className="text-[#CFCFCF]">1538+ Google reviews</span>
               </div>
-              <span className="ukride-pill">{content.title}</span>
+              <span className="ukride-pill">{content.pillLabel}</span>
               <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
-                {content.hero}
+                {content.headline}
               </h1>
               <p className="max-w-xl text-[15px] leading-relaxed text-[#CFCFCF]">
                 {content.subtitle}
@@ -70,11 +166,10 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
                 <div className="hidden h-4 w-px bg-[rgba(192,192,192,0.22)] sm:block" />
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4" />
-                  24/7 monitored journeys
+                  Flight-monitored journeys
                 </div>
               </div>
             </div>
-
             <HomeBookingForm />
           </div>
         </div>
@@ -84,28 +179,7 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       <section className="ukride-section-charcoal relative py-20 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: "Free waiting time",
-                desc: "Generous grace periods on every airport pickup.",
-                icon: UserRoundCheck,
-              },
-              {
-                title: "Premium vehicles",
-                desc: "Road-ready cars for executive-grade comfort.",
-                icon: CarFront,
-              },
-              {
-                title: "24/7 availability",
-                desc: "Pre-booked transfers any time, any day.",
-                icon: Clock3,
-              },
-              {
-                title: "Lowest-fare guarantee",
-                desc: "Transparent, all-inclusive pricing — no surprises.",
-                icon: BadgeDollarSign,
-              },
-            ].map((item) => {
+            {FEATURE_ROW.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="space-y-4">
@@ -115,9 +189,7 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
                   <h3 className="text-xl font-semibold tracking-tight text-[#F8F8F8]">
                     {item.title}
                   </h3>
-                  <p className="text-[14.5px] leading-relaxed text-[#CFCFCF]">
-                    {item.desc}
-                  </p>
+                  <p className="text-[14.5px] leading-relaxed text-[#CFCFCF]">{item.desc}</p>
                 </div>
               );
             })}
@@ -125,25 +197,21 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
         </div>
       </section>
 
-      {/* Section 1 */}
+      {/* Intro */}
       <section className="ukride-section-onyx relative py-20 md:py-24">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="ukride-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
-            <img
-              src="/perfect-taxi.jpg"
-              alt={content.title}
-              className="h-full w-full object-cover"
-            />
+            <img src={story.intro} alt="" className="h-full w-full object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
           <div className="space-y-5">
             <span className="ukride-pill">Premium service</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              {content.section1}
+              A smooth {content.airportName} transfer, anywhere in London
             </h2>
-            {content.section1Paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-[15px] leading-relaxed text-[#CFCFCF]">
-                {paragraph}
+            {content.intro.map((p, i) => (
+              <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
+                {p}
               </p>
             ))}
             <Button asChild className="mt-2">
@@ -153,17 +221,47 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
         </div>
       </section>
 
-      {/* Section 2 */}
-      <section className="ukride-section-charcoal relative py-24 md:py-32">
+      {/* Fleet */}
+      <section className="ukride-section-charcoal relative py-20 md:py-28">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto mb-12 max-w-3xl text-center">
+            <span className="ukride-pill">Choose your ride</span>
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              The right car for every destination
+            </h2>
+            <div className="ukride-divider mx-auto mt-6 w-24" />
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {FLEET.map((car) => (
+              <div key={car.name} className="ukride-vehicle-card group">
+                <div className="ukride-vehicle-media relative h-40">
+                  <img src={car.img} alt={car.name} className="h-full w-full object-cover" />
+                </div>
+                <div className="space-y-3 p-5">
+                  <h3 className="text-lg font-semibold tracking-tight text-[#F8F8F8]">
+                    {car.name}
+                  </h3>
+                  <Button asChild className="w-full">
+                    <Link href="/taxi-quote">Book now</Link>
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reliable */}
+      <section className="ukride-section-onyx relative py-24 md:py-32">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="order-2 space-y-5 md:order-1">
-            <span className="ukride-pill">Comfort &amp; reliability</span>
+            <span className="ukride-pill">Reliable &amp; comfortable</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              {content.section2}
+              {content.airportName} airport taxis built around your journey
             </h2>
-            {content.section2Paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-[15px] leading-relaxed text-[#CFCFCF]">
-                {paragraph}
+            {content.reliable.map((p, i) => (
+              <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
+                {p}
               </p>
             ))}
             <Button asChild className="mt-2">
@@ -171,35 +269,27 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
             </Button>
           </div>
           <div className="ukride-purple-glow relative order-1 h-[340px] overflow-hidden rounded-2xl md:order-2">
-            <img
-              src="/fleet.jpg"
-              alt={content.title}
-              className="h-full w-full object-cover"
-            />
+            <img src={story.reliable} alt="" className="h-full w-full object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
         </div>
       </section>
 
-      {/* Section 3 */}
-      <section className="ukride-section-onyx relative py-20 md:py-24">
+      {/* Inter-airport */}
+      <section className="ukride-section-charcoal relative py-20 md:py-24">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="ukride-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
-            <img
-              src="/airport_6.jpg"
-              alt={content.title}
-              className="h-full w-full object-cover"
-            />
+            <img src={story.inter} alt="" className="h-full w-full object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
           <div className="space-y-5">
-            <span className="ukride-pill">For every journey</span>
+            <span className="ukride-pill">Inter-airport</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              {content.section3}
+              Moving from {content.airportName} to another airport?
             </h2>
-            {content.section3Paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-[15px] leading-relaxed text-[#CFCFCF]">
-                {paragraph}
+            {content.interAirport.map((p, i) => (
+              <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
+                {p}
               </p>
             ))}
             <Button asChild className="mt-2">
@@ -210,56 +300,61 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       </section>
 
       {/* Gateway */}
-      <section className="ukride-section-charcoal relative py-24 md:py-32">
+      <section className="ukride-section-onyx relative py-24 md:py-32">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="space-y-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
-              {content.gatewayLabel}
-            </p>
+            <span className="ukride-pill">Gateway</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              {content.gatewayHeading}
+              UKride: your gateway to {content.airportName}
             </h2>
-            {content.gatewayParagraphs.map((paragraph) => (
-              <p key={paragraph} className="text-[15px] leading-relaxed text-[#CFCFCF]">
-                {paragraph}
+            {content.gateway.map((p, i) => (
+              <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
+                {p}
               </p>
             ))}
+            {content.terminals ? (
+              <ul className="grid grid-cols-2 gap-2.5 pt-2 text-[14.5px] text-[#CFCFCF]">
+                {content.terminals.map((t) => (
+                  <li
+                    key={t}
+                    className="flex items-center gap-2.5 rounded-lg border border-[rgba(192,192,192,0.12)] bg-[rgba(13,13,15,0.6)] px-3 py-2"
+                  >
+                    <span className="block h-1.5 w-1.5 rounded-full bg-[#9b51e0]" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
             <Button asChild className="mt-2">
               <Link href="/taxi-quote">Book a taxi</Link>
             </Button>
           </div>
           <div className="ukride-purple-glow relative h-[400px] overflow-hidden rounded-2xl">
-            <img
-              src="/airport_3.jpg"
-              alt={content.title}
-              className="h-full w-full object-cover"
-            />
+            <img src={story.gateway} alt="" className="h-full w-full object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="ukride-section-onyx relative py-20 md:py-28">
+      {/* Value props */}
+      <section className="ukride-section-charcoal relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <span className="ukride-pill">Why UKride</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              {content.benefitsTitle}
+              Transfers to and from {content.airportName}
             </h2>
             <div className="ukride-divider mx-auto mt-6 w-24" />
           </div>
           <div className="mx-auto grid max-w-5xl gap-x-14 gap-y-12 md:grid-cols-2">
-            {content.benefitsItems.map((item) => {
+            {VALUE_PROPS.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="text-center">
                   <div className="ukride-icon-halo mx-auto mb-5 h-14 w-14">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-semibold tracking-tight text-[#F8F8F8]">
-                    {item.title}
-                  </h3>
+                  <h3 className="text-xl font-semibold text-[#F8F8F8]">{item.title}</h3>
                   <p className="mx-auto mt-3 max-w-md text-[14.5px] leading-relaxed text-[#CFCFCF]">
                     {item.desc}
                   </p>
@@ -271,7 +366,7 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       </section>
 
       {/* FAQ */}
-      <section className="ukride-section-charcoal relative py-24 md:py-32">
+      <section className="ukride-section-onyx relative py-24 md:py-32">
         <div className="container mx-auto max-w-3xl px-4">
           <div className="mb-12 text-center">
             <span className="ukride-pill">FAQs</span>
@@ -281,25 +376,12 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
             <div className="ukride-divider mx-auto mt-6 w-24" />
           </div>
           <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="faq-1">
-              <AccordionTrigger>How early should I book?</AccordionTrigger>
-              <AccordionContent>
-                Booking 6–12 hours in advance gives better vehicle availability
-                and smoother scheduling.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="faq-2">
-              <AccordionTrigger>Is the service available 24/7?</AccordionTrigger>
-              <AccordionContent>
-                Yes — our services run around the clock, all year.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="faq-3">
-              <AccordionTrigger>Are prices fixed?</AccordionTrigger>
-              <AccordionContent>
-                Yes — pricing is transparent and locked at booking.
-              </AccordionContent>
-            </AccordionItem>
+            {content.faqs.map((item, i) => (
+              <AccordionItem key={item.q} value={`faq-${i}`}>
+                <AccordionTrigger>{item.q}</AccordionTrigger>
+                <AccordionContent>{item.a}</AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
         </div>
       </section>

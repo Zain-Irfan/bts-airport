@@ -1,79 +1,59 @@
 import Link from "next/link";
 import { FullFooterSection } from "@/components/FullFooterSection";
-import { MainNav } from "@/components/MainNav";
+import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 
 export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full ukride-glass-nav">
-        <div className="container mx-auto flex h-20 items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground text-xs font-bold">
-              UR
-            </div>
-            <span className="text-2xl font-bold tracking-tight text-foreground">UKRide</span>
-          </Link>
-          <MainNav />
-          <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="hidden sm:inline-flex min-h-9 items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-bold text-accent-foreground"
-            >
-              Log In
-            </Link>
-            <Link
-              href="/signup"
-              className="inline-flex min-h-9 items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-bold text-accent-foreground"
-            >
-              Sign Up
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteTopHeader />
 
-      <main className="py-14">
+      <main className="ukride-hero-ambient ukride-section-onyx ukride-grid-bg relative overflow-hidden py-20 md:py-28">
         <div className="mx-auto w-full max-w-md px-4">
-          <div className="rounded-2xl border border-white/[0.08] bg-card p-8 shadow-lg">
+          <div className="mb-8 text-center">
+            <span className="ukride-pill">Account recovery</span>
+            <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              Forgot Password
+            </h1>
+            <p className="mt-4 text-[15px] leading-relaxed text-[#CFCFCF]">
+              Enter your email address to receive a secure reset code.
+            </p>
+          </div>
+
+          <div className="ukride-card p-8">
             <div className="mb-8 flex items-center justify-center gap-3">
               <StepCircle active>1</StepCircle>
-              <div className="h-px w-10 bg-muted" />
+              <div className="h-px w-10 bg-[rgba(192,192,192,0.18)]" />
               <StepCircle>2</StepCircle>
-              <div className="h-px w-10 bg-muted" />
+              <div className="h-px w-10 bg-[rgba(192,192,192,0.18)]" />
               <StepCircle>3</StepCircle>
             </div>
 
-            <h1 className="text-4xl font-light tracking-tight text-foreground sm:text-5xl">
-              Forgot Password
-            </h1>
-            <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground sm:text-[1.15rem]">
-              Enter your email address to receive an OTP for password reset
-            </p>
-
-            <form className="mt-8 space-y-4">
-              <label className="block space-y-2">
-                <span className="text-base font-semibold text-foreground">
-                  Enter your email address
-                </span>
+            <form className="space-y-5">
+              <div className="space-y-2">
+                <label
+                  htmlFor="email"
+                  className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]"
+                >
+                  Email address
+                </label>
                 <input
+                  id="email"
                   type="email"
-                  placeholder="test@gmail.com"
-                  className="form-field-light h-12 w-full rounded-lg px-4 text-base text-foreground outline-none transition md:text-lg"
+                  placeholder="you@example.com"
+                  className="form-field-light h-12 w-full rounded-lg px-4 text-sm outline-none transition"
                 />
-              </label>
+              </div>
 
               <button
-                type="button"
-                className="mt-5 inline-flex h-12 items-center justify-center rounded-md bg-accent px-8 text-xl font-semibold text-accent-foreground hover:bg-accent/90"
+                type="submit"
+                className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] text-sm font-semibold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),inset_0_0_0_1px_rgba(75,0,130,0.4),0_10px_32px_-10px_rgba(75,0,130,0.55)] transition-all duration-500 hover:-translate-y-[1px] hover:border-[rgba(192,192,192,0.4)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),inset_0_0_0_1px_rgba(155,81,224,0.5),0_18px_48px_-10px_rgba(75,0,130,0.7),0_0_0_4px_rgba(75,0,130,0.18)]"
               >
-                SEND OTP
+                Send reset code
               </button>
             </form>
 
-            <div className="mt-12 text-center">
-              <Link
-                href="/login"
-                className="text-xl font-medium text-muted-foreground hover:text-foreground"
-              >
+            <div className="mt-8 text-center text-sm text-[#A5A7AA]">
+              <Link href="/login" className="ukride-link">
                 Back to login
               </Link>
             </div>
@@ -95,12 +75,13 @@ function StepCircle({
 }) {
   return (
     <div
-      className={`flex h-12 w-12 items-center justify-center rounded-full text-lg font-bold ${
-        active ? "bg-accent text-accent-foreground" : "bg-muted text-white"
-      }`}
+      className={
+        active
+          ? "grid h-11 w-11 place-items-center rounded-full border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] text-sm font-semibold text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.2),0_8px_24px_-8px_rgba(75,0,130,0.55)]"
+          : "grid h-11 w-11 place-items-center rounded-full border border-[rgba(192,192,192,0.14)] bg-[rgba(13,13,15,0.6)] text-sm font-semibold text-[#A5A7AA]"
+      }
     >
       {children}
     </div>
   );
 }
-

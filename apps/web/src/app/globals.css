@@ -47,6 +47,7 @@
   --color-graphite: hsl(var(--graphite));
   --color-graphite-foreground: hsl(var(--graphite-foreground));
   --color-platinum: hsl(var(--platinum));
+  --color-pearl: hsl(var(--pearl));
   --color-text-secondary: hsl(var(--text-secondary));
 
   --color-destructive: hsl(var(--destructive));
@@ -83,30 +84,31 @@
 
 /*
   ─────────────────────────────────────────────────────────────────────
-  UKride — Luxury Dark UI · Deep-Purple Design System
+  UKride — Executive Luxury Design System
   ─────────────────────────────────────────────────────────────────────
-  Global color balance:
-    45%  black / charcoal / graphite section bases
-    35%  deep-purple gradient bands, cards, CTAs, ambient glow
-    20%  silver / platinum text, borders, refinement
+  Global color balance (executive distribution):
+    50%  black / charcoal / onyx — surface area
+    30%  silver / platinum / pearl-gray — borders, text, refinement
+    20%  deep purple — gradient bands, CTAs, accents, ambient
   Palette (raw tokens map to spec hex):
-    Deep Purple   #4B0082  brand accent (CTAs, glow, focus)
+    Deep Purple   #4B0082  premium accent (CTAs, focus, glow)
     Royal Purple  #3B0A57  rich gradient band
     Dark Purple   #2A1238  cinematic section band
     Onyx          #0D0D0F  deepest base
-    Charcoal      #1A1A1D  alt section base
-    Graphite      #2D2D33  elevated surface (neutral)
-    Silver        #C0C0C0  micro accents
+    Charcoal      #1A1A1D  primary alt section
+    Graphite      #2D2D33  elevated surface (cards)
+    Silver        #C0C0C0  micro accents, borders
     Platinum      #A5A7AA  secondary text / chrome
-    White Silver  #F8F8F8  headings
+    Pearl Gray    #E5E7EB  inverted text on light tints
+    White Silver  #F8F8F8  primary headings
   Type ladder:
-    headings  #F8F8F8   body  #D1D5DB
-    secondary #A5A7AA   accent #C0C0C0
+    headings   #F8F8F8   body       #CFCFCF
+    secondary  #A5A7AA   accent     #C0C0C0
   Direction:
-    Black + charcoal carry most of the surface area. Deep purple
-    shows up as gradient bands, glass cards, CTAs, hero ambients,
-    and focus glow. Silver/platinum live on thin borders, accent
-    text, dividers, and chrome edges. Cinematic. Corporate. No neon.
+    Black + charcoal carry the surface. Silver provides the
+    refinement (borders, text, dividers, chrome). Deep purple
+    appears as gradient bands, CTAs, focus glow, and ambient.
+    No neon. No gaming. World-class executive luxury.
 */
 :root {
   --button-outline: rgba(192, 192, 192, 0.10);
@@ -126,7 +128,13 @@
   --brand-graphite: #2D2D33;      /* Graphite */
   --brand-silver: #C0C0C0;        /* Silver */
   --brand-platinum: #A5A7AA;      /* Platinum */
+  --brand-pearl: #E5E7EB;         /* Pearl Gray */
   --brand-white-silver: #F8F8F8;
+
+  /* Executive text ladder */
+  --text-heading: #F8F8F8;
+  --text-body: #CFCFCF;
+  --text-accent: #C0C0C0;
 
   /* Glass / surface fills (used by .ukride-card, .ukride-glass, etc.) */
   --glass-purple-strong: rgba(75, 0, 130, 0.22);
@@ -143,18 +151,18 @@
   --purple-border: rgba(75, 0, 130, 0.28);
   --purple-border-soft: rgba(75, 0, 130, 0.14);
 
-  /* Page base — onyx black with faint plum hint (#0E0C12-ish) */
-  --background: 270 12% 5.5%;
+  /* Page base — onyx black, near-neutral with faintest plum (#0D0D0F-ish) */
+  --background: 240 7% 5%;
   --foreground: 0 0% 97.3%;
-  /* Subtle silver-purple border (very faint) */
-  --border: 270 14% 18%;
+  /* Subtle silver border (very faint) */
+  --border: 240 6% 18%;
 
-  /* Card surface (overlaid by .ukride-card purple glass gradient) */
-  --card: 277 42% 13%;
+  /* Card surface (overlaid by .ukride-card graphite glass gradient) */
+  --card: 240 7% 14%;
   --card-foreground: 0 0% 97.3%;
-  --card-border: 275 28% 22%;
+  --card-border: 240 6% 22%;
 
-  --elevated: 240 8% 16%;
+  --elevated: 240 7% 17%;
   --elevated-foreground: 0 0% 97.3%;
 
   /* Graphite #2D2D33 — neutral elevated panels */
@@ -164,34 +172,36 @@
   /* Platinum #A5A7AA — secondary text */
   --platinum: 220 4% 66%;
   --text-secondary: 220 4% 66%;
+  /* Pearl Gray #E5E7EB */
+  --pearl: 220 13% 91%;
 
-  --sidebar: 270 12% 5.5%;
+  --sidebar: 240 7% 5%;
   --sidebar-foreground: 0 0% 97.3%;
-  --sidebar-border: 270 14% 18%;
+  --sidebar-border: 240 6% 18%;
   --sidebar-primary: 275 100% 26%;
   --sidebar-primary-foreground: 0 0% 97.3%;
   --sidebar-accent: 275 100% 26%;
   --sidebar-accent-foreground: 0 0% 97.3%;
   --sidebar-ring: 275 80% 45%;
 
-  --popover: 240 8% 12%;
+  --popover: 240 8% 11%;
   --popover-foreground: 0 0% 97.3%;
-  --popover-border: 270 14% 22%;
+  --popover-border: 240 6% 22%;
 
   /* Primary band — cinematic deep royal-purple (hero / CTA / footer base).
      Combine with `ukride-luxury-section-1/2/3` for richer gradients. */
   --primary: 278 60% 9%;
   --primary-foreground: 0 0% 97.3%;
 
-  /* Secondary alt band — Charcoal #1A1A1D with faint plum tint.
-     Keeps alternating sections neutral so purple stays special. */
-  --secondary: 270 8% 11%;
+  /* Secondary alt band — Charcoal #1A1A1D, neutral so alt sections feel
+     premium-dark rather than purple-tinted. */
+  --secondary: 240 6% 11%;
   --secondary-foreground: 0 0% 97.3%;
 
   /* Muted — Graphite-leaning panels */
   --muted: 240 6% 14%;
-  /* Body text #D1D5DB */
-  --muted-foreground: 220 9% 83%;
+  /* Body text #CFCFCF */
+  --muted-foreground: 0 0% 81%;
 
   /* Deep Purple #4B0082 — primary CTA brand color */
   --accent: 275 100% 26%;
@@ -242,14 +252,14 @@
 }
 
 .dark {
-  --background: 270 12% 4.5%;
+  --background: 240 7% 4%;
   --foreground: 0 0% 97.3%;
-  --card: 277 42% 12%;
+  --card: 240 7% 13%;
   --primary: 278 60% 8%;
-  --secondary: 270 8% 10%;
+  --secondary: 240 6% 10%;
   --muted: 240 6% 13%;
-  --border: 270 14% 16%;
-  --input: 270 14% 20%;
+  --border: 240 6% 16%;
+  --input: 240 6% 20%;
 }
 
 @layer base {
@@ -278,14 +288,13 @@
   body {
     @apply min-h-screen font-sans text-foreground antialiased;
     background-color: hsl(var(--background));
-    /* Cinematic ambient — controlled purple atmosphere over a neutral
-       onyx base. The body stays mostly black/charcoal; purple shows up
-       as soft directional pools that anchor depth without dominating. */
+    /* Executive ambient — controlled purple atmosphere over an onyx base.
+       Pure black/charcoal carries the surface area; purple is reserved
+       as subtle directional pools that add depth without dominating. */
     background-image:
-      radial-gradient(58vw 50vh at 12% -6%, hsl(275 90% 24% / 0.22), transparent 60%),
-      radial-gradient(54vw 48vh at 94% 104%, hsl(278 75% 20% / 0.20), transparent 60%),
-      radial-gradient(42vw 38vh at 50% 52%, hsl(273 60% 26% / 0.08), transparent 70%),
-      radial-gradient(110vw 92vh at 50% 50%, transparent 55%, hsl(240 8% 3% / 0.6) 100%);
+      radial-gradient(48vw 42vh at 10% -8%, hsl(275 90% 22% / 0.18), transparent 60%),
+      radial-gradient(46vw 42vh at 96% 106%, hsl(278 75% 18% / 0.16), transparent 60%),
+      radial-gradient(110vw 92vh at 50% 50%, transparent 55%, hsl(240 8% 2% / 0.7) 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
     font-feature-settings: "kern" 1, "liga" 1, "ss01" 1;
@@ -313,6 +322,12 @@
 
   h2 {
     line-height: 1.12;
+  }
+
+  /* Default body copy inherits the executive silver tone; any Tailwind
+     `text-*` utility on the element will still take precedence. */
+  p {
+    color: var(--text-body);
   }
 }
 
@@ -1018,6 +1033,167 @@
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.06),
       0 0 0 3px hsl(var(--highlight) / 0.28);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PREMIUM ACCORDION — drop into FAQ sections.
+     Pair with the AccordionItem className to upgrade each row.
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-faq-item {
+    position: relative;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--silver-border);
+    border-radius: calc(var(--radius) + 0.25rem);
+    background:
+      linear-gradient(180deg, rgba(26, 26, 29, 0.7) 0%, rgba(13, 13, 15, 0.78) 100%);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    transition:
+      border-color 0.4s ease,
+      background 0.5s ease,
+      box-shadow 0.5s ease;
+  }
+
+  .ukride-faq-item[data-state="open"],
+  .ukride-faq-item:hover {
+    border-color: var(--silver-border-strong);
+    background:
+      linear-gradient(180deg, rgba(43, 18, 56, 0.5) 0%, rgba(26, 26, 29, 0.78) 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(192 192 192 / 0.07),
+      0 12px 36px -14px rgb(75 0 130 / 0.4);
+  }
+
+  .ukride-faq-item[data-state="open"] {
+    border-color: rgba(155, 81, 224, 0.42);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     VEHICLE / SERVICE CARD — cinematic showcase
+     Outer wrapper + media overlay for luxury automotive feel.
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-vehicle-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: calc(var(--radius) + 0.4rem);
+    background:
+      linear-gradient(180deg, hsl(240 8% 11% / 0.6) 0%, hsl(240 8% 7% / 0.85) 100%);
+    border: 1px solid var(--silver-border);
+    box-shadow:
+      inset 0 1px 0 rgb(192 192 192 / 0.06),
+      0 28px 72px -24px rgb(0 0 0 / 0.7);
+    transition:
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.4s ease;
+  }
+
+  .ukride-vehicle-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--silver-border-bold);
+    box-shadow:
+      inset 0 1px 0 rgb(192 192 192 / 0.1),
+      0 40px 96px -28px rgb(0 0 0 / 0.78),
+      0 18px 52px -12px rgb(75 0 130 / 0.45);
+  }
+
+  .ukride-vehicle-media {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ukride-vehicle-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 40%, rgba(13, 13, 15, 0.75) 100%),
+      linear-gradient(135deg, rgba(75, 0, 130, 0.18) 0%, transparent 60%);
+  }
+
+  .ukride-vehicle-media img {
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ukride-vehicle-card:hover .ukride-vehicle-media img {
+    transform: scale(1.06);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FINE GRAIN TEXTURE — premium cinematic noise overlay
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-noise {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .ukride-noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .ukride-noise > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     EXECUTIVE SPACING — luxury vertical rhythm helpers
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-section-spacious {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .ukride-section-spacious {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     ELEGANT INLINE LINK — silver text with purple underline reveal
+     ───────────────────────────────────────────────────────────────── */
+  .ukride-link {
+    position: relative;
+    color: var(--brand-silver);
+    transition: color 0.3s ease;
+  }
+
+  .ukride-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(192, 192, 192, 0.4) 30%,
+      rgba(155, 81, 224, 0.8) 60%,
+      rgba(192, 192, 192, 0.4) 90%,
+      transparent
+    );
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ukride-link:hover {
+    color: var(--brand-white-silver);
+  }
+
+  .ukride-link:hover::after {
+    transform: scaleX(1);
   }
 }
 

@@ -11,29 +11,59 @@ import {
 } from "@/components/ui/accordion";
 
 const hotels = [
-  { name: "Savoy Hotel Transfer", image: "/airport_1.jpg" },
+  { name: "The Savoy Hotel", image: "/airport_1.jpg" },
   { name: "Millennium & Copthorne", image: "/airport_2.jpg" },
   { name: "Park Plaza Westminster", image: "/airport_3.jpg" },
-  { name: "Royal Garden Hotel Transfer", image: "/airport_4.jpg" },
-  { name: "Millennium Mayfair Hotel", image: "/airport_5.jpg" },
-  { name: "Kensington Hotel Transfer", image: "/airport_6.jpg" },
-  { name: "Claridge's Hotel Transfer", image: "/perfect-taxi.jpg" },
-  { name: "The Cumberland Hotel", image: "/fleet.jpg" },
-  { name: "The Savoy Taxi Service", image: "/app-mockup.jpg" },
-  { name: "The Dorchester Transfer", image: "/airport_2.jpg" },
+  { name: "Royal Garden Hotel", image: "/airport_4.jpg" },
+  { name: "Millennium Mayfair", image: "/airport_5.jpg" },
+  { name: "Kensington Hotel", image: "/airport_6.jpg" },
+  { name: "Claridge's", image: "/perfect-taxi.jpg" },
+  { name: "The Cumberland", image: "/fleet.jpg" },
+  { name: "The Savoy Taxi", image: "/app-mockup.jpg" },
+  { name: "The Dorchester", image: "/airport_2.jpg" },
 ];
 
 const faqs = [
-  "Does UKride provide hotel transfers across London?",
-  "Can I book a transfer both to and from a hotel and airport?",
-  "Are UKride hotel transfers on fixed fare?",
-  "How do I book a hotel transfer with UKride?",
-  "Do UKride transfers run 24/7 from hotels?",
-  "What vehicle options are available for hotel transfer?",
-  "Does UKride offer meet and greet service at hotels?",
-  "Can I book group transfer from my hotel location?",
-  "Do UKride hotel transfers cover tourist attractions and shopping areas?",
-  "Why should I choose UKride for London hotel transfers?",
+  {
+    q: "Does UKride provide hotel transfers across London?",
+    a: "Yes — fixed-fare hotel pickups and drop-offs across central and greater London.",
+  },
+  {
+    q: "Can I book a transfer both to and from a hotel and airport?",
+    a: "Yes — single or return airport↔hotel transfers at a guaranteed fare.",
+  },
+  {
+    q: "Are UKride hotel transfers on fixed fare?",
+    a: "Yes. Your quote is locked at booking — taxes, tolls and parking included.",
+  },
+  {
+    q: "How do I book a hotel transfer with UKride?",
+    a: "Enter pickup hotel and destination, choose your vehicle, and confirm. We handle the rest.",
+  },
+  {
+    q: "Do UKride transfers run 24/7 from hotels?",
+    a: "Yes — 24/7 service for late-night arrivals and early-morning departures.",
+  },
+  {
+    q: "What vehicle options are available for hotel transfer?",
+    a: "Saloon, Estate, Executive, MPV, 8-Seater and Chauffeur classes.",
+  },
+  {
+    q: "Does UKride offer meet and greet service at hotels?",
+    a: "Yes — meet-and-greet with name board on request.",
+  },
+  {
+    q: "Can I book group transfer from my hotel location?",
+    a: "Yes — 8-seater and multi-vehicle group transfers for any London hotel.",
+  },
+  {
+    q: "Do UKride hotel transfers cover tourist attractions and shopping areas?",
+    a: "Yes — hourly chauffeur hire is available for shopping, dining and sightseeing routes.",
+  },
+  {
+    q: "Why should I choose UKride for London hotel transfers?",
+    a: "Premium fleet, executive drivers, fixed fares, monitored journeys, and 24/7 concierge support.",
+  },
 ];
 
 export default function LondonHotelTransfersPage() {
@@ -51,41 +81,41 @@ export default function LondonHotelTransfersPage() {
 
       <SiteTopHeader />
 
-      <section className="relative bg-primary py-16 text-primary-foreground lg:py-20">
-        <div className="absolute inset-0 overflow-hidden bg-primary">
+      {/* Hero */}
+      <section className="ukride-hero-ambient ukride-luxury-section-1 ukride-grid-bg relative overflow-hidden py-20 lg:py-28">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src="/hero-bg.jpg"
-            alt="London hotel transfers"
-            className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-overlay"
+            alt=""
+            aria-hidden
+            className="ukride-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
           />
-          <div className="absolute inset-0 z-10 bg-gradient-to-b from-primary/80 to-primary" />
         </div>
-        <div className="container relative z-20 mx-auto px-4">
+        <div className="container relative z-10 mx-auto px-4">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1 text-sm">
-                <Star className="mr-2 h-4 w-4 fill-accent text-accent" />
-                <span className="font-semibold">4.9</span>
-                <span className="mx-2 text-primary-foreground/50">|</span>
-                <span>1538+ Google Reviews</span>
+              <div className="inline-flex items-center rounded-full border border-[rgba(192,192,192,0.22)] bg-[rgba(75,0,130,0.18)] px-3 py-1 text-sm shadow-[0_4px_18px_-6px_rgba(75,0,130,0.55)] backdrop-blur">
+                <Star className="mr-2 h-4 w-4 fill-[#C0C0C0] text-[#C0C0C0]" />
+                <span className="font-semibold text-[#F8F8F8]">4.9</span>
+                <span className="mx-2 text-[#C0C0C0]/60">|</span>
+                <span className="text-[#CFCFCF]">1538+ Google reviews</span>
               </div>
-              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-                Seamless Hotel Transfers
-                <br />
-                Across London
+              <span className="ukride-pill">Hotel transfers</span>
+              <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
+                Seamless hotel transfers across London
               </h1>
-              <p className="max-w-xl text-lg text-primary-foreground/80">
-                Need hotel to airport or airport to hotel transfer? Book your ride in minutes with
-                fixed fares and professional drivers.
+              <p className="max-w-xl text-[15px] leading-relaxed text-[#CFCFCF]">
+                Hotel-to-airport, airport-to-hotel, or hotel-to-anywhere — book
+                a premium fixed-fare transfer in minutes.
               </p>
-              <div className="flex flex-col gap-3 text-sm sm:flex-row sm:items-center">
+              <div className="flex flex-col gap-3 text-sm text-[#C0C0C0] sm:flex-row sm:items-center">
                 <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-accent" />
+                  <Phone className="h-4 w-4" />
                   +44 7700 1409 00
                 </div>
-                <div className="hidden h-4 w-px bg-primary-foreground/30 sm:block" />
+                <div className="hidden h-4 w-px bg-[rgba(192,192,192,0.22)] sm:block" />
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-accent" />
+                  <ShieldCheck className="h-4 w-4" />
                   24/7 monitored journeys
                 </div>
               </div>
@@ -95,36 +125,33 @@ export default function LondonHotelTransfersPage() {
         </div>
       </section>
 
-      <section className="bg-[#f8f8fb] py-20">
+      {/* Hotels grid */}
+      <section className="ukride-section-charcoal relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Choose Your Hotel for Seamless Transfers
+            <span className="ukride-pill">London hotels</span>
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              Choose your hotel for seamless transfers
             </h2>
-            <p className="mt-5 text-base leading-7 text-muted-foreground">
-              Choose your London hotel and let us handle pickup, route planning, and on-time
-              airport drop-offs for every journey.
-            </p>
-            <p className="mt-2 text-base leading-7 text-muted-foreground">
-              From Heathrow to Gatwick, Luton, Stansted, and London City, our team provides smooth
-              travel with fixed fares and support.
+            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <p className="mt-6 text-[15px] leading-relaxed text-[#CFCFCF]">
+              From Heathrow to Gatwick, Luton, Stansted, and London City — we
+              handle pickup, route planning, and on-time arrivals for every
+              journey.
             </p>
           </div>
 
           <div className="mx-auto mt-12 grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
             {hotels.map((hotel) => (
-              <article
-                key={hotel.name}
-                className="group overflow-hidden rounded-lg border border-white/[0.08] bg-card shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
-              >
-                <div className="overflow-hidden">
+              <article key={hotel.name} className="ukride-vehicle-card group">
+                <div className="ukride-vehicle-media relative aspect-[16/9]">
                   <img
                     src={hotel.image}
                     alt={hotel.name}
-                    className="aspect-[16/7] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <p className="px-2 py-2 text-center text-xs font-medium leading-5 text-foreground/85">
+                <p className="px-3 py-3 text-center text-xs font-semibold tracking-tight text-[#E5E7EB]">
                   {hotel.name}
                 </p>
               </article>
@@ -133,21 +160,21 @@ export default function LondonHotelTransfersPage() {
         </div>
       </section>
 
-      <section className="bg-secondary py-24 md:py-32">
-        <div className="container mx-auto max-w-4xl px-4">
-          <div className="mb-10 text-center">
-            <h2 className="text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
+      {/* FAQ */}
+      <section className="ukride-section-onyx relative py-24 md:py-32">
+        <div className="container mx-auto max-w-3xl px-4">
+          <div className="mb-12 text-center">
+            <span className="ukride-pill">FAQs</span>
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              Frequently asked questions
+            </h2>
+            <div className="ukride-divider mx-auto mt-6 w-24" />
           </div>
           <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={faq} value={`faq-${index}`}>
-                <AccordionTrigger className="text-left text-lg font-medium text-foreground">
-                  {faq}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  UKride provides professional hotel transfer support with fixed fares, trained
-                  drivers, and 24/7 service across London.
-                </AccordionContent>
+            {faqs.map((item, i) => (
+              <AccordionItem key={item.q} value={`faq-${i}`}>
+                <AccordionTrigger>{item.q}</AccordionTrigger>
+                <AccordionContent>{item.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
@@ -158,4 +185,3 @@ export default function LondonHotelTransfersPage() {
     </div>
   );
 }
-
