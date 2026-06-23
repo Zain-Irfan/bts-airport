@@ -76,7 +76,7 @@ export async function fulfilPaymentSession(sessionId: string) {
       vehicleType: pricing.vehicleName,
       fare: pricing.totalPrice,
       flightNumber: quote.flight || null,
-      meetGreet: quote.meet === "yes" || quote.meet === true,
+      meetGreet: quote.meet === "yes",
     }).catch((err) => console.error("[email] booking confirmation failed:", err));
   }
 
