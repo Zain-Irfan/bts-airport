@@ -9,7 +9,7 @@ type Driver = {
   fullName: string;
   email: string;
   phone: string;
-  vehicleType: string;
+  vehicleType: string | null;
   vehiclePlate: string | null;
 };
 
