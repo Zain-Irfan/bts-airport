@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   allowedDevOrigins: getAllowedDevOrigins(),
   // Keep DB drivers and Prisma out of the browser bundle
-  serverExternalPackages: ["mariadb", "@prisma/client", "@prisma/adapter-mariadb", "prisma"],
+  serverExternalPackages: ["@prisma/client", "prisma"],
   async redirects() {
     return [
       { source: "/blog", destination: "/", permanent: true },
