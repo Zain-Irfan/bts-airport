@@ -17,7 +17,13 @@ export default function LutonAirportTransfersPage() {
         ),
         subtitle:
           "Affordable and reliable Luton airport taxis with transparent fares and professional drivers.",
-        heroImage: "/airport_4.jpg",
+        heroImage: "/images/airport-fleet-aerial.jpg",
+        storyImages: {
+          intro: "/images/mpv-airport-boarding.jpg",
+          reliable: "/images/luxury-car-interior.jpg",
+          inter: "/images/heathrow-mpv-family.jpg",
+          gateway: "/images/executive-passenger.jpg",
+        },
         intro: [
           "Our Luton transfer service is designed for convenience, punctual arrivals, and comfortable travel across London.",
           "Share your trip details and our professional drivers will manage timing, luggage support, and route planning.",

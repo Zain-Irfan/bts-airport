@@ -4,6 +4,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { HomeBookingForm } from "@/components/forms/HomeBookingForm";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
+import { getSiteSettings } from "@/lib/site-settings";
 
 const londonAreas = [
   "Acton", "Aldgate", "Angel", "Balham", "Bank", "Barnet", "Battersea", "Bayswater",
@@ -14,21 +15,22 @@ const londonAreas = [
 ];
 
 const gridImages = [
-  "/airport_1.jpg",
-  "/airport_2.jpg",
-  "/airport_3.jpg",
-  "/airport_4.jpg",
-  "/airport_5.jpg",
-  "/airport_6.jpg",
-  "/perfect-taxi.jpg",
-  "/fleet.jpg",
+  "/images/heathrow-exterior.jpg",
+  "/images/gatwick-sign.jpg",
+  "/images/london-taxi-sightseeing.jpg",
+  "/images/luxury-car-interior.jpg",
+  "/images/executive-passenger.jpg",
+  "/images/heathrow-mpv-family.jpg",
+  "/images/hotel-chauffeur.jpg",
+  "/images/mpv-airport-boarding.jpg",
 ];
 
-export default function LondonTaxiPage() {
+export default async function LondonTaxiPage() {
+  const { whatsapp } = await getSiteSettings();
   return (
     <div className="min-h-screen bg-background text-foreground">
       <a
-        href="https://wa.me/447700140900"
+        href={`https://wa.me/${whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -40,13 +42,13 @@ export default function LondonTaxiPage() {
       <SiteTopHeader />
 
       {/* Hero */}
-      <section className="ukride-hero-ambient ukride-luxury-section-1 ukride-grid-bg relative overflow-hidden py-20 lg:py-28">
+      <section className="BTS-hero-ambient BTS-luxury-section-1 BTS-grid-bg relative overflow-hidden py-20 lg:py-28">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src="/hero-bg.jpg"
             alt=""
             aria-hidden
-            className="ukride-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
+            className="BTS-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
           />
         </div>
         <div className="container relative z-10 mx-auto px-4">
@@ -58,7 +60,7 @@ export default function LondonTaxiPage() {
                 <span className="mx-2 text-[#C0C0C0]/60">|</span>
                 <span className="text-[#CFCFCF]">1538+ Google reviews</span>
               </div>
-              <span className="ukride-pill">London taxi</span>
+              <span className="BTS-pill">London taxi</span>
               <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
                 London Taxi Services
                 <br />
@@ -88,16 +90,16 @@ export default function LondonTaxiPage() {
       </section>
 
       {/* Areas */}
-      <section className="ukride-section-charcoal relative py-20 md:py-28">
+      <section className="BTS-section-charcoal relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="ukride-pill">London areas</span>
+            <span className="BTS-pill">London areas</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Choose your car from any London area
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
             <p className="mt-6 text-[15px] leading-relaxed text-[#CFCFCF]">
-              UKride covers every London neighbourhood with safe, reliable
+              BTS covers every London neighbourhood with safe, reliable
               transfers for station journeys, hotel pickups, airport routes,
               and business travel.
             </p>
@@ -108,9 +110,9 @@ export default function LondonTaxiPage() {
               <Link
                 key={area}
                 href="/taxi-quote"
-                className="ukride-vehicle-card group block"
+                className="BTS-vehicle-card group block"
               >
-                <div className="ukride-vehicle-media relative h-28">
+                <div className="BTS-vehicle-media relative h-28">
                   <img
                     src={gridImages[index % gridImages.length]}
                     alt={`${area} taxi`}

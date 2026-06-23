@@ -1,4 +1,4 @@
-import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+﻿import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
 
 export default function StanstedAirportTransfersPage() {
   return (
@@ -17,7 +17,13 @@ export default function StanstedAirportTransfersPage() {
         ),
         subtitle:
           "Trusted Stansted airport rides with fixed fares, professional drivers, and 24/7 support.",
-        heroImage: "/airport_5.jpg",
+        heroImage: "/images/airport-fleet-aerial.jpg",
+        storyImages: {
+          intro: "/images/mpv-airport-boarding.jpg",
+          reliable: "/images/executive-passenger.jpg",
+          inter: "/images/heathrow-mpv-family.jpg",
+          gateway: "/images/luxury-car-interior.jpg",
+        },
         intro: [
           "Our Stansted transfer service makes airport travel easy with punctual pickups, reliable routing, and fixed fares.",
           "Whether you are travelling for work or vacation, our professional drivers ensure smooth door-to-door comfort.",
@@ -36,7 +42,7 @@ export default function StanstedAirportTransfersPage() {
         gateway: [
           "Plan your Stansted ride in advance and travel with confidence from terminal to destination.",
           "Our service includes flight tracking, professional support, and smooth pickups.",
-          "Choose UKride for a reliable and comfortable Stansted airport transfer.",
+          "Choose BTS for a reliable and comfortable Stansted airport transfer.",
         ],
         faqs: [
           {

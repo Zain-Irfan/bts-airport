@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useCallback } from "react";
 
@@ -17,128 +18,141 @@ export function RouteLoadingBar() {
     if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
   }, []);
 
-  // Listen for internal navigation clicks
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
-      if (
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey
-      )
-        return;
-
-      const anchor = (event.target as HTMLElement)?.closest(
-        "a[href]",
-      ) as HTMLAnchorElement | null;
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const anchor = (event.target as HTMLElement)?.closest("a[href]") as HTMLAnchorElement | null;
       if (!anchor) return;
       if (anchor.target === "_blank" || anchor.hasAttribute("download")) return;
-
       const href = anchor.getAttribute("href");
       if (!href || href.startsWith("#")) return;
-
       const url = new URL(anchor.href, window.location.origin);
       if (url.origin !== window.location.origin) return;
-
       const current = `${window.location.pathname}${window.location.search}`;
       const next = `${url.pathname}${url.search}`;
       if (current === next) return;
-
       window.dispatchEvent(new Event(ROUTE_START_EVENT));
     };
-
     document.addEventListener("click", handleClick, true);
     return () => document.removeEventListener("click", handleClick, true);
   }, []);
 
-  // Show the loader (with a small debounce to skip instant navigations)
   useEffect(() => {
     const start = () => {
       clearTimers();
       startPathRef.current = pathname;
-
-      showTimerRef.current = window.setTimeout(() => {
-        setActive(true);
-      }, 120);
+      showTimerRef.current = window.setTimeout(() => setActive(true), 120);
     };
-
     window.addEventListener(ROUTE_START_EVENT, start);
     return () => window.removeEventListener(ROUTE_START_EVENT, start);
   }, [pathname, clearTimers]);
 
-  // Hide the loader only when pathname actually changes from where we started
   useEffect(() => {
     if (!active) return;
     if (pathname === startPathRef.current) return;
-
-    // Route arrived — let the new paint settle, then fade out
-    fadeTimerRef.current = window.setTimeout(() => {
-      setActive(false);
-    }, 280);
+    fadeTimerRef.current = window.setTimeout(() => setActive(false), 300);
   }, [pathname, active]);
 
-  // Safety: if the loader has been visible for 8s something is stuck — dismiss
   useEffect(() => {
     if (!active) return;
     const safety = window.setTimeout(() => setActive(false), 8000);
     return () => window.clearTimeout(safety);
   }, [active]);
 
-  // Cleanup on unmount
   useEffect(() => clearTimers, [clearTimers]);
 
   return (
     <>
-      {/* Top progress bar */}
+      {/* Full screen overlay */}
       <div
-        className={`fixed left-0 right-0 top-0 z-[110] h-[2px] transition-opacity duration-300 ${
-          active ? "opacity-100" : "opacity-0"
-        }`}
-        aria-hidden={!active}
-      >
-        <div className="ukride-topbar-track h-full w-full overflow-hidden">
-          <div className="ukride-topbar-fill h-full" />
-        </div>
-      </div>
-
-      {/* Full-screen overlay */}
-      <div
-        className={`pointer-events-none fixed inset-0 z-[100] flex items-center justify-center transition-all duration-[400ms] ease-out ${
-          active
-            ? "opacity-100 backdrop-blur-sm"
-            : "opacity-0 backdrop-blur-none"
-        }`}
+        className="pointer-events-none fixed inset-0 z-[9998] transition-all duration-500"
         style={{
-          backgroundColor: active ? "rgba(13,13,15,0.45)" : "transparent",
+          opacity: active ? 1 : 0,
+          background: "rgba(5,5,8,0.75)",
+          backdropFilter: active ? "blur(6px)" : "none",
         }}
-        aria-hidden={!active}
-      >
-        <div
-          className={`flex flex-col items-center gap-5 transition-all duration-[400ms] ease-out ${
-            active
-              ? "translate-y-0 scale-100 opacity-100"
-              : "translate-y-3 scale-95 opacity-0"
-          }`}
-        >
-          {/* Spinning ring with brand mark */}
-          <div className="relative flex h-16 w-16 items-center justify-center">
-            <div className="absolute inset-0 rounded-full border border-[rgba(155,81,224,0.3)]" style={{ animation: "ukride-ring-pulse 2s ease-in-out infinite" }} />
-            <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#9B51E0]" style={{ animation: "ukride-spin 0.9s linear infinite" }} />
-            <span className="text-[10px] font-extrabold tracking-tight text-[#F8F8F8]">
-              BTS
-            </span>
-          </div>
+      />
 
-          {/* Dot pulse */}
-          <div className="flex items-center gap-1.5">
-            <span className="ukride-dot-pulse h-1 w-1 rounded-full bg-[#C0C0C0]" style={{ animationDelay: "0ms" }} />
-            <span className="ukride-dot-pulse h-1 w-1 rounded-full bg-[#C0C0C0]" style={{ animationDelay: "160ms" }} />
-            <span className="ukride-dot-pulse h-1 w-1 rounded-full bg-[#C0C0C0]" style={{ animationDelay: "320ms" }} />
+      {/* Centered spinner */}
+      <div
+        className="pointer-events-none fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-6 transition-all duration-500"
+        style={{ opacity: active ? 1 : 0, transform: active ? "scale(1)" : "scale(0.92)" }}
+      >
+        {/* Spinner rings + logo */}
+        <div className="relative flex items-center justify-center">
+          {/* Outer slow ring */}
+          <div
+            className="absolute rounded-full border border-[rgba(155,81,224,0.2)]"
+            style={{ width: 110, height: 110, animation: "rl-pulse 2s ease-in-out infinite" }}
+          />
+          {/* Mid spinning ring */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: 90,
+              height: 90,
+              border: "2px solid transparent",
+              borderTopColor: "#9B51E0",
+              borderRightColor: "rgba(155,81,224,0.3)",
+              animation: "rl-spin 1s linear infinite",
+              filter: "drop-shadow(0 0 8px rgba(155,81,224,0.6))",
+            }}
+          />
+          {/* Inner counter-spin ring */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: 70,
+              height: 70,
+              border: "1.5px solid transparent",
+              borderBottomColor: "#C084FC",
+              borderLeftColor: "rgba(192,132,252,0.25)",
+              animation: "rl-spin-reverse 1.5s linear infinite",
+            }}
+          />
+          {/* Logo in center */}
+          <div
+            className="relative flex h-12 w-12 items-center justify-center rounded-xl overflow-hidden"
+            style={{ boxShadow: "0 0 24px rgba(75,0,130,0.6)" }}
+          >
+            <Image src="/assets/logo.png" alt="BTS" width={48} height={48} className="h-12 w-12 object-cover" />
           </div>
         </div>
+
+        {/* Dot pulse */}
+        <div className="flex items-center gap-2">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="h-1.5 w-1.5 rounded-full"
+              style={{
+                background: "#9B51E0",
+                animation: "rl-dot 1.2s ease-in-out infinite",
+                animationDelay: `${i * 0.2}s`,
+              }}
+            />
+          ))}
+        </div>
       </div>
+
+      <style>{`
+        @keyframes rl-spin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes rl-spin-reverse {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(-360deg); }
+        }
+        @keyframes rl-pulse {
+          0%, 100% { transform: scale(1);   opacity: 0.4; }
+          50%       { transform: scale(1.1); opacity: 0.8; }
+        }
+        @keyframes rl-dot {
+          0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+          40%            { transform: scale(1.2); opacity: 1; }
+        }
+      `}</style>
     </>
   );
 }

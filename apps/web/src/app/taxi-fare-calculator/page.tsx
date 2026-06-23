@@ -16,6 +16,7 @@ import { FullFooterSection } from "@/components/FullFooterSection";
 import { HomeBookingForm } from "@/components/forms/HomeBookingForm";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { Button } from "@/components/ui/button";
+import { getSiteSettings } from "@/lib/site-settings";
 import {
   Accordion,
   AccordionContent,
@@ -47,10 +48,10 @@ const featureRow = [
 ];
 
 const fleet = [
-  { name: "Saloon", pax: 4, hand: 1, lug: 2, img: "/saloon.jpg" },
-  { name: "MPV", pax: 6, hand: 3, lug: 4, img: "/mpv.jpg" },
-  { name: "Executive", pax: 4, hand: 1, lug: 1, img: "/executive.jpg" },
-  { name: "8 Seater", pax: 8, hand: 4, lug: 6, img: "/mpv.jpg" },
+  { name: "Saloon", pax: 4, hand: 1, lug: 2, img: "/images/saloon.jpeg" },
+  { name: "MPV", pax: 6, hand: 3, lug: 4, img: "/images/vehicle-vclass-8seater.jpg" },
+  { name: "Executive", pax: 4, hand: 1, lug: 1, img: "/images/vehicle-sclass-new.jpg" },
+  { name: "8 Seater", pax: 8, hand: 4, lug: 6, img: "/images/vehicle-transit.jpg" },
 ];
 
 const valueProps = [
@@ -83,11 +84,11 @@ const faqs = [
   },
   {
     q: "Are there any hidden fees in the quoted price?",
-    a: "No. UKride quotes include taxes, road tolls, parking on standard airport pickups, and VAT. Optional add-ons are shown clearly before confirmation.",
+    a: "No. BTS quotes include taxes, road tolls, parking on standard airport pickups, and VAT. Optional add-ons are shown clearly before confirmation.",
   },
   {
     q: "Can I get a quote for airport transfers?",
-    a: "Yes — enter your terminal and destination and we'll show a fixed fare across all UKride airports.",
+    a: "Yes — enter your terminal and destination and we'll show a fixed fare across all BTS airports.",
   },
   {
     q: "How far in advance should I book?",
@@ -119,11 +120,12 @@ const faqs = [
   },
 ];
 
-export default function TaxiFareCalculatorPage() {
+export default async function TaxiFareCalculatorPage() {
+  const { whatsapp } = await getSiteSettings();
   return (
     <div className="min-h-screen bg-background text-foreground">
       <a
-        href="https://wa.me/447700140900"
+        href={`https://wa.me/${whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -135,7 +137,7 @@ export default function TaxiFareCalculatorPage() {
       <SiteTopHeader />
 
       {/* Hero */}
-      <section className="ukride-hero-ambient ukride-luxury-section-1 ukride-grid-bg relative overflow-hidden py-20 lg:py-28">
+      <section className="BTS-hero-ambient BTS-luxury-section-1 BTS-grid-bg relative overflow-hidden py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
@@ -145,7 +147,7 @@ export default function TaxiFareCalculatorPage() {
                 <span className="mx-2 text-[#C0C0C0]/60">|</span>
                 <span className="text-[#CFCFCF]">1538+ Google reviews</span>
               </div>
-              <span className="ukride-pill">Fare calculator</span>
+              <span className="BTS-pill">Fare calculator</span>
               <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
                 Smarter quotes for every London journey
               </h1>
@@ -166,14 +168,14 @@ export default function TaxiFareCalculatorPage() {
       </section>
 
       {/* Feature row */}
-      <section className="ukride-section-charcoal relative py-20 md:py-24">
+      <section className="BTS-section-charcoal relative py-20 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {featureRow.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="flex flex-col items-center text-center">
-                  <div className="ukride-icon-halo mb-4 h-14 w-14">
+                  <div className="BTS-icon-halo mb-4 h-14 w-14">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-base font-semibold text-[#F8F8F8]">{item.title}</h3>
@@ -186,14 +188,14 @@ export default function TaxiFareCalculatorPage() {
       </section>
 
       {/* Fleet */}
-      <section className="ukride-section-onyx relative py-20 md:py-28">
+      <section className="BTS-section-onyx relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="ukride-pill">Choose a vehicle</span>
+            <span className="BTS-pill">Choose a vehicle</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Select the right car for your group
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
             <p className="mt-6 text-[15px] leading-relaxed text-[#CFCFCF]">
               Every option shows passenger and luggage capacity at a glance.
             </p>
@@ -201,8 +203,8 @@ export default function TaxiFareCalculatorPage() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {fleet.map((v) => (
-              <div key={v.name} className="ukride-vehicle-card group">
-                <div className="ukride-vehicle-media relative h-40">
+              <div key={v.name} className="BTS-vehicle-card group">
+                <div className="BTS-vehicle-media relative h-40">
                   <img src={v.img} alt={v.name} className="h-full w-full object-cover" />
                 </div>
                 <div className="space-y-3 p-5">
@@ -218,8 +220,10 @@ export default function TaxiFareCalculatorPage() {
                       <Briefcase className="h-4 w-4" /> {v.lug}
                     </span>
                   </div>
-                  <Button asChild className="w-full">
-                    <Link href="#quote">Book Now</Link>
+                  <Button asChild className="w-full cursor-pointer">
+                    <Link href="/#quote" className="cursor-pointer">
+                      Book Now
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -229,22 +233,22 @@ export default function TaxiFareCalculatorPage() {
       </section>
 
       {/* Side image story 1 */}
-      <section className="ukride-section-charcoal relative py-20 md:py-24">
+      <section className="BTS-section-charcoal relative py-20 md:py-24">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
-          <div className="ukride-purple-glow relative h-[320px] overflow-hidden rounded-2xl">
+          <div className="BTS-purple-glow relative h-[320px] overflow-hidden rounded-2xl">
             <img
-              src="/perfect-taxi.jpg"
+              src="/images/luxury-car-interior.jpg"
               alt="Compare taxi fares"
               className="h-full w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
           <div className="space-y-5">
-            <span className="ukride-pill">Compare &amp; save</span>
+            <span className="BTS-pill">Compare &amp; save</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8]">Compare taxi fares &amp; save money</h2>
             <p className="text-[15px] leading-relaxed text-[#CFCFCF]">
               Use our calculator to understand your route cost before you
-              commit. UKride helps you plan smarter with upfront pricing
+              commit. BTS helps you plan smarter with upfront pricing
               tailored to your pickup, drop-off, and vehicle choice.
             </p>
           </div>
@@ -252,10 +256,10 @@ export default function TaxiFareCalculatorPage() {
       </section>
 
       {/* Side image story 2 */}
-      <section className="ukride-section-onyx relative py-24 md:py-32">
+      <section className="BTS-section-onyx relative py-24 md:py-32">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="order-2 space-y-5 md:order-1">
-            <span className="ukride-pill">No surprises</span>
+            <span className="BTS-pill">No surprises</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8]">Transparent pricing</h2>
             <p className="text-[15px] leading-relaxed text-[#CFCFCF]">
               Your quote reflects the journey you book. We focus on clarity so
@@ -263,9 +267,9 @@ export default function TaxiFareCalculatorPage() {
               cross-town trips.
             </p>
           </div>
-          <div className="ukride-purple-glow relative order-1 h-[320px] overflow-hidden rounded-2xl md:order-2">
+          <div className="BTS-purple-glow relative order-1 h-[320px] overflow-hidden rounded-2xl md:order-2">
             <img
-              src="/airport_1.jpg"
+              src="/images/heathrow-exterior.jpg"
               alt="Airport transfer"
               className="h-full w-full object-cover"
             />
@@ -275,9 +279,9 @@ export default function TaxiFareCalculatorPage() {
       </section>
 
       {/* Side image story 3 */}
-      <section className="ukride-section-charcoal relative py-20 md:py-24">
+      <section className="BTS-section-charcoal relative py-20 md:py-24">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
-          <div className="ukride-purple-glow relative h-[320px] overflow-hidden rounded-2xl">
+          <div className="BTS-purple-glow relative h-[320px] overflow-hidden rounded-2xl">
             <img
               src="/app-mockup.jpg"
               alt="Book in seconds"
@@ -286,7 +290,7 @@ export default function TaxiFareCalculatorPage() {
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
           <div className="space-y-5">
-            <span className="ukride-pill">Fast booking</span>
+            <span className="BTS-pill">Fast booking</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8]">Book your ride in seconds</h2>
             <p className="text-[15px] leading-relaxed text-[#CFCFCF]">
               Once you&apos;re happy with the fare, confirm your details and
@@ -297,21 +301,21 @@ export default function TaxiFareCalculatorPage() {
       </section>
 
       {/* Value props */}
-      <section className="ukride-section-onyx relative py-20 md:py-28">
+      <section className="BTS-section-onyx relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="ukride-pill">Why UKride</span>
+            <span className="BTS-pill">Why BTS</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Built around your London journey
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
           </div>
           <div className="mx-auto grid max-w-5xl gap-x-14 gap-y-12 md:grid-cols-2">
             {valueProps.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="text-center">
-                  <div className="ukride-icon-halo mx-auto mb-5 h-14 w-14">
+                  <div className="BTS-icon-halo mx-auto mb-5 h-14 w-14">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#F8F8F8]">{item.title}</h3>
@@ -326,14 +330,14 @@ export default function TaxiFareCalculatorPage() {
       </section>
 
       {/* FAQ */}
-      <section className="ukride-section-charcoal relative py-24 md:py-32">
+      <section className="BTS-section-charcoal relative py-24 md:py-32">
         <div className="container mx-auto max-w-3xl px-4">
           <div className="mb-12 text-center">
-            <span className="ukride-pill">FAQs</span>
+            <span className="BTS-pill">FAQs</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Frequently asked questions
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
           </div>
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((item, i) => (

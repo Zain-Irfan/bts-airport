@@ -3,6 +3,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { HomeBookingForm } from "@/components/forms/HomeBookingForm";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
+import { getSiteSettings } from "@/lib/site-settings";
 import {
   Accordion,
   AccordionContent,
@@ -11,20 +12,20 @@ import {
 } from "@/components/ui/accordion";
 
 const stations = [
-  { name: "Euston Station", image: "/airport_1.jpg", desc: "Direct station pickups with smooth city connections." },
-  { name: "King's Cross Station", image: "/airport_2.jpg", desc: "Fast transfers for rail arrivals and departures." },
-  { name: "Victoria Station", image: "/airport_3.jpg", desc: "Private rides from Victoria to all London zones." },
-  { name: "Paddington Station", image: "/airport_4.jpg", desc: "Reliable rides to hotels, airports, and offices." },
-  { name: "Liverpool Street Station", image: "/airport_5.jpg", desc: "Business-ready transfers with fixed rates." },
-  { name: "London Bridge", image: "/airport_6.jpg", desc: "Book 24/7 station taxi service with UKride." },
-  { name: "St Pancras International", image: "/perfect-taxi.jpg", desc: "Seamless Eurostar and city transfer support." },
-  { name: "Waterloo Station", image: "/fleet.jpg", desc: "Efficient pickups around Waterloo and South Bank." },
+  { name: "Euston Station", image: "/images/london-taxi-sightseeing.jpg", desc: "Direct station pickups with smooth city connections." },
+  { name: "King's Cross Station", image: "/images/executive-passenger.jpg", desc: "Fast transfers for rail arrivals and departures." },
+  { name: "Victoria Station", image: "/images/luxury-car-interior.jpg", desc: "Private rides from Victoria to all London zones." },
+  { name: "Paddington Station", image: "/images/heathrow-driver-loading.jpg", desc: "Reliable rides to hotels, airports, and offices." },
+  { name: "Liverpool Street Station", image: "/images/hotel-chauffeur.jpg", desc: "Business-ready transfers with fixed rates." },
+  { name: "London Bridge", image: "/images/mpv-airport-boarding.jpg", desc: "Book 24/7 station taxi service with BTS." },
+  { name: "St Pancras International", image: "/images/heathrow-terminal5-couple.jpg", desc: "Seamless Eurostar and city transfer support." },
+  { name: "Waterloo Station", image: "/images/heathrow-mpv-family.jpg", desc: "Efficient pickups around Waterloo and South Bank." },
 ];
 
 const faqs = [
   {
     q: "Can I book taxis to major train terminals?",
-    a: "Yes — UKride covers Euston, King's Cross, St Pancras, Victoria, Paddington, Liverpool Street, London Bridge, Waterloo and more, 24/7.",
+    a: "Yes — BTS covers Euston, King's Cross, St Pancras, Victoria, Paddington, Liverpool Street, London Bridge, Waterloo and more, 24/7.",
   },
   {
     q: "Do you provide transfers from station to home/hotel?",
@@ -64,11 +65,12 @@ const faqs = [
   },
 ];
 
-export default function LondonStationTaxiPage() {
+export default async function LondonStationTaxiPage() {
+  const { whatsapp } = await getSiteSettings();
   return (
     <div className="min-h-screen bg-background text-foreground">
       <a
-        href="https://wa.me/447700140900"
+        href={`https://wa.me/${whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -80,13 +82,13 @@ export default function LondonStationTaxiPage() {
       <SiteTopHeader />
 
       {/* Hero */}
-      <section className="ukride-hero-ambient ukride-luxury-section-1 ukride-grid-bg relative overflow-hidden py-20 lg:py-28">
+      <section className="BTS-hero-ambient BTS-luxury-section-1 BTS-grid-bg relative overflow-hidden py-20 lg:py-28">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src="/hero-bg.jpg"
             alt=""
             aria-hidden
-            className="ukride-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
+            className="BTS-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
           />
         </div>
         <div className="container relative z-10 mx-auto px-4">
@@ -98,7 +100,7 @@ export default function LondonStationTaxiPage() {
                 <span className="mx-2 text-[#C0C0C0]/60">|</span>
                 <span className="text-[#CFCFCF]">1538+ Google reviews</span>
               </div>
-              <span className="ukride-pill">Station transfers</span>
+              <span className="BTS-pill">Station transfers</span>
               <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
                 Your ride from any London station, made easy
               </h1>
@@ -124,13 +126,13 @@ export default function LondonStationTaxiPage() {
       </section>
 
       {/* Trust band */}
-      <section className="ukride-section-charcoal relative py-20 md:py-24">
+      <section className="BTS-section-charcoal relative py-20 md:py-24">
         <div className="container mx-auto max-w-4xl px-4 text-center">
-          <span className="ukride-pill">Trusted across London</span>
+          <span className="BTS-pill">Trusted across London</span>
           <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
             Premium taxis from every major London station
           </h2>
-          <div className="ukride-divider mx-auto mt-6 w-24" />
+          <div className="BTS-divider mx-auto mt-6 w-24" />
           <p className="mt-6 text-[15px] leading-relaxed text-[#CFCFCF]">
             We make station travel simple with punctual pickups, fixed fares,
             and professional drivers — to airports, hotels, offices, or home.
@@ -139,19 +141,19 @@ export default function LondonStationTaxiPage() {
       </section>
 
       {/* Stations grid */}
-      <section className="ukride-section-onyx relative py-20 md:py-28">
+      <section className="BTS-section-onyx relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="ukride-pill">Stations</span>
+            <span className="BTS-pill">Stations</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               London station transfers
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {stations.map((station) => (
-              <article key={station.name} className="ukride-vehicle-card group">
-                <div className="ukride-vehicle-media relative h-32">
+              <article key={station.name} className="BTS-vehicle-card group">
+                <div className="BTS-vehicle-media relative h-32">
                   <img src={station.image} alt={station.name} className="h-full w-full object-cover" />
                 </div>
                 <div className="space-y-2 p-4">
@@ -165,14 +167,14 @@ export default function LondonStationTaxiPage() {
       </section>
 
       {/* FAQ */}
-      <section className="ukride-section-charcoal relative py-24 md:py-32">
+      <section className="BTS-section-charcoal relative py-24 md:py-32">
         <div className="container mx-auto max-w-3xl px-4">
           <div className="mb-12 text-center">
-            <span className="ukride-pill">FAQs</span>
+            <span className="BTS-pill">FAQs</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Frequently asked questions
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
           </div>
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((item, i) => (

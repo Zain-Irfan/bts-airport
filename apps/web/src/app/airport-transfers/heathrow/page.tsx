@@ -1,4 +1,4 @@
-import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+﻿import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
 
 export default function HeathrowAirportTransfersPage() {
   return (
@@ -17,26 +17,26 @@ export default function HeathrowAirportTransfersPage() {
         ),
         subtitle:
           "Reliable pickups, fixed pricing, professional drivers, and 24/7 support across every Heathrow terminal.",
-        heroImage: "/airport_1.jpg",
+        heroImage: "/images/heathrow-exterior.jpg",
         storyImages: {
-          intro: "/perfect-taxi.jpg",
-          reliable: "/airport_5.jpg",
-          inter: "/airport_6.jpg",
-          gateway: "/airport_3.jpg",
+          intro: "/images/heathrow-terminal5-couple.jpg",
+          reliable: "/images/heathrow-driver-loading.jpg",
+          inter: "/images/heathrow-mpv-family.jpg",
+          gateway: "/images/british-airways-plane.jpg",
         },
         intro: [
-          "With UKride, experience the convenience of professional airport pickup. Book your Heathrow airport taxi online and share your flight number for real-time tracking. From the moment you land, our driver is ready to assist with luggage and deliver a comfortable journey to your doorstep.",
+          "With BTS, experience the convenience of professional airport pickup. Book your Heathrow airport taxi online and share your flight number for real-time tracking. From the moment you land, our driver is ready to assist with luggage and deliver a comfortable journey to your doorstep.",
           "Leave the responsibility of organising your Heathrow transfer to us. Our meticulously maintained fleet and professional drivers handle trips to and from every London airport with confidence.",
           "Complimentary waiting time and 24/7 availability guarantee a seamless travel experience that gets you to your destination on time.",
         ],
         reliable: [
-          "UKride designed its taxi service to transform every journey into an experience of comfort and refinement. Get a bespoke transfer into London with our reliable Heathrow airport taxi.",
+          "BTS designed its taxi service to transform every journey into an experience of comfort and refinement. Get a bespoke transfer into London with our reliable Heathrow airport taxi.",
           "Our Heathrow transfer is not just point A to point B — it elevates your travel with quiet, opulent service worthy of the executive standard.",
-          "Trust UKride to turn an ordinary airport transfer into an exceptional experience.",
+          "Trust BTS to turn an ordinary airport transfer into an exceptional experience.",
         ],
         interAirport: [
           "We keep your inter-airport travel in total control. Whether it's Gatwick to Heathrow or Heathrow to Stansted, our service is built for speed, precision, and peace of mind.",
-          "UKride drivers know every London airport route by heart and adapt instantly to delays, traffic, and terminal changes.",
+          "BTS drivers know every London airport route by heart and adapt instantly to delays, traffic, and terminal changes.",
           "Book your London-to-London airport transfer today and travel with confidence.",
         ],
         gateway: [
@@ -68,7 +68,7 @@ export default function HeathrowAirportTransfersPage() {
           },
           {
             q: "Is meet-and-greet available at Heathrow?",
-            a: "Yes — opt for meet-and-greet at booking and your driver will wait in arrivals with a UKride name board.",
+            a: "Yes — opt for meet-and-greet at booking and your driver will wait in arrivals with a BTS name board.",
           },
         ],
       }}

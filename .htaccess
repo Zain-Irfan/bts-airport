@@ -1,0 +1,13 @@
+# Laragon: proxy ukride.test (Apache port 80) → Next.js dev server on port 3000.
+# Requires mod_proxy and mod_proxy_http enabled in Apache (Laragon → Apache → httpd.conf).
+# Run the app from apps/web: npm run dev
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
+</IfModule>
+
+<IfModule mod_proxy.c>
+  ProxyPreserveHost On
+</IfModule>

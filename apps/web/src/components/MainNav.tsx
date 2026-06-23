@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
@@ -7,26 +7,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { airportTransferLinks, serviceLinks } from "@/lib/site-nav-data";
 
-const airportTransferLinks = [
-  { label: "Heathrow Airport Transfers", href: "/airport-transfers/heathrow" },
-  { label: "Southend Airport Transfers", href: "/airport-transfers/southend" },
-  {
-    label: "London City Airport Transfers",
-    href: "/airport-transfers/london-city",
-  },
-  { label: "Stansted Airport Transfers", href: "/airport-transfers/stansted" },
-  { label: "Luton Airport transfers", href: "/airport-transfers/luton" },
-  { label: "Gatwick Airport Transfers", href: "/airport-transfers/gatwick" },
-];
-
-const serviceLinks = [
-  { label: "A to B Taxi", href: "/services/a-to-b-taxi" },
-  { label: "Business Taxi Services", href: "/services/business-taxi-services" },
-  { label: "Dial a Cab", href: "/services/dial-a-cab" },
-];
-
-const ROUTE_START_EVENT = "ukride-route-start";
+const ROUTE_START_EVENT = "BTS-route-start";
 
 export function MainNav() {
   const router = useRouter();
@@ -76,7 +59,7 @@ export function MainNav() {
   const servicesActive = pathname.startsWith("/services");
 
   return (
-    <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+    <nav className="flex items-center gap-5 text-sm font-medium lg:gap-6 xl:gap-7">
       {navLink("/", "Home")}
 
       <div

@@ -1,4 +1,4 @@
-import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+﻿import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
 
 export default function GatwickAirportTransfersPage() {
   return (
@@ -17,9 +17,15 @@ export default function GatwickAirportTransfersPage() {
         ),
         subtitle:
           "Smooth Gatwick airport pickups and drop-offs with fixed fares and trusted local drivers.",
-        heroImage: "/airport_2.jpg",
+        heroImage: "/images/gatwick-sign.jpg",
+        storyImages: {
+          intro: "/images/gatwick-service.jpg",
+          reliable: "/images/executive-passenger.jpg",
+          inter: "/images/heathrow-mpv-family.jpg",
+          gateway: "/images/mpv-airport-boarding.jpg",
+        },
         intro: [
-          "With UKride, book Gatwick transfers in minutes and travel with complete peace of mind. We coordinate pickups around your flight details and terminal timing.",
+          "With BTS, book Gatwick transfers in minutes and travel with complete peace of mind. We coordinate pickups around your flight details and terminal timing.",
           "Whether you are heading into Central London or any nearby city, our professional drivers make your journey comfortable and punctual.",
           "Enjoy fixed pricing and reliable support from booking to drop-off.",
         ],

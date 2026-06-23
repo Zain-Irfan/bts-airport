@@ -1,4 +1,4 @@
-import * as React from "react"
+﻿import * as React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { Plus } from "lucide-react"
 
@@ -12,7 +12,7 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn("ukride-faq-item", className)}
+    className={cn("BTS-faq-item", className)}
     {...props}
   />
 ))
@@ -36,7 +36,7 @@ const AccordionTrigger = React.forwardRef<
       <span className="flex-1">{children}</span>
       <span
         aria-hidden
-        className="relative grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[rgba(192,192,192,0.18)] bg-[linear-gradient(135deg,rgba(75,0,130,0.32)_0%,rgba(43,18,56,0.4)_100%)] text-[#C0C0C0] shadow-[inset_0_1px_0_rgba(192,192,192,0.1)] transition-all duration-500 ease-out group-hover:border-[rgba(192,192,192,0.32)] group-hover:text-white group-data-[state=open]:rotate-45 group-data-[state=open]:border-[rgba(155,81,224,0.45)] group-data-[state=open]:text-white"
+        className="relative grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[rgba(192,192,192,0.28)] bg-[linear-gradient(135deg,rgba(192,192,192,0.12)_0%,rgba(45,45,51,0.65)_100%)] text-[#C0C0C0] shadow-[inset_0_1px_0_rgba(192,192,192,0.18)] transition-all duration-500 ease-out group-hover:border-[rgba(192,192,192,0.45)] group-hover:text-white group-data-[state=open]:rotate-45 group-data-[state=open]:border-[rgba(192,192,192,0.55)] group-data-[state=open]:bg-[linear-gradient(135deg,rgba(192,192,192,0.2)_0%,rgba(45,45,51,0.7)_100%)] group-data-[state=open]:text-white"
       >
         <Plus className="h-4 w-4" />
       </span>
@@ -60,7 +60,7 @@ const AccordionContent = React.forwardRef<
         className,
       )}
     >
-      <div className="ukride-divider-silver mb-4 opacity-50" />
+      <div className="BTS-divider-silver mb-4 opacity-50" />
       {children}
     </div>
   </AccordionPrimitive.Content>

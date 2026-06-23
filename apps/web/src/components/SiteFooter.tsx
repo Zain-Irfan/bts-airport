@@ -1,6 +1,11 @@
+﻿"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { useSiteSettings } from "@/components/providers/SiteSettingsProvider";
 
 export function SiteFooter() {
+  const { whatsapp, email } = useSiteSettings();
   return (
     <footer className="relative overflow-hidden border-t border-[rgba(192,192,192,0.1)] bg-[linear-gradient(180deg,#0D0D0F_0%,#0A0A0D_100%)] text-[#D1D5DB]">
       {/* Subtle purple top wash */}
@@ -12,14 +17,13 @@ export function SiteFooter() {
       <div className="relative mx-auto w-full max-w-6xl px-4 py-12">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-xl border border-[rgba(192,192,192,0.2)] bg-[linear-gradient(135deg,#4B0082_0%,#2A1238_100%)] text-xs font-extrabold text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.16),0_6px_18px_-6px_rgba(75,0,130,0.55)]">
-                UR
-              </span>
-              <span className="text-sm font-extrabold tracking-tight text-[#F8F8F8]">
-                UKride
-              </span>
-            </div>
+            <Image
+              src="/assets/logo.png"
+              alt="BTS Logo"
+              width={140}
+              height={50}
+              className="h-10 w-auto object-contain"
+            />
             <p className="max-w-xs text-sm leading-6 text-[#A5A7AA]">
               Pre-booked London transfers with transparent pricing and premium
               vehicles.
@@ -39,24 +43,23 @@ export function SiteFooter() {
             <FooterLi href="/services">Services</FooterLi>
             <FooterLi href="/about-us">About</FooterLi>
             <FooterLi href="/help-and-support">Help & Support</FooterLi>
-            <FooterLi href="/blog/">Blog</FooterLi>
           </FooterCol>
 
           <FooterCol title="Contact">
             <li>
               <a
                 className="text-[#D1D5DB] transition-colors duration-300 hover:text-[#F8F8F8]"
-                href="mailto:support@ukride.uk"
+                href={`mailto:${email}`}
               >
-                support@ukride.uk
+                {email}
               </a>
             </li>
             <li>
               <a
                 className="text-[#D1D5DB] transition-colors duration-300 hover:text-[#F8F8F8]"
-                href="tel:+447700140900"
+                href={`https://wa.me/${whatsapp}`}
               >
-                +44 7700 1409 00
+                WhatsApp: +{whatsapp}
               </a>
             </li>
             <li>
@@ -73,9 +76,9 @@ export function SiteFooter() {
           </FooterCol>
         </div>
 
-        <div className="ukride-divider-silver mt-10" aria-hidden />
+        <div className="BTS-divider-silver mt-10" aria-hidden />
         <div className="mt-6 flex flex-col gap-2 text-xs text-[#A5A7AA] md:flex-row md:items-center md:justify-between">
-          <div>© {new Date().getFullYear()} UKride. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} BTS. All rights reserved.</div>
           <div className="flex gap-5">
             <Link
               className="text-[#A5A7AA] transition-colors hover:text-[#F8F8F8]"

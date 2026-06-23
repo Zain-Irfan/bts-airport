@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
+
+# Admin-uploaded vehicle images (folder tracked, files not)
+public/uploads/vehicle-types/*
+!public/uploads/vehicle-types/.gitkeep

@@ -1,4 +1,4 @@
-import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+﻿import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
 
 export default function LondonCityAirportTransfersPage() {
   return (
@@ -17,7 +17,13 @@ export default function LondonCityAirportTransfersPage() {
         ),
         subtitle:
           "Fast, premium transfers designed for London City Airport business and executive travel.",
-        heroImage: "/airport_3.jpg",
+        heroImage: "/images/executive-passenger.jpg",
+        storyImages: {
+          intro: "/images/hotel-chauffeur.jpg",
+          reliable: "/images/luxury-car-interior.jpg",
+          inter: "/images/heathrow-mpv-family.jpg",
+          gateway: "/images/gatwick-service.jpg",
+        },
         intro: [
           "Our London City Airport transfer service is ideal for business schedules, fast arrivals, and efficient city connections.",
           "From terminal pickup to office, hotel, or home drop-off, we deliver a reliable and premium transfer experience.",
@@ -36,7 +42,7 @@ export default function LondonCityAirportTransfersPage() {
         gateway: [
           "Navigate London City Airport transfers with confidence through our pre-booked, professional taxi service.",
           "We simplify pickups, luggage support, and timely drop-offs across London locations.",
-          "Choose UKride for a smooth, premium, and dependable transfer experience.",
+          "Choose BTS for a smooth, premium, and dependable transfer experience.",
         ],
         faqs: [
           {

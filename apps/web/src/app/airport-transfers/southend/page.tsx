@@ -1,4 +1,4 @@
-import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+﻿import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
 
 export default function SouthendAirportTransfersPage() {
   return (
@@ -17,7 +17,13 @@ export default function SouthendAirportTransfersPage() {
         ),
         subtitle:
           "Reliable Southend airport transfers with easy pre-booking and clear trip details.",
-        heroImage: "/airport_6.jpg",
+        heroImage: "/images/mpv-airport-boarding.jpg",
+        storyImages: {
+          intro: "/images/luxury-car-interior.jpg",
+          reliable: "/images/executive-passenger.jpg",
+          inter: "/images/heathrow-mpv-family.jpg",
+          gateway: "/images/british-airways-plane.jpg",
+        },
         intro: [
           "Travel between Southend Airport and London with confidence. Our pre-booked transfer service handles every step — from pickup timing to luggage support.",
           "Whether you're commuting for work or starting a holiday, our drivers ensure a smooth, comfortable ride at a fixed fare.",
@@ -34,9 +40,9 @@ export default function SouthendAirportTransfersPage() {
           "Book ahead to stay fully in control of every transfer leg.",
         ],
         gateway: [
-          "UKride makes Southend transfers simple — one pre-booked ride from terminal to your destination.",
+          "BTS makes Southend transfers simple — one pre-booked ride from terminal to your destination.",
           "Our team coordinates timing and logistics so you can focus on travelling, not on transport.",
-          "Choose UKride for a reliable, comfortable, and well-priced Southend airport transfer.",
+          "Choose BTS for a reliable, comfortable, and well-priced Southend airport transfer.",
         ],
         faqs: [
           {

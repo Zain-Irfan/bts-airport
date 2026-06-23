@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 
@@ -7,10 +7,10 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen bg-background">
       <SiteTopHeader />
 
-      <main className="ukride-hero-ambient ukride-section-onyx ukride-grid-bg relative overflow-hidden py-20 md:py-28">
+      <main className="BTS-hero-ambient BTS-section-onyx BTS-grid-bg relative overflow-hidden py-20 md:py-28">
         <div className="mx-auto w-full max-w-md px-4">
           <div className="mb-8 text-center">
-            <span className="ukride-pill">Account recovery</span>
+            <span className="BTS-pill">Account recovery</span>
             <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Forgot Password
             </h1>
@@ -19,7 +19,7 @@ export default function ForgotPasswordPage() {
             </p>
           </div>
 
-          <div className="ukride-card p-8">
+          <div className="BTS-card p-8">
             <div className="mb-8 flex items-center justify-center gap-3">
               <StepCircle active>1</StepCircle>
               <div className="h-px w-10 bg-[rgba(192,192,192,0.18)]" />
@@ -53,7 +53,7 @@ export default function ForgotPasswordPage() {
             </form>
 
             <div className="mt-8 text-center text-sm text-[#A5A7AA]">
-              <Link href="/login" className="ukride-link">
+              <Link href="/login" className="BTS-link">
                 Back to login
               </Link>
             </div>

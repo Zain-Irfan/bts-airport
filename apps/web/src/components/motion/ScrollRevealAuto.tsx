@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 type RevealDirection = "left" | "right" | "up";
 
 function getDirectionClass(direction: RevealDirection) {
-  if (direction === "left") return "ukride-reveal-left";
-  if (direction === "right") return "ukride-reveal-right";
-  return "ukride-reveal-up";
+  if (direction === "left") return "BTS-reveal-left";
+  if (direction === "right") return "BTS-reveal-right";
+  return "BTS-reveal-up";
 }
 
 function shouldSkipElement(el: HTMLElement) {
@@ -53,9 +53,9 @@ export function ScrollRevealAuto() {
 
       if (!candidates.length) return;
 
-      // Don’t double-apply. If something already has ukride-reveal, keep it.
+      // Don’t double-apply. If something already has BTS-reveal, keep it.
       const targets = candidates.filter(
-        (el) => !el.classList.contains("ukride-reveal") && !el.classList.contains("is-inview")
+        (el) => !el.classList.contains("BTS-reveal") && !el.classList.contains("is-inview")
       );
 
       targets.forEach((el, idx) => {
@@ -64,8 +64,8 @@ export function ScrollRevealAuto() {
           (idx % 3 === 0 ? "left" : idx % 3 === 1 ? "right" : "up");
 
         const delayMs = Math.min(240, idx * 60);
-        el.style.setProperty("--ukride-reveal-delay", `${delayMs}ms`);
-        el.classList.add("ukride-reveal", getDirectionClass(direction));
+        el.style.setProperty("--BTS-reveal-delay", `${delayMs}ms`);
+        el.classList.add("BTS-reveal", getDirectionClass(direction));
       });
 
       observer?.disconnect();

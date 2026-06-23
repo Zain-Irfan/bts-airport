@@ -118,10 +118,7 @@ export default async function AirportTransferDetailPage({
             {airport.blurb}
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" className="h-12 px-7 text-sm font-semibold tracking-wide">
-              <Link href="/#quote">Get instant quote</Link>
-            </Button>
+          <div className="mt-8">
             <Button asChild variant="outline" size="lg" className="h-12 px-7 text-sm font-semibold tracking-wide">
               <Link href="/airport-transfers">Back to airports</Link>
             </Button>

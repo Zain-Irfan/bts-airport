@@ -16,6 +16,7 @@ import { FullFooterSection } from "@/components/FullFooterSection";
 import { HomeBookingForm } from "@/components/forms/HomeBookingForm";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { Button } from "@/components/ui/button";
+import { getSiteSettings } from "@/lib/site-settings";
 import {
   Accordion,
   AccordionContent,
@@ -56,10 +57,10 @@ export type AirportCityContent = {
 };
 
 const DEFAULT_STORY_IMAGES = {
-  intro: "/perfect-taxi.jpg",
-  reliable: "/airport_5.jpg",
-  inter: "/airport_3.jpg",
-  gateway: "/airport_6.jpg",
+  intro: "/images/heathrow-terminal5-couple.jpg",
+  reliable: "/images/heathrow-driver-loading.jpg",
+  inter: "/images/heathrow-mpv-family.jpg",
+  gateway: "/images/british-airways-plane.jpg",
 };
 
 const FEATURE_ROW = [
@@ -86,10 +87,10 @@ const FEATURE_ROW = [
 ];
 
 const FLEET = [
-  { name: "Saloon", img: "/saloon.jpg" },
-  { name: "MPV", img: "/mpv.jpg" },
-  { name: "Estate", img: "/estate.jpg" },
-  { name: "Chauffeur", img: "/chauffeur.jpg" },
+  { name: "Saloon", img: "/images/saloon.jpeg" },
+  { name: "MPV", img: "/images/vehicle-vclass-8seater.jpg" },
+  { name: "Estate", img: "/images/vehicle-estate.jpg" },
+  { name: "Chauffeur", img: "/images/vehicle-sclass-new.jpg" },
 ];
 
 const VALUE_PROPS = [
@@ -104,7 +105,7 @@ const VALUE_PROPS = [
     icon: Car,
   },
   {
-    title: "Why choose UKride",
+    title: "Why choose BTS",
     desc: "Licensed drivers, premium fleet, monitored journeys — built around your trip.",
     icon: ThumbsUp,
   },
@@ -115,13 +116,14 @@ const VALUE_PROPS = [
   },
 ];
 
-export function AirportCityPageTemplate({ content }: { content: AirportCityContent }) {
+export async function AirportCityPageTemplate({ content }: { content: AirportCityContent }) {
+  const { whatsapp } = await getSiteSettings();
   const story = content.storyImages ?? DEFAULT_STORY_IMAGES;
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <a
-        href="https://wa.me/447700140900"
+        href={`https://wa.me/${whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -133,13 +135,13 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
       <SiteTopHeader />
 
       {/* Hero */}
-      <section className="ukride-hero-ambient ukride-luxury-section-1 ukride-grid-bg relative overflow-hidden py-20 lg:py-28">
+      <section className="BTS-hero-ambient BTS-luxury-section-1 BTS-grid-bg relative overflow-hidden py-20 lg:py-28">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src={content.heroImage}
             alt=""
             aria-hidden
-            className="ukride-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
+            className="BTS-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
           />
         </div>
         <div className="container relative z-10 mx-auto px-4">
@@ -151,7 +153,7 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
                 <span className="mx-2 text-[#C0C0C0]/60">|</span>
                 <span className="text-[#CFCFCF]">1538+ Google reviews</span>
               </div>
-              <span className="ukride-pill">{content.pillLabel}</span>
+              <span className="BTS-pill">{content.pillLabel}</span>
               <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
                 {content.headline}
               </h1>
@@ -176,14 +178,14 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
       </section>
 
       {/* Feature row */}
-      <section className="ukride-section-charcoal relative py-20 md:py-24">
+      <section className="BTS-section-charcoal relative py-20 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURE_ROW.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="space-y-4">
-                  <div className="ukride-icon-halo h-12 w-12">
+                  <div className="BTS-icon-halo h-12 w-12">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="text-xl font-semibold tracking-tight text-[#F8F8F8]">
@@ -198,14 +200,14 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
       </section>
 
       {/* Intro */}
-      <section className="ukride-section-onyx relative py-20 md:py-24">
+      <section className="BTS-section-onyx relative py-20 md:py-24">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
-          <div className="ukride-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
+          <div className="BTS-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
             <img src={story.intro} alt="" className="h-full w-full object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
           <div className="space-y-5">
-            <span className="ukride-pill">Premium service</span>
+            <span className="BTS-pill">Premium service</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               A smooth {content.airportName} transfer, anywhere in London
             </h2>
@@ -222,19 +224,19 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
       </section>
 
       {/* Fleet */}
-      <section className="ukride-section-charcoal relative py-20 md:py-28">
+      <section className="BTS-section-charcoal relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="ukride-pill">Choose your ride</span>
+            <span className="BTS-pill">Choose your ride</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               The right car for every destination
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {FLEET.map((car) => (
-              <div key={car.name} className="ukride-vehicle-card group">
-                <div className="ukride-vehicle-media relative h-40">
+              <div key={car.name} className="BTS-vehicle-card group">
+                <div className="BTS-vehicle-media relative h-40">
                   <img src={car.img} alt={car.name} className="h-full w-full object-cover" />
                 </div>
                 <div className="space-y-3 p-5">
@@ -252,10 +254,10 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
       </section>
 
       {/* Reliable */}
-      <section className="ukride-section-onyx relative py-24 md:py-32">
+      <section className="BTS-section-onyx relative py-24 md:py-32">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="order-2 space-y-5 md:order-1">
-            <span className="ukride-pill">Reliable &amp; comfortable</span>
+            <span className="BTS-pill">Reliable &amp; comfortable</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               {content.airportName} airport taxis built around your journey
             </h2>
@@ -268,7 +270,7 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
               <Link href="/taxi-quote">Book a taxi</Link>
             </Button>
           </div>
-          <div className="ukride-purple-glow relative order-1 h-[340px] overflow-hidden rounded-2xl md:order-2">
+          <div className="BTS-purple-glow relative order-1 h-[340px] overflow-hidden rounded-2xl md:order-2">
             <img src={story.reliable} alt="" className="h-full w-full object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
@@ -276,14 +278,14 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
       </section>
 
       {/* Inter-airport */}
-      <section className="ukride-section-charcoal relative py-20 md:py-24">
+      <section className="BTS-section-charcoal relative py-20 md:py-24">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
-          <div className="ukride-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
+          <div className="BTS-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
             <img src={story.inter} alt="" className="h-full w-full object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
           <div className="space-y-5">
-            <span className="ukride-pill">Inter-airport</span>
+            <span className="BTS-pill">Inter-airport</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Moving from {content.airportName} to another airport?
             </h2>
@@ -300,12 +302,12 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
       </section>
 
       {/* Gateway */}
-      <section className="ukride-section-onyx relative py-24 md:py-32">
+      <section className="BTS-section-onyx relative py-24 md:py-32">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="space-y-5">
-            <span className="ukride-pill">Gateway</span>
+            <span className="BTS-pill">Gateway</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              UKride: your gateway to {content.airportName}
+              BTS: your gateway to {content.airportName}
             </h2>
             {content.gateway.map((p, i) => (
               <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
@@ -317,9 +319,9 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
                 {content.terminals.map((t) => (
                   <li
                     key={t}
-                    className="flex items-center gap-2.5 rounded-lg border border-[rgba(192,192,192,0.12)] bg-[rgba(13,13,15,0.6)] px-3 py-2"
+                    className="flex items-center gap-2.5 rounded-lg border border-[rgba(192,192,192,0.25)] bg-[linear-gradient(135deg,rgba(192,192,192,0.06)_0%,rgba(13,13,15,0.7)_100%)] px-3 py-2"
                   >
-                    <span className="block h-1.5 w-1.5 rounded-full bg-[#9b51e0]" />
+                    <span className="block h-1.5 w-1.5 rounded-full bg-[#C0C0C0]" />
                     {t}
                   </li>
                 ))}
@@ -329,7 +331,7 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
               <Link href="/taxi-quote">Book a taxi</Link>
             </Button>
           </div>
-          <div className="ukride-purple-glow relative h-[400px] overflow-hidden rounded-2xl">
+          <div className="BTS-purple-glow relative h-[400px] overflow-hidden rounded-2xl">
             <img src={story.gateway} alt="" className="h-full w-full object-cover" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
@@ -337,21 +339,21 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
       </section>
 
       {/* Value props */}
-      <section className="ukride-section-charcoal relative py-20 md:py-28">
+      <section className="BTS-section-charcoal relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="ukride-pill">Why UKride</span>
+            <span className="BTS-pill">Why BTS</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Transfers to and from {content.airportName}
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
           </div>
           <div className="mx-auto grid max-w-5xl gap-x-14 gap-y-12 md:grid-cols-2">
             {VALUE_PROPS.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="text-center">
-                  <div className="ukride-icon-halo mx-auto mb-5 h-14 w-14">
+                  <div className="BTS-icon-halo mx-auto mb-5 h-14 w-14">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-semibold text-[#F8F8F8]">{item.title}</h3>
@@ -366,14 +368,14 @@ export function AirportCityPageTemplate({ content }: { content: AirportCityConte
       </section>
 
       {/* FAQ */}
-      <section className="ukride-section-onyx relative py-24 md:py-32">
+      <section className="BTS-section-onyx relative py-24 md:py-32">
         <div className="container mx-auto max-w-3xl px-4">
           <div className="mb-12 text-center">
-            <span className="ukride-pill">FAQs</span>
+            <span className="BTS-pill">FAQs</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Frequently asked questions
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
           </div>
           <Accordion type="single" collapsible className="w-full">
             {content.faqs.map((item, i) => (

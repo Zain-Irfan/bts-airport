@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -84,7 +84,7 @@
 
 /*
   ─────────────────────────────────────────────────────────────────────
-  UKride — Executive Luxury Design System
+  BTS — Executive Luxury Design System
   ─────────────────────────────────────────────────────────────────────
   Global color balance (executive distribution):
     50%  black / charcoal / onyx — surface area
@@ -136,7 +136,7 @@
   --text-body: #CFCFCF;
   --text-accent: #C0C0C0;
 
-  /* Glass / surface fills (used by .ukride-card, .ukride-glass, etc.) */
+  /* Glass / surface fills (used by .BTS-card, .BTS-glass, etc.) */
   --glass-purple-strong: rgba(75, 0, 130, 0.10);
   --glass-purple-soft: rgba(75, 0, 130, 0.06);
   --glass-dark-purple: rgba(43, 18, 56, 0.22);
@@ -157,7 +157,7 @@
   /* Subtle silver border (very faint) */
   --border: 240 6% 18%;
 
-  /* Card surface (overlaid by .ukride-card graphite glass gradient) */
+  /* Card surface (overlaid by .BTS-card graphite glass gradient) */
   --card: 240 7% 14%;
   --card-foreground: 0 0% 97.3%;
   --card-border: 240 6% 22%;
@@ -189,7 +189,7 @@
   --popover-border: 240 6% 22%;
 
   /* Primary band — cinematic deep royal-purple (hero / CTA / footer base).
-     Combine with `ukride-luxury-section-1/2/3` for richer gradients. */
+     Combine with `BTS-luxury-section-1/2/3` for richer gradients. */
   --primary: 278 60% 9%;
   --primary-foreground: 0 0% 97.3%;
 
@@ -278,7 +278,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ukride-reveal {
+    .BTS-reveal {
       opacity: 1 !important;
       transform: none !important;
       transition: none !important;
@@ -368,24 +368,26 @@
 
 /* Premium surfaces */
 @layer components {
-  /* Glass navbar — black base with subtle purple tint + silver hairline */
-  .ukride-glass-nav {
+  /* Glass navbar — silver-washed dark glass */
+  .BTS-glass-nav {
     position: relative;
     background:
       linear-gradient(
         180deg,
-        rgba(13, 13, 15, 0.86) 0%,
-        rgba(26, 26, 29, 0.74) 100%
+        rgba(192,192,192,0.06) 0%,
+        rgba(13, 13, 15, 0.88) 40%,
+        rgba(26, 26, 29, 0.80) 100%
       );
-    border-bottom: 1px solid var(--silver-border);
+    border-bottom: 1px solid rgba(192,192,192,0.25);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     box-shadow:
       0 10px 36px rgb(0 0 0 / 0.55),
-      0 1px 0 rgb(192 192 192 / 0.08) inset;
+      0 1px 0 rgb(192 192 192 / 0.14) inset,
+      0 0 0 0 transparent;
   }
 
-  .ukride-glass-nav::before {
+  .BTS-glass-nav::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -394,7 +396,7 @@
       radial-gradient(60% 100% at 50% 100%, rgba(192, 192, 192, 0.03), transparent 65%);
   }
 
-  .ukride-glass-nav::after {
+  .BTS-glass-nav::after {
     content: "";
     position: absolute;
     left: 0;
@@ -414,11 +416,11 @@
   }
 
   /* Cinematic image treatment — deeper violet wash for hero imagery */
-  .ukride-media-cinematic {
+  .BTS-media-cinematic {
     filter: brightness(0.45) contrast(1.08) saturate(0.78) hue-rotate(-14deg);
   }
 
-  .ukride-media-overlay {
+  .BTS-media-overlay {
     pointer-events: none;
     position: absolute;
     inset: 0;
@@ -433,13 +435,13 @@
   }
 
   /* Subtle radial ambient glow that can be added behind any section */
-  .ukride-aurora {
+  .BTS-aurora {
     position: relative;
     isolation: isolate;
   }
 
-  .ukride-aurora::before,
-  .ukride-aurora::after {
+  .BTS-aurora::before,
+  .BTS-aurora::after {
     content: "";
     position: absolute;
     pointer-events: none;
@@ -447,7 +449,7 @@
     filter: blur(110px);
   }
 
-  .ukride-aurora::before {
+  .BTS-aurora::before {
     inset: -22% -10% auto auto;
     width: 62vw;
     height: 62vw;
@@ -460,7 +462,7 @@
     );
   }
 
-  .ukride-aurora::after {
+  .BTS-aurora::after {
     inset: auto auto -32% -12%;
     width: 58vw;
     height: 58vw;
@@ -473,28 +475,29 @@
     );
   }
 
-  .ukride-aurora > * {
+  .BTS-aurora > * {
     position: relative;
     z-index: 1;
   }
 
   /* Luxury card surface — graphite glass with silver hairline.
      Purple tint is near-zero; metallic depth comes from charcoal/silver. */
-  .ukride-card {
+  .BTS-card {
     position: relative;
     background:
       linear-gradient(
         135deg,
-        rgba(45, 45, 51, 0.55) 0%,
-        rgba(26, 26, 29, 0.72) 55%,
-        rgba(13, 13, 15, 0.8) 100%
+        rgba(192, 192, 192, 0.07) 0%,
+        rgba(45, 45, 51, 0.65) 35%,
+        rgba(26, 26, 29, 0.78) 70%,
+        rgba(192, 192, 192, 0.04) 100%
       );
-    border: 1px solid var(--silver-border);
+    border: 1px solid rgba(192,192,192,0.22);
     border-radius: calc(var(--radius) + 0.25rem);
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.07),
+      inset 0 1px 0 rgb(192 192 192 / 0.14),
       0 28px 72px -24px rgb(0 0 0 / 0.7),
       0 10px 32px -10px rgb(0 0 0 / 0.35);
     transition:
@@ -504,7 +507,7 @@
       background 0.6s ease;
   }
 
-  .ukride-card:hover {
+  .BTS-card:hover {
     transform: translateY(-3px);
     border-color: var(--silver-border-strong);
     background:
@@ -520,63 +523,65 @@
       0 18px 52px -12px rgb(75 0 130 / 0.2);
   }
 
-  /* Premium divider with purple/silver glow — for section separators */
-  .ukride-divider {
-    height: 1px;
+  /* Premium divider — silver chrome centre with subtle purple glow */
+  .BTS-divider {
+    height: 2px;
     background-image: linear-gradient(
       90deg,
-      transparent,
-      rgb(192 192 192 / 0.18),
-      hsl(var(--highlight) / 0.55),
-      hsl(var(--highlight-soft) / 0.45),
-      hsl(var(--highlight) / 0.55),
-      rgb(192 192 192 / 0.18),
-      transparent
+      transparent 0%,
+      rgb(192 192 192 / 0.15) 15%,
+      rgb(192 192 192 / 0.65) 40%,
+      rgb(248 248 248 / 0.9) 50%,
+      rgb(192 192 192 / 0.65) 60%,
+      rgb(192 192 192 / 0.15) 85%,
+      transparent 100%
     );
-    box-shadow: 0 0 28px hsl(var(--highlight) / 0.28);
+    box-shadow: 0 0 12px rgb(192 192 192 / 0.25), 0 0 32px hsl(var(--highlight) / 0.15);
     border: 0;
   }
 
   /* Pure silver hairline divider */
-  .ukride-divider-silver {
+  .BTS-divider-silver {
     height: 1px;
     background-image: linear-gradient(
       90deg,
       transparent,
-      rgb(192 192 192 / 0.32),
+      rgb(192 192 192 / 0.45),
+      rgb(248 248 248 / 0.6),
+      rgb(192 192 192 / 0.45),
       transparent
     );
     border: 0;
   }
 
   /* Scroll reveal — premium, subtle, cinematic */
-  .ukride-reveal {
+  .BTS-reveal {
     opacity: 0;
-    transform: translate3d(var(--ukride-reveal-x, 0), var(--ukride-reveal-y, 14px), 0)
+    transform: translate3d(var(--BTS-reveal-x, 0), var(--BTS-reveal-y, 14px), 0)
       scale(0.992);
     transition:
       opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
       transform 1050ms cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: var(--ukride-reveal-delay, 0ms);
+    transition-delay: var(--BTS-reveal-delay, 0ms);
     will-change: opacity, transform;
   }
 
-  .ukride-reveal-left {
-    --ukride-reveal-x: -26px;
-    --ukride-reveal-y: 0px;
+  .BTS-reveal-left {
+    --BTS-reveal-x: -26px;
+    --BTS-reveal-y: 0px;
   }
 
-  .ukride-reveal-right {
-    --ukride-reveal-x: 26px;
-    --ukride-reveal-y: 0px;
+  .BTS-reveal-right {
+    --BTS-reveal-x: 26px;
+    --BTS-reveal-y: 0px;
   }
 
-  .ukride-reveal-up {
-    --ukride-reveal-x: 0px;
-    --ukride-reveal-y: 18px;
+  .BTS-reveal-up {
+    --BTS-reveal-x: 0px;
+    --BTS-reveal-y: 18px;
   }
 
-  .ukride-reveal.is-inview {
+  .BTS-reveal.is-inview {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
   }
@@ -621,57 +626,78 @@
     cursor: pointer;
   }
 
-  /* ─────────────────────────────────────────────────────────────────
-     LUXURY UTILITY SURFACES
-     ───────────────────────────────────────────────────────────────── */
 
-  /* Graphite glass container — dark metallic surface */
-  .ukride-glass {
+  /* Booking time: hide native clock icon (single chevron affordance + showPicker) */
+  input[type="time"].booking-field::-webkit-calendar-picker-indicator,
+  input.booking-field[type="time"]::-webkit-calendar-picker-indicator,
+  input.BTS-booking-time::-webkit-calendar-picker-indicator {
+    display: none !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    pointer-events: none !important;
+  }
+
+  input[type="time"].booking-field::-webkit-clear-button,
+  input.booking-field[type="time"]::-webkit-clear-button,
+  input.BTS-booking-time::-webkit-clear-button {
+    display: none !important;
+  }
+
+  /* Luxury utility surfaces */
+
+  /* Graphite glass container — silver-washed dark metallic surface */
+  .BTS-glass {
     background:
       linear-gradient(
         135deg,
-        rgba(45, 45, 51, 0.5) 0%,
-        rgba(26, 26, 29, 0.7) 100%
+        rgba(192, 192, 192, 0.07) 0%,
+        rgba(45, 45, 51, 0.55) 35%,
+        rgba(26, 26, 29, 0.75) 100%
       );
-    border: 1px solid var(--silver-border);
+    border: 1px solid rgba(192,192,192,0.22);
     border-radius: calc(var(--radius) + 0.25rem);
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.06),
+      inset 0 1px 0 rgb(192 192 192 / 0.14),
       0 24px 64px -24px rgb(0 0 0 / 0.6),
       0 8px 28px -10px rgb(0 0 0 / 0.3);
   }
 
-  .ukride-glass-strong {
+  .BTS-glass-strong {
     background:
       linear-gradient(
         135deg,
-        rgba(45, 45, 51, 0.6) 0%,
-        rgba(26, 26, 29, 0.78) 100%
+        rgba(192, 192, 192, 0.09) 0%,
+        rgba(45, 45, 51, 0.65) 40%,
+        rgba(26, 26, 29, 0.82) 100%
       );
-    border: 1px solid var(--silver-border-strong);
+    border: 1px solid rgba(192,192,192,0.3);
     border-radius: calc(var(--radius) + 0.25rem);
     backdrop-filter: blur(22px) saturate(170%);
     -webkit-backdrop-filter: blur(22px) saturate(170%);
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.08),
+      inset 0 1px 0 rgb(192 192 192 / 0.18),
       0 36px 88px -28px rgb(0 0 0 / 0.7),
+      0 0 20px -8px rgba(192,192,192,0.1),
       0 14px 40px -12px rgb(0 0 0 / 0.4);
   }
 
   /* Luxury section backgrounds — dark metallic gradient bands.
      Purple appears only as a very faint ambient edge, not as the surface.
      Variant 1: onyx → charcoal diagonal with faint purple horizon */
-  .ukride-luxury-section,
-  .ukride-luxury-section-1 {
+  .BTS-luxury-section,
+  .BTS-luxury-section-1 {
     background:
       linear-gradient(135deg, #0D0D0F 0%, #1A1A1D 50%, #232328 100%);
     position: relative;
     isolation: isolate;
   }
-  .ukride-luxury-section::after,
-  .ukride-luxury-section-1::after {
+  .BTS-luxury-section::after,
+  .BTS-luxury-section-1::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -683,13 +709,13 @@
   }
 
   /* Variant 2: deep onyx → graphite vertical (dramatic) */
-  .ukride-luxury-section-2 {
+  .BTS-luxury-section-2 {
     background:
       linear-gradient(180deg, #0A0A0D 0%, #1A1A1D 50%, #2D2D33 100%);
     position: relative;
     isolation: isolate;
   }
-  .ukride-luxury-section-2::after {
+  .BTS-luxury-section-2::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -701,13 +727,13 @@
   }
 
   /* Variant 3: charcoal → graphite (elegant metallic midtone) */
-  .ukride-luxury-section-3 {
+  .BTS-luxury-section-3 {
     background:
       linear-gradient(135deg, #131316 0%, #1A1A1D 50%, #2D2D33 100%);
     position: relative;
     isolation: isolate;
   }
-  .ukride-luxury-section-3::after {
+  .BTS-luxury-section-3::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -720,7 +746,7 @@
 
   /* Premium CTA — rich deep-purple gradient with luxury glow.
      Use directly on <a>/<button> or via the Button "default" variant. */
-  .ukride-cta {
+  .BTS-cta {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -742,7 +768,7 @@
       border-color 0.35s ease;
   }
 
-  .ukride-cta::before {
+  .BTS-cta::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -755,7 +781,7 @@
     pointer-events: none;
   }
 
-  .ukride-cta:hover {
+  .BTS-cta:hover {
     filter: brightness(1.08);
     border-color: rgba(192, 192, 192, 0.4);
     box-shadow:
@@ -767,12 +793,12 @@
     transform: translateY(-1px);
   }
 
-  .ukride-cta:active {
+  .BTS-cta:active {
     transform: translateY(0);
     filter: brightness(0.98);
   }
 
-  .ukride-cta:focus-visible {
+  .BTS-cta:focus-visible {
     outline: none;
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.22),
@@ -782,14 +808,14 @@
 
   /* Hero ambient lighting — subtle metallic depth with a whisper of purple.
      Dark charcoal atmosphere dominates; purple is barely perceptible. */
-  .ukride-hero-ambient {
+  .BTS-hero-ambient {
     position: relative;
     isolation: isolate;
     overflow: hidden;
   }
 
-  .ukride-hero-ambient::before,
-  .ukride-hero-ambient::after {
+  .BTS-hero-ambient::before,
+  .BTS-hero-ambient::after {
     content: "";
     position: absolute;
     pointer-events: none;
@@ -797,7 +823,7 @@
     filter: blur(120px);
   }
 
-  .ukride-hero-ambient::before {
+  .BTS-hero-ambient::before {
     inset: -25% -10% auto -10%;
     height: 75%;
     background:
@@ -805,7 +831,7 @@
       radial-gradient(40vw 36vh at 82% 20%, rgb(75 0 130 / 0.1), transparent 60%);
   }
 
-  .ukride-hero-ambient::after {
+  .BTS-hero-ambient::after {
     inset: auto -10% -25% -10%;
     height: 60%;
     background:
@@ -813,25 +839,35 @@
       radial-gradient(45vw 38vh at 10% 90%, rgb(13 13 15 / 0.7), transparent 60%);
   }
 
-  .ukride-hero-ambient > * {
+  .BTS-hero-ambient > * {
     position: relative;
     z-index: 1;
   }
 
-  /* Subtle glow utility — wrap around media/content blocks */
-  .ukride-purple-glow {
+  /* Auth pages: allow phone country dropdown to extend outside hero */
+  .BTS-auth-main {
+    overflow: visible;
+  }
+
+  .BTS-auth-main .BTS-card {
+    overflow: visible;
+  }
+
+  /* Silver chrome glow utility — wrap around media/content blocks */
+  .BTS-purple-glow {
     box-shadow:
-      0 0 0 1px var(--silver-border),
+      0 0 0 1px rgba(192,192,192,0.22),
       0 20px 60px -20px rgb(0 0 0 / 0.6),
-      0 8px 24px -8px rgb(75 0 130 / 0.15);
+      0 0 24px -8px rgba(192,192,192,0.12),
+      0 8px 24px -8px rgb(75 0 130 / 0.1);
   }
 
   /* Silver chrome accent text */
-  .ukride-text-silver {
+  .BTS-text-silver {
     color: var(--brand-silver);
   }
 
-  .ukride-text-platinum {
+  .BTS-text-platinum {
     color: var(--brand-platinum);
   }
 
@@ -840,16 +876,15 @@
      Use these on alt sections so the layout doesn't drown in purple.
      ───────────────────────────────────────────────────────────────── */
 
-  /* Charcoal section with a faint purple shoulder glow.
-     Drop on any <section> to get black-dominant + hint of brand. */
-  .ukride-section-charcoal {
+  /* Charcoal section with silver shoulder wash. */
+  .BTS-section-charcoal {
     position: relative;
     background:
-      linear-gradient(180deg, #131316 0%, #1A1A1D 100%);
+      linear-gradient(135deg, rgba(192,192,192,0.05) 0%, #131316 35%, #1A1A1D 70%, rgba(192,192,192,0.04) 100%);
     isolation: isolate;
   }
 
-  .ukride-section-charcoal::after {
+  .BTS-section-charcoal::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -860,15 +895,15 @@
     z-index: -1;
   }
 
-  /* Onyx section — deepest black band, anchors a page visually. */
-  .ukride-section-onyx {
+  /* Onyx section — deepest black with silver edge shimmer. */
+  .BTS-section-onyx {
     position: relative;
     background:
-      linear-gradient(180deg, #0A0A0D 0%, #0D0D0F 100%);
+      linear-gradient(160deg, rgba(192,192,192,0.055) 0%, #0A0A0D 30%, #0D0D0F 70%, rgba(192,192,192,0.04) 100%);
     isolation: isolate;
   }
 
-  .ukride-section-onyx::after {
+  .BTS-section-onyx::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -879,21 +914,21 @@
   }
 
   /* Graphite panel — slightly raised, neutral surface for content blocks */
-  .ukride-section-graphite {
+  .BTS-section-graphite {
     background: linear-gradient(180deg, #232328 0%, #2D2D33 100%);
   }
 
   /* ─────────────────────────────────────────────────────────────────
      SUBTLE TECH GRID — for hero overlays / premium agency feel.
      Faint silver lines on a transparent background; pair with
-     `ukride-luxury-section-*` or any dark section.
+     `BTS-luxury-section-*` or any dark section.
      ───────────────────────────────────────────────────────────────── */
-  .ukride-grid-bg {
+  .BTS-grid-bg {
     position: relative;
     isolation: isolate;
   }
 
-  .ukride-grid-bg::before {
+  .BTS-grid-bg::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -907,7 +942,7 @@
     -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 75%);
   }
 
-  .ukride-grid-bg > * {
+  .BTS-grid-bg > * {
     position: relative;
     z-index: 1;
   }
@@ -917,7 +952,7 @@
      For pages that need a non-purple primary action paired with a
      primary purple CTA — gives sophisticated dark+silver contrast.
      ───────────────────────────────────────────────────────────────── */
-  .ukride-cta-dark {
+  .BTS-cta-dark {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -936,7 +971,7 @@
       background 0.45s ease;
   }
 
-  .ukride-cta-dark:hover {
+  .BTS-cta-dark:hover {
     border-color: var(--silver-border-bold);
     background: linear-gradient(180deg, #232328 0%, #14141A 100%);
     box-shadow:
@@ -949,52 +984,55 @@
   /* ─────────────────────────────────────────────────────────────────
      PILL BADGE — for "About us", "Services" eyebrow chips
      ───────────────────────────────────────────────────────────────── */
-  .ukride-pill {
+  .BTS-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.375rem 0.875rem;
     border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--brand-silver);
-    background: rgba(45, 45, 51, 0.55);
-    border: 1px solid var(--silver-border-strong);
+    color: #C0C0C0;
+    background: linear-gradient(135deg, rgba(192,192,192,0.12) 0%, rgba(45,45,51,0.65) 100%);
+    border: 1px solid rgba(192,192,192,0.35);
     backdrop-filter: blur(10px) saturate(140%);
     -webkit-backdrop-filter: blur(10px) saturate(140%);
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.08),
-      0 4px 18px -6px rgb(0 0 0 / 0.4);
+      inset 0 1px 0 rgb(192 192 192 / 0.18),
+      0 4px 18px -6px rgb(0 0 0 / 0.4),
+      0 0 12px -4px rgba(192,192,192,0.12);
   }
 
   /* ─────────────────────────────────────────────────────────────────
      ICON HALO — circular surface for feature icons with subtle glow
      ───────────────────────────────────────────────────────────────── */
-  .ukride-icon-halo {
+  .BTS-icon-halo {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 3rem;
     height: 3rem;
     border-radius: 9999px;
-    color: var(--brand-silver);
+    color: #C0C0C0;
     background: linear-gradient(
       135deg,
-      rgba(45, 45, 51, 0.6) 0%,
-      rgba(26, 26, 29, 0.7) 100%
+      rgba(192, 192, 192, 0.12) 0%,
+      rgba(45, 45, 51, 0.65) 50%,
+      rgba(26, 26, 29, 0.75) 100%
     );
-    border: 1px solid var(--silver-border-strong);
+    border: 1px solid rgba(192,192,192,0.28);
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.1),
+      inset 0 1px 0 rgb(192 192 192 / 0.18),
+      0 0 14px -4px rgba(192,192,192,0.15),
       0 8px 24px -10px rgb(0 0 0 / 0.5);
   }
 
   /* ─────────────────────────────────────────────────────────────────
      INPUT — luxury dark style (extends form-field-light look)
      ───────────────────────────────────────────────────────────────── */
-  .ukride-input {
+  .BTS-input {
     border-radius: calc(var(--radius) - 2px);
     border: 1px solid var(--silver-border);
     background-color: rgba(13, 13, 15, 0.65);
@@ -1008,17 +1046,17 @@
       background-color 0.35s ease;
   }
 
-  .ukride-input::placeholder {
+  .BTS-input::placeholder {
     color: var(--brand-platinum);
     opacity: 0.65;
   }
 
-  .ukride-input:hover {
+  .BTS-input:hover {
     border-color: var(--silver-border-strong);
   }
 
-  .ukride-input:focus,
-  .ukride-input:focus-visible {
+  .BTS-input:focus,
+  .BTS-input:focus-visible {
     outline: none;
     border-color: hsl(var(--highlight-soft) / 0.55);
     box-shadow:
@@ -1030,46 +1068,48 @@
      PREMIUM ACCORDION — drop into FAQ sections.
      Pair with the AccordionItem className to upgrade each row.
      ───────────────────────────────────────────────────────────────── */
-  .ukride-faq-item {
+  .BTS-faq-item {
     position: relative;
     margin-bottom: 0.75rem;
-    border: 1px solid var(--silver-border);
+    border: 1px solid rgba(192,192,192,0.22);
     border-radius: calc(var(--radius) + 0.25rem);
     background:
-      linear-gradient(180deg, rgba(26, 26, 29, 0.7) 0%, rgba(13, 13, 15, 0.78) 100%);
+      linear-gradient(135deg, rgba(192,192,192,0.06) 0%, rgba(26, 26, 29, 0.75) 50%, rgba(13, 13, 15, 0.82) 100%);
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgb(192 192 192 / 0.1);
     transition:
       border-color 0.4s ease,
       background 0.5s ease,
       box-shadow 0.5s ease;
   }
 
-  .ukride-faq-item[data-state="open"],
-  .ukride-faq-item:hover {
-    border-color: var(--silver-border-strong);
+  .BTS-faq-item[data-state="open"],
+  .BTS-faq-item:hover {
+    border-color: rgba(192,192,192,0.4);
     background:
-      linear-gradient(180deg, rgba(45, 45, 51, 0.45) 0%, rgba(26, 26, 29, 0.78) 100%);
+      linear-gradient(135deg, rgba(192,192,192,0.09) 0%, rgba(45, 45, 51, 0.55) 50%, rgba(26, 26, 29, 0.82) 100%);
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.07),
+      inset 0 1px 0 rgb(192 192 192 / 0.18),
+      0 0 16px -6px rgba(192,192,192,0.14),
       0 12px 36px -14px rgb(0 0 0 / 0.4);
   }
 
-  .ukride-faq-item[data-state="open"] {
-    border-color: rgba(192, 192, 192, 0.25);
+  .BTS-faq-item[data-state="open"] {
+    border-color: rgba(192, 192, 192, 0.42);
   }
 
   /* ─────────────────────────────────────────────────────────────────
      VEHICLE / SERVICE CARD — cinematic showcase
      Outer wrapper + media overlay for luxury automotive feel.
      ───────────────────────────────────────────────────────────────── */
-  .ukride-vehicle-card {
+  .BTS-vehicle-card {
     position: relative;
     overflow: hidden;
     border-radius: calc(var(--radius) + 0.4rem);
     background:
-      linear-gradient(180deg, hsl(240 8% 11% / 0.6) 0%, hsl(240 8% 7% / 0.85) 100%);
-    border: 1px solid var(--silver-border);
+      linear-gradient(135deg, rgba(192,192,192,0.07) 0%, hsl(240 8% 11% / 0.75) 40%, hsl(240 8% 7% / 0.9) 100%);
+    border: 1px solid rgba(192,192,192,0.22);
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.06),
       0 28px 72px -24px rgb(0 0 0 / 0.7);
@@ -1079,21 +1119,22 @@
       border-color 0.4s ease;
   }
 
-  .ukride-vehicle-card:hover {
+  .BTS-vehicle-card:hover {
     transform: translateY(-4px);
-    border-color: var(--silver-border-bold);
+    border-color: rgba(192,192,192,0.42);
     box-shadow:
-      inset 0 1px 0 rgb(192 192 192 / 0.1),
+      inset 0 1px 0 rgb(192 192 192 / 0.2),
       0 40px 96px -28px rgb(0 0 0 / 0.78),
-      0 18px 52px -12px rgb(75 0 130 / 0.45);
+      0 0 28px -8px rgba(192,192,192,0.15),
+      0 18px 52px -12px rgb(75 0 130 / 0.3);
   }
 
-  .ukride-vehicle-media {
+  .BTS-vehicle-media {
     position: relative;
     overflow: hidden;
   }
 
-  .ukride-vehicle-media::after {
+  .BTS-vehicle-media::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -1103,23 +1144,23 @@
       linear-gradient(135deg, rgba(45, 45, 51, 0.12) 0%, transparent 60%);
   }
 
-  .ukride-vehicle-media img {
+  .BTS-vehicle-media img {
     transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .ukride-vehicle-card:hover .ukride-vehicle-media img {
+  .BTS-vehicle-card:hover .BTS-vehicle-media img {
     transform: scale(1.06);
   }
 
   /* ─────────────────────────────────────────────────────────────────
      FINE GRAIN TEXTURE — premium cinematic noise overlay
      ───────────────────────────────────────────────────────────────── */
-  .ukride-noise {
+  .BTS-noise {
     position: relative;
     isolation: isolate;
   }
 
-  .ukride-noise::after {
+  .BTS-noise::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -1130,7 +1171,7 @@
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
 
-  .ukride-noise > * {
+  .BTS-noise > * {
     position: relative;
     z-index: 1;
   }
@@ -1138,13 +1179,13 @@
   /* ─────────────────────────────────────────────────────────────────
      EXECUTIVE SPACING — luxury vertical rhythm helpers
      ───────────────────────────────────────────────────────────────── */
-  .ukride-section-spacious {
+  .BTS-section-spacious {
     padding-top: 6rem;
     padding-bottom: 6rem;
   }
 
   @media (min-width: 768px) {
-    .ukride-section-spacious {
+    .BTS-section-spacious {
       padding-top: 8rem;
       padding-bottom: 8rem;
     }
@@ -1153,13 +1194,13 @@
   /* ─────────────────────────────────────────────────────────────────
      ELEGANT INLINE LINK — silver text with purple underline reveal
      ───────────────────────────────────────────────────────────────── */
-  .ukride-link {
+  .BTS-link {
     position: relative;
     color: var(--brand-silver);
     transition: color 0.3s ease;
   }
 
-  .ukride-link::after {
+  .BTS-link::after {
     content: "";
     position: absolute;
     left: 0;
@@ -1179,11 +1220,11 @@
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .ukride-link:hover {
+  .BTS-link:hover {
     color: var(--brand-white-silver);
   }
 
-  .ukride-link:hover::after {
+  .BTS-link:hover::after {
     transform: scaleX(1);
   }
 }
@@ -1283,58 +1324,443 @@
   }
 }
 
-.phone-input-container {
+/* Site header — account menu popover */
+.site-account-menu {
+  z-index: 200 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  border: 1px solid rgb(192 192 192 / 0.18) !important;
+  border-radius: 0.75rem !important;
+  background: linear-gradient(
+    180deg,
+    rgb(36 36 42) 0%,
+    rgb(26 26 30) 100%
+  ) !important;
+  background-color: rgb(26 26 30) !important;
+  color: #f8f8f8 !important;
+  box-shadow:
+    0 28px 56px rgb(0 0 0 / 0.65),
+    0 10px 28px -8px rgb(75 0 130 / 0.35) !important;
+  backdrop-filter: none !important;
+}
+
+/* Phone field — country picker */
+.phone-country-flag {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-country-flag__img {
+  display: block;
+  width: 1.5rem;
+  height: 1.125rem;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.phone-country-flag__emoji {
+  display: block;
+  font-size: 1.125rem;
+  line-height: 1;
+  font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", "Noto Color Emoji",
+    emoji, sans-serif;
+}
+
+.phone-country-flag__emoji[hidden] {
+  display: none;
+}
+
+.phone-field-trigger {
+  min-width: 7.25rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 380px) {
+  .phone-field-trigger {
+    min-width: 6.5rem;
+    gap: 0.375rem;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+  }
+}
+
+/* Popover list — overrides app dark popover theme */
+.phone-field-popover {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  width: auto !important;
+  max-width: calc(100vw - 2rem) !important;
+  padding: 0 !important;
+  border-radius: 0.5rem !important;
+  backdrop-filter: none !important;
+}
+
+.phone-field-popover[data-state="closed"] {
+  display: none !important;
+}
+
+.phone-field-popover--dark {
+  border: 1px solid rgb(192 192 192 / 0.18) !important;
+  background: linear-gradient(
+    180deg,
+    rgb(36 36 42) 0%,
+    rgb(26 26 30) 100%
+  ) !important;
+  background-color: rgb(26 26 30) !important;
+  color: #f8f8f8 !important;
+  box-shadow:
+    0 28px 56px rgb(0 0 0 / 0.65),
+    0 10px 28px -8px rgb(75 0 130 / 0.35) !important;
+}
+
+.phone-field-popover--light {
+  border: 1px solid #e5e7eb !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+.phone-field-popover--light .phone-country-row {
+  background: transparent !important;
+  color: #111827 !important;
+}
+
+.phone-field-popover--light .phone-country-row:hover,
+.phone-field-popover--light .phone-country-row:focus-visible {
+  background: #f3f4f6 !important;
+  outline: none;
+}
+
+.phone-field-popover--light .phone-country-row--selected {
+  background: #ede9fe !important;
+}
+
+.phone-field-popover--light .phone-country-row--selected:hover {
+  background: #e0d4fc !important;
+}
+
+.phone-field-popover__search {
+  padding: 0.5rem;
+}
+
+.phone-field-popover--dark .phone-field-popover__search {
+  border-bottom: 1px solid rgb(192 192 192 / 0.14);
+}
+
+.phone-field-popover--light .phone-field-popover__search {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.phone-field-popover__search-input {
+  display: block;
+  width: 100%;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  outline: none;
+}
+
+.phone-field-popover--dark .phone-field-popover__search-input {
+  border: 1px solid rgb(192 192 192 / 0.22);
+  background: rgb(20 20 24);
+  color: #f8f8f8;
+}
+
+.phone-field-popover--dark .phone-field-popover__search-input::placeholder {
+  color: #a5a7aa;
+}
+
+.phone-field-popover--dark .phone-field-popover__search-input:focus {
+  border-color: hsl(275 80% 50% / 0.65);
+  box-shadow: 0 0 0 2px hsl(275 80% 50% / 0.28);
+}
+
+.phone-field-popover--light .phone-field-popover__search-input {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #111827;
+}
+
+.phone-field-popover--light .phone-field-popover__search-input::placeholder {
+  color: #9ca3af;
+}
+
+.phone-field-popover--light .phone-field-popover__search-input:focus {
+  border-color: #4b0082;
+  box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+}
+
+.phone-field-popover__list {
+  max-height: min(260px, 50vh);
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.phone-field-popover--dark .phone-field-popover__empty {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #a5a7aa;
+}
+
+.phone-field-popover--light .phone-field-popover__empty {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.phone-country-row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.625rem 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.phone-field-popover--dark .phone-country-row:hover,
+.phone-field-popover--dark .phone-country-row:focus-visible {
+  background: rgb(75 0 130 / 0.22);
+  outline: none;
+}
+
+.phone-field-popover--dark .phone-country-row--selected {
+  background: rgb(75 0 130 / 0.35);
+}
+
+.phone-field-popover--dark .phone-country-row--selected:hover {
+  background: rgb(75 0 130 / 0.42);
+}
+
+
+.phone-country-row__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.phone-field-popover--dark .phone-country-row__name {
+  color: #e5e7eb !important;
+}
+
+.phone-field-popover--dark .phone-country-row--selected .phone-country-row__name {
+  color: #f8f8f8 !important;
+}
+
+.phone-field-popover--light .phone-country-row__name {
+  color: #111827 !important;
+}
+
+.phone-field-popover--light .phone-country-row--selected .phone-country-row__name {
+  color: #4b0082 !important;
+}
+
+.phone-country-row__code {
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25rem;
+}
+
+.phone-field-popover--dark .phone-country-row__code {
+  color: #c0c0c0 !important;
+}
+
+.phone-field-popover--dark .phone-country-row--selected .phone-country-row__code {
+  color: #e9d5ff !important;
+}
+
+.phone-field-popover--light .phone-country-row__code {
+  color: #6b7280 !important;
+}
+
+.phone-field-popover--light .phone-country-row--selected .phone-country-row__code {
+  color: #5b21b6 !important;
+}
+
+/* Legacy react-phone-input-2 embed (booking) */
+/* react-phone-input-2 — flag + country list (do not wrap field in <label>) */
+.phone-input-wrap {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.phone-input-wrap--open {
+  z-index: 100;
+}
+
+.phone-input-wrap .react-tel-input,
+.phone-input-wrap .phone-input-container {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  position: relative;
+}
+
+.phone-input-wrap .flag-dropdown {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 5 !important;
+}
+
+.phone-input-wrap .selected-flag {
+  width: 100% !important;
+  height: 100% !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.phone-input-wrap .form-control,
+.phone-input-wrap .phone-input-field {
+  position: relative;
+  z-index: 1;
+  padding-left: 0.75rem !important;
+}
+
+.phone-input-wrap--dark .phone-input-container.react-tel-input,
+.phone-input-wrap--dark .react-tel-input.phone-input-container {
   width: 100%;
 }
 
-.phone-input-container .phone-input-button {
-  border: 1px solid var(--silver-border);
-  border-right: 0;
-  border-radius: 0.5rem 0 0 0.5rem;
-  background: rgba(13, 13, 15, 0.75);
-  color: hsl(var(--foreground));
+.phone-input-wrap--dark .phone-input-container .flag-dropdown,
+.phone-input-wrap--dark .phone-input-container .selected-flag {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  border: 1px solid var(--silver-border) !important;
+  border-right: 0 !important;
+  border-radius: 0.5rem 0 0 0.5rem !important;
+  background: rgba(13, 13, 15, 0.75) !important;
 }
 
-.phone-input-container .phone-input-field {
+.phone-input-wrap--dark .phone-input-container .flag-dropdown.open {
+  z-index: 10001 !important;
+  background: rgba(13, 13, 15, 0.95) !important;
+}
+
+.phone-input-wrap--dark .phone-input-container .flag-dropdown.open .selected-flag {
+  background: rgba(13, 13, 15, 0.95) !important;
+}
+
+.phone-input-wrap--dark .phone-input-container .country-list,
+.phone-input-wrap--dark .phone-input-container .phone-input-dropdown {
+  z-index: 10002 !important;
   width: 100% !important;
-  height: 2.75rem;
-  border: 1px solid var(--silver-border);
-  border-radius: 0.5rem;
+  max-width: 100% !important;
+  left: 0 !important;
+  right: auto !important;
+  margin: 0 0 6px 0 !important;
+  bottom: 100% !important;
+  top: auto !important;
+  max-height: 280px !important;
+  overflow-y: auto !important;
+  border: 1px solid var(--silver-border) !important;
+  border-radius: 0.5rem !important;
+  background: #fff !important;
+  color: #111827 !important;
+  box-shadow: 0 20px 48px rgb(0 0 0 / 0.55) !important;
+  box-sizing: border-box !important;
+}
+
+.phone-input-wrap--dark .phone-input-container .country-list .country {
+  color: #111827 !important;
+}
+
+.phone-input-wrap--dark .phone-input-container .country-list .search-box {
+  color: #111827 !important;
+  background: #fff !important;
+}
+
+.phone-input-wrap--dark .phone-input-container .country-list .country:hover,
+.phone-input-wrap--dark .phone-input-container .country-list .country.highlight {
+  background: rgba(75, 0, 130, 0.25) !important;
+}
+
+.phone-input-wrap--dark .phone-input-container .phone-input-field,
+.phone-input-wrap--dark .phone-input-container .form-control {
+  width: calc(100% - 52px) !important;
+  margin-left: 52px !important;
+  height: 2.75rem !important;
+  border: 1px solid var(--silver-border) !important;
+  border-radius: 0.5rem !important;
   background: rgba(13, 13, 15, 0.65) !important;
   color: hsl(var(--foreground)) !important;
-  font-size: 0.875rem;
-  transition:
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
+  font-size: 0.875rem !important;
+  padding-left: 0.75rem !important;
+  box-sizing: border-box !important;
 }
 
-.phone-input-container .phone-input-field::placeholder {
-  color: hsl(var(--muted-foreground));
+.phone-input-wrap--dark .phone-input-container .phone-input-field:focus {
+  border-color: hsl(var(--highlight-soft) / 0.55) !important;
+  box-shadow: 0 0 0 3px hsl(var(--highlight) / 0.28) !important;
 }
 
-.phone-input-container .phone-input-field:focus {
-  border-color: hsl(var(--highlight-soft) / 0.55);
-  box-shadow: 0 0 0 3px hsl(var(--highlight) / 0.28);
+.phone-input-wrap--light .phone-input-container .country-list {
+  z-index: 10000 !important;
 }
 
-.phone-input-container .phone-input-dropdown {
-  border: 1px solid var(--silver-border);
-  border-radius: 0.5rem;
-  background: hsl(var(--card));
-  box-shadow: 0 20px 48px rgb(0 0 0 / 0.55);
+.phone-input-wrap:focus-within {
+  z-index: 50;
+}
+
+[data-no-reveal-scope] .phone-input-wrap,
+.phone-input-wrap[data-no-reveal] {
+  position: relative;
+  z-index: 20;
+}
+
+.phone-input-wrap .react-tel-input .country-list.hide {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Must beat .country-list.hide — React keeps hide class while we control open via wrapper */
+.phone-input-wrap--open .react-tel-input .country-list.hide,
+.phone-input-wrap--open .phone-input-container .country-list,
+.phone-input-wrap--open .phone-input-dropdown {
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+}
+
+.phone-input-wrap--open .flag-dropdown {
+  z-index: 10003 !important;
 }
 
 /* ─── Route loader: top progress bar ─── */
-.ukride-topbar-track {
+.BTS-topbar-track {
   background: rgba(75, 0, 130, 0.12);
 }
 
-.ukride-topbar-fill {
+.BTS-topbar-fill {
   background: linear-gradient(90deg, transparent, #9B51E0 40%, #C0C0C0 75%, transparent);
-  animation: ukride-topbar 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: BTS-topbar 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-@keyframes ukride-topbar {
+@keyframes BTS-topbar {
   0% {
     transform: translateX(-100%);
   }
@@ -1344,22 +1770,22 @@
 }
 
 /* ─── Route loader: spinning ring ─── */
-.ukride-loader-spin {
-  animation: ukride-spin 0.9s linear infinite;
+.BTS-loader-spin {
+  animation: BTS-spin 0.9s linear infinite;
 }
 
-@keyframes ukride-spin {
+@keyframes BTS-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
 /* ─── Route loader: subtle ring pulse ─── */
-.ukride-loader-ring > div:first-child {
-  animation: ukride-ring-pulse 2s ease-in-out infinite;
+.BTS-loader-ring > div:first-child {
+  animation: BTS-ring-pulse 2s ease-in-out infinite;
 }
 
-@keyframes ukride-ring-pulse {
+@keyframes BTS-ring-pulse {
   0%,
   100% {
     opacity: 0.3;
@@ -1372,11 +1798,11 @@
 }
 
 /* ─── Route loader: dot pulse ─── */
-.ukride-dot-pulse {
-  animation: ukride-dot 1.2s ease-in-out infinite;
+.BTS-dot-pulse {
+  animation: BTS-dot 1.2s ease-in-out infinite;
 }
 
-@keyframes ukride-dot {
+@keyframes BTS-dot {
   0%,
   80%,
   100% {
@@ -1390,14 +1816,14 @@
 }
 
 /* ─── Skeleton shimmer for page loading states ─── */
-.ukride-shimmer {
+.BTS-shimmer {
   position: relative;
   overflow: hidden;
   background: rgba(192, 192, 192, 0.06);
   border-radius: 0.375rem;
 }
 
-.ukride-shimmer::after {
+.BTS-shimmer::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -1409,10 +1835,10 @@
     rgba(192, 192, 192, 0.06) 60%,
     transparent 100%
   );
-  animation: ukride-shimmer-slide 1.8s ease-in-out infinite;
+  animation: BTS-shimmer-slide 1.8s ease-in-out infinite;
 }
 
-@keyframes ukride-shimmer-slide {
+@keyframes BTS-shimmer-slide {
   0% {
     transform: translateX(-100%);
   }
@@ -1421,29 +1847,186 @@
   }
 }
 
+/* Google Places Autocomplete — Google sets black inline text; force readable luxury dark UI */
 .pac-container {
   z-index: 99999 !important;
+  margin-top: 4px;
   border-radius: 0.75rem;
-  border: 1px solid var(--silver-border);
-  background: hsl(var(--card));
+  border: 1px solid rgb(192 192 192 / 0.18) !important;
+  background: linear-gradient(
+    180deg,
+    rgb(36 36 42) 0%,
+    rgb(26 26 30) 100%
+  ) !important;
   box-shadow:
-    0 28px 56px rgb(0 0 0 / 0.6),
-    0 10px 28px -8px rgb(75 0 130 / 0.35);
-  font-family: var(--app-font-sans);
+    0 28px 56px rgb(0 0 0 / 0.65),
+    0 10px 28px -8px rgb(75 0 130 / 0.35) !important;
+  font-family: var(--app-font-sans) !important;
   backdrop-filter: blur(18px) saturate(150%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
 }
 
 .pac-item {
-  padding: 10px 12px;
-  border-top: 1px solid rgb(192 192 192 / 0.08);
-  color: hsl(var(--foreground));
+  padding: 10px 12px !important;
+  border-top: 1px solid rgb(192 192 192 / 0.1) !important;
+  color: #e5e7eb !important;
+  cursor: pointer;
 }
 
 .pac-item:first-child {
-  border-top: 0;
+  border-top: 0 !important;
 }
 
-.pac-item:hover {
-  background: hsl(var(--highlight) / 0.18);
+.pac-item:hover,
+.pac-item-selected,
+.pac-item-selected:hover {
+  background: rgb(75 0 130 / 0.22) !important;
+}
+
+.pac-item-query,
+.pac-item span,
+.pac-item .pac-item-query {
+  color: #f3f4f6 !important;
+}
+
+.pac-item-selected .pac-item-query {
+  color: #ffffff !important;
+}
+
+.pac-matched {
+  color: #c4b5fd !important;
+  font-weight: 600 !important;
+}
+
+/* Outside @layer: wins over Tailwind so Chromium never shows a second time-picker icon */
+input.BTS-booking-time::-webkit-calendar-picker-indicator {
+  display: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+input.BTS-booking-time::-webkit-clear-button {
+  display: none !important;
+}
+
+/* ─── Admin panel theme variables ─────────────────────────────────────────── */
+
+.admin-dark {
+  --adm-bg:           #0D0D0F;
+  --adm-surface:      #1E1E23;
+  --adm-surface-2:    #141416;
+  --adm-border:       rgba(192,192,192,0.12);
+  --adm-border-soft:  rgba(192,192,192,0.05);
+  --adm-text:         #F8F8F8;
+  --adm-text-muted:   #A5A7AA;
+  --adm-text-sub:     #CFCFCF;
+  --adm-row-hover:    rgba(192,192,192,0.03);
+  --adm-input-bg:     #0D0D0F;
+  --adm-input-border: rgba(192,192,192,0.12);
+  --adm-input-text:   #F8F8F8;
+  --adm-active-bg:    rgba(75,0,130,0.2);
+  --adm-active-ring:  rgba(155,81,224,0.25);
+  --adm-active-icon:  #9B51E0;
+  --adm-img-placeholder: rgba(192,192,192,0.08);
+}
+
+.admin-light {
+  --adm-bg:           #F3F4F6;
+  --adm-surface:      #FFFFFF;
+  --adm-surface-2:    #F9FAFB;
+  --adm-border:       #E5E7EB;
+  --adm-border-soft:  #F3F4F6;
+  --adm-text:         #111827;
+  --adm-text-muted:   #6B7280;
+  --adm-text-sub:     #374151;
+  --adm-row-hover:    #F9FAFB;
+  --adm-input-bg:     #FFFFFF;
+  --adm-input-border: #D1D5DB;
+  --adm-input-text:   #111827;
+  --adm-active-bg:    #EDE9FE;
+  --adm-active-ring:  rgba(109,40,217,0.2);
+  --adm-active-icon:  #7C3AED;
+  --adm-img-placeholder: #E5E7EB;
+}
+
+/* Apply variables to admin tables, inputs, and surfaces */
+.admin-light .adm-table-wrap,
+.admin-dark .adm-table-wrap {
+  background: var(--adm-surface);
+  border-color: var(--adm-border);
+}
+
+.admin-light .adm-th,
+.admin-dark .adm-th {
+  color: var(--adm-text-muted);
+  border-color: var(--adm-border);
+}
+
+.admin-light .adm-tr,
+.admin-dark .adm-tr {
+  border-color: var(--adm-border-soft);
+}
+
+.admin-light .adm-tr:hover,
+.admin-dark .adm-tr:hover {
+  background: var(--adm-row-hover);
+}
+
+.admin-light .adm-td-primary,
+.admin-dark .adm-td-primary {
+  color: var(--adm-text);
+}
+
+.admin-light .adm-td-muted,
+.admin-dark .adm-td-muted {
+  color: var(--adm-text-sub);
+}
+
+.admin-light .adm-input,
+.admin-dark .adm-input {
+  background: var(--adm-input-bg) !important;
+  border-color: var(--adm-input-border) !important;
+  color: var(--adm-input-text) !important;
+}
+
+.admin-light .adm-label,
+.admin-dark .adm-label {
+  color: var(--adm-text-muted);
+}
+
+.admin-light .adm-section-title,
+.admin-dark .adm-section-title {
+  color: var(--adm-text-muted);
+}
+
+.admin-light .adm-img-placeholder,
+.admin-dark .adm-img-placeholder {
+  background: var(--adm-img-placeholder);
+}
+
+/* Admin light mode — outline button */
+.admin-light .btn-outline {
+  border-color: #D1D5DB !important;
+  background: #F9FAFB !important;
+  color: #374151 !important;
+}
+
+.admin-light .btn-outline:hover {
+  background: #F3F4F6 !important;
+  border-color: #9CA3AF !important;
+  color: #111827 !important;
+}
+
+/* ── White calendar/date-picker icon on dark inputs (outside layers for max specificity) ── */
+input[type="date"].form-field-light::-webkit-calendar-picker-indicator,
+input[type="date"].booking-field::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(2) !important;
+  cursor: pointer;
+  opacity: 0.75;
+}
+input[type="date"].form-field-light::-webkit-calendar-picker-indicator:hover,
+input[type="date"].booking-field::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }

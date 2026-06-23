@@ -1,24 +1,29 @@
+﻿"use client";
+
 import Link from "next/link";
+import Image from "next/image";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { MapPin, Mail, Phone } from "lucide-react";
+import { useSiteSettings } from "@/components/providers/SiteSettingsProvider";
 
 export function FullFooterSection() {
+  const { whatsapp, email } = useSiteSettings();
   return (
     <>
       {/* ── Pre-footer CTA — cinematic onyx → royal-purple band ── */}
-      <section className="ukride-luxury-section-2 ukride-hero-ambient relative flex min-h-[420px] items-center justify-center overflow-hidden py-28 md:py-32">
+      <section className="BTS-luxury-section-2 BTS-hero-ambient relative flex min-h-[420px] items-center justify-center overflow-hidden py-28 md:py-32">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src="/cta-bg.jpg"
             alt=""
             aria-hidden
-            className="ukride-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.32] mix-blend-overlay"
+            className="BTS-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.32] mix-blend-overlay"
           />
-          <div className="ukride-media-overlay" />
+          <div className="BTS-media-overlay" />
         </div>
 
         <div className="container relative z-20 px-4 text-center">
-          <p className="ukride-pill mx-auto mb-6">
+          <p className="BTS-pill mx-auto mb-6">
             <span className="block h-1.5 w-1.5 rounded-full bg-[#C0C0C0]" />
             Private Chauffeur
           </p>
@@ -38,7 +43,7 @@ export function FullFooterSection() {
         </div>
       </section>
 
-      <hr className="ukride-divider" aria-hidden />
+      <hr className="BTS-divider" aria-hidden />
 
       {/* ── Footer — black base with deep-purple top wash + silver chrome ── */}
       <footer className="relative overflow-hidden bg-[linear-gradient(180deg,#0D0D0F_0%,#0A0A0D_100%)] pb-10 pt-24 text-[#D1D5DB]">
@@ -54,48 +59,9 @@ export function FullFooterSection() {
         />
 
         <div className="container relative mx-auto px-4">
-          {/* Brand row */}
-          <div className="mb-16 flex flex-col items-start gap-6 border-b border-[rgba(192,192,192,0.1)] pb-12 md:flex-row md:items-center md:justify-between">
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="grid h-11 w-11 place-items-center rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#4B0082_0%,#2A1238_100%)] text-sm font-extrabold tracking-tight text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_8px_24px_-8px_rgba(75,0,130,0.55)]">
-                  UR
-                </span>
-                <div className="leading-tight">
-                  <div className="text-lg font-bold tracking-tight text-[#F8F8F8]">
-                    UKride
-                  </div>
-                  <div className="text-xs uppercase tracking-[0.22em] text-[#A5A7AA]">
-                    London transfers
-                  </div>
-                </div>
-              </div>
-              <p className="max-w-md text-sm leading-6 text-[#A5A7AA]">
-                Pre-booked private transfers across London and every major
-                airport. Transparent pricing. Premium fleet. Discreet service.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <a
-                href="https://wa.me/447700140900"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(192,192,192,0.16)] bg-[rgba(13,13,15,0.6)] text-[#C0C0C0] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(75,0,130,0.32)] hover:text-[#F8F8F8] hover:shadow-[0_10px_28px_-10px_rgba(75,0,130,0.65)]"
-              >
-                <FaFacebookF className="h-4 w-4" />
-              </a>
-              <a
-                href="https://wa.me/447700140900"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(192,192,192,0.16)] bg-[rgba(13,13,15,0.6)] text-[#C0C0C0] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(75,0,130,0.32)] hover:text-[#F8F8F8] hover:shadow-[0_10px_28px_-10px_rgba(75,0,130,0.65)]"
-              >
-                <FaInstagram className="h-4 w-4" />
-              </a>
-            </div>
+          {/* Logo top-left */}
+          <div className="mb-10">
+            <Image src="/assets/logo.png" alt="BTS Logo" width={160} height={56} className="h-14 w-auto object-contain" />
           </div>
 
           {/* Column grid */}
@@ -104,14 +70,14 @@ export function FullFooterSection() {
               <ContactRow
                 icon={<Mail className="h-4 w-4" />}
                 label="Email"
-                value="support@ukride.uk"
-                href="mailto:support@ukride.uk"
+                value={email}
+                href={`mailto:${email}`}
               />
               <ContactRow
                 icon={<Phone className="h-4 w-4" />}
-                label="Call us"
-                value="+44 7700 1409 00"
-                href="tel:+447700140900"
+                label="WhatsApp"
+                value={`+${whatsapp}`}
+                href={`https://wa.me/${whatsapp}`}
               />
               <ContactRow
                 icon={<Phone className="h-4 w-4" />}
@@ -127,6 +93,26 @@ export function FullFooterSection() {
               <p className="pt-2 text-xs leading-5 text-[#A5A7AA]/80">
                 Bookings handled by licensed operator&apos;s companies.
               </p>
+              <li className="flex items-center gap-3 pt-2">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(192,192,192,0.16)] bg-[rgba(13,13,15,0.6)] text-[#C0C0C0] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(75,0,130,0.32)] hover:text-[#F8F8F8]"
+                >
+                  <FaFacebookF className="h-3.5 w-3.5" />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(192,192,192,0.16)] bg-[rgba(13,13,15,0.6)] text-[#C0C0C0] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(75,0,130,0.32)] hover:text-[#F8F8F8]"
+                >
+                  <FaInstagram className="h-3.5 w-3.5" />
+                </a>
+              </li>
             </FooterColumn>
 
             <FooterColumn title="Airport transfers">
@@ -158,7 +144,6 @@ export function FullFooterSection() {
                 London Station Taxi
               </FooterLink>
               <FooterLink href="/london-taxi/">London Taxi</FooterLink>
-              <FooterLink href="/taxi-quote">Get a Quote</FooterLink>
               <FooterLink href="/taxi-booking-app/">
                 Taxi Booking App
               </FooterLink>
@@ -170,7 +155,6 @@ export function FullFooterSection() {
             <FooterColumn title="Company">
               <FooterLink href="/about-us">About Us</FooterLink>
               <FooterLink href="/services">Services</FooterLink>
-              <FooterLink href="/blog/">Blog</FooterLink>
               <FooterLink href="/help-and-support">Help & Support</FooterLink>
               <FooterLink href="/drive-with-us/">Drive With Us</FooterLink>
               <FooterLink href="/terms-and-conditions">
@@ -181,15 +165,10 @@ export function FullFooterSection() {
           </div>
 
           {/* Bottom hairline + meta row */}
-          <div className="ukride-divider-silver mb-8" aria-hidden />
-          <div className="flex flex-col items-center justify-between gap-4 text-xs text-[#A5A7AA] md:flex-row">
-            <p className="tracking-wide">
-              © {new Date().getFullYear()} UKride. All rights reserved.
-            </p>
-            <p className="text-[10px] uppercase tracking-[0.32em] text-[#A5A7AA]/70">
-              Designed for elite private transport
-            </p>
-          </div>
+          <div className="BTS-divider-silver mb-8" aria-hidden />
+          <p className="text-center text-xs tracking-wide text-[#A5A7AA]">
+            © {new Date().getFullYear()} BTS. All rights reserved.
+          </p>
         </div>
       </footer>
     </>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { ShieldCheck, Clock3, BadgeCheck, Users, Sparkles } from "lucide-react";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
@@ -11,9 +11,9 @@ export default function AboutUsPage() {
 
       <main>
         {/* ── Hero ── */}
-        <section className="ukride-hero-ambient ukride-luxury-section-2 ukride-grid-bg relative overflow-hidden py-24 md:py-32">
+        <section className="BTS-hero-ambient BTS-luxury-section-2 BTS-grid-bg relative overflow-hidden py-24 md:py-32">
           <div className="container mx-auto max-w-4xl px-4 text-center">
-            <p className="ukride-pill mx-auto">
+            <p className="BTS-pill mx-auto">
               <Sparkles className="h-3.5 w-3.5" />
               About us
             </p>
@@ -21,7 +21,7 @@ export default function AboutUsPage() {
               Trusted London transfers, built around you
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-[#D1D5DB]">
-              UKride delivers dependable taxi and airport transfer services
+              BTS delivers dependable taxi and airport transfer services
               across London — combining professional drivers, transparent
               pricing, and a modern booking experience.
             </p>
@@ -29,12 +29,12 @@ export default function AboutUsPage() {
         </section>
 
         {/* ── Who we are ── */}
-        <section className="ukride-section-charcoal relative py-24 md:py-32">
+        <section className="BTS-section-charcoal relative py-24 md:py-32">
           <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
-            <div className="ukride-purple-glow relative overflow-hidden rounded-3xl">
+            <div className="BTS-purple-glow relative overflow-hidden rounded-3xl">
               <img
-                src="/perfect-taxi.jpg"
-                alt="UKRide professional transfer"
+                src="/images/heathrow-driver-loading.jpg"
+                alt="BTS professional transfer"
                 className="h-[420px] w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(13,13,15,0.4)_100%)]" />
@@ -67,11 +67,11 @@ export default function AboutUsPage() {
         </section>
 
         {/* ── Why choose us ── */}
-        <section className="ukride-section-onyx relative py-24 md:py-28">
+        <section className="BTS-section-onyx relative py-24 md:py-28">
           <div className="container mx-auto px-4">
             <div className="mx-auto mb-12 max-w-2xl text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
-                Why UKride
+                Why BTS
               </p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
                 The standards behind every ride
@@ -103,7 +103,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* ── Promise ── */}
-        <section className="ukride-section-charcoal relative py-24 md:py-32">
+        <section className="BTS-section-charcoal relative py-24 md:py-32">
           <div className="container mx-auto max-w-3xl px-4 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
               Our promise
@@ -112,15 +112,10 @@ export default function AboutUsPage() {
               Precision, punctuality, professionalism
             </h2>
             <p className="mt-5 text-[#D1D5DB] leading-8">
-              Every UKRide booking is handled with care. Airport transfers,
+              Every BTS booking is handled with care. Airport transfers,
               business rides, or point-to-point travel — we deliver a smooth,
               premium experience every mile.
             </p>
-            <div className="mt-8">
-              <Button asChild size="lg">
-                <Link href="/#quote">Get Instant Quote</Link>
-              </Button>
-            </div>
           </div>
         </section>
       </main>
@@ -140,8 +135,8 @@ function AboutCard({
   desc: string;
 }) {
   return (
-    <div className="ukride-card p-6">
-      <span className="ukride-icon-halo mb-4 h-11 w-11">{icon}</span>
+    <div className="BTS-card p-6">
+      <span className="BTS-icon-halo mb-4 h-11 w-11">{icon}</span>
       <h3 className="text-lg font-semibold tracking-tight text-[#F8F8F8]">
         {title}
       </h3>

@@ -1,12 +1,12 @@
-import { FullFooterSection } from "@/components/FullFooterSection";
+﻿import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 
 const policySections = [
   {
     title: "1. What does this notice cover?",
     paragraphs: [
-      "This Privacy Notice explains how UKride collects, uses, stores, and protects your personal information when you use our website, mobile services, and booking platforms.",
-      "It applies to all users, including passengers, account holders, and visitors who interact with UKride through digital channels or customer support.",
+      "This Privacy Notice explains how BTS collects, uses, stores, and protects your personal information when you use our website, mobile services, and booking platforms.",
+      "It applies to all users, including passengers, account holders, and visitors who interact with BTS through digital channels or customer support.",
     ],
   },
   {
@@ -47,7 +47,7 @@ const policySections = [
   {
     title: "7. How do we keep your data safe?",
     paragraphs: [
-      "UKride applies technical and organisational safeguards to protect your information, including secure data transmission, restricted access controls, and monitored systems.",
+      "BTS applies technical and organisational safeguards to protect your information, including secure data transmission, restricted access controls, and monitored systems.",
       "While no platform is completely risk-free, we continuously improve our protections to reduce the chance of unauthorized access or misuse.",
     ],
   },
@@ -79,37 +79,37 @@ export default function PrivacyPolicyPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteTopHeader />
 
-      <section className="ukride-hero-ambient ukride-section-onyx ukride-grid-bg relative overflow-hidden pb-12 pt-20 md:pb-16 md:pt-28">
+      <section className="BTS-hero-ambient BTS-section-onyx BTS-grid-bg relative overflow-hidden pb-12 pt-20 md:pb-16 md:pt-28">
         <div className="container mx-auto max-w-4xl px-4 text-center">
-          <span className="ukride-pill">Privacy</span>
+          <span className="BTS-pill">Privacy</span>
           <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-5xl">
             Privacy Policy
           </h1>
-          <div className="ukride-divider mx-auto mt-6 w-24" />
+          <div className="BTS-divider mx-auto mt-6 w-24" />
           <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-[#CFCFCF]">
-            How UKride collects, uses, and protects the data you share when
+            How BTS collects, uses, and protects the data you share when
             booking, browsing, or contacting us.
           </p>
         </div>
       </section>
 
-      <main className="ukride-section-charcoal relative py-16 md:py-24">
+      <main className="BTS-section-charcoal relative py-16 md:py-24">
         <div className="container mx-auto max-w-4xl px-4">
-          <div className="ukride-card p-8 md:p-12">
+          <div className="BTS-card p-8 md:p-12">
             <div className="space-y-12 text-[15px] leading-[1.95] text-[#CFCFCF]">
               {policySections.map((section, index) => (
                 <section key={section.title}>
                   <h2 className="text-xl font-semibold uppercase tracking-[0.08em] text-[#F8F8F8] md:text-[1.4rem]">
                     {section.title}
                   </h2>
-                  <div className="ukride-divider-silver mt-4 mb-6 w-16" />
+                  <div className="BTS-divider-silver mt-4 mb-6 w-16" />
                   <div className="space-y-4">
                     {section.paragraphs.map((p, i) => (
                       <p key={i}>{p}</p>
                     ))}
                   </div>
                   {index < policySections.length - 1 ? (
-                    <hr className="ukride-divider-silver mt-10 opacity-60" />
+                    <hr className="BTS-divider-silver mt-10 opacity-60" />
                   ) : null}
                 </section>
               ))}

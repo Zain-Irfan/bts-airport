@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import {
   ArrowRight,
   Car,
@@ -47,10 +47,10 @@ export default function ServicesPage() {
 
       <main>
         {/* ── Hero ── */}
-        <section className="ukride-hero-ambient ukride-luxury-section-3 ukride-grid-bg relative overflow-hidden py-20 md:py-28">
+        <section className="BTS-hero-ambient BTS-luxury-section-3 BTS-grid-bg relative overflow-hidden py-20 md:py-28">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <p className="ukride-pill mx-auto">
+              <p className="BTS-pill mx-auto">
                 <Sparkles className="h-3.5 w-3.5" />
                 Services
               </p>
@@ -64,14 +64,8 @@ export default function ServicesPage() {
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                 <Link
-                  href="/#quote"
-                  className="inline-flex h-12 items-center justify-center rounded-xl border border-[rgba(192,192,192,0.25)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] px-6 text-sm font-bold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_10px_32px_-10px_rgba(75,0,130,0.6)] transition-all duration-300 hover:-translate-y-px hover:border-[rgba(192,192,192,0.4)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),0_18px_44px_-12px_rgba(75,0,130,0.8),0_0_0_3px_rgba(75,0,130,0.18)]"
-                >
-                  Get an instant quote
-                </Link>
-                <Link
                   href="/airport-transfers"
-                  className="ukride-cta-dark inline-flex h-12 items-center justify-center rounded-xl px-6 text-sm font-semibold tracking-wide"
+                  className="BTS-cta-dark inline-flex h-12 items-center justify-center rounded-xl px-6 text-sm font-semibold tracking-wide"
                 >
                   View airport transfers
                 </Link>
@@ -81,7 +75,7 @@ export default function ServicesPage() {
         </section>
 
         {/* ── Service grid ── */}
-        <section className="ukride-section-charcoal relative py-20 md:py-28">
+        <section className="BTS-section-charcoal relative py-20 md:py-28">
           <div className="container mx-auto px-4">
             <div className="mb-12 flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
               <div>
@@ -105,9 +99,9 @@ export default function ServicesPage() {
                   <Link
                     key={s.title}
                     href={s.href}
-                    className="ukride-card group flex items-start gap-5 p-7 transition-all"
+                    className="BTS-card group flex items-start gap-5 p-7 transition-all"
                   >
-                    <span className="ukride-icon-halo h-14 w-14 flex-none transition-all duration-300 group-hover:bg-[linear-gradient(135deg,rgba(75,0,130,0.5),rgba(43,18,56,0.55))]">
+                    <span className="BTS-icon-halo h-14 w-14 flex-none transition-all duration-300 group-hover:bg-[linear-gradient(135deg,rgba(192,192,192,0.18)_0%,rgba(75,0,130,0.35)_100%)] group-hover:border-[rgba(192,192,192,0.45)] group-hover:shadow-[0_0_16px_-4px_rgba(192,192,192,0.25)]">
                       <Icon className="h-6 w-6" />
                     </span>
                     <div className="flex-1">

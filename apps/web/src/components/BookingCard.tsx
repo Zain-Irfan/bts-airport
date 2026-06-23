@@ -34,32 +34,9 @@ export function BookingCard({ title = "Get an instant quote" }: Props) {
       </div>
 
       <form
+        method="get"
+        action="/quotes"
         className="mt-5 grid gap-3 md:grid-cols-2"
-        onSubmit={(e) => {
-          e.preventDefault();
-          const form = e.currentTarget;
-          const data = new FormData(form);
-
-          const values: BookingCardValues = {
-            pickup: String(data.get("pickup") ?? ""),
-            via: String(data.get("via") ?? ""),
-            dropoff: String(data.get("dropoff") ?? ""),
-            date: String(data.get("date") ?? ""),
-            time: String(data.get("time") ?? ""),
-            passengers: Number(data.get("passengers") ?? 1),
-            handcarry: Number(data.get("handcarry") ?? 0),
-            suitcase: Number(data.get("suitcase") ?? 0),
-            meetAndGreet: (String(data.get("meetAndGreet") ?? "no") === "yes"
-              ? "yes"
-              : "no") as "yes" | "no",
-            flightNumber: String(data.get("flightNumber") ?? ""),
-            returnJourney: String(data.get("returnJourney") ?? "") === "on",
-          };
-
-          // UI-only for now. We'll connect API endpoints next.
-          // eslint-disable-next-line no-console
-          console.log("Quote request", values);
-        }}
       >
         <Field label="Pickup address">
           <input
@@ -128,14 +105,14 @@ export function BookingCard({ title = "Get an instant quote" }: Props) {
 
         <div className="grid gap-4 md:grid-cols-3 md:col-span-2">
           <Field label="Meet & greet">
-            <select name="meetAndGreet" className={inputClass} defaultValue="yes">
-              <option value="yes">Yes (+£10)</option>
+            <select name="meet" className={inputClass} defaultValue="yes">
+              <option value="yes">Yes</option>
               <option value="no">No</option>
             </select>
           </Field>
           <Field label="Flight number (optional)">
             <input
-              name="flightNumber"
+              name="flight"
               placeholder="e.g. BA 0326"
               className={inputClass}
             />
@@ -155,7 +132,7 @@ export function BookingCard({ title = "Get an instant quote" }: Props) {
         <div className="md:col-span-2">
           <button
             type="submit"
-            className="inline-flex h-12 w-full items-center justify-center rounded-lg border border-highlight/30 bg-accent px-4 text-sm font-extrabold text-accent-foreground shadow-[0_4px_24px_-6px_rgba(192,192,192,0.35)] transition-all duration-300 hover:brightness-[1.04]"
+            className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-lg border border-highlight/30 bg-accent px-4 text-sm font-extrabold text-accent-foreground shadow-[0_4px_24px_-6px_rgba(192,192,192,0.35)] transition-all duration-300 hover:brightness-[1.04]"
           >
             Get quote & book now
           </button>

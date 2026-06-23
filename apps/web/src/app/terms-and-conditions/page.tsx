@@ -1,4 +1,4 @@
-import { FullFooterSection } from "@/components/FullFooterSection";
+﻿import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 
 const sections = [
@@ -44,38 +44,38 @@ export default function TermsAndConditionsPage() {
       <SiteTopHeader />
 
       {/* Hero */}
-      <section className="ukride-hero-ambient ukride-section-onyx ukride-grid-bg relative overflow-hidden pb-12 pt-20 md:pb-16 md:pt-28">
+      <section className="BTS-hero-ambient BTS-section-onyx BTS-grid-bg relative overflow-hidden pb-12 pt-20 md:pb-16 md:pt-28">
         <div className="container mx-auto max-w-4xl px-4 text-center">
-          <span className="ukride-pill">Legal</span>
+          <span className="BTS-pill">Legal</span>
           <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-5xl">
             Terms &amp; Conditions
           </h1>
-          <div className="ukride-divider mx-auto mt-6 w-24" />
+          <div className="BTS-divider mx-auto mt-6 w-24" />
           <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-[#CFCFCF]">
-            The agreements and policies that govern every UKride booking,
+            The agreements and policies that govern every BTS booking,
             cancellation, and customer interaction.
           </p>
         </div>
       </section>
 
       {/* Content */}
-      <main className="ukride-section-charcoal relative py-16 md:py-24">
+      <main className="BTS-section-charcoal relative py-16 md:py-24">
         <div className="container mx-auto max-w-4xl px-4">
-          <div className="ukride-card p-8 md:p-12">
+          <div className="BTS-card p-8 md:p-12">
             <div className="space-y-12 text-[15px] leading-[1.95] text-[#CFCFCF]">
               {sections.map((section, index) => (
                 <section key={section.title}>
                   <h2 className="text-2xl font-semibold tracking-tight text-[#F8F8F8] md:text-3xl">
                     {section.title}
                   </h2>
-                  <div className="ukride-divider-silver mt-4 mb-6 w-16" />
+                  <div className="BTS-divider-silver mt-4 mb-6 w-16" />
                   <div className="space-y-4">
                     {section.paragraphs.map((p, i) => (
                       <p key={i}>{p}</p>
                     ))}
                   </div>
                   {index < sections.length - 1 ? (
-                    <hr className="ukride-divider-silver mt-10 opacity-60" />
+                    <hr className="BTS-divider-silver mt-10 opacity-60" />
                   ) : null}
                 </section>
               ))}

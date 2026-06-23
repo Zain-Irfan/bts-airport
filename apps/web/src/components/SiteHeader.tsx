@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 const nav = [
   {
@@ -21,7 +21,7 @@ const nav = [
 
 export function SiteHeader() {
   return (
-    <header className="ukride-glass-nav sticky top-0 z-50">
+    <header className="BTS-glass-nav sticky top-0 z-50">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4">
         <Link href="/" className="group flex items-center gap-3">
           <span className="grid h-10 w-10 place-items-center rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#4B0082_0%,#2A1238_100%)] text-sm font-extrabold tracking-tight text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_8px_24px_-8px_rgba(75,0,130,0.55)] transition-all duration-300 group-hover:border-[rgba(192,192,192,0.4)] group-hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),0_12px_32px_-8px_rgba(75,0,130,0.75)]">
@@ -29,7 +29,7 @@ export function SiteHeader() {
           </span>
           <div className="leading-tight">
             <div className="text-sm font-bold tracking-tight text-[#F8F8F8]">
-              UKride
+              BTS
             </div>
             <div className="text-[10px] uppercase tracking-[0.22em] text-[#A5A7AA]">
               London transfers
@@ -55,12 +55,6 @@ export function SiteHeader() {
             className="hidden rounded-full px-4 py-2 text-sm font-semibold text-[#A5A7AA] transition-colors duration-300 hover:bg-[rgba(75,0,130,0.18)] hover:text-[#F8F8F8] sm:inline-flex"
           >
             Login
-          </Link>
-          <Link
-            href="/#quote"
-            className="inline-flex items-center justify-center rounded-full border border-[rgba(192,192,192,0.25)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] px-5 py-2 text-sm font-bold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_6px_22px_-6px_rgba(75,0,130,0.6)] transition-all duration-300 hover:-translate-y-px hover:border-[rgba(192,192,192,0.4)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),0_12px_32px_-8px_rgba(75,0,130,0.8),0_0_0_3px_rgba(75,0,130,0.18)]"
-          >
-            Get a quote
           </Link>
         </div>
       </div>

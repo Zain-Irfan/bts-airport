@@ -20,12 +20,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import type { ServiceContent } from "@/app/services/service-content";
+import { getSiteSettings } from "@/lib/site-settings";
 
-export function ServiceDetailTemplate({ content }: { content: ServiceContent }) {
+export async function ServiceDetailTemplate({ content }: { content: ServiceContent }) {
+  const { whatsapp } = await getSiteSettings();
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <a
-        href="https://wa.me/447700140900"
+        href={`https://wa.me/${whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -37,13 +39,13 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       <SiteTopHeader />
 
       {/* Hero */}
-      <section className="ukride-hero-ambient ukride-luxury-section-1 ukride-grid-bg relative overflow-hidden py-20 lg:py-28">
+      <section className="BTS-hero-ambient BTS-luxury-section-1 BTS-grid-bg relative overflow-hidden py-20 lg:py-28">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src="/hero-bg.jpg"
             alt=""
             aria-hidden
-            className="ukride-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
+            className="BTS-media-cinematic absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-overlay"
           />
         </div>
         <div className="container relative z-10 mx-auto px-4">
@@ -55,7 +57,7 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
                 <span className="mx-2 text-[#C0C0C0]/60">|</span>
                 <span className="text-[#CFCFCF]">1538+ Google reviews</span>
               </div>
-              <span className="ukride-pill">{content.title}</span>
+              <span className="BTS-pill">{content.title}</span>
               <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
                 {content.hero}
               </h1>
@@ -81,7 +83,7 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       </section>
 
       {/* Feature row */}
-      <section className="ukride-section-charcoal relative py-20 md:py-24">
+      <section className="BTS-section-charcoal relative py-20 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -109,7 +111,7 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
               const Icon = item.icon;
               return (
                 <div key={item.title} className="space-y-4">
-                  <div className="ukride-icon-halo h-12 w-12">
+                  <div className="BTS-icon-halo h-12 w-12">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="text-xl font-semibold tracking-tight text-[#F8F8F8]">
@@ -126,18 +128,18 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       </section>
 
       {/* Section 1 */}
-      <section className="ukride-section-onyx relative py-20 md:py-24">
+      <section className="BTS-section-onyx relative py-20 md:py-24">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
-          <div className="ukride-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
+          <div className="BTS-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
             <img
-              src="/perfect-taxi.jpg"
+              src="/images/heathrow-terminal5-couple.jpg"
               alt={content.title}
               className="h-full w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
           <div className="space-y-5">
-            <span className="ukride-pill">Premium service</span>
+            <span className="BTS-pill">Premium service</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               {content.section1}
             </h2>
@@ -154,10 +156,10 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       </section>
 
       {/* Section 2 */}
-      <section className="ukride-section-charcoal relative py-24 md:py-32">
+      <section className="BTS-section-charcoal relative py-24 md:py-32">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="order-2 space-y-5 md:order-1">
-            <span className="ukride-pill">Comfort &amp; reliability</span>
+            <span className="BTS-pill">Comfort &amp; reliability</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               {content.section2}
             </h2>
@@ -170,9 +172,9 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
               <Link href="/taxi-quote">Book a taxi</Link>
             </Button>
           </div>
-          <div className="ukride-purple-glow relative order-1 h-[340px] overflow-hidden rounded-2xl md:order-2">
+          <div className="BTS-purple-glow relative order-1 h-[340px] overflow-hidden rounded-2xl md:order-2">
             <img
-              src="/fleet.jpg"
+              src="/images/heathrow-driver-loading.jpg"
               alt={content.title}
               className="h-full w-full object-cover"
             />
@@ -182,18 +184,18 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       </section>
 
       {/* Section 3 */}
-      <section className="ukride-section-onyx relative py-20 md:py-24">
+      <section className="BTS-section-onyx relative py-20 md:py-24">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
-          <div className="ukride-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
+          <div className="BTS-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
             <img
-              src="/airport_6.jpg"
+              src="/images/mpv-airport-boarding.jpg"
               alt={content.title}
               className="h-full w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
           </div>
           <div className="space-y-5">
-            <span className="ukride-pill">For every journey</span>
+            <span className="BTS-pill">For every journey</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               {content.section3}
             </h2>
@@ -210,7 +212,7 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       </section>
 
       {/* Gateway */}
-      <section className="ukride-section-charcoal relative py-24 md:py-32">
+      <section className="BTS-section-charcoal relative py-24 md:py-32">
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="space-y-5">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
@@ -228,9 +230,9 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
               <Link href="/taxi-quote">Book a taxi</Link>
             </Button>
           </div>
-          <div className="ukride-purple-glow relative h-[400px] overflow-hidden rounded-2xl">
+          <div className="BTS-purple-glow relative h-[400px] overflow-hidden rounded-2xl">
             <img
-              src="/airport_3.jpg"
+              src="/images/executive-passenger.jpg"
               alt={content.title}
               className="h-full w-full object-cover"
             />
@@ -240,21 +242,21 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       </section>
 
       {/* Benefits */}
-      <section className="ukride-section-onyx relative py-20 md:py-28">
+      <section className="BTS-section-onyx relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="ukride-pill">Why UKride</span>
+            <span className="BTS-pill">Why BTS</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               {content.benefitsTitle}
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
           </div>
           <div className="mx-auto grid max-w-5xl gap-x-14 gap-y-12 md:grid-cols-2">
             {content.benefitsItems.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="text-center">
-                  <div className="ukride-icon-halo mx-auto mb-5 h-14 w-14">
+                  <div className="BTS-icon-halo mx-auto mb-5 h-14 w-14">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-semibold tracking-tight text-[#F8F8F8]">
@@ -271,14 +273,14 @@ export function ServiceDetailTemplate({ content }: { content: ServiceContent }) 
       </section>
 
       {/* FAQ */}
-      <section className="ukride-section-charcoal relative py-24 md:py-32">
+      <section className="BTS-section-charcoal relative py-24 md:py-32">
         <div className="container mx-auto max-w-3xl px-4">
           <div className="mb-12 text-center">
-            <span className="ukride-pill">FAQs</span>
+            <span className="BTS-pill">FAQs</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Frequently asked questions
             </h2>
-            <div className="ukride-divider mx-auto mt-6 w-24" />
+            <div className="BTS-divider mx-auto mt-6 w-24" />
           </div>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="faq-1">

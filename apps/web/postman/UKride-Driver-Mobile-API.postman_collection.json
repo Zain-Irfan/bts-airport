@@ -1,0 +1,193 @@
+{
+  "info": {
+    "_postman_id": "ukride-driver-mobile-v1",
+    "name": "UKride — Driver Mobile API (v1)",
+    "description": "Driver app Phase 1: register, approval status, login, profile, password reset.\n\n**Flow:** Register → Admin approves in `/admin/drivers` → Login → use Bearer token on `/me`.\n\n**Register:** `multipart/form-data` with text fields + **licenseImage** file (JPEG/PNG/WebP, max 5MB). `licenseNumber` is required.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://ukride.test:3000" },
+    { "key": "accessToken", "value": "" },
+    { "key": "resetToken", "value": "" },
+    { "key": "testEmail", "value": "driver.test@example.com" },
+    { "key": "testPassword", "value": "TestPass123!" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register driver (with licence photo)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "fullName", "value": "John Smith", "type": "text" },
+                { "key": "email", "value": "{{testEmail}}", "type": "text" },
+                { "key": "password", "value": "{{testPassword}}", "type": "text" },
+                { "key": "phone", "value": "447123456789", "type": "text" },
+                { "key": "licenseNumber", "value": "PCO123456", "type": "text" },
+                { "key": "vehicleType", "value": "Saloon", "type": "text" },
+                { "key": "vehicleModel", "value": "Mercedes E-Class", "type": "text" },
+                { "key": "vehiclePlate", "value": "AB12 CDE", "type": "text" },
+                { "key": "experience", "value": "5 years London transfers", "type": "text" },
+                { "key": "address", "value": "London, UK", "type": "text" },
+                {
+                  "key": "licenseImage",
+                  "description": "Required. JPEG, PNG, or WebP. Max 5MB.",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": "{{baseUrl}}/api/mobile/v1/drivers/register",
+            "description": "multipart/form-data only.\n\n1. Body → form-data\n2. Add field **licenseImage** (type File) and choose a photo\n3. Fill other text fields\n\nAdmin reviews licence photo at `/admin/drivers`."
+          },
+          "response": []
+        },
+        {
+          "name": "Login (approved drivers only)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.accessToken) {",
+                  "    pm.collectionVariables.set('accessToken', json.accessToken);",
+                  "  }",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{testEmail}}\",\n  \"password\": \"{{testPassword}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/mobile/v1/drivers/login",
+            "description": "Returns `accessToken` when status is `APPROVED`.\n\n- **403** `PENDING` — application under review\n- **403** `REJECTED` — includes `reviewNotes`"
+          },
+          "response": []
+        },
+        {
+          "name": "Application status (by email)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{testEmail}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/mobile/v1/drivers/application-status",
+            "description": "Poll approval status while account is `PENDING` (no login required)."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Profile (Bearer token)",
+      "item": [
+        {
+          "name": "Get my profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [{ "key": "token", "value": "{{accessToken}}", "type": "string" }]
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/mobile/v1/drivers/me",
+            "description": "Requires approved driver. Returns profile including `licenseNumber` (read-only)."
+          },
+          "response": []
+        },
+        {
+          "name": "Update my profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [{ "key": "token", "value": "{{accessToken}}", "type": "string" }]
+            },
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"447987654321\",\n  \"vehicleType\": \"Executive\",\n  \"vehicleModel\": \"BMW 5 Series\",\n  \"vehiclePlate\": \"XY99 ZZZ\",\n  \"experience\": \"7 years\",\n  \"address\": \"West London\"\n}"
+            },
+            "url": "{{baseUrl}}/api/mobile/v1/drivers/me",
+            "description": "Cannot change: email, licenseNumber, password (use reset-password flow)."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Password reset",
+      "item": [
+        {
+          "name": "Forgot password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.resetToken) {",
+                  "    pm.collectionVariables.set('resetToken', json.resetToken);",
+                  "  }",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{testEmail}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/mobile/v1/drivers/forgot-password",
+            "description": "Approved drivers only. Generic success message if email not found.\n\nSet `MOBILE_DEV_SHOW_RESET_TOKEN=true` in `.env.local` to receive `resetToken` in the response (dev only)."
+          },
+          "response": []
+        },
+        {
+          "name": "Reset password",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"{{resetToken}}\",\n  \"password\": \"NewPass123!\"\n}"
+            },
+            "url": "{{baseUrl}}/api/mobile/v1/drivers/reset-password",
+            "description": "Token expires after 1 hour. Clears reset token after success."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
