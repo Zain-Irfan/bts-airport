@@ -1,6 +1,10 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let _resend: Resend | null = null;
+function getResend(): Resend {
+  if (!_resend) _resend = new Resend(process.env.RESEND_API_KEY ?? "placeholder");
+  return _resend;
+}
 const FROM = process.env.EMAIL_FROM || "BTS Transfers <bookings@bts.uk>";
 
 export type BookingEmailData = {
@@ -110,7 +114,7 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData) {
 </html>
   `.trim();
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: data.customerEmail,
     subject: `Booking Confirmed – ${data.pickup} → ${data.dropoff} on ${data.date}`,
@@ -125,7 +129,7 @@ export async function sendContactNotificationEmail(data: {
   const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_FROM?.match(/<(.+)>/)?.[1] || process.env.EMAIL_FROM || "";
   if (!adminEmail) return;
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: adminEmail,
     subject: `New contact message from ${data.name}`,
@@ -144,7 +148,7 @@ export async function sendContactNotificationEmail(data: {
 
 /* ─── Contact form: confirm to sender ───────────────────────────────────── */
 export async function sendContactConfirmationEmail(data: { name: string; email: string }) {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: data.email,
     subject: "We received your message — BTS Transfers",
@@ -159,7 +163,7 @@ export async function sendContactConfirmationEmail(data: { name: string; email: 
 
 /* ─── Driver application: confirm to applicant ──────────────────────────── */
 export async function sendDriverApplicationEmail(data: { name: string; email: string }) {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: data.email,
     subject: "Application received — BTS Transfers",
@@ -177,7 +181,7 @@ export async function sendDriverApplicationAdminEmail(data: { name: string; emai
   const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_FROM?.match(/<(.+)>/)?.[1] || process.env.EMAIL_FROM || "";
   if (!adminEmail) return;
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: adminEmail,
     subject: `New driver application from ${data.name}`,
@@ -197,7 +201,7 @@ export async function sendDriverStatusEmail(data: {
   name: string; email: string; status: "APPROVED" | "REJECTED"; reviewNotes?: string | null;
 }) {
   const approved = data.status === "APPROVED";
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: data.email,
     subject: approved ? "Your application has been approved — BTS Transfers" : "Update on your BTS Transfers application",
