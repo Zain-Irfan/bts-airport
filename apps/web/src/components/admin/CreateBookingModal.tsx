@@ -124,6 +124,7 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
                 value={form.pickup}
                 onChange={(v) => set("pickup", v)}
                 placeholder="Search pickup address…"
+                className="h-10 w-full rounded-lg border px-3 text-sm outline-none"
               />
             </div>
             <div>
@@ -132,6 +133,7 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
                 value={form.dropoff}
                 onChange={(v) => set("dropoff", v)}
                 placeholder="Search dropoff address…"
+                className="h-10 w-full rounded-lg border px-3 text-sm outline-none"
               />
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
