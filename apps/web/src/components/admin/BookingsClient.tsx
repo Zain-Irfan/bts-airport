@@ -55,6 +55,7 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const confirmDeleteBooking = bookings.find((b) => b.id === confirmDeleteId) ?? null;
 
   function handleUpdated(updated: Booking) {
     setBookings((prev) => prev.map((b) => (b.id === updated.id ? updated : b)));
@@ -198,33 +199,14 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
                     {b.fare ? `£${Number(b.fare).toFixed(2)}` : "—"}
                   </td>
                   <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
-                    {confirmDeleteId === b.id ? (
-                      <div className="flex items-center gap-1.5">
-                        <button
-                          onClick={() => handleDeleteConfirmed(b.id)}
-                          disabled={deleting}
-                          className="rounded px-2 py-1 text-[11px] font-bold text-white bg-red-600 hover:bg-red-700 disabled:opacity-50 transition"
-                        >
-                          {deleting ? "…" : "Yes"}
-                        </button>
-                        <button
-                          onClick={() => setConfirmDeleteId(null)}
-                          className="rounded px-2 py-1 text-[11px] font-medium transition hover:opacity-70"
-                          style={{ color: "var(--adm-text-muted)" }}
-                        >
-                          No
-                        </button>
-                      </div>
-                    ) : (
-                      <button
-                        onClick={() => setConfirmDeleteId(b.id)}
-                        className="rounded p-1.5 transition hover:bg-red-500/10 hover:text-red-500"
-                        style={{ color: "var(--adm-text-muted)" }}
-                        title="Delete booking"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    )}
+                    <button
+                      onClick={() => setConfirmDeleteId(b.id)}
+                      className="rounded p-1.5 transition hover:bg-red-500/10 hover:text-red-500"
+                      style={{ color: "var(--adm-text-muted)" }}
+                      title="Delete booking"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
                   </td>
                 </tr>
               ))
@@ -247,6 +229,49 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
           onCreated={handleCreated}
           onClose={() => setCreating(false)}
         />
+      )}
+
+      {/* Delete confirmation modal */}
+      {confirmDeleteBooking && (
+        <div
+          className="fixed inset-0 z-[300] flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)" }}
+          onClick={() => setConfirmDeleteId(null)}
+        >
+          <div
+            className="w-full max-w-sm rounded-xl border p-6 shadow-2xl"
+            style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-1 flex items-center gap-2">
+              <Trash2 className="h-5 w-5 text-red-500" />
+              <h3 className="text-base font-bold" style={{ color: "var(--adm-text)" }}>Delete Booking</h3>
+            </div>
+            <p className="mt-2 text-sm" style={{ color: "var(--adm-text-muted)" }}>
+              Are you sure you want to delete the booking for{" "}
+              <span className="font-semibold" style={{ color: "var(--adm-text)" }}>{confirmDeleteBooking.customerName}</span>?
+              This cannot be undone.
+            </p>
+            <div className="mt-5 flex justify-end gap-3">
+              <button
+                onClick={() => setConfirmDeleteId(null)}
+                className="rounded-lg border px-4 py-2 text-sm font-medium transition hover:opacity-80"
+                style={{ borderColor: "var(--adm-border)", background: "transparent", color: "var(--adm-text-sub)" }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDeleteConfirmed(confirmDeleteBooking.id)}
+                disabled={deleting}
+                className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
+                style={{ background: "#dc2626" }}
+              >
+                <Trash2 className="h-4 w-4" />
+                {deleting ? "Deleting…" : "Yes, delete"}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
