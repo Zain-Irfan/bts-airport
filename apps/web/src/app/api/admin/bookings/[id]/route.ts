@@ -16,6 +16,15 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
   return NextResponse.json(booking);
 }
 
+export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const session = await authStaff();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const { id } = await params;
+  await prisma.booking.delete({ where: { id } });
+  return new NextResponse(null, { status: 204 });
+}
+
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await authStaff();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

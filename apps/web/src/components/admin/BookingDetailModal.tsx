@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { X, User, MapPin, Calendar, Car, Phone, Mail, FileText, CheckCircle } from "lucide-react";
+import { X, User, MapPin, Calendar, Car, Phone, Mail, FileText, CheckCircle, Trash2 } from "lucide-react";
 import { useAdminLayout } from "@/components/admin/AdminLayoutContext";
 
 type Driver = {
@@ -42,6 +42,7 @@ type Props = {
   drivers: Driver[];
   onClose: () => void;
   onUpdated: (b: Booking) => void;
+  onDeleted: (id: string) => void;
 };
 
 const STATUSES = ["PENDING", "CONFIRMED", "IN_PROGRESS", "COMPLETED", "CANCELLED"] as const;
@@ -78,11 +79,13 @@ const statusColors: Record<string, string> = {
   PENDING: "bg-amber-500/15 text-amber-500",
 };
 
-export function BookingDetailModal({ booking, drivers, onClose, onUpdated }: Props) {
+export function BookingDetailModal({ booking, drivers, onClose, onUpdated, onDeleted }: Props) {
   const { theme } = useAdminLayout();
   const isLight = theme === "light";
 
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const [status, setStatus] = useState(booking?.status ?? "PENDING");
   const [driverId, setDriverId] = useState(booking?.assignedDriverId ?? "");
 
@@ -98,6 +101,16 @@ export function BookingDetailModal({ booking, drivers, onClose, onUpdated }: Pro
   const sectionBorder = isLight ? "#E5E7EB" : "rgba(192,192,192,0.08)";
   const inputBg = isLight ? "#FFFFFF" : "#0D0D0F";
   const inputBorder = isLight ? "#D1D5DB" : "rgba(192,192,192,0.12)";
+
+  async function handleDelete() {
+    setDeleting(true);
+    const res = await fetch(`/api/admin/bookings/${booking!.id}`, { method: "DELETE" });
+    setDeleting(false);
+    if (res.ok || res.status === 204) {
+      onDeleted(booking!.id);
+      onClose();
+    }
+  }
 
   async function save() {
     setSaving(true);
@@ -221,24 +234,60 @@ export function BookingDetailModal({ booking, drivers, onClose, onUpdated }: Pro
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end gap-3 border-t p-5" style={{ borderColor: sectionBorder }}>
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-lg border px-4 py-2 text-sm font-medium transition hover:opacity-80"
-            style={{ borderColor: inputBorder, background: "transparent", color: textSub }}
-          >
-            Close
-          </button>
-          <button
-            type="button"
-            onClick={save}
-            disabled={saving}
-            className="rounded-lg px-5 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
-            style={{ background: "linear-gradient(135deg,#5B0F9C,#4B0082)" }}
-          >
-            {saving ? "Saving…" : "Save changes"}
-          </button>
+        <div className="flex items-center justify-between gap-3 border-t p-5" style={{ borderColor: sectionBorder }}>
+          {/* Delete */}
+          {!confirmDelete ? (
+            <button
+              type="button"
+              onClick={() => setConfirmDelete(true)}
+              className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm font-medium transition hover:opacity-80"
+              style={{ borderColor: "rgba(239,68,68,0.4)", color: "#ef4444", background: "transparent" }}
+            >
+              <Trash2 className="h-4 w-4" />
+              Delete
+            </button>
+          ) : (
+            <div className="flex items-center gap-2">
+              <span className="text-sm" style={{ color: textMuted }}>Sure?</span>
+              <button
+                type="button"
+                onClick={handleDelete}
+                disabled={deleting}
+                className="rounded-lg px-3 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
+                style={{ background: "#dc2626" }}
+              >
+                {deleting ? "Deleting…" : "Yes, delete"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setConfirmDelete(false)}
+                className="rounded-lg border px-3 py-2 text-sm font-medium transition hover:opacity-80"
+                style={{ borderColor: inputBorder, background: "transparent", color: textSub }}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-lg border px-4 py-2 text-sm font-medium transition hover:opacity-80"
+              style={{ borderColor: inputBorder, background: "transparent", color: textSub }}
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              onClick={save}
+              disabled={saving}
+              className="rounded-lg px-5 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
+              style={{ background: "linear-gradient(135deg,#5B0F9C,#4B0082)" }}
+            >
+              {saving ? "Saving…" : "Save changes"}
+            </button>
+          </div>
         </div>
       </div>
     </div>,

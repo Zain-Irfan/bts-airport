@@ -58,6 +58,10 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
     setBookings((prev) => prev.map((b) => (b.id === updated.id ? updated : b)));
   }
 
+  function handleDeleted(id: string) {
+    setBookings((prev) => prev.filter((b) => b.id !== id));
+  }
+
   function handleCreated(booking: unknown) {
     setBookings((prev) => [booking as Booking, ...prev]);
   }
@@ -193,6 +197,7 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
         drivers={drivers}
         onClose={() => setSelected(null)}
         onUpdated={handleUpdated}
+        onDeleted={handleDeleted}
       />
 
       {creating && (
