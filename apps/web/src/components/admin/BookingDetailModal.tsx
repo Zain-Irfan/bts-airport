@@ -89,7 +89,6 @@ export function BookingDetailModal({ booking, drivers, onClose, onUpdated, onDel
   const [status, setStatus] = useState(booking?.status ?? "PENDING");
   const [driverId, setDriverId] = useState(booking?.assignedDriverId ?? "");
 
-
   if (!booking) return null;
 
   const panelBg = isLight ? "#FFFFFF" : "#1E1E23";

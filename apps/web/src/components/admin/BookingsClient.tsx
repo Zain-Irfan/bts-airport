@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Download, Search, X, Plus } from "lucide-react";
+import { Download, Search, X, Plus, Trash2 } from "lucide-react";
 import { BookingDetailModal } from "@/components/admin/BookingDetailModal";
 import { CreateBookingModal } from "@/components/admin/CreateBookingModal";
 
@@ -53,6 +53,8 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
   const [creating, setCreating] = useState(false);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   function handleUpdated(updated: Booking) {
     setBookings((prev) => prev.map((b) => (b.id === updated.id ? updated : b)));
@@ -64,6 +66,16 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
 
   function handleCreated(booking: unknown) {
     setBookings((prev) => [booking as Booking, ...prev]);
+  }
+
+  async function handleDeleteConfirmed(id: string) {
+    setDeleting(true);
+    const res = await fetch(`/api/admin/bookings/${id}`, { method: "DELETE" });
+    setDeleting(false);
+    if (res.ok || res.status === 204) {
+      handleDeleted(id);
+    }
+    setConfirmDeleteId(null);
   }
 
   const filtered = useMemo(() => {
@@ -136,7 +148,7 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
         <table className="w-full min-w-[640px] text-left text-sm">
           <thead>
             <tr style={{ borderBottom: "1px solid var(--adm-border)" }}>
-              {["Customer", "Pickup", "Dropoff", "Date", "Driver", "Status", "Fare"].map((h) => (
+              {["Customer", "Pickup", "Dropoff", "Date", "Driver", "Status", "Fare", ""].map((h) => (
                 <th key={h} className="px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: "var(--adm-text-muted)" }}>
                   {h}
                 </th>
@@ -146,7 +158,7 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={7} className="px-4 py-12 text-center text-sm" style={{ color: "var(--adm-text-muted)" }}>
+                <td colSpan={8} className="px-4 py-12 text-center text-sm" style={{ color: "var(--adm-text-muted)" }}>
                   {bookings.length === 0 ? "No bookings yet" : "No bookings match your search"}
                 </td>
               </tr>
@@ -184,6 +196,35 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
                   </td>
                   <td className="px-4 py-3" style={{ color: "var(--adm-text-sub)" }}>
                     {b.fare ? `£${Number(b.fare).toFixed(2)}` : "—"}
+                  </td>
+                  <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
+                    {confirmDeleteId === b.id ? (
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => handleDeleteConfirmed(b.id)}
+                          disabled={deleting}
+                          className="rounded px-2 py-1 text-[11px] font-bold text-white bg-red-600 hover:bg-red-700 disabled:opacity-50 transition"
+                        >
+                          {deleting ? "…" : "Yes"}
+                        </button>
+                        <button
+                          onClick={() => setConfirmDeleteId(null)}
+                          className="rounded px-2 py-1 text-[11px] font-medium transition hover:opacity-70"
+                          style={{ color: "var(--adm-text-muted)" }}
+                        >
+                          No
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => setConfirmDeleteId(b.id)}
+                        className="rounded p-1.5 transition hover:bg-red-500/10 hover:text-red-500"
+                        style={{ color: "var(--adm-text-muted)" }}
+                        title="Delete booking"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))
