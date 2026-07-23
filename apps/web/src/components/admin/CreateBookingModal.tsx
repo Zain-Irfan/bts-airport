@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { X, Plus } from "lucide-react";
 import { useAdminLayout } from "@/components/admin/AdminLayoutContext";
@@ -10,6 +10,12 @@ type Driver = {
   id: string;
   fullName: string;
   vehiclePlate: string | null;
+};
+
+type VehicleType = {
+  id: string;
+  name: string;
+  description: string | null;
 };
 
 type Props = {
@@ -33,9 +39,12 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
   const inputBorder = isLight ? "#D1D5DB" : "rgba(192,192,192,0.12)";
   const textSub = isLight ? "#374151" : "#CFCFCF";
 
+  const inputStyle = { background: inputBg, borderColor: inputBorder, color: textPrimary };
+
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [isReturn, setIsReturn] = useState(false);
+  const [vehicleTypes, setVehicleTypes] = useState<VehicleType[]>([]);
   const [form, setForm] = useState({
     customerName: "",
     customerEmail: "",
@@ -55,6 +64,13 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
     status: "CONFIRMED",
     assignedDriverId: "",
   });
+
+  useEffect(() => {
+    fetch("/api/vehicle-types")
+      .then((r) => r.json())
+      .then((data) => setVehicleTypes(data.items ?? []))
+      .catch(() => {});
+  }, []);
 
   function set(field: string, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -110,9 +126,35 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
           {/* Customer */}
           <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Customer</p>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field label="First & Last Name" value={form.customerName} onChange={(v) => set("customerName", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} required />
-            <Field label="Email" type="email" value={form.customerEmail} onChange={(v) => set("customerEmail", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} required />
-            <Field label="Phone" value={form.customerPhone} onChange={(v) => set("customerPhone", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} required />
+            <Field label="Full Name" value={form.customerName} onChange={(v) => set("customerName", v)} inputStyle={inputStyle} textMuted={textMuted} required placeholder="e.g. John Smith" />
+            <Field label="Email" type="email" value={form.customerEmail} onChange={(v) => set("customerEmail", v)} inputStyle={inputStyle} textMuted={textMuted} required placeholder="e.g. john@example.com" />
+            <div className="sm:col-span-2">
+              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Phone <span className="text-red-400">*</span></label>
+              <div className="flex gap-2">
+                <select
+                  className="h-10 rounded-lg border px-2 text-sm outline-none w-[100px] shrink-0"
+                  style={inputStyle}
+                  onChange={(e) => {
+                    const local = form.customerPhone.replace(/^\+\d+\s?/, "");
+                    set("customerPhone", `${e.target.value} ${local}`.trim());
+                  }}
+                >
+                  {[["🇬🇧","+44"],["🇺🇸","+1"],["🇫🇷","+33"],["🇩🇪","+49"],["🇮🇹","+39"],["🇪🇸","+34"],["🇵🇰","+92"],["🇮🇳","+91"],["🇦🇪","+971"],["🇸🇦","+966"]].map(([flag,code]) => (
+                    <option key={code} value={code}>{flag} {code}</option>
+                  ))}
+                </select>
+                <input
+                  type="tel"
+                  placeholder="7911 123456"
+                  className="h-10 flex-1 rounded-lg border px-3 text-sm outline-none"
+                  style={inputStyle}
+                  onChange={(e) => {
+                    const code = form.customerPhone.match(/^(\+\d+)/)?.[1] ?? "+44";
+                    set("customerPhone", `${code} ${e.target.value}`.trim());
+                  }}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Journey */}
@@ -137,12 +179,12 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
               />
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <Field label="Date" type="date" value={form.date} onChange={(v) => set("date", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} required />
-              <Field label="Time" type="time" value={form.time} onChange={(v) => set("time", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} required />
+              <Field label="Date" type="date" value={form.date} onChange={(v) => set("date", v)} inputStyle={inputStyle} textMuted={textMuted} required />
+              <Field label="Time" type="time" value={form.time} onChange={(v) => set("time", v)} inputStyle={inputStyle} textMuted={textMuted} required />
             </div>
 
             {/* Return journey toggle */}
-            <label className="flex items-center gap-2 cursor-pointer select-none">
+            <label className="flex items-center gap-2 cursor-pointer select-none py-0.5">
               <input
                 type="checkbox"
                 checked={isReturn}
@@ -154,20 +196,45 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
 
             {isReturn && (
               <div className="grid gap-3 sm:grid-cols-2 rounded-lg border p-3" style={{ borderColor: inputBorder }}>
-                <Field label="Return Date" type="date" value={form.returnDate} onChange={(v) => set("returnDate", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} />
-                <Field label="Return Time" type="time" value={form.returnTime} onChange={(v) => set("returnTime", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} />
+                <Field label="Return Date" type="date" value={form.returnDate} onChange={(v) => set("returnDate", v)} inputStyle={inputStyle} textMuted={textMuted} />
+                <Field label="Return Time" type="time" value={form.returnTime} onChange={(v) => set("returnTime", v)} inputStyle={inputStyle} textMuted={textMuted} />
               </div>
             )}
             <div className="grid gap-3 sm:grid-cols-3">
-              <Field label="Passengers" type="number" value={form.passengers} onChange={(v) => set("passengers", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} />
-              <Field label="Luggage" type="number" value={form.luggage} onChange={(v) => set("luggage", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} />
-              <Field label="Fare (£)" type="number" value={form.fare} onChange={(v) => set("fare", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} />
+              <Field label="Passengers" type="number" value={form.passengers} onChange={(v) => set("passengers", v)} inputStyle={inputStyle} textMuted={textMuted} />
+              <Field label="Luggage Bags" type="number" value={form.luggage} onChange={(v) => set("luggage", v)} inputStyle={inputStyle} textMuted={textMuted} />
+              <Field label="Fare (£)" type="number" value={form.fare} onChange={(v) => set("fare", v)} inputStyle={inputStyle} textMuted={textMuted} placeholder="0.00" />
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <Field label="Vehicle Type" value={form.vehicleType} onChange={(v) => set("vehicleType", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} placeholder="e.g. Saloon" />
-              <Field label="Flight Number" value={form.flightNumber} onChange={(v) => set("flightNumber", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} placeholder="e.g. BA123" />
+              {/* Vehicle Type dropdown */}
+              <div>
+                <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Vehicle Type</label>
+                <select
+                  value={form.vehicleType}
+                  onChange={(e) => set("vehicleType", e.target.value)}
+                  className="h-10 w-full rounded-lg border px-3 text-sm outline-none"
+                  style={inputStyle}
+                >
+                  <option value="">— Select vehicle —</option>
+                  {vehicleTypes.map((v) => (
+                    <option key={v.id} value={v.name}>{v.name}{v.description ? ` — ${v.description}` : ""}</option>
+                  ))}
+                </select>
+              </div>
+              <Field label="Flight Number" value={form.flightNumber} onChange={(v) => set("flightNumber", v)} inputStyle={inputStyle} textMuted={textMuted} placeholder="e.g. BA123" />
             </div>
-            <Field label="Notes" value={form.notes} onChange={(v) => set("notes", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} placeholder="Optional notes" />
+            {/* Notes as textarea */}
+            <div>
+              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Notes</label>
+              <textarea
+                value={form.notes}
+                onChange={(e) => set("notes", e.target.value)}
+                placeholder="Special requests, instructions, or other notes…"
+                rows={3}
+                className="w-full rounded-lg border px-3 py-2 text-sm outline-none resize-none"
+                style={inputStyle}
+              />
+            </div>
           </div>
 
           {/* Assignment */}
@@ -175,13 +242,13 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
               <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Status</label>
-              <select value={form.status} onChange={(e) => set("status", e.target.value)} className="h-10 w-full rounded-lg border px-3 text-sm outline-none" style={{ background: inputBg, borderColor: inputBorder, color: textPrimary }}>
+              <select value={form.status} onChange={(e) => set("status", e.target.value)} className="h-10 w-full rounded-lg border px-3 text-sm outline-none" style={inputStyle}>
                 {STATUSES.map((s) => <option key={s} value={s}>{s.replace("_", " ")}</option>)}
               </select>
             </div>
             <div>
               <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Assign Driver</label>
-              <select value={form.assignedDriverId} onChange={(e) => set("assignedDriverId", e.target.value)} className="h-10 w-full rounded-lg border px-3 text-sm outline-none" style={{ background: inputBg, borderColor: inputBorder, color: textPrimary }}>
+              <select value={form.assignedDriverId} onChange={(e) => set("assignedDriverId", e.target.value)} className="h-10 w-full rounded-lg border px-3 text-sm outline-none" style={inputStyle}>
                 <option value="">— Unassigned —</option>
                 {drivers.map((d) => <option key={d.id} value={d.id}>{d.fullName}{d.vehiclePlate ? ` · ${d.vehiclePlate}` : ""}</option>)}
               </select>
@@ -205,9 +272,9 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
   );
 }
 
-function Field({ label, value, onChange, type = "text", inputBg, inputBorder, textPrimary, textMuted, required, placeholder }: {
+function Field({ label, value, onChange, type = "text", inputStyle, textMuted, required, placeholder }: {
   label: string; value: string; onChange: (v: string) => void; type?: string;
-  inputBg: string; inputBorder: string; textPrimary: string; textMuted: string;
+  inputStyle: React.CSSProperties; textMuted: string;
   required?: boolean; placeholder?: string;
 }) {
   return (
@@ -221,7 +288,7 @@ function Field({ label, value, onChange, type = "text", inputBg, inputBorder, te
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className="h-10 w-full rounded-lg border px-3 text-sm outline-none"
-        style={{ background: inputBg, borderColor: inputBorder, color: textPrimary }}
+        style={inputStyle}
       />
     </div>
   );
