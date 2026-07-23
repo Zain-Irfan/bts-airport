@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Download, Search, X } from "lucide-react";
+import { Download, Search, X, Plus } from "lucide-react";
 import { BookingDetailModal } from "@/components/admin/BookingDetailModal";
+import { CreateBookingModal } from "@/components/admin/CreateBookingModal";
 
 type Driver = {
   id: string;
@@ -49,11 +50,16 @@ const ALL_STATUSES = ["PENDING","CONFIRMED","IN_PROGRESS","COMPLETED","CANCELLED
 export function BookingsClient({ bookings: initial, drivers }: { bookings: Booking[]; drivers: Driver[] }) {
   const [bookings, setBookings] = useState(initial);
   const [selected, setSelected] = useState<Booking | null>(null);
+  const [creating, setCreating] = useState(false);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
 
   function handleUpdated(updated: Booking) {
     setBookings((prev) => prev.map((b) => (b.id === updated.id ? updated : b)));
+  }
+
+  function handleCreated(booking: unknown) {
+    setBookings((prev) => [booking as Booking, ...prev]);
   }
 
   const filtered = useMemo(() => {
@@ -73,14 +79,24 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
           <p className="text-sm" style={{ color: "var(--adm-text-muted)" }}>
             {filtered.length} of {bookings.length} booking{bookings.length !== 1 ? "s" : ""}
           </p>
-          <a
-            href="/api/admin/bookings/export"
-            className="inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition"
-            style={{ borderColor: "var(--adm-border)", background: "var(--adm-surface)", color: "var(--adm-text)" }}
-          >
-            <Download className="h-4 w-4" />
-            Export CSV
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="/api/admin/bookings/export"
+              className="inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition"
+              style={{ borderColor: "var(--adm-border)", background: "var(--adm-surface)", color: "var(--adm-text)" }}
+            >
+              <Download className="h-4 w-4" />
+              Export CSV
+            </a>
+            <button
+              onClick={() => setCreating(true)}
+              className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110"
+              style={{ background: "linear-gradient(135deg,#5B0F9C,#4B0082)" }}
+            >
+              <Plus className="h-4 w-4" />
+              New Booking
+            </button>
+          </div>
         </div>
         {/* Search + filter row */}
         <div className="flex flex-wrap gap-3">
@@ -178,6 +194,14 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
         onClose={() => setSelected(null)}
         onUpdated={handleUpdated}
       />
+
+      {creating && (
+        <CreateBookingModal
+          drivers={drivers}
+          onCreated={handleCreated}
+          onClose={() => setCreating(false)}
+        />
+      )}
     </>
   );
 }
