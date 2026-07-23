@@ -28,6 +28,8 @@ export async function POST(req: NextRequest) {
       vehicleType: body.vehicleType?.trim() || null,
       flightNumber: body.flightNumber?.trim() || null,
       fare: body.fare ? Number(body.fare) : null,
+      returnDate: body.returnDate ? new Date(body.returnDate) : null,
+      returnTime: body.returnTime?.trim() || null,
       notes: body.notes?.trim() || null,
       status: body.status || "CONFIRMED",
       assignedDriverId: body.assignedDriverId || null,

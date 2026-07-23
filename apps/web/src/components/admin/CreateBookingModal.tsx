@@ -4,6 +4,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { X, Plus } from "lucide-react";
 import { useAdminLayout } from "@/components/admin/AdminLayoutContext";
+import { GooglePlacesInput } from "@/components/forms/GooglePlacesInput";
 
 type Driver = {
   id: string;
@@ -34,6 +35,7 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
 
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [isReturn, setIsReturn] = useState(false);
   const [form, setForm] = useState({
     customerName: "",
     customerEmail: "",
@@ -42,6 +44,8 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
     dropoff: "",
     date: "",
     time: "",
+    returnDate: "",
+    returnTime: "",
     passengers: "1",
     luggage: "0",
     vehicleType: "",
@@ -62,7 +66,11 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
     const res = await fetch("/api/admin/bookings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: JSON.stringify({
+        ...form,
+        returnDate: isReturn && form.returnDate ? form.returnDate : null,
+        returnTime: isReturn && form.returnTime ? form.returnTime : null,
+      }),
     });
     setSaving(false);
     if (res.ok) {
@@ -110,12 +118,44 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
           {/* Journey */}
           <p className="text-[11px] font-semibold uppercase tracking-widest pt-2" style={{ color: textMuted }}>Journey</p>
           <div className="grid gap-3">
-            <Field label="Pickup Address" value={form.pickup} onChange={(v) => set("pickup", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} required />
-            <Field label="Dropoff Address" value={form.dropoff} onChange={(v) => set("dropoff", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} required />
+            <div>
+              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Pickup Address <span className="text-red-400">*</span></label>
+              <GooglePlacesInput
+                value={form.pickup}
+                onChange={(v) => set("pickup", v)}
+                placeholder="Search pickup address…"
+              />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Dropoff Address <span className="text-red-400">*</span></label>
+              <GooglePlacesInput
+                value={form.dropoff}
+                onChange={(v) => set("dropoff", v)}
+                placeholder="Search dropoff address…"
+              />
+            </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <Field label="Date" type="date" value={form.date} onChange={(v) => set("date", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} required />
               <Field label="Time" type="time" value={form.time} onChange={(v) => set("time", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} required />
             </div>
+
+            {/* Return journey toggle */}
+            <label className="flex items-center gap-2 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={isReturn}
+                onChange={(e) => setIsReturn(e.target.checked)}
+                className="h-4 w-4 rounded accent-purple-600"
+              />
+              <span className="text-sm font-medium" style={{ color: textPrimary }}>Return Journey</span>
+            </label>
+
+            {isReturn && (
+              <div className="grid gap-3 sm:grid-cols-2 rounded-lg border p-3" style={{ borderColor: inputBorder }}>
+                <Field label="Return Date" type="date" value={form.returnDate} onChange={(v) => set("returnDate", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} />
+                <Field label="Return Time" type="time" value={form.returnTime} onChange={(v) => set("returnTime", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} />
+              </div>
+            )}
             <div className="grid gap-3 sm:grid-cols-3">
               <Field label="Passengers" type="number" value={form.passengers} onChange={(v) => set("passengers", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} />
               <Field label="Luggage" type="number" value={form.luggage} onChange={(v) => set("luggage", v)} inputBg={inputBg} inputBorder={inputBorder} textPrimary={textPrimary} textMuted={textMuted} />
