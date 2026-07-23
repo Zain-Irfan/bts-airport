@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { prisma } from "@/lib/prisma";
 import { vehicleCategoryToDTO } from "@/lib/vehicle-category";
 import { AdminTopbar } from "@/components/admin/AdminTopbar";
