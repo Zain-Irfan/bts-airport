@@ -10,7 +10,7 @@ export function SiteFooter() {
     <footer className="relative overflow-hidden border-t border-[rgba(192,192,192,0.1)] bg-[linear-gradient(180deg,#0D0D0F_0%,#0A0A0D_100%)] text-[#D1D5DB]">
       {/* Subtle purple top wash */}
       <div
-        className="pointer-events-none absolute -top-32 left-1/2 h-56 w-[60vw] max-w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(75,0,130,0.28),transparent_65%)] blur-[110px]"
+        className="pointer-events-none absolute -top-32 left-1/2 h-56 w-[60vw] max-w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(51, 51, 51,0.28),transparent_65%)] blur-[110px]"
         aria-hidden
       />
 

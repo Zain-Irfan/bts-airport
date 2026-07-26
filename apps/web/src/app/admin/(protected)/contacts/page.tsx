@@ -19,7 +19,7 @@ export default async function ContactsPage() {
         <p className="mb-4 text-sm sm:mb-6" style={{ color: "var(--adm-text-muted)" }}>
           {contacts.length} message{contacts.length !== 1 ? "s" : ""}
           {unreadCount > 0 && (
-            <span className="ml-2 rounded-full bg-purple-500/15 px-2 py-0.5 text-[10px] font-bold text-purple-500">
+            <span className="ml-2 rounded-full bg-zinc-500/15 px-2 py-0.5 text-[10px] font-bold text-zinc-500">
               {unreadCount} unread
             </span>
           )}
@@ -35,7 +35,7 @@ export default async function ContactsPage() {
                 className="rounded-xl border p-5 transition"
                 style={{
                   background: c.read ? "var(--adm-surface)" : "var(--adm-surface-2)",
-                  borderColor: c.read ? "var(--adm-border)" : "rgba(155,81,224,0.25)",
+                  borderColor: c.read ? "var(--adm-border)" : "rgba(153, 153, 153,0.25)",
                 }}
               >
                 <div className="mb-2 flex flex-wrap items-center justify-between gap-2">

@@ -81,7 +81,7 @@ export function SettingsClient({
       {/* Email */}
       <div className="rounded-xl border p-6 space-y-4" style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}>
         <div className="flex items-center gap-2">
-          <Mail className="h-4 w-4" style={{ color: "#9B51E0" }} />
+          <Mail className="h-4 w-4" style={{ color: "#999999" }} />
           <h2 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Contact Email</h2>
         </div>
         <div>
@@ -169,7 +169,7 @@ export function SettingsClient({
         onClick={handleSave}
         disabled={saving}
         className="flex items-center gap-2 rounded-xl px-6 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
-        style={{ background: "linear-gradient(135deg,#5B0F9C,#4B0082)" }}
+        style={{ background: "linear-gradient(135deg,#404040,#333333)" }}
       >
         <Save className="h-4 w-4" />
         {saving ? "Saving…" : saved ? "✓ Saved" : "Save Settings"}

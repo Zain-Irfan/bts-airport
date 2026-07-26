@@ -22,7 +22,7 @@ export function ContactMarkRead({ contactId }: { contactId: string }) {
     <button
       disabled={loading}
       onClick={markRead}
-      className="inline-flex items-center gap-1 rounded-md bg-purple-500/10 px-2 py-1 text-[10px] font-semibold text-purple-400 transition hover:bg-purple-500/20 disabled:opacity-50"
+      className="inline-flex items-center gap-1 rounded-md bg-zinc-500/10 px-2 py-1 text-[10px] font-semibold text-zinc-400 transition hover:bg-zinc-500/20 disabled:opacity-50"
     >
       <CheckCheck className="h-3 w-3" />
       Mark read

@@ -432,7 +432,7 @@ export function VehicleTypesAdminClient({ initial, categories }: Props) {
                       <button
                         type="button"
                         onClick={() => setEditRow(r)}
-                        className="rounded-md p-2 transition hover:bg-black/5 hover:text-purple-600"
+                        className="rounded-md p-2 transition hover:bg-black/5 hover:text-zinc-600"
                         style={{ color: "var(--adm-text-muted)" }}
                         aria-label="Edit"
                       >

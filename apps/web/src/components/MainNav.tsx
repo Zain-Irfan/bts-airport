@@ -44,7 +44,7 @@ export function MainNav() {
         href={href}
         onClick={startRouteLoading}
         className={cn(
-          "relative inline-flex items-center transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[linear-gradient(90deg,transparent,rgba(155,81,224,0.85),transparent)] after:transition-transform after:duration-300",
+          "relative inline-flex items-center transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[linear-gradient(90deg,transparent,rgba(153, 153, 153,0.85),transparent)] after:transition-transform after:duration-300",
           active
             ? "text-[#F8F8F8] after:scale-x-100"
             : "text-[#D1D5DB] hover:text-[#F8F8F8] hover:after:scale-x-100",
@@ -70,7 +70,7 @@ export function MainNav() {
         <button
           type="button"
           className={cn(
-            "relative inline-flex cursor-pointer items-center gap-2 transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[linear-gradient(90deg,transparent,rgba(155,81,224,0.85),transparent)] after:transition-transform after:duration-300 group-hover:after:scale-x-100",
+            "relative inline-flex cursor-pointer items-center gap-2 transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[linear-gradient(90deg,transparent,rgba(153, 153, 153,0.85),transparent)] after:transition-transform after:duration-300 group-hover:after:scale-x-100",
             airportActive
               ? "text-[#F8F8F8] after:scale-x-100"
               : "text-[#D1D5DB] hover:text-[#F8F8F8]",
@@ -79,13 +79,13 @@ export function MainNav() {
           Airport Transfers
           <ChevronDown className="h-4 w-4 opacity-80 transition-transform duration-300 group-hover:rotate-180" />
         </button>
-        <div className="invisible absolute left-0 top-full z-50 mt-3 w-72 -translate-y-1 rounded-xl border border-[rgba(192,192,192,0.14)] bg-[linear-gradient(180deg,rgba(13,13,15,0.92),rgba(13,13,15,0.85))] p-2 opacity-0 shadow-[0_28px_56px_-12px_rgba(0,0,0,0.65),0_10px_32px_-10px_rgba(75,0,130,0.4)] backdrop-blur-xl transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="invisible absolute left-0 top-full z-50 mt-3 w-72 -translate-y-1 rounded-xl border border-[rgba(192,192,192,0.14)] bg-[linear-gradient(180deg,rgba(13,13,15,0.92),rgba(13,13,15,0.85))] p-2 opacity-0 shadow-[0_28px_56px_-12px_rgba(0,0,0,0.65),0_10px_32px_-10px_rgba(51, 51, 51,0.4)] backdrop-blur-xl transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
           {airportTransferLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={startRouteLoading}
-              className="block rounded-lg px-3 py-2.5 text-sm text-[#D1D5DB] transition-colors duration-200 hover:bg-[rgba(75,0,130,0.22)] hover:text-[#F8F8F8]"
+              className="block rounded-lg px-3 py-2.5 text-sm text-[#D1D5DB] transition-colors duration-200 hover:bg-[rgba(51, 51, 51,0.22)] hover:text-[#F8F8F8]"
             >
               {item.label}
             </Link>
@@ -101,7 +101,7 @@ export function MainNav() {
         <button
           type="button"
           className={cn(
-            "relative inline-flex cursor-pointer items-center gap-2 transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[linear-gradient(90deg,transparent,rgba(155,81,224,0.85),transparent)] after:transition-transform after:duration-300 group-hover:after:scale-x-100",
+            "relative inline-flex cursor-pointer items-center gap-2 transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[linear-gradient(90deg,transparent,rgba(153, 153, 153,0.85),transparent)] after:transition-transform after:duration-300 group-hover:after:scale-x-100",
             servicesActive
               ? "text-[#F8F8F8] after:scale-x-100"
               : "text-[#D1D5DB] hover:text-[#F8F8F8]",
@@ -110,13 +110,13 @@ export function MainNav() {
           Services
           <ChevronDown className="h-4 w-4 opacity-80 transition-transform duration-300 group-hover:rotate-180" />
         </button>
-        <div className="invisible absolute left-0 top-full z-50 mt-3 w-64 -translate-y-1 rounded-xl border border-[rgba(192,192,192,0.14)] bg-[linear-gradient(180deg,rgba(13,13,15,0.92),rgba(13,13,15,0.85))] p-2 opacity-0 shadow-[0_28px_56px_-12px_rgba(0,0,0,0.65),0_10px_32px_-10px_rgba(75,0,130,0.4)] backdrop-blur-xl transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="invisible absolute left-0 top-full z-50 mt-3 w-64 -translate-y-1 rounded-xl border border-[rgba(192,192,192,0.14)] bg-[linear-gradient(180deg,rgba(13,13,15,0.92),rgba(13,13,15,0.85))] p-2 opacity-0 shadow-[0_28px_56px_-12px_rgba(0,0,0,0.65),0_10px_32px_-10px_rgba(51, 51, 51,0.4)] backdrop-blur-xl transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
           {serviceLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={startRouteLoading}
-              className="block rounded-lg px-3 py-2.5 text-sm text-[#D1D5DB] transition-colors duration-200 hover:bg-[rgba(75,0,130,0.22)] hover:text-[#F8F8F8]"
+              className="block rounded-lg px-3 py-2.5 text-sm text-[#D1D5DB] transition-colors duration-200 hover:bg-[rgba(51, 51, 51,0.22)] hover:text-[#F8F8F8]"
             >
               {item.label}
             </Link>

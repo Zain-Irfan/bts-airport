@@ -43,8 +43,8 @@ export function SiteMobileNav() {
     cn(
       "block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
       pathname === href || (href !== "/" && pathname.startsWith(href))
-        ? "bg-[rgba(75,0,130,0.25)] text-[#F8F8F8]"
-        : "text-[#D1D5DB] hover:bg-[rgba(75,0,130,0.15)] hover:text-[#F8F8F8]",
+        ? "bg-[rgba(51, 51, 51,0.25)] text-[#F8F8F8]"
+        : "text-[#D1D5DB] hover:bg-[rgba(51, 51, 51,0.15)] hover:text-[#F8F8F8]",
     );
 
   return (
@@ -52,7 +52,7 @@ export function SiteMobileNav() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-[rgba(192,192,192,0.15)] bg-[rgba(13,13,15,0.6)] text-[#F8F8F8] transition hover:bg-[rgba(75,0,130,0.2)]"
+        className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-[rgba(192,192,192,0.15)] bg-[rgba(13,13,15,0.6)] text-[#F8F8F8] transition hover:bg-[rgba(51, 51, 51,0.2)]"
         aria-expanded={open}
         aria-controls="site-mobile-nav-panel"
         aria-label={open ? "Close menu" : "Open menu"}
@@ -92,7 +92,7 @@ export function SiteMobileNav() {
               <button
                 type="button"
                 onClick={() => setAirportOpen((v) => !v)}
-                className="flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm font-medium text-[#D1D5DB] hover:bg-[rgba(75,0,130,0.15)] hover:text-[#F8F8F8]"
+                className="flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm font-medium text-[#D1D5DB] hover:bg-[rgba(51, 51, 51,0.15)] hover:text-[#F8F8F8]"
               >
                 Airport Transfers
                 <ChevronDown
@@ -124,7 +124,7 @@ export function SiteMobileNav() {
               <button
                 type="button"
                 onClick={() => setServicesOpen((v) => !v)}
-                className="flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm font-medium text-[#D1D5DB] hover:bg-[rgba(75,0,130,0.15)] hover:text-[#F8F8F8]"
+                className="flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm font-medium text-[#D1D5DB] hover:bg-[rgba(51, 51, 51,0.15)] hover:text-[#F8F8F8]"
               >
                 Services
                 <ChevronDown
@@ -172,7 +172,7 @@ export function SiteMobileNav() {
                 </p>
                 <CustomerAuthNav
                   className="flex flex-col gap-2 md:hidden"
-                  linkClassName="block rounded-lg px-3 py-2.5 text-left text-sm font-semibold text-[#D1D5DB] hover:bg-[rgba(75,0,130,0.15)] hover:text-[#F8F8F8]"
+                  linkClassName="block rounded-lg px-3 py-2.5 text-left text-sm font-semibold text-[#D1D5DB] hover:bg-[rgba(51, 51, 51,0.15)] hover:text-[#F8F8F8]"
                   onNavigate={startRouteLoading}
                 />
               </div>

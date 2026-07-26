@@ -95,7 +95,7 @@ export default function AdminLoginPage() {
             type="submit"
             disabled={loading}
             className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-lg text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:-translate-y-px disabled:pointer-events-none disabled:opacity-50"
-            style={{ background: "linear-gradient(135deg,#5B0F9C 0%,#4B0082 55%,#6D28D9 100%)", boxShadow: "0 8px 24px -8px rgba(75,0,130,0.45)" }}
+            style={{ background: "linear-gradient(135deg,#404040 0%,#333333 55%,#6D28D9 100%)", boxShadow: "0 8px 24px -8px rgba(51, 51, 51,0.45)" }}
           >
             {loading ? "Signing in…" : "Sign in"}
           </button>

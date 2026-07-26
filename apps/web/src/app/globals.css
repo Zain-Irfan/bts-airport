@@ -91,9 +91,9 @@
     30%  silver / platinum / pearl-gray — borders, text, refinement
     20%  deep purple — gradient bands, CTAs, accents, ambient
   Palette (raw tokens map to spec hex):
-    Deep Purple   #4B0082  premium accent (CTAs, focus, glow)
-    Royal Purple  #3B0A57  rich gradient band
-    Dark Purple   #2A1238  cinematic section band
+    Deep Purple   #333333  premium accent (CTAs, focus, glow)
+    Royal Purple  #262626  rich gradient band
+    Dark Purple   #242424  cinematic section band
     Onyx          #0D0D0F  deepest base
     Charcoal      #1A1A1D  primary alt section
     Graphite      #2D2D33  elevated surface (cards)
@@ -116,13 +116,13 @@
 
   --opaque-button-border-intensity: 9;
 
-  --elevate-1: rgba(155, 81, 224, 0.06);
-  --elevate-2: rgba(155, 81, 224, 0.11);
+  --elevate-1: rgba(153, 153, 153, 0.06);
+  --elevate-2: rgba(153, 153, 153, 0.11);
 
   /* Raw brand tokens (kept in sync with #hex spec) */
-  --brand-deep: #4B0082;          /* Deep Purple */
-  --brand-royal: #3B0A57;         /* Royal Purple */
-  --brand-dark: #2A1238;          /* Dark Purple */
+  --brand-deep: #333333;          /* Deep Purple */
+  --brand-royal: #262626;         /* Royal Purple */
+  --brand-dark: #242424;          /* Dark Purple */
   --brand-onyx: #0D0D0F;          /* Onyx Black */
   --brand-charcoal: #1A1A1D;      /* Charcoal */
   --brand-graphite: #2D2D33;      /* Graphite */
@@ -137,9 +137,9 @@
   --text-accent: #C0C0C0;
 
   /* Glass / surface fills (used by .BTS-card, .BTS-glass, etc.) */
-  --glass-purple-strong: rgba(75, 0, 130, 0.10);
-  --glass-purple-soft: rgba(75, 0, 130, 0.06);
-  --glass-dark-purple: rgba(43, 18, 56, 0.22);
+  --glass-purple-strong: rgba(51, 51, 51, 0.10);
+  --glass-purple-soft: rgba(51, 51, 51, 0.06);
+  --glass-dark-purple: rgba(38, 38, 38, 0.22);
   --glass-graphite: rgba(45, 45, 51, 0.65);
 
   /* Silver hairlines (refinement) */
@@ -148,84 +148,83 @@
   --silver-border-bold: rgba(192, 192, 192, 0.32);
 
   /* Purple hairlines (accent) */
-  --purple-border: rgba(75, 0, 130, 0.28);
-  --purple-border-soft: rgba(75, 0, 130, 0.14);
+  --purple-border: rgba(51, 51, 51, 0.28);
+  --purple-border-soft: rgba(51, 51, 51, 0.14);
 
-  /* Page base — onyx black, near-neutral with faintest plum (#0D0D0F-ish) */
-  --background: 240 7% 5%;
+  /* Page base — dark charcoal (#1F1F1F), sits just under the #333 surfaces */
+  --background: 0 0% 12%;
   --foreground: 0 0% 97.3%;
-  /* Subtle silver border (very faint) */
-  --border: 240 6% 18%;
+  /* Subtle light-gray border */
+  --border: 0 0% 24%;
 
-  /* Card surface (overlaid by .BTS-card graphite glass gradient) */
-  --card: 240 7% 14%;
+  /* Card surface — dark greenish #333333 (the dominant brand tone) */
+  --card: 0 0% 20%;
   --card-foreground: 0 0% 97.3%;
-  --card-border: 240 6% 22%;
+  --card-border: 0 0% 28%;
 
-  --elevated: 240 7% 17%;
+  --elevated: 0 0% 23%;
   --elevated-foreground: 0 0% 97.3%;
 
-  /* Graphite #2D2D33 — neutral elevated panels */
-  --graphite: 240 7% 19%;
+  /* Graphite — neutral elevated panels */
+  --graphite: 0 0% 25%;
   --graphite-foreground: 0 0% 97.3%;
 
-  /* Platinum #A5A7AA — secondary text */
-  --platinum: 220 4% 66%;
-  --text-secondary: 220 4% 66%;
+  /* Mid gray #999999 — secondary text */
+  --platinum: 0 0% 60%;
+  --text-secondary: 0 0% 60%;
   /* Pearl Gray #E5E7EB */
-  --pearl: 220 13% 91%;
+  --pearl: 0 0% 91%;
 
-  --sidebar: 240 7% 5%;
+  --sidebar: 0 0% 12%;
   --sidebar-foreground: 0 0% 97.3%;
-  --sidebar-border: 240 6% 18%;
-  --sidebar-primary: 275 100% 26%;
+  --sidebar-border: 0 0% 24%;
+  --sidebar-primary: 0 0% 20%;
   --sidebar-primary-foreground: 0 0% 97.3%;
-  --sidebar-accent: 275 100% 26%;
+  --sidebar-accent: 0 0% 20%;
   --sidebar-accent-foreground: 0 0% 97.3%;
-  --sidebar-ring: 275 80% 45%;
+  --sidebar-ring: 0 0% 50%;
 
-  --popover: 240 8% 11%;
+  --popover: 0 0% 16%;
   --popover-foreground: 0 0% 97.3%;
-  --popover-border: 240 6% 22%;
+  --popover-border: 0 0% 28%;
 
-  /* Primary band — cinematic deep royal-purple (hero / CTA / footer base).
+  /* Primary band — dark greenish #333333 (hero / CTA / footer base).
      Combine with `BTS-luxury-section-1/2/3` for richer gradients. */
-  --primary: 278 60% 9%;
+  --primary: 0 0% 20%;
   --primary-foreground: 0 0% 97.3%;
 
-  /* Secondary alt band — Charcoal #1A1A1D, neutral so alt sections feel
-     premium-dark rather than purple-tinted. */
-  --secondary: 240 6% 11%;
+  /* Secondary alt band — deeper charcoal so alt sections read as premium-dark. */
+  --secondary: 0 0% 16%;
   --secondary-foreground: 0 0% 97.3%;
 
-  /* Muted — Graphite-leaning panels */
-  --muted: 240 6% 14%;
+  /* Muted — #333-leaning panels */
+  --muted: 0 0% 20%;
   /* Body text #CFCFCF */
-  --muted-foreground: 0 0% 81%;
+  --muted-foreground: 0 0% 78%;
 
-  /* Deep Purple #4B0082 — primary CTA brand color */
-  --accent: 275 100% 26%;
+  /* Dark greenish #333333 — primary accent (raised a touch so it reads over cards) */
+  --accent: 0 0% 24%;
   --accent-foreground: 0 0% 97.3%;
 
-  /* Silver #C0C0C0 — chrome-edge refinement */
+  /* Light gray — chrome-edge refinement */
   --silver-light: 0 0% 75%;
 
-  /* Brighter royal purple — badges, link text, icon glow */
-  --highlight: 275 80% 38%;
+  /* Mid gray #999 — badges, link text, icon glow */
+  --highlight: 0 0% 45%;
   --highlight-foreground: 0 0% 97.3%;
-  /* Sophisticated violet glow (controlled, not neon) */
-  --highlight-soft: 273 70% 54%;
+  /* Soft light-gray glow */
+  --highlight-soft: 0 0% 62%;
 
   --destructive: 0 62% 50%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 270 14% 22%;
-  --ring: 275 80% 50%;
-  --chart-1: 275 100% 26%;
+  --input: 0 0% 22%;
+  --ring: 0 0% 55%;
+  --chart-1: 0 0% 40%;
   --chart-2: 0 0% 75%;
-  --chart-3: 277 52% 30%;
-  --chart-4: 220 9% 83%;
-  --chart-5: 220 14% 91%;
+  --chart-3: 0 0% 30%;
+  --chart-4: 0 0% 83%;
+  --chart-5: 0 0% 91%;
 
   --app-font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --app-font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
@@ -252,14 +251,14 @@
 }
 
 .dark {
-  --background: 240 7% 4%;
+  --background: 0 0% 10%;
   --foreground: 0 0% 97.3%;
-  --card: 240 7% 13%;
-  --primary: 278 60% 8%;
-  --secondary: 240 6% 10%;
-  --muted: 240 6% 13%;
-  --border: 240 6% 16%;
-  --input: 240 6% 20%;
+  --card: 0 0% 19%;
+  --primary: 0 0% 19%;
+  --secondary: 0 0% 15%;
+  --muted: 0 0% 19%;
+  --border: 0 0% 22%;
+  --input: 0 0% 22%;
 }
 
 @layer base {
@@ -349,8 +348,8 @@
   background:
     linear-gradient(
       180deg,
-      hsl(275 100% 32% / 0.85),
-      hsl(278 80% 22% / 0.75)
+      hsl(0 0% 30% / 0.85),
+      hsl(0 0% 22% / 0.75)
     );
   border-radius: 999px;
   border: 2px solid hsl(var(--background));
@@ -361,8 +360,8 @@
   background:
     linear-gradient(
       180deg,
-      hsl(270 75% 50% / 0.9),
-      hsl(275 100% 30% / 0.85)
+      hsl(0 0% 55% / 0.9),
+      hsl(0 0% 28% / 0.85)
     );
 }
 
@@ -506,7 +505,7 @@
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.1),
       0 40px 96px -28px rgb(0 0 0 / 0.78),
-      0 18px 52px -12px rgb(75 0 130 / 0.2);
+      0 18px 52px -12px rgb(51 51 51 / 0.2);
   }
 
   /* Premium divider — silver chrome centre with subtle purple glow */
@@ -678,7 +677,7 @@
   .BTS-luxury-section,
   .BTS-luxury-section-1 {
     background:
-      linear-gradient(135deg, #0D0D0F 0%, #1A1A1D 50%, #232328 100%);
+      linear-gradient(135deg, #242424 0%, #2C2C2C 50%, #333333 100%);
     position: relative;
     isolation: isolate;
   }
@@ -689,7 +688,7 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(50vw 40vh at 18% 0%, rgb(75 0 130 / 0.08), transparent 60%),
+      radial-gradient(50vw 40vh at 18% 0%, rgb(51 51 51 / 0.08), transparent 60%),
       radial-gradient(45vw 38vh at 92% 100%, rgb(45 45 51 / 0.35), transparent 60%);
     z-index: -1;
   }
@@ -697,7 +696,7 @@
   /* Variant 2: deep onyx → graphite vertical (dramatic) */
   .BTS-luxury-section-2 {
     background:
-      linear-gradient(180deg, #0A0A0D 0%, #1A1A1D 50%, #2D2D33 100%);
+      linear-gradient(180deg, #202020 0%, #2A2A2A 50%, #363636 100%);
     position: relative;
     isolation: isolate;
   }
@@ -707,7 +706,7 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(50vw 40vh at 50% 0%, rgb(75 0 130 / 0.06), transparent 60%),
+      radial-gradient(50vw 40vh at 50% 0%, rgb(51 51 51 / 0.06), transparent 60%),
       radial-gradient(40vw 38vh at 50% 100%, rgb(13 13 15 / 0.5), transparent 60%);
     z-index: -1;
   }
@@ -715,7 +714,7 @@
   /* Variant 3: charcoal → graphite (elegant metallic midtone) */
   .BTS-luxury-section-3 {
     background:
-      linear-gradient(135deg, #131316 0%, #1A1A1D 50%, #2D2D33 100%);
+      linear-gradient(135deg, #262626 0%, #2E2E2E 50%, #383838 100%);
     position: relative;
     isolation: isolate;
   }
@@ -725,7 +724,7 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(45vw 35vh at 85% 0%, rgb(75 0 130 / 0.06), transparent 60%),
+      radial-gradient(45vw 35vh at 85% 0%, rgb(51 51 51 / 0.06), transparent 60%),
       radial-gradient(50vw 40vh at 5% 100%, rgb(13 13 15 / 0.4), transparent 60%);
     z-index: -1;
   }
@@ -740,12 +739,12 @@
     gap: 0.5rem;
     color: var(--brand-white-silver);
     background:
-      linear-gradient(135deg, #5B0F9C 0%, #4B0082 55%, #3B0A57 100%);
+      linear-gradient(135deg, #404040 0%, #333333 55%, #262626 100%);
     border: 1px solid rgba(192, 192, 192, 0.22);
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.18),
-      inset 0 0 0 1px rgb(75 0 130 / 0.4),
-      0 10px 32px -10px rgb(75 0 130 / 0.55),
+      inset 0 0 0 1px rgb(51 51 51 / 0.4),
+      0 10px 32px -10px rgb(51 51 51 / 0.55),
       0 4px 14px -4px rgb(0 0 0 / 0.55);
     transition:
       transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
@@ -772,10 +771,10 @@
     border-color: rgba(192, 192, 192, 0.4);
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.22),
-      inset 0 0 0 1px rgb(155 81 224 / 0.5),
-      0 18px 48px -10px rgb(75 0 130 / 0.7),
+      inset 0 0 0 1px rgb(153 153 153 / 0.5),
+      0 18px 48px -10px rgb(51 51 51 / 0.7),
       0 8px 22px -4px rgb(0 0 0 / 0.6),
-      0 0 0 4px rgb(75 0 130 / 0.18);
+      0 0 0 4px rgb(51 51 51 / 0.18);
     transform: translateY(-1px);
   }
 
@@ -788,8 +787,8 @@
     outline: none;
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.22),
-      0 0 0 3px rgb(155 81 224 / 0.45),
-      0 18px 48px -10px rgb(75 0 130 / 0.6);
+      0 0 0 3px rgb(153 153 153 / 0.45),
+      0 18px 48px -10px rgb(51 51 51 / 0.6);
   }
 
   /* Hero ambient lighting — subtle metallic depth with a whisper of purple.
@@ -814,7 +813,7 @@
     height: 75%;
     background:
       radial-gradient(50vw 40vh at 18% 30%, rgb(45 45 51 / 0.5), transparent 60%),
-      radial-gradient(40vw 36vh at 82% 20%, rgb(75 0 130 / 0.1), transparent 60%);
+      radial-gradient(40vw 36vh at 82% 20%, rgb(51 51 51 / 0.1), transparent 60%);
   }
 
   .BTS-hero-ambient::after {
@@ -845,7 +844,7 @@
       0 0 0 1px rgba(192,192,192,0.22),
       0 20px 60px -20px rgb(0 0 0 / 0.6),
       0 0 24px -8px rgba(192,192,192,0.12),
-      0 8px 24px -8px rgb(75 0 130 / 0.1);
+      0 8px 24px -8px rgb(51 51 51 / 0.1);
   }
 
   /* Silver chrome accent text */
@@ -877,7 +876,7 @@
     pointer-events: none;
     background:
       radial-gradient(45vw 35vh at 95% 0%, rgba(45, 45, 51, 0.25), transparent 60%),
-      radial-gradient(40vw 32vh at 5% 100%, rgba(75, 0, 130, 0.05), transparent 60%);
+      radial-gradient(40vw 32vh at 5% 100%, rgba(51, 51, 51, 0.05), transparent 60%);
     z-index: -1;
   }
 
@@ -901,7 +900,7 @@
 
   /* Graphite panel — slightly raised, neutral surface for content blocks */
   .BTS-section-graphite {
-    background: linear-gradient(180deg, #232328 0%, #2D2D33 100%);
+    background: linear-gradient(180deg, #333333 0%, #3D3D3D 100%);
   }
 
   /* ─────────────────────────────────────────────────────────────────
@@ -945,7 +944,7 @@
     justify-content: center;
     gap: 0.5rem;
     color: var(--brand-white-silver);
-    background: linear-gradient(180deg, #1A1A1D 0%, #0D0D0F 100%);
+    background: linear-gradient(180deg, #333333 0%, #262626 100%);
     border: 1px solid var(--silver-border-strong);
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.12),
@@ -959,10 +958,10 @@
 
   .BTS-cta-dark:hover {
     border-color: var(--silver-border-bold);
-    background: linear-gradient(180deg, #232328 0%, #14141A 100%);
+    background: linear-gradient(180deg, #3D3D3D 0%, #2A2A2A 100%);
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.18),
-      0 12px 32px -10px rgb(75 0 130 / 0.5),
+      0 12px 32px -10px rgb(51 51 51 / 0.5),
       0 4px 14px -4px rgb(0 0 0 / 0.6);
     transform: translateY(-1px);
   }
@@ -1025,7 +1024,7 @@
     color: hsl(var(--foreground));
     box-shadow:
       inset 0 1px 0 rgb(192 192 192 / 0.05),
-      inset 0 0 0 1px rgb(75 0 130 / 0.06);
+      inset 0 0 0 1px rgb(51 51 51 / 0.06);
     transition:
       border-color 0.35s ease,
       box-shadow 0.35s ease,
@@ -1112,7 +1111,7 @@
       inset 0 1px 0 rgb(192 192 192 / 0.2),
       0 40px 96px -28px rgb(0 0 0 / 0.78),
       0 0 28px -8px rgba(192,192,192,0.15),
-      0 18px 52px -12px rgb(75 0 130 / 0.3);
+      0 18px 52px -12px rgb(51 51 51 / 0.3);
   }
 
   .BTS-vehicle-media {
@@ -1197,7 +1196,7 @@
       90deg,
       transparent,
       rgba(192, 192, 192, 0.4) 30%,
-      rgba(155, 81, 224, 0.8) 60%,
+      rgba(153, 153, 153, 0.8) 60%,
       rgba(192, 192, 192, 0.4) 90%,
       transparent
     );
@@ -1223,9 +1222,9 @@
   .bg-accent {
     background-image: linear-gradient(
       135deg,
-      #5B0F9C 0%,
-      #4B0082 55%,
-      #3B0A57 100%
+      #404040 0%,
+      #333333 55%,
+      #262626 100%
     );
   }
 
@@ -1233,9 +1232,9 @@
   .hover\:bg-accent:hover {
     background-image: linear-gradient(
       135deg,
-      #6A18B5 0%,
-      #5B0F9C 55%,
-      #4B0082 100%
+      #4a4a4a 0%,
+      #404040 55%,
+      #333333 100%
     );
   }
 
@@ -1326,7 +1325,7 @@
   color: #f8f8f8 !important;
   box-shadow:
     0 28px 56px rgb(0 0 0 / 0.65),
-    0 10px 28px -8px rgb(75 0 130 / 0.35) !important;
+    0 10px 28px -8px rgb(51 51 51 / 0.35) !important;
   backdrop-filter: none !important;
 }
 
@@ -1400,7 +1399,7 @@
   color: #f8f8f8 !important;
   box-shadow:
     0 28px 56px rgb(0 0 0 / 0.65),
-    0 10px 28px -8px rgb(75 0 130 / 0.35) !important;
+    0 10px 28px -8px rgb(51 51 51 / 0.35) !important;
 }
 
 .phone-field-popover--light {
@@ -1463,8 +1462,8 @@
 }
 
 .phone-field-popover--dark .phone-field-popover__search-input:focus {
-  border-color: hsl(275 80% 50% / 0.65);
-  box-shadow: 0 0 0 2px hsl(275 80% 50% / 0.28);
+  border-color: hsl(0 0% 55% / 0.65);
+  box-shadow: 0 0 0 2px hsl(0 0% 55% / 0.28);
 }
 
 .phone-field-popover--light .phone-field-popover__search-input {
@@ -1478,8 +1477,8 @@
 }
 
 .phone-field-popover--light .phone-field-popover__search-input:focus {
-  border-color: #4b0082;
-  box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+  border-color: #333333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.2);
 }
 
 .phone-field-popover__list {
@@ -1520,16 +1519,16 @@
 
 .phone-field-popover--dark .phone-country-row:hover,
 .phone-field-popover--dark .phone-country-row:focus-visible {
-  background: rgb(75 0 130 / 0.22);
+  background: rgb(51 51 51 / 0.22);
   outline: none;
 }
 
 .phone-field-popover--dark .phone-country-row--selected {
-  background: rgb(75 0 130 / 0.35);
+  background: rgb(51 51 51 / 0.35);
 }
 
 .phone-field-popover--dark .phone-country-row--selected:hover {
-  background: rgb(75 0 130 / 0.42);
+  background: rgb(51 51 51 / 0.42);
 }
 
 
@@ -1556,7 +1555,7 @@
 }
 
 .phone-field-popover--light .phone-country-row--selected .phone-country-row__name {
-  color: #4b0082 !important;
+  color: #333333 !important;
 }
 
 .phone-country-row__code {
@@ -1680,7 +1679,7 @@
 
 .phone-input-wrap--dark .phone-input-container .country-list .country:hover,
 .phone-input-wrap--dark .phone-input-container .country-list .country.highlight {
-  background: rgba(75, 0, 130, 0.25) !important;
+  background: rgba(51, 51, 51, 0.25) !important;
 }
 
 .phone-input-wrap--dark .phone-input-container .phone-input-field,
@@ -1738,11 +1737,11 @@
 
 /* ─── Route loader: top progress bar ─── */
 .BTS-topbar-track {
-  background: rgba(75, 0, 130, 0.12);
+  background: rgba(51, 51, 51, 0.12);
 }
 
 .BTS-topbar-fill {
-  background: linear-gradient(90deg, transparent, #9B51E0 40%, #C0C0C0 75%, transparent);
+  background: linear-gradient(90deg, transparent, #999999 40%, #C0C0C0 75%, transparent);
   animation: BTS-topbar 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
@@ -1846,7 +1845,7 @@
   ) !important;
   box-shadow:
     0 28px 56px rgb(0 0 0 / 0.65),
-    0 10px 28px -8px rgb(75 0 130 / 0.35) !important;
+    0 10px 28px -8px rgb(51 51 51 / 0.35) !important;
   font-family: var(--app-font-sans) !important;
   backdrop-filter: blur(18px) saturate(150%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
@@ -1866,7 +1865,7 @@
 .pac-item:hover,
 .pac-item-selected,
 .pac-item-selected:hover {
-  background: rgb(75 0 130 / 0.22) !important;
+  background: rgb(51 51 51 / 0.22) !important;
 }
 
 .pac-item-query,
@@ -1912,9 +1911,9 @@ input.BTS-booking-time::-webkit-clear-button {
   --adm-input-bg:     #0D0D0F;
   --adm-input-border: rgba(192,192,192,0.12);
   --adm-input-text:   #F8F8F8;
-  --adm-active-bg:    rgba(75,0,130,0.2);
-  --adm-active-ring:  rgba(155,81,224,0.25);
-  --adm-active-icon:  #9B51E0;
+  --adm-active-bg:    rgba(51, 51, 51,0.2);
+  --adm-active-ring:  rgba(153, 153, 153,0.25);
+  --adm-active-icon:  #999999;
   --adm-img-placeholder: rgba(192,192,192,0.08);
 }
 

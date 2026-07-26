@@ -120,7 +120,7 @@ export function CustomerPhoneField({
       : "border-[rgba(192,192,192,0.25)] bg-[rgba(13,13,15,0.65)]",
     open &&
       (isLight
-        ? "border-[#4B0082]/40 ring-2 ring-[#4B0082]/15"
+        ? "border-[#333333]/40 ring-2 ring-[#333333]/15"
         : "border-[hsl(var(--highlight-soft)/0.55)] ring-2 ring-[hsl(var(--highlight)/0.28)]"),
   );
 

@@ -36,7 +36,7 @@ export function FullFooterSection() {
           </p>
           <Link
             href="/taxi-quote"
-            className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-xl border border-[rgba(192,192,192,0.32)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] px-10 text-base font-semibold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.2),inset_0_0_0_1px_rgba(75,0,130,0.4),0_18px_48px_-10px_rgba(75,0,130,0.6),0_4px_14px_-4px_rgba(0,0,0,0.55)] transition-all duration-500 ease-out hover:-translate-y-[1px] hover:border-[rgba(192,192,192,0.45)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.24),inset_0_0_0_1px_rgba(155,81,224,0.5),0_22px_60px_-12px_rgba(75,0,130,0.75),0_8px_22px_-4px_rgba(0,0,0,0.6),0_0_0_4px_rgba(75,0,130,0.18)]"
+            className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-xl border border-[rgba(192,192,192,0.32)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] px-10 text-base font-semibold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.2),inset_0_0_0_1px_rgba(51, 51, 51,0.4),0_18px_48px_-10px_rgba(51, 51, 51,0.6),0_4px_14px_-4px_rgba(0,0,0,0.55)] transition-all duration-500 ease-out hover:-translate-y-[1px] hover:border-[rgba(192,192,192,0.45)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.24),inset_0_0_0_1px_rgba(153, 153, 153,0.5),0_22px_60px_-12px_rgba(51, 51, 51,0.75),0_8px_22px_-4px_rgba(0,0,0,0.6),0_0_0_4px_rgba(51, 51, 51,0.18)]"
           >
             Book a Taxi Now
           </Link>
@@ -49,12 +49,12 @@ export function FullFooterSection() {
       <footer className="relative overflow-hidden bg-[linear-gradient(180deg,#0D0D0F_0%,#0A0A0D_100%)] pb-10 pt-24 text-[#D1D5DB]">
         {/* Ambient purple wash on top */}
         <div
-          className="pointer-events-none absolute -top-40 left-1/2 h-72 w-[70vw] max-w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(75,0,130,0.32),transparent_65%)] blur-[120px]"
+          className="pointer-events-none absolute -top-40 left-1/2 h-72 w-[70vw] max-w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(51, 51, 51,0.32),transparent_65%)] blur-[120px]"
           aria-hidden
         />
-        {/* Subtle bottom-right royal accent */}
+        {/* Subtle bottom-right neutral accent */}
         <div
-          className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_center,rgba(59,10,87,0.45),transparent_60%)] blur-[100px]"
+          className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_center,rgba(64,64,64,0.45),transparent_60%)] blur-[100px]"
           aria-hidden
         />
 
@@ -99,7 +99,7 @@ export function FullFooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(192,192,192,0.16)] bg-[rgba(13,13,15,0.6)] text-[#C0C0C0] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(75,0,130,0.32)] hover:text-[#F8F8F8]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(192,192,192,0.16)] bg-[rgba(13,13,15,0.6)] text-[#C0C0C0] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(51, 51, 51,0.32)] hover:text-[#F8F8F8]"
                 >
                   <FaFacebookF className="h-3.5 w-3.5" />
                 </a>
@@ -108,7 +108,7 @@ export function FullFooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(192,192,192,0.16)] bg-[rgba(13,13,15,0.6)] text-[#C0C0C0] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(75,0,130,0.32)] hover:text-[#F8F8F8]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(192,192,192,0.16)] bg-[rgba(13,13,15,0.6)] text-[#C0C0C0] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(51, 51, 51,0.32)] hover:text-[#F8F8F8]"
                 >
                   <FaInstagram className="h-3.5 w-3.5" />
                 </a>
@@ -205,7 +205,7 @@ function FooterLink({
         href={href}
         className="group inline-flex items-center gap-2 text-[#D1D5DB] transition-colors duration-300 hover:text-[#F8F8F8]"
       >
-        <span className="h-px w-0 bg-[rgba(155,81,224,0.6)] transition-all duration-300 group-hover:w-3" />
+        <span className="h-px w-0 bg-[rgba(153, 153, 153,0.6)] transition-all duration-300 group-hover:w-3" />
         {children}
       </Link>
     </li>

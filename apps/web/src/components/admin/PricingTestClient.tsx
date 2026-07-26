@@ -46,7 +46,7 @@ export function PricingTestClient({ vehicleTypes }: { vehicleTypes: VehicleType[
     <div className="space-y-6">
       <div className="rounded-xl border p-6" style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}>
         <div className="flex items-center gap-2 mb-5">
-          <Calculator className="h-4 w-4" style={{ color: "#9B51E0" }} />
+          <Calculator className="h-4 w-4" style={{ color: "#999999" }} />
           <h2 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Fare Calculator</h2>
         </div>
         <p className="text-xs mb-5" style={{ color: labelColor }}>
@@ -131,7 +131,7 @@ export function PricingTestClient({ vehicleTypes }: { vehicleTypes: VehicleType[
                     </td>
                     <td className="px-4 py-3">
                       {v.discounted !== null ? (
-                        <span className="font-semibold" style={{ color: "#9B51E0" }}>
+                        <span className="font-semibold" style={{ color: "#999999" }}>
                           £{v.discounted.toFixed(2)}
                           <span className="ml-1 text-[10px]" style={{ color: labelColor }}>(-{v.promoDiscountPercent}%)</span>
                         </span>

@@ -124,7 +124,7 @@ export default async function LondonTaxiPage() {
                     <MapPin className="h-3.5 w-3.5 text-[#A5A7AA]" />
                     {area}
                   </span>
-                  <span className="text-[#9b51e0] opacity-60 transition group-hover:opacity-100">
+                  <span className="text-[#999999] opacity-60 transition group-hover:opacity-100">
                     →
                   </span>
                 </div>

@@ -43,7 +43,7 @@ function Calendar({
       className={cn(
         "bg-background group/calendar rounded-xl p-3 [--cell-size:2.45rem] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
         booking &&
-          "[--cell-size:3.35rem] min-w-[22.5rem] rounded-2xl border border-[rgba(192,192,192,0.12)] bg-[linear-gradient(165deg,rgba(38,38,44,0.98)_0%,rgba(20,20,24,0.99)_45%,rgba(14,14,18,1)_100%)] p-5 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.65),0_0_0_1px_rgba(75,0,130,0.12)]",
+          "[--cell-size:3.35rem] min-w-[22.5rem] rounded-2xl border border-[rgba(192,192,192,0.12)] bg-[linear-gradient(165deg,rgba(38,38,44,0.98)_0%,rgba(20,20,24,0.99)_45%,rgba(14,14,18,1)_100%)] p-5 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.65),0_0_0_1px_rgba(51, 51, 51,0.12)]",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className,
@@ -74,14 +74,14 @@ function Calendar({
           buttonVariants({ variant: buttonVariant }),
           "h-8 w-8 rounded-lg border border-white/10 bg-card select-none p-0 text-foreground shadow-sm hover:bg-muted aria-disabled:opacity-50",
           booking &&
-            "h-10 w-10 rounded-xl border-[rgba(192,192,192,0.14)] bg-[rgba(26,26,30,0.95)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] hover:border-[rgba(155,81,224,0.35)] hover:bg-[rgba(75,0,130,0.12)]",
+            "h-10 w-10 rounded-xl border-[rgba(192,192,192,0.14)] bg-[rgba(26,26,30,0.95)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] hover:border-[rgba(153, 153, 153,0.35)] hover:bg-[rgba(51, 51, 51,0.12)]",
           defaultClassNames.button_previous,
         ),
         button_next: cn(
           buttonVariants({ variant: buttonVariant }),
           "h-8 w-8 rounded-lg border border-white/10 bg-card select-none p-0 text-foreground shadow-sm hover:bg-muted aria-disabled:opacity-50",
           booking &&
-            "h-10 w-10 rounded-xl border-[rgba(192,192,192,0.14)] bg-[rgba(26,26,30,0.95)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] hover:border-[rgba(155,81,224,0.35)] hover:bg-[rgba(75,0,130,0.12)]",
+            "h-10 w-10 rounded-xl border-[rgba(192,192,192,0.14)] bg-[rgba(26,26,30,0.95)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] hover:border-[rgba(153, 153, 153,0.35)] hover:bg-[rgba(51, 51, 51,0.12)]",
           defaultClassNames.button_next,
         ),
         month_caption: cn(
@@ -242,7 +242,7 @@ function CalendarDayButton({
       className={cn(
         "data-[selected-single=true]:bg-highlight data-[selected-single=true]:text-highlight-foreground data-[selected-single=true]:shadow-sm data-[range-middle=true]:bg-highlight/25 data-[range-middle=true]:text-foreground data-[range-start=true]:bg-highlight data-[range-start=true]:text-highlight-foreground data-[range-end=true]:bg-highlight data-[range-end=true]:text-highlight-foreground group-data-[focused=true]/day:border-highlight/50 group-data-[focused=true]/day:ring-highlight/30 flex aspect-square h-auto w-full min-w-[--cell-size] flex-col gap-1 rounded-lg font-medium leading-none hover:bg-muted data-[range-end=true]:rounded-lg data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-lg group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-2 [&>span]:text-xs [&>span]:opacity-70",
         booking &&
-          "min-h-[--cell-size] rounded-xl text-[15px] font-semibold tracking-tight text-[#F0F0F0] hover:bg-[rgba(192,192,192,0.08)] data-[selected-single=true]:shadow-[0_6px_20px_-6px_rgba(75,0,130,0.55)] data-[selected-single=true]:ring-1 data-[selected-single=true]:ring-[rgba(192,192,192,0.2)]",
+          "min-h-[--cell-size] rounded-xl text-[15px] font-semibold tracking-tight text-[#F0F0F0] hover:bg-[rgba(192,192,192,0.08)] data-[selected-single=true]:shadow-[0_6px_20px_-6px_rgba(51, 51, 51,0.55)] data-[selected-single=true]:ring-1 data-[selected-single=true]:ring-[rgba(192,192,192,0.2)]",
         modifiers.outside &&
           "!text-muted-foreground/55 opacity-70 hover:bg-muted/40 data-[selected-single=true]:bg-muted data-[selected-single=true]:text-foreground",
         defaultClassNames.day,

@@ -43,7 +43,7 @@ export default async function MyBookingsPage() {
               <p className="text-[#D1D5DB]">You have no bookings yet.</p>
               <Link
                 href="/#quote"
-                className="mt-6 inline-flex h-11 items-center justify-center rounded-lg border border-[rgba(192,192,192,0.25)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] px-6 text-sm font-bold text-[#F8F8F8]"
+                className="mt-6 inline-flex h-11 items-center justify-center rounded-lg border border-[rgba(192,192,192,0.25)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] px-6 text-sm font-bold text-[#F8F8F8]"
               >
                 Book a transfer
               </Link>

@@ -42,7 +42,7 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData) {
 
           <!-- Header -->
           <tr>
-            <td style="background:linear-gradient(135deg,#5B0F9C,#4B0082);padding:32px 32px 24px;text-align:center;">
+            <td style="background:linear-gradient(135deg,#404040,#333333);padding:32px 32px 24px;text-align:center;">
               <h1 style="margin:0;color:#ffffff;font-size:22px;font-weight:800;letter-spacing:-0.5px;">BTS Transfers</h1>
               <p style="margin:8px 0 0;color:rgba(255,255,255,0.8);font-size:13px;">London's Premium Transfer Service</p>
             </td>
@@ -135,11 +135,11 @@ export async function sendContactNotificationEmail(data: {
     subject: `New contact message from ${data.name}`,
     html: `
       <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:24px;">
-        <h2 style="color:#4B0082;margin-bottom:16px;">New Contact Message</h2>
+        <h2 style="color:#333333;margin-bottom:16px;">New Contact Message</h2>
         <p><strong>Name:</strong> ${data.name}</p>
         <p><strong>Email:</strong> ${data.email}</p>
         ${data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : ""}
-        <div style="margin-top:16px;padding:16px;background:#f9fafb;border-radius:8px;border-left:4px solid #4B0082;">
+        <div style="margin-top:16px;padding:16px;background:#f9fafb;border-radius:8px;border-left:4px solid #333333;">
           <p style="margin:0;white-space:pre-wrap;">${data.message}</p>
         </div>
       </div>`,
@@ -154,7 +154,7 @@ export async function sendContactConfirmationEmail(data: { name: string; email: 
     subject: "We received your message — BTS Transfers",
     html: `
       <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:24px;">
-        <h2 style="color:#4B0082;">Thanks for getting in touch, ${data.name}!</h2>
+        <h2 style="color:#333333;">Thanks for getting in touch, ${data.name}!</h2>
         <p>We've received your message and will get back to you within <strong>24 hours</strong>.</p>
         <p style="color:#6b7280;font-size:13px;">BTS Transfers · London, United Kingdom</p>
       </div>`,
@@ -169,7 +169,7 @@ export async function sendDriverApplicationEmail(data: { name: string; email: st
     subject: "Application received — BTS Transfers",
     html: `
       <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:24px;">
-        <h2 style="color:#4B0082;">Hi ${data.name}, we've received your application!</h2>
+        <h2 style="color:#333333;">Hi ${data.name}, we've received your application!</h2>
         <p>Thank you for applying to drive with BTS Transfers. Our team will review your details and contact you within <strong>48 hours</strong>.</p>
         <p style="color:#6b7280;font-size:13px;">BTS Transfers · London, United Kingdom</p>
       </div>`,
@@ -187,11 +187,11 @@ export async function sendDriverApplicationAdminEmail(data: { name: string; emai
     subject: `New driver application from ${data.name}`,
     html: `
       <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:24px;">
-        <h2 style="color:#4B0082;">New Driver Application</h2>
+        <h2 style="color:#333333;">New Driver Application</h2>
         <p><strong>Name:</strong> ${data.name}</p>
         <p><strong>Email:</strong> ${data.email}</p>
         <p><strong>Phone:</strong> ${data.phone}</p>
-        <p style="margin-top:16px;"><a href="${process.env.NEXT_PUBLIC_APP_URL || ""}/admin/drivers" style="background:#4B0082;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold;">Review in Admin →</a></p>
+        <p style="margin-top:16px;"><a href="${process.env.NEXT_PUBLIC_APP_URL || ""}/admin/drivers" style="background:#333333;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold;">Review in Admin →</a></p>
       </div>`,
   });
 }

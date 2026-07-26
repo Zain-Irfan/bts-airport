@@ -17,7 +17,7 @@ export default async function AdminDashboardPage() {
     ]);
 
   const stats = [
-    { label: "Total Bookings", value: bookingCount, icon: CalendarCheck, color: "#9B51E0" },
+    { label: "Total Bookings", value: bookingCount, icon: CalendarCheck, color: "#999999" },
     { label: "Driver Applications", value: driverCount, icon: CarFront, color: "#3B82F6" },
     { label: "Users", value: userCount, icon: Users, color: "#10B981" },
     { label: "Messages", value: contactCount, icon: MessageSquare, color: "#F59E0B" },
@@ -55,7 +55,7 @@ export default async function AdminDashboardPage() {
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           <div className="rounded-xl border p-5" style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}>
             <div className="mb-4 flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-purple-500" />
+              <TrendingUp className="h-4 w-4 text-zinc-500" />
               <h3 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Pending Driver Applications</h3>
             </div>
             <p className="text-4xl font-bold" style={{ color: "var(--adm-text)" }}>{pendingDrivers}</p>
@@ -64,7 +64,7 @@ export default async function AdminDashboardPage() {
 
           <div className="rounded-xl border p-5" style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}>
             <div className="mb-4 flex items-center gap-2">
-              <Clock className="h-4 w-4 text-purple-500" />
+              <Clock className="h-4 w-4 text-zinc-500" />
               <h3 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Recent Bookings</h3>
             </div>
             {recentBookings.length === 0 ? (

@@ -143,14 +143,14 @@ export default function DriveWithUsPage() {
         <section className="BTS-hero-ambient BTS-luxury-section-3 BTS-grid-bg relative flex min-h-[70vh] items-center justify-center overflow-hidden py-20">
           <div className="container mx-auto max-w-lg px-4 text-center">
             <div className="BTS-card p-10">
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[rgba(75,0,130,0.25)] ring-1 ring-[rgba(155,81,224,0.35)]">
-                <CheckCircle2 className="h-10 w-10 text-[#9B51E0]" />
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[rgba(51, 51, 51,0.25)] ring-1 ring-[rgba(153, 153, 153,0.35)]">
+                <CheckCircle2 className="h-10 w-10 text-[#999999]" />
               </div>
               <h2 className="mb-3 text-2xl font-semibold text-[#F8F8F8]">Application Received!</h2>
               <p className="mb-8 text-sm leading-relaxed text-[#CFCFCF]">{message}</p>
               <a
                 href="/"
-                className="inline-flex h-11 items-center justify-center rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] px-8 text-sm font-semibold text-[#F8F8F8] transition-all hover:-translate-y-[1px]"
+                className="inline-flex h-11 items-center justify-center rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] px-8 text-sm font-semibold text-[#F8F8F8] transition-all hover:-translate-y-[1px]"
               >
                 Back to home
               </a>
@@ -320,8 +320,8 @@ export default function DriveWithUsPage() {
                   </label>
 
                   {licenseFile ? (
-                    <div className="flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-lg border border-[rgba(155,81,224,0.4)] bg-[rgba(155,81,224,0.08)] px-4 py-3">
-                      <FileText className="h-5 w-5 flex-none text-[#9B51E0]" />
+                    <div className="flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-lg border border-[rgba(153, 153, 153,0.4)] bg-[rgba(153, 153, 153,0.08)] px-4 py-3">
+                      <FileText className="h-5 w-5 flex-none text-[#999999]" />
                       <span className="w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-sm text-[#F8F8F8]">{licenseFile.name}</span>
                       <span className="flex-none text-xs text-[#A5A7AA]">
                         {(licenseFile.size / 1024).toFixed(0)} KB
@@ -337,10 +337,10 @@ export default function DriveWithUsPage() {
                   ) : (
                     <label
                       htmlFor="license-upload"
-                      className="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[rgba(192,192,192,0.25)] bg-[rgba(13,13,15,0.5)] px-4 py-8 transition hover:border-[rgba(155,81,224,0.5)] hover:bg-[rgba(155,81,224,0.06)]"
+                      className="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[rgba(192,192,192,0.25)] bg-[rgba(13,13,15,0.5)] px-4 py-8 transition hover:border-[rgba(153, 153, 153,0.5)] hover:bg-[rgba(153, 153, 153,0.06)]"
                     >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(75,0,130,0.2)] ring-1 ring-[rgba(155,81,224,0.3)] transition group-hover:bg-[rgba(75,0,130,0.3)]">
-                        <Upload className="h-5 w-5 text-[#9B51E0]" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(51, 51, 51,0.2)] ring-1 ring-[rgba(153, 153, 153,0.3)] transition group-hover:bg-[rgba(51, 51, 51,0.3)]">
+                        <Upload className="h-5 w-5 text-[#999999]" />
                       </div>
                       <div className="text-center">
                         <p className="text-sm font-medium text-[#F8F8F8]">Click to upload your licence</p>
@@ -362,7 +362,7 @@ export default function DriveWithUsPage() {
                   <input
                     type="checkbox" name="agree"
                     checked={agreed} onChange={(e) => setAgreed(e.target.checked)}
-                    className="mt-0.5 h-4 w-4 rounded border border-[rgba(192,192,192,0.22)] bg-[rgba(13,13,15,0.6)] accent-[#9B51E0]"
+                    className="mt-0.5 h-4 w-4 rounded border border-[rgba(192,192,192,0.22)] bg-[rgba(13,13,15,0.6)] accent-[#999999]"
                   />
                   <span>
                     I agree that BTS may contact me using the details provided above for the
@@ -373,7 +373,7 @@ export default function DriveWithUsPage() {
                 <button
                   type="submit"
                   disabled={!agreed || status === "loading"}
-                  className="mt-2 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] text-sm font-semibold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),inset_0_0_0_1px_rgba(75,0,130,0.4),0_10px_32px_-10px_rgba(75,0,130,0.55)] transition-all duration-500 hover:-translate-y-[1px] hover:border-[rgba(192,192,192,0.4)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),inset_0_0_0_1px_rgba(155,81,224,0.5),0_18px_48px_-10px_rgba(75,0,130,0.7),0_0_0_4px_rgba(75,0,130,0.18)] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-2 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] text-sm font-semibold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),inset_0_0_0_1px_rgba(51, 51, 51,0.4),0_10px_32px_-10px_rgba(51, 51, 51,0.55)] transition-all duration-500 hover:-translate-y-[1px] hover:border-[rgba(192,192,192,0.4)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),inset_0_0_0_1px_rgba(153, 153, 153,0.5),0_18px_48px_-10px_rgba(51, 51, 51,0.7),0_0_0_4px_rgba(51, 51, 51,0.18)] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {status === "loading" ? (
                     <><Loader2 className="h-4 w-4 animate-spin" />Submitting…</>
@@ -398,10 +398,10 @@ export default function DriveWithUsPage() {
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3 pt-1">
-      <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#9B51E0]">
+      <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#999999]">
         {children}
       </span>
-      <span className="h-px flex-1 bg-[rgba(155,81,224,0.25)]" />
+      <span className="h-px flex-1 bg-[rgba(153, 153, 153,0.25)]" />
     </div>
   );
 }

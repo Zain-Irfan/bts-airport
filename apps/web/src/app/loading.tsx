@@ -6,7 +6,7 @@ export default function RootLoading() {
         <div
           className="h-full w-full origin-left"
           style={{
-            background: "linear-gradient(90deg, #4B0082, #9B51E0, #C084FC)",
+            background: "linear-gradient(90deg, #333333, #999999, #C084FC)",
             animation: "adm-progress 1.4s ease-in-out infinite",
           }}
         />

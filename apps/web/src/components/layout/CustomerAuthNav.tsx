@@ -10,7 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const guestLinkClass =
-  "inline-flex rounded-full px-3 py-2 text-sm font-semibold text-[#A5A7AA] transition-colors duration-300 hover:bg-[rgba(75,0,130,0.18)] hover:text-[#F8F8F8] sm:px-4";
+  "inline-flex rounded-full px-3 py-2 text-sm font-semibold text-[#A5A7AA] transition-colors duration-300 hover:bg-[rgba(51, 51, 51,0.18)] hover:text-[#F8F8F8] sm:px-4";
 
 type Props = {
   /** Wrapper: hidden on phones (menu has auth); visible from md up with main nav */

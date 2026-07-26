@@ -75,7 +75,7 @@ const statusColors: Record<string, string> = {
   CONFIRMED: "bg-emerald-500/15 text-emerald-500",
   CANCELLED: "bg-red-500/15 text-red-500",
   COMPLETED: "bg-blue-500/15 text-blue-500",
-  IN_PROGRESS: "bg-purple-500/15 text-purple-400",
+  IN_PROGRESS: "bg-zinc-500/15 text-zinc-400",
   PENDING: "bg-amber-500/15 text-amber-500",
 };
 
@@ -282,7 +282,7 @@ export function BookingDetailModal({ booking, drivers, onClose, onUpdated, onDel
               onClick={save}
               disabled={saving}
               className="rounded-lg px-5 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
-              style={{ background: "linear-gradient(135deg,#5B0F9C,#4B0082)" }}
+              style={{ background: "linear-gradient(135deg,#404040,#333333)" }}
             >
               {saving ? "Saving…" : "Save changes"}
             </button>

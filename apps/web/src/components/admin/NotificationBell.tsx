@@ -108,7 +108,7 @@ export function NotificationBell() {
     CONFIRMED: "bg-emerald-500/15 text-emerald-500",
     CANCELLED: "bg-red-500/15 text-red-500",
     COMPLETED: "bg-blue-500/15 text-blue-500",
-    IN_PROGRESS: "bg-purple-500/15 text-purple-400",
+    IN_PROGRESS: "bg-zinc-500/15 text-zinc-400",
     PENDING: "bg-amber-500/15 text-amber-400",
   };
 
@@ -123,7 +123,7 @@ export function NotificationBell() {
       >
         <Bell className="h-[18px] w-[18px]" />
         {count > 0 && (
-          <span className="absolute -right-1 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[#9B51E0] px-1 text-[10px] font-bold text-white">
+          <span className="absolute -right-1 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[#999999] px-1 text-[10px] font-bold text-white">
             {count > 9 ? "9+" : count}
           </span>
         )}
@@ -153,7 +153,7 @@ export function NotificationBell() {
                 <button
                   onClick={markAllRead}
                   className="text-[11px] font-medium transition hover:opacity-70"
-                  style={{ color: "#9B51E0" }}
+                  style={{ color: "#999999" }}
                 >
                   Mark all read
                 </button>
@@ -169,14 +169,14 @@ export function NotificationBell() {
             <button
               onClick={() => setShowAll(false)}
               className="flex-1 py-2 text-xs font-semibold transition"
-              style={{ color: !showAll ? "#9B51E0" : textMuted, borderBottom: !showAll ? "2px solid #9B51E0" : "2px solid transparent" }}
+              style={{ color: !showAll ? "#999999" : textMuted, borderBottom: !showAll ? "2px solid #999999" : "2px solid transparent" }}
             >
               Unread {count > 0 && `(${count})`}
             </button>
             <button
               onClick={() => setShowAll(true)}
               className="flex-1 py-2 text-xs font-semibold transition"
-              style={{ color: showAll ? "#9B51E0" : textMuted, borderBottom: showAll ? "2px solid #9B51E0" : "2px solid transparent" }}
+              style={{ color: showAll ? "#999999" : textMuted, borderBottom: showAll ? "2px solid #999999" : "2px solid transparent" }}
             >
               All
             </button>
@@ -198,7 +198,7 @@ export function NotificationBell() {
                     style={{ borderColor: divider }}
                   >
                     {isNew && (
-                      <span className="absolute left-2 top-4 h-1.5 w-1.5 rounded-full bg-[#9B51E0]" />
+                      <span className="absolute left-2 top-4 h-1.5 w-1.5 rounded-full bg-[#999999]" />
                     )}
                     <div className="pl-2">
                       <div className="flex items-center justify-between gap-2 mb-1">
@@ -229,7 +229,7 @@ export function NotificationBell() {
             <a
               href="/admin/bookings"
               className="text-xs font-semibold transition hover:opacity-70"
-              style={{ color: "#9B51E0" }}
+              style={{ color: "#999999" }}
               onClick={() => setOpen(false)}
             >
               View all bookings →

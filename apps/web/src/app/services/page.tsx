@@ -101,7 +101,7 @@ export default function ServicesPage() {
                     href={s.href}
                     className="BTS-card group flex items-start gap-5 p-7 transition-all"
                   >
-                    <span className="BTS-icon-halo h-14 w-14 flex-none transition-all duration-300 group-hover:bg-[linear-gradient(135deg,rgba(192,192,192,0.18)_0%,rgba(75,0,130,0.35)_100%)] group-hover:border-[rgba(192,192,192,0.45)] group-hover:shadow-[0_0_16px_-4px_rgba(192,192,192,0.25)]">
+                    <span className="BTS-icon-halo h-14 w-14 flex-none transition-all duration-300 group-hover:bg-[linear-gradient(135deg,rgba(192,192,192,0.18)_0%,rgba(51, 51, 51,0.35)_100%)] group-hover:border-[rgba(192,192,192,0.45)] group-hover:shadow-[0_0_16px_-4px_rgba(192,192,192,0.25)]">
                       <Icon className="h-6 w-6" />
                     </span>
                     <div className="flex-1">

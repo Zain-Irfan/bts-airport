@@ -128,7 +128,7 @@ export default function AirportTransfersPage() {
                         {a.name}
                       </h3>
                     </div>
-                    <span className="BTS-icon-halo h-11 w-11 transition-all duration-300 group-hover:bg-[linear-gradient(135deg,rgba(192,192,192,0.18)_0%,rgba(75,0,130,0.35)_100%)] group-hover:border-[rgba(192,192,192,0.45)] group-hover:shadow-[0_0_16px_-4px_rgba(192,192,192,0.25)]">
+                    <span className="BTS-icon-halo h-11 w-11 transition-all duration-300 group-hover:bg-[linear-gradient(135deg,rgba(192,192,192,0.18)_0%,rgba(51, 51, 51,0.35)_100%)] group-hover:border-[rgba(192,192,192,0.45)] group-hover:shadow-[0_0_16px_-4px_rgba(192,192,192,0.25)]">
                       <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>
@@ -137,7 +137,7 @@ export default function AirportTransfersPage() {
                   </p>
                   <div className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#C0C0C0] transition-colors group-hover:text-[#F8F8F8]">
                     Book transfer
-                    <span className="h-px w-6 bg-[rgba(192,192,192,0.4)] transition-all duration-300 group-hover:w-10 group-hover:bg-[rgba(155,81,224,0.85)]" />
+                    <span className="h-px w-6 bg-[rgba(192,192,192,0.4)] transition-all duration-300 group-hover:w-10 group-hover:bg-[rgba(153, 153, 153,0.85)]" />
                   </div>
                 </Link>
               ))}

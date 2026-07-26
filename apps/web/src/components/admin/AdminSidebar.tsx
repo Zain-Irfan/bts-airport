@@ -55,13 +55,13 @@ export function AdminSidebar() {
   const textMuted = isLight ? "text-gray-500" : "text-[#A5A7AA]";
   const dividerBorder = isLight ? "border-gray-200" : "border-[rgba(192,192,192,0.08)]";
   const activeItem = isLight
-    ? "bg-purple-50 text-purple-900 shadow-[inset_0_0_0_1px_rgba(109,40,217,0.2)]"
-    : "bg-[rgba(75,0,130,0.2)] text-[#F8F8F8] shadow-[inset_0_0_0_1px_rgba(155,81,224,0.25)]";
+    ? "bg-zinc-50 text-zinc-900 shadow-[inset_0_0_0_1px_rgba(109,40,217,0.2)]"
+    : "bg-[rgba(51, 51, 51,0.2)] text-[#F8F8F8] shadow-[inset_0_0_0_1px_rgba(153, 153, 153,0.25)]";
   const inactiveItem = isLight
     ? "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
     : "text-[#A5A7AA] hover:bg-[rgba(192,192,192,0.06)] hover:text-[#F8F8F8]";
-  const activeIcon = isLight ? "text-purple-600" : "text-[#9B51E0]";
-  const activeDot = isLight ? "bg-purple-500" : "bg-[#9B51E0]";
+  const activeIcon = isLight ? "text-zinc-600" : "text-[#999999]";
+  const activeDot = isLight ? "bg-zinc-500" : "bg-[#999999]";
 
   useEffect(() => {
     closeMobileNav();

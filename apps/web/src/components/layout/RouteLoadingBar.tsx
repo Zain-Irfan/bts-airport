@@ -82,7 +82,7 @@ export function RouteLoadingBar() {
         <div className="relative flex items-center justify-center">
           {/* Outer slow ring */}
           <div
-            className="absolute rounded-full border border-[rgba(155,81,224,0.2)]"
+            className="absolute rounded-full border border-[rgba(153, 153, 153,0.2)]"
             style={{ width: 110, height: 110, animation: "rl-pulse 2s ease-in-out infinite" }}
           />
           {/* Mid spinning ring */}
@@ -92,10 +92,10 @@ export function RouteLoadingBar() {
               width: 90,
               height: 90,
               border: "2px solid transparent",
-              borderTopColor: "#9B51E0",
-              borderRightColor: "rgba(155,81,224,0.3)",
+              borderTopColor: "#999999",
+              borderRightColor: "rgba(153, 153, 153,0.3)",
               animation: "rl-spin 1s linear infinite",
-              filter: "drop-shadow(0 0 8px rgba(155,81,224,0.6))",
+              filter: "drop-shadow(0 0 8px rgba(153, 153, 153,0.6))",
             }}
           />
           {/* Inner counter-spin ring */}
@@ -113,7 +113,7 @@ export function RouteLoadingBar() {
           {/* Logo in center */}
           <div
             className="relative flex h-12 w-12 items-center justify-center rounded-xl overflow-hidden"
-            style={{ boxShadow: "0 0 24px rgba(75,0,130,0.6)" }}
+            style={{ boxShadow: "0 0 24px rgba(51, 51, 51,0.6)" }}
           >
             <Image src="/assets/logo.png" alt="BTS" width={48} height={48} className="h-12 w-12 object-cover" />
           </div>
@@ -126,7 +126,7 @@ export function RouteLoadingBar() {
               key={i}
               className="h-1.5 w-1.5 rounded-full"
               style={{
-                background: "#9B51E0",
+                background: "#999999",
                 animation: "rl-dot 1.2s ease-in-out infinite",
                 animationDelay: `${i * 0.2}s`,
               }}

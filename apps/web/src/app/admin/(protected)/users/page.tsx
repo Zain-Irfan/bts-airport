@@ -48,7 +48,7 @@ export default async function UsersPage() {
                     <td className="px-4 py-3" style={{ color: "var(--adm-text-sub)" }}>{u.email}</td>
                     <td className="px-4 py-3">
                       <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${
-                        u.role === "ADMIN" ? "bg-purple-500/15 text-purple-500"
+                        u.role === "ADMIN" ? "bg-zinc-500/15 text-zinc-500"
                           : u.role === "STAFF" ? "bg-blue-500/15 text-blue-500"
                           : "bg-gray-500/15 text-gray-500"
                       }`}>

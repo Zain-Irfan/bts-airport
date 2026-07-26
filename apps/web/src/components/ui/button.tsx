@@ -13,19 +13,19 @@ const buttonVariants = cva(
         // Premium deep-purple gradient CTA with silver/white text and luxury glow
         default:
           "border border-[rgba(192,192,192,0.22)] text-[#F8F8F8] " +
-          "bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] " +
-          "shadow-[inset_0_1px_0_rgba(192,192,192,0.18),inset_0_0_0_1px_rgba(75,0,130,0.4),0_10px_32px_-10px_rgba(75,0,130,0.55),0_4px_14px_-4px_rgba(0,0,0,0.55)] " +
+          "bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] " +
+          "shadow-[inset_0_1px_0_rgba(192,192,192,0.18),inset_0_0_0_1px_rgba(51, 51, 51,0.4),0_10px_32px_-10px_rgba(51, 51, 51,0.55),0_4px_14px_-4px_rgba(0,0,0,0.55)] " +
           "hover:border-[rgba(192,192,192,0.4)] hover:brightness-[1.08] " +
-          "hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),inset_0_0_0_1px_rgba(155,81,224,0.5),0_18px_48px_-10px_rgba(75,0,130,0.7),0_8px_22px_-4px_rgba(0,0,0,0.6),0_0_0_4px_rgba(75,0,130,0.18)] " +
+          "hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),inset_0_0_0_1px_rgba(153, 153, 153,0.5),0_18px_48px_-10px_rgba(51, 51, 51,0.7),0_8px_22px_-4px_rgba(0,0,0,0.6),0_0_0_4px_rgba(51, 51, 51,0.18)] " +
           "active:brightness-[0.98]",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm border-destructive-border",
         outline:
-          "btn-outline border border-[rgba(192,192,192,0.25)] bg-[rgba(75,0,130,0.08)] text-foreground shadow-none backdrop-blur-sm hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(75,0,130,0.16)] active:shadow-none",
+          "btn-outline border border-[rgba(192,192,192,0.25)] bg-[rgba(51, 51, 51,0.08)] text-foreground shadow-none backdrop-blur-sm hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(51, 51, 51,0.16)] active:shadow-none",
         secondary:
-          "border border-secondary-border bg-secondary text-secondary-foreground hover:bg-[rgba(75,0,130,0.18)] hover:border-[rgba(192,192,192,0.22)]",
+          "border border-secondary-border bg-secondary text-secondary-foreground hover:bg-[rgba(51, 51, 51,0.18)] hover:border-[rgba(192,192,192,0.22)]",
         ghost:
-          "border border-transparent text-foreground hover:bg-[rgba(75,0,130,0.12)] hover:text-foreground",
+          "border border-transparent text-foreground hover:bg-[rgba(51, 51, 51,0.12)] hover:text-foreground",
         link: "border-transparent text-highlight underline-offset-4 hover:underline",
       },
       size: {

@@ -23,7 +23,7 @@ type Props = {
 };
 
 const menuItemClass =
-  "flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-[#D1D5DB] transition-colors hover:bg-[rgba(75,0,130,0.22)] hover:text-[#F8F8F8]";
+  "flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-[#D1D5DB] transition-colors hover:bg-[rgba(51, 51, 51,0.22)] hover:text-[#F8F8F8]";
 
 export function CustomerAccountMenu({ onNavigate, className }: Props) {
   const { data: session } = useSession();
@@ -40,14 +40,14 @@ export function CustomerAccountMenu({ onNavigate, className }: Props) {
           className={cn(
             "inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border border-[rgba(192,192,192,0.22)]",
             "bg-[rgba(13,13,15,0.6)] px-2 py-1.5 text-sm font-semibold text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.08)]",
-            "transition hover:border-[rgba(192,192,192,0.38)] hover:bg-[rgba(75,0,130,0.18)]",
+            "transition hover:border-[rgba(192,192,192,0.38)] hover:bg-[rgba(51, 51, 51,0.18)]",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--highlight)/0.4)]",
             className,
           )}
           aria-label="Account menu"
         >
           <span
-            className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_100%)] text-[11px] font-bold tracking-tight text-[#F8F8F8]"
+            className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[linear-gradient(135deg,#404040_0%,#333333_100%)] text-[11px] font-bold tracking-tight text-[#F8F8F8]"
             aria-hidden
           >
             {initials}
@@ -98,7 +98,7 @@ export function StaffAccountMenu({ onNavigate, className }: Props) {
           className={cn(
             "inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border border-[rgba(192,192,192,0.22)]",
             "bg-[rgba(13,13,15,0.6)] px-3 py-1.5 text-sm font-semibold text-[#F8F8F8]",
-            "transition hover:border-[rgba(192,192,192,0.38)] hover:bg-[rgba(75,0,130,0.18)]",
+            "transition hover:border-[rgba(192,192,192,0.38)] hover:bg-[rgba(51, 51, 51,0.18)]",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--highlight)/0.4)]",
             className,
           )}

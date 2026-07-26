@@ -33,11 +33,11 @@ const ROW1 = REVIEWS;
 function ReviewCard({ review }: { review: typeof REVIEWS[0] }) {
   const initials = review.name.split(" ").map(n => n[0]).join("").slice(0, 2);
   const colors = [
-    { bg: "rgba(75,0,130,0.35)",   text: "#C084FC" },
-    { bg: "rgba(0,100,100,0.35)",  text: "#5EEAD4" },
-    { bg: "rgba(120,50,0,0.35)",   text: "#FDBA74" },
-    { bg: "rgba(0,60,120,0.35)",   text: "#93C5FD" },
-    { bg: "rgba(100,0,60,0.35)",   text: "#F9A8D4" },
+    { bg: "rgba(51,51,51,0.55)",   text: "#F8F8F8" },
+    { bg: "rgba(64,64,64,0.55)",   text: "#E5E7EB" },
+    { bg: "rgba(38,38,38,0.55)",   text: "#D4D4D4" },
+    { bg: "rgba(58,58,58,0.55)",   text: "#F0F0F0" },
+    { bg: "rgba(45,45,45,0.55)",   text: "#CFCFCF" },
   ];
   const color = colors[review.name.charCodeAt(0) % colors.length];
 
@@ -47,7 +47,7 @@ function ReviewCard({ review }: { review: typeof REVIEWS[0] }) {
       <div className="flex items-center justify-between">
         <div className="flex gap-0.5">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} className="h-4 w-4 fill-[#FBBF24] text-[#FBBF24]" />
+            <Star key={i} className="h-4 w-4 fill-[#E5E7EB] text-[#E5E7EB]" />
           ))}
         </div>
         {/* Google-style G */}

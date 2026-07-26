@@ -34,7 +34,7 @@ export default async function DriverDetailPage({ params }: { params: Promise<{ i
     CONFIRMED: "bg-emerald-500/15 text-emerald-500",
     CANCELLED: "bg-red-500/15 text-red-500",
     COMPLETED: "bg-blue-500/15 text-blue-500",
-    IN_PROGRESS: "bg-purple-500/15 text-purple-400",
+    IN_PROGRESS: "bg-zinc-500/15 text-zinc-400",
     PENDING: "bg-amber-500/15 text-amber-500",
   };
 
@@ -159,7 +159,7 @@ export default async function DriverDetailPage({ params }: { params: Promise<{ i
               <div className="border-b px-5 py-4 flex items-center gap-2" style={{ borderColor: "var(--adm-border)" }}>
                 <Calendar className="h-4 w-4" style={{ color: "var(--adm-text-muted)" }} />
                 <h3 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Assigned Bookings</h3>
-                <span className="ml-auto rounded-full px-2 py-0.5 text-[10px] font-bold bg-purple-500/15 text-purple-400">
+                <span className="ml-auto rounded-full px-2 py-0.5 text-[10px] font-bold bg-zinc-500/15 text-zinc-400">
                   {driver.bookings.length}
                 </span>
               </div>

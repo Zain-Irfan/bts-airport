@@ -83,7 +83,7 @@ export function AddUserForm() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="h-10 w-full rounded-lg border px-3 text-sm outline-none transition focus:border-[rgba(155,81,224,0.5)]"
+                className="h-10 w-full rounded-lg border px-3 text-sm outline-none transition focus:border-[rgba(153, 153, 153,0.5)]"
                 style={inputStyle}
                 placeholder="Full name"
               />
@@ -97,7 +97,7 @@ export function AddUserForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="h-10 w-full rounded-lg border px-3 text-sm outline-none transition focus:border-[rgba(155,81,224,0.5)]"
+                className="h-10 w-full rounded-lg border px-3 text-sm outline-none transition focus:border-[rgba(153, 153, 153,0.5)]"
                 style={inputStyle}
                 placeholder="user@example.com"
               />
@@ -112,7 +112,7 @@ export function AddUserForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-                className="h-10 w-full rounded-lg border px-3 text-sm outline-none transition focus:border-[rgba(155,81,224,0.5)]"
+                className="h-10 w-full rounded-lg border px-3 text-sm outline-none transition focus:border-[rgba(153, 153, 153,0.5)]"
                 style={inputStyle}
                 placeholder="Min 6 characters"
               />
@@ -124,7 +124,7 @@ export function AddUserForm() {
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="h-10 w-full rounded-lg border px-3 text-sm outline-none transition focus:border-[rgba(155,81,224,0.5)]"
+                className="h-10 w-full rounded-lg border px-3 text-sm outline-none transition focus:border-[rgba(153, 153, 153,0.5)]"
                 style={inputStyle}
               >
                 <option value="USER">User</option>

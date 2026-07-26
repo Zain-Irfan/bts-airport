@@ -439,7 +439,7 @@ export default function HomePageClient() {
                   <p className="text-sm text-[#CFCFCF]">{airport.desc}</p>
                   <div className="flex items-center gap-2 pt-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#C0C0C0] transition-colors group-hover:text-[#F8F8F8]">
                     Book transfer
-                    <span aria-hidden className="text-[#9b51e0]">&rarr;</span>
+                    <span aria-hidden className="text-[#999999]">&rarr;</span>
                   </div>
                 </div>
               </Link>
@@ -567,7 +567,7 @@ export default function HomePageClient() {
               <img
                 src="/app-mockup.jpg"
                 alt="App Mockup"
-                className="relative z-10 w-[280px] h-[580px] object-cover rounded-[3rem] border-[8px] border-[rgba(192,192,192,0.18)] shadow-[0_36px_88px_-28px_rgba(0,0,0,0.75),0_18px_52px_-12px_rgba(75,0,130,0.55)]"
+                className="relative z-10 w-[280px] h-[580px] object-cover rounded-[3rem] border-[8px] border-[rgba(192,192,192,0.18)] shadow-[0_36px_88px_-28px_rgba(0,0,0,0.75),0_18px_52px_-12px_rgba(51, 51, 51,0.55)]"
               />
             </div>
           </div>

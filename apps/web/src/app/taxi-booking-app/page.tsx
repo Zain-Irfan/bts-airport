@@ -95,7 +95,7 @@ export default async function TaxiBookingAppPage() {
               <div className="flex flex-wrap gap-4 pt-2">
                 <a
                   href="#"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#5B0F9C_0%,#4B0082_55%,#3B0A57_100%)] px-6 text-sm font-semibold text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_10px_28px_-10px_rgba(75,0,130,0.55)] transition hover:-translate-y-[1px]"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] px-6 text-sm font-semibold text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_10px_28px_-10px_rgba(51, 51, 51,0.55)] transition hover:-translate-y-[1px]"
                 >
                   <Apple className="h-4 w-4" />
                   App Store
@@ -114,7 +114,7 @@ export default async function TaxiBookingAppPage() {
               <img
                 src="/app-mockup.jpg"
                 alt="BTS app preview"
-                className="relative z-10 h-[420px] w-[230px] rounded-[2.5rem] border-[8px] border-[rgba(192,192,192,0.18)] object-cover shadow-[0_36px_88px_-28px_rgba(0,0,0,0.75),0_18px_52px_-12px_rgba(75,0,130,0.55)]"
+                className="relative z-10 h-[420px] w-[230px] rounded-[2.5rem] border-[8px] border-[rgba(192,192,192,0.18)] object-cover shadow-[0_36px_88px_-28px_rgba(0,0,0,0.75),0_18px_52px_-12px_rgba(51, 51, 51,0.55)]"
               />
             </div>
           </div>

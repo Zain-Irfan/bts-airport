@@ -41,7 +41,7 @@ const statusColors: Record<string, string> = {
   CONFIRMED: "bg-emerald-500/15 text-emerald-500",
   CANCELLED: "bg-red-500/15 text-red-500",
   COMPLETED: "bg-blue-500/15 text-blue-500",
-  IN_PROGRESS: "bg-purple-500/15 text-purple-400",
+  IN_PROGRESS: "bg-zinc-500/15 text-zinc-400",
   PENDING: "bg-amber-500/15 text-amber-500",
 };
 
@@ -108,7 +108,7 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
             <button
               onClick={() => setCreating(true)}
               className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110"
-              style={{ background: "linear-gradient(135deg,#5B0F9C,#4B0082)" }}
+              style={{ background: "linear-gradient(135deg,#404040,#333333)" }}
             >
               <Plus className="h-4 w-4" />
               New Booking
