@@ -1,4 +1,5 @@
 ﻿import { Mail, Phone, Clock, Headphones } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
@@ -6,7 +7,7 @@ import { getSiteSettings } from "@/lib/site-settings";
 import { telHref } from "@/lib/phone";
 
 export default async function HelpAndSupportPage() {
-  const { phone } = await getSiteSettings();
+  const { phone, whatsapp, email } = await getSiteSettings();
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteTopHeader />
@@ -49,23 +50,23 @@ export default async function HelpAndSupportPage() {
                 <ChannelCard
                   icon={<Phone className="h-5 w-5" />}
                   label="Call us"
-                  primary="+44 7700 1409 00"
+                  primary={phone}
                   secondary="Bookings &amp; immediate help"
-                  href="tel:+447700140900"
+                  href={telHref(phone)}
                 />
                 <ChannelCard
-                  icon={<Phone className="h-5 w-5" />}
-                  label="Support line"
-                  primary={phone}
-                  secondary="Existing journey support"
-                  href={telHref(phone)}
+                  icon={<FaWhatsapp className="h-5 w-5" style={{ color: "#25D366" }} />}
+                  label="WhatsApp"
+                  primary="Chat on WhatsApp"
+                  secondary="Fast replies, day &amp; night"
+                  href={`https://wa.me/${whatsapp}`}
                 />
                 <ChannelCard
                   icon={<Mail className="h-5 w-5" />}
                   label="Email"
-                  primary="support@BTS.uk"
+                  primary={email}
                   secondary="Replies within the hour"
-                  href="mailto:support@BTS.uk"
+                  href={`mailto:${email}`}
                 />
                 <ChannelCard
                   icon={<Clock className="h-5 w-5" />}
