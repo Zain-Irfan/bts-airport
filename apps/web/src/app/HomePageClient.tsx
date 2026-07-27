@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSiteSettings } from "@/components/providers/SiteSettingsProvider";
+import { telHref } from "@/lib/phone";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { Button } from "@/components/ui/button";
@@ -83,29 +84,29 @@ export default function HomePageClient() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <div className="flex items-center gap-3">
+                <a href={telHref(phone)} className="flex items-center gap-3 transition-opacity hover:opacity-80">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-highlight/20 ring-1 ring-highlight/40">
                     <Phone className="h-5 w-5 text-highlight" />
                   </div>
                   <div>
                     <p className="text-xs text-highlight/90 uppercase tracking-wider">
-                      Book by Phone
-                    </p>
-                    <p className="text-base font-bold sm:text-lg">+44 7700 1409 00</p>
-                  </div>
-                </div>
-                <div className="hidden sm:block w-px bg-primary-foreground/20"></div>
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-highlight/20 ring-1 ring-highlight/40">
-                    <Phone className="h-5 w-5 text-highlight" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-highlight/90 uppercase tracking-wider">
-                      Support
+                      Call us
                     </p>
                     <p className="text-base font-bold sm:text-lg">{phone}</p>
                   </div>
-                </div>
+                </a>
+                <div className="hidden sm:block w-px bg-primary-foreground/20"></div>
+                <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-opacity hover:opacity-80">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-highlight/20 ring-1 ring-highlight/40">
+                    <FaWhatsapp className="h-5 w-5" style={{ color: "#25D366" }} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-highlight/90 uppercase tracking-wider">
+                      WhatsApp
+                    </p>
+                    <p className="text-base font-bold sm:text-lg">Chat with us</p>
+                  </div>
+                </a>
               </div>
             </div>
 

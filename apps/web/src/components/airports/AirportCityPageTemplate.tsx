@@ -117,7 +117,7 @@ const VALUE_PROPS = [
 ];
 
 export async function AirportCityPageTemplate({ content }: { content: AirportCityContent }) {
-  const { whatsapp } = await getSiteSettings();
+  const { whatsapp, phone } = await getSiteSettings();
   const story = content.storyImages ?? DEFAULT_STORY_IMAGES;
 
   return (
@@ -163,7 +163,7 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
               <div className="flex flex-col gap-3 text-sm text-[#C0C0C0] sm:flex-row sm:items-center">
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4" />
-                  +44 7700 1409 00
+                  {phone}
                 </div>
                 <div className="hidden h-4 w-px bg-[rgba(192,192,192,0.22)] sm:block" />
                 <div className="flex items-center gap-2">

@@ -121,7 +121,7 @@ const faqs = [
 ];
 
 export default async function TaxiFareCalculatorPage() {
-  const { whatsapp } = await getSiteSettings();
+  const { whatsapp, phone } = await getSiteSettings();
   return (
     <div className="min-h-screen bg-background text-foreground">
       <a
@@ -157,7 +157,7 @@ export default async function TaxiFareCalculatorPage() {
               </p>
               <div className="flex items-center gap-2 pt-1 text-sm text-[#C0C0C0]">
                 <Phone className="h-4 w-4" />
-                +44 7700 1409 00
+                {phone}
               </div>
             </div>
             <div id="quote">
