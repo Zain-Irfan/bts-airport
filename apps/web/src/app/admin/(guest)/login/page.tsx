@@ -33,13 +33,11 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ background: "linear-gradient(135deg,#F3F0FF 0%,#EEF2FF 50%,#F0F9FF 100%)" }}>
+    <div className="flex min-h-screen items-center justify-center" style={{ background: "linear-gradient(135deg,#F5F5F5 0%,#EEEEEE 50%,#F3F4F6 100%)" }}>
       <div className="w-full max-w-md px-4">
         {/* Logo */}
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-48 items-center justify-center rounded-2xl bg-[#0D0D0F] px-4">
-            <Image src="/assets/logo.jpeg" alt="London Airport Taxi Services Logo" width={160} height={56} className="h-12 w-auto object-contain" />
-          </div>
+          <Image src="/assets/logo.jpeg" alt="London Airport Taxi Services Logo" width={200} height={200} className="mx-auto mb-4 h-20 w-20 rounded-2xl object-contain" priority />
           <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#111827" }}>Admin Panel</h1>
           <p className="mt-2 text-sm" style={{ color: "#6B7280" }}>Sign in to manage your platform</p>
         </div>

@@ -101,8 +101,8 @@ export function AdminSidebar() {
       >
         <div className={`flex h-14 shrink-0 items-center justify-between border-b px-3 sm:h-16 sm:px-4 ${dividerBorder}`}>
           <Link href="/admin" className="flex min-w-0 items-center gap-3" onClick={closeMobileNav}>
-            <div className={`flex h-9 w-9 flex-none items-center justify-center rounded-lg overflow-hidden ${isLight ? "bg-[#0D0D0F]" : "bg-transparent"}`}>
-              <Image src="/assets/logo.jpeg" alt="London Airport Taxi Services Logo" width={36} height={36} className="h-9 w-9 object-contain" style={{ mixBlendMode: isLight ? "normal" : "screen" }} />
+            <div className="flex h-9 w-9 flex-none items-center justify-center overflow-hidden rounded-lg bg-white ring-1 ring-black/10">
+              <Image src="/assets/logo.jpeg" alt="London Airport Taxi Services Logo" width={36} height={36} className="h-9 w-9 object-contain" />
             </div>
             {(!sidebarCollapsed || mobileNavOpen) && (
               <div className="min-w-0 leading-tight">
