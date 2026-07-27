@@ -40,9 +40,9 @@ export default function SouthendAirportTransfersPage() {
           "Book ahead to stay fully in control of every transfer leg.",
         ],
         gateway: [
-          "BTS makes Southend transfers simple — one pre-booked ride from terminal to your destination.",
+          "London Airport Taxi Services makes Southend transfers simple — one pre-booked ride from terminal to your destination.",
           "Our team coordinates timing and logistics so you can focus on travelling, not on transport.",
-          "Choose BTS for a reliable, comfortable, and well-priced Southend airport transfer.",
+          "Choose London Airport Taxi Services for a reliable, comfortable, and well-priced Southend airport transfer.",
         ],
         faqs: [
           {

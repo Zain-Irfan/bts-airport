@@ -54,7 +54,7 @@ export function ContactForm() {
       >
         <p className="text-sm font-semibold text-emerald-200">Message sent</p>
         <p className="mt-2 text-sm text-[#D1D5DB]">
-          Thanks for contacting BTS. We&apos;ll get back to you as soon as we can.
+          Thanks for contacting London Airport Taxi Services. We&apos;ll get back to you as soon as we can.
         </p>
         <button
           type="button"

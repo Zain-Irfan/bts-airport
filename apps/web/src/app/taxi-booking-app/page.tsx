@@ -20,7 +20,7 @@ const featureItems = [
 ];
 
 const howItWorks = [
-  "Download the BTS Taxi App from your preferred app store.",
+  "Download the London Airport Taxi Services Taxi App from your preferred app store.",
   "Create your account and verify your mobile number securely.",
   "Enter pickup and destination details to get an instant quote.",
   "Choose your vehicle type and confirm the booking.",
@@ -29,15 +29,15 @@ const howItWorks = [
 
 const faqs = [
   {
-    q: "What is the BTS Taxi App?",
+    q: "What is the London Airport Taxi Services Taxi App?",
     a: "A premium ride booking experience for pre-booked London taxis with live tracking, fixed fares and account-wide booking history.",
   },
   {
-    q: "Is there any booking fee while using the BTS app?",
-    a: "No booking fees are added when you reserve through the BTS app. The quoted price is the final fare.",
+    q: "Is there any booking fee while using the London Airport Taxi Services app?",
+    a: "No booking fees are added when you reserve through the London Airport Taxi Services app. The quoted price is the final fare.",
   },
   {
-    q: "How do I book a taxi using the BTS app?",
+    q: "How do I book a taxi using the London Airport Taxi Services app?",
     a: "Enter pickup and dropoff, choose your vehicle class, confirm your details, and pay securely in-app.",
   },
   {
@@ -45,7 +45,7 @@ const faqs = [
     a: "Yes — the app shows a transparent fixed quote before you confirm. No surge or hidden charges.",
   },
   {
-    q: "Does BTS offer airport transfers?",
+    q: "Does London Airport Taxi Services offer airport transfers?",
     a: "Yes — flight-monitored airport transfers across Heathrow, Gatwick, Luton, Stansted, City and Southend.",
   },
   {
@@ -53,8 +53,8 @@ const faqs = [
     a: "View, amend, or cancel any booking from your dashboard, and re-book past journeys with one tap.",
   },
   {
-    q: "Is the BTS app available across all London?",
-    a: "Yes — BTS covers all London zones plus major UK airport routes.",
+    q: "Is the London Airport Taxi Services app available across all London?",
+    a: "Yes — London Airport Taxi Services covers all London zones plus major UK airport routes.",
   },
   {
     q: "Is customer support available in the app?",
@@ -83,9 +83,9 @@ export default async function TaxiBookingAppPage() {
         <div className="container mx-auto px-4">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="space-y-6">
-              <span className="BTS-pill">BTS app</span>
+              <span className="BTS-pill">London Airport Taxi Services app</span>
               <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
-                Travel smarter with the trusted BTS taxi app
+                Travel smarter with the trusted London Airport Taxi Services taxi app
               </h1>
               <p className="max-w-xl text-[15px] leading-relaxed text-[#CFCFCF]">
                 Book rides, track drivers live, and manage your journeys in
@@ -113,7 +113,7 @@ export default async function TaxiBookingAppPage() {
               <div className="absolute top-1/2 left-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(45,45,51,0.6)] blur-3xl opacity-50"></div>
               <img
                 src="/app-mockup.jpg"
-                alt="BTS app preview"
+                alt="London Airport Taxi Services app preview"
                 className="relative z-10 h-[420px] w-[230px] rounded-[2.5rem] border-[8px] border-[rgba(192,192,192,0.18)] object-cover shadow-[0_36px_88px_-28px_rgba(0,0,0,0.75),0_18px_52px_-12px_rgba(51, 51, 51,0.55)]"
               />
             </div>
@@ -174,7 +174,7 @@ export default async function TaxiBookingAppPage() {
           <div className="BTS-purple-glow relative h-[420px] overflow-hidden rounded-2xl">
             <img
               src="/app-mockup.jpg"
-              alt="How the BTS app works"
+              alt="How the London Airport Taxi Services app works"
               className="h-full w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
@@ -191,7 +191,7 @@ export default async function TaxiBookingAppPage() {
           </h2>
           <div className="BTS-divider mx-auto mt-6 w-24" />
           <p className="mt-6 text-[15px] leading-relaxed text-[#CFCFCF]">
-            The BTS app gives you a refined, secure way to schedule rides
+            The London Airport Taxi Services app gives you a refined, secure way to schedule rides
             across London — airport transfers, station pickups, hotel runs,
             and corporate journeys, all in one polished experience.
           </p>

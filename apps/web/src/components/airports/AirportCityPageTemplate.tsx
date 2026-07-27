@@ -105,7 +105,7 @@ const VALUE_PROPS = [
     icon: Car,
   },
   {
-    title: "Why choose BTS",
+    title: "Why choose London Airport Taxi Services",
     desc: "Licensed drivers, premium fleet, monitored journeys — built around your trip.",
     icon: ThumbsUp,
   },
@@ -307,7 +307,7 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
           <div className="space-y-5">
             <span className="BTS-pill">Gateway</span>
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              BTS: your gateway to {content.airportName}
+              London Airport Taxi Services: your gateway to {content.airportName}
             </h2>
             {content.gateway.map((p, i) => (
               <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
@@ -342,7 +342,7 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
       <section className="BTS-section-charcoal relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="BTS-pill">Why BTS</span>
+            <span className="BTS-pill">Why London Airport Taxi Services</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Transfers to and from {content.airportName}
             </h2>

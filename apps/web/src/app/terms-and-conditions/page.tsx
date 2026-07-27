@@ -52,7 +52,7 @@ export default function TermsAndConditionsPage() {
           </h1>
           <div className="BTS-divider mx-auto mt-6 w-24" />
           <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-[#CFCFCF]">
-            The agreements and policies that govern every BTS booking,
+            The agreements and policies that govern every London Airport Taxi Services booking,
             cancellation, and customer interaction.
           </p>
         </div>

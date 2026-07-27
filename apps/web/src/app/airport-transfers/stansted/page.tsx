@@ -42,7 +42,7 @@ export default function StanstedAirportTransfersPage() {
         gateway: [
           "Plan your Stansted ride in advance and travel with confidence from terminal to destination.",
           "Our service includes flight tracking, professional support, and smooth pickups.",
-          "Choose BTS for a reliable and comfortable Stansted airport transfer.",
+          "Choose London Airport Taxi Services for a reliable and comfortable Stansted airport transfer.",
         ],
         faqs: [
           {

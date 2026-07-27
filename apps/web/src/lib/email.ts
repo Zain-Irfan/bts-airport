@@ -5,7 +5,7 @@ function getResend(): Resend {
   if (!_resend) _resend = new Resend(process.env.RESEND_API_KEY ?? "placeholder");
   return _resend;
 }
-const FROM = process.env.EMAIL_FROM || "BTS Transfers <bookings@bts.uk>";
+const FROM = process.env.EMAIL_FROM || "London Airport Taxi Services Transfers <bookings@bts.uk>";
 
 export type BookingEmailData = {
   customerName: string;
@@ -43,7 +43,7 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData) {
           <!-- Header -->
           <tr>
             <td style="background:linear-gradient(135deg,#404040,#333333);padding:32px 32px 24px;text-align:center;">
-              <h1 style="margin:0;color:#ffffff;font-size:22px;font-weight:800;letter-spacing:-0.5px;">BTS Transfers</h1>
+              <h1 style="margin:0;color:#ffffff;font-size:22px;font-weight:800;letter-spacing:-0.5px;">London Airport Taxi Services Transfers</h1>
               <p style="margin:8px 0 0;color:rgba(255,255,255,0.8);font-size:13px;">London's Premium Transfer Service</p>
             </td>
           </tr>
@@ -61,7 +61,7 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData) {
             <td style="padding:28px 32px;">
               <p style="margin:0 0 20px;color:#374151;font-size:14px;">Hi <strong>${data.customerName}</strong>,</p>
               <p style="margin:0 0 24px;color:#374151;font-size:14px;line-height:1.6;">
-                Thank you for booking with BTS Transfers. Here are your booking details:
+                Thank you for booking with London Airport Taxi Services Transfers. Here are your booking details:
               </p>
 
               <!-- Booking ref -->
@@ -101,7 +101,7 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData) {
           <!-- Footer -->
           <tr>
             <td style="background:#f9fafb;padding:20px 32px;border-top:1px solid #e5e7eb;text-align:center;">
-              <p style="margin:0;color:#9ca3af;font-size:12px;">BTS Transfers · London, United Kingdom</p>
+              <p style="margin:0;color:#9ca3af;font-size:12px;">London Airport Taxi Services Transfers · London, United Kingdom</p>
               <p style="margin:6px 0 0;color:#9ca3af;font-size:11px;">This is an automated confirmation email.</p>
             </td>
           </tr>
@@ -151,12 +151,12 @@ export async function sendContactConfirmationEmail(data: { name: string; email: 
   await getResend().emails.send({
     from: FROM,
     to: data.email,
-    subject: "We received your message — BTS Transfers",
+    subject: "We received your message — London Airport Taxi Services Transfers",
     html: `
       <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:24px;">
         <h2 style="color:#333333;">Thanks for getting in touch, ${data.name}!</h2>
         <p>We've received your message and will get back to you within <strong>24 hours</strong>.</p>
-        <p style="color:#6b7280;font-size:13px;">BTS Transfers · London, United Kingdom</p>
+        <p style="color:#6b7280;font-size:13px;">London Airport Taxi Services Transfers · London, United Kingdom</p>
       </div>`,
   });
 }
@@ -166,12 +166,12 @@ export async function sendDriverApplicationEmail(data: { name: string; email: st
   await getResend().emails.send({
     from: FROM,
     to: data.email,
-    subject: "Application received — BTS Transfers",
+    subject: "Application received — London Airport Taxi Services Transfers",
     html: `
       <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:24px;">
         <h2 style="color:#333333;">Hi ${data.name}, we've received your application!</h2>
-        <p>Thank you for applying to drive with BTS Transfers. Our team will review your details and contact you within <strong>48 hours</strong>.</p>
-        <p style="color:#6b7280;font-size:13px;">BTS Transfers · London, United Kingdom</p>
+        <p>Thank you for applying to drive with London Airport Taxi Services Transfers. Our team will review your details and contact you within <strong>48 hours</strong>.</p>
+        <p style="color:#6b7280;font-size:13px;">London Airport Taxi Services Transfers · London, United Kingdom</p>
       </div>`,
   });
 }
@@ -204,17 +204,17 @@ export async function sendDriverStatusEmail(data: {
   await getResend().emails.send({
     from: FROM,
     to: data.email,
-    subject: approved ? "Your application has been approved — BTS Transfers" : "Update on your BTS Transfers application",
+    subject: approved ? "Your application has been approved — London Airport Taxi Services Transfers" : "Update on your London Airport Taxi Services Transfers application",
     html: `
       <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:24px;">
         <h2 style="color:${approved ? "#065f46" : "#991b1b"};">${approved ? "🎉 Congratulations, you're approved!" : "Application update"}</h2>
         <p>Hi ${data.name},</p>
         ${approved
-          ? `<p>Your driver application has been <strong>approved</strong>. Welcome to BTS Transfers! Our team will be in touch with next steps.</p>`
+          ? `<p>Your driver application has been <strong>approved</strong>. Welcome to London Airport Taxi Services Transfers! Our team will be in touch with next steps.</p>`
           : `<p>Unfortunately your application was <strong>not approved</strong> at this time.</p>`
         }
         ${data.reviewNotes ? `<div style="margin-top:12px;padding:12px;background:#f9fafb;border-radius:8px;"><strong>Notes:</strong> ${data.reviewNotes}</div>` : ""}
-        <p style="color:#6b7280;font-size:13px;margin-top:24px;">BTS Transfers · London, United Kingdom</p>
+        <p style="color:#6b7280;font-size:13px;margin-top:24px;">London Airport Taxi Services Transfers · London, United Kingdom</p>
       </div>`,
   });
 }

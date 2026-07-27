@@ -42,7 +42,7 @@ export default function LondonCityAirportTransfersPage() {
         gateway: [
           "Navigate London City Airport transfers with confidence through our pre-booked, professional taxi service.",
           "We simplify pickups, luggage support, and timely drop-offs across London locations.",
-          "Choose BTS for a smooth, premium, and dependable transfer experience.",
+          "Choose London Airport Taxi Services for a smooth, premium, and dependable transfer experience.",
         ],
         faqs: [
           {

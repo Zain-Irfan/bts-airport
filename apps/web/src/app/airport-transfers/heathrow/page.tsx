@@ -25,18 +25,18 @@ export default function HeathrowAirportTransfersPage() {
           gateway: "/images/british-airways-plane.jpg",
         },
         intro: [
-          "With BTS, experience the convenience of professional airport pickup. Book your Heathrow airport taxi online and share your flight number for real-time tracking. From the moment you land, our driver is ready to assist with luggage and deliver a comfortable journey to your doorstep.",
+          "With London Airport Taxi Services, experience the convenience of professional airport pickup. Book your Heathrow airport taxi online and share your flight number for real-time tracking. From the moment you land, our driver is ready to assist with luggage and deliver a comfortable journey to your doorstep.",
           "Leave the responsibility of organising your Heathrow transfer to us. Our meticulously maintained fleet and professional drivers handle trips to and from every London airport with confidence.",
           "Complimentary waiting time and 24/7 availability guarantee a seamless travel experience that gets you to your destination on time.",
         ],
         reliable: [
-          "BTS designed its taxi service to transform every journey into an experience of comfort and refinement. Get a bespoke transfer into London with our reliable Heathrow airport taxi.",
+          "London Airport Taxi Services designed its taxi service to transform every journey into an experience of comfort and refinement. Get a bespoke transfer into London with our reliable Heathrow airport taxi.",
           "Our Heathrow transfer is not just point A to point B — it elevates your travel with quiet, opulent service worthy of the executive standard.",
-          "Trust BTS to turn an ordinary airport transfer into an exceptional experience.",
+          "Trust London Airport Taxi Services to turn an ordinary airport transfer into an exceptional experience.",
         ],
         interAirport: [
           "We keep your inter-airport travel in total control. Whether it's Gatwick to Heathrow or Heathrow to Stansted, our service is built for speed, precision, and peace of mind.",
-          "BTS drivers know every London airport route by heart and adapt instantly to delays, traffic, and terminal changes.",
+          "London Airport Taxi Services drivers know every London airport route by heart and adapt instantly to delays, traffic, and terminal changes.",
           "Book your London-to-London airport transfer today and travel with confidence.",
         ],
         gateway: [
@@ -68,7 +68,7 @@ export default function HeathrowAirportTransfersPage() {
           },
           {
             q: "Is meet-and-greet available at Heathrow?",
-            a: "Yes — opt for meet-and-greet at booking and your driver will wait in arrivals with a BTS name board.",
+            a: "Yes — opt for meet-and-greet at booking and your driver will wait in arrivals with a London Airport Taxi Services name board.",
           },
         ],
       }}

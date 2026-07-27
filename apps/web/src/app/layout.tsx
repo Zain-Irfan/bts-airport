@@ -8,7 +8,7 @@ import { SiteSettingsProvider } from "@/components/providers/SiteSettingsProvide
 import { getSiteSettings } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
-  title: "BTS | London transfers",
+  title: "London Airport Taxi Services | Book Airport Transfers 24/7",
   description:
     "Pre-booked London taxi and airport transfers with transparent pricing and premium vehicles.",
 };

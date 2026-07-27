@@ -1,4 +1,4 @@
-﻿/** Read BTS payment session id from success URL (query or path). */
+﻿/** Read London Airport Taxi Services payment session id from success URL (query or path). */
 export function paymentSessionIdFromUrl(
   searchParams: URLSearchParams | Record<string, string | undefined>,
   pathSessionId?: string | null,

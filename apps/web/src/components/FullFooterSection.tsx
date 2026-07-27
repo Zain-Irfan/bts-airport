@@ -61,7 +61,7 @@ export function FullFooterSection() {
         <div className="container relative mx-auto px-4">
           {/* Logo top-left */}
           <div className="mb-10">
-            <Image src="/assets/logo.png" alt="BTS Logo" width={160} height={56} className="h-14 w-auto object-contain" />
+            <Image src="/assets/logo.png" alt="London Airport Taxi Services Logo" width={160} height={56} className="h-14 w-auto object-contain" />
           </div>
 
           {/* Column grid */}
@@ -167,7 +167,7 @@ export function FullFooterSection() {
           {/* Bottom hairline + meta row */}
           <div className="BTS-divider-silver mb-8" aria-hidden />
           <p className="text-center text-xs tracking-wide text-[#A5A7AA]">
-            © {new Date().getFullYear()} BTS. All rights reserved.
+            © {new Date().getFullYear()} London Airport Taxi Services. All rights reserved.
           </p>
         </div>
       </footer>

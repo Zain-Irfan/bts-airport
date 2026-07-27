@@ -25,7 +25,7 @@ export default function GatwickAirportTransfersPage() {
           gateway: "/images/mpv-airport-boarding.jpg",
         },
         intro: [
-          "With BTS, book Gatwick transfers in minutes and travel with complete peace of mind. We coordinate pickups around your flight details and terminal timing.",
+          "With London Airport Taxi Services, book Gatwick transfers in minutes and travel with complete peace of mind. We coordinate pickups around your flight details and terminal timing.",
           "Whether you are heading into Central London or any nearby city, our professional drivers make your journey comfortable and punctual.",
           "Enjoy fixed pricing and reliable support from booking to drop-off.",
         ],

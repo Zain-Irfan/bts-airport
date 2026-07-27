@@ -67,7 +67,7 @@ export async function POST(req: Request) {
     const order = await createRevolutOrder({
       amountMinor,
       currency: "GBP",
-      description: `BTS — ${checkout.pricing.vehicleName}`,
+      description: `London Airport Taxi Services — ${checkout.pricing.vehicleName}`,
       redirectUrl: buildPaymentRedirectUrl(session.id, req),
       customerEmail: checkout.customer.email,
       customerName,

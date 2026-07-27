@@ -173,9 +173,9 @@ export default function DriveWithUsPage() {
 
             {/* Left — perks */}
             <div className="space-y-6">
-              <span className="BTS-pill">Drive with BTS</span>
+              <span className="BTS-pill">Drive with London Airport Taxi Services</span>
               <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] md:text-5xl">
-                Come Drive With BTS
+                Come Drive With London Airport Taxi Services
               </h1>
               <p className="max-w-xl text-[15px] leading-relaxed text-[#CFCFCF]">
                 Apply today to join London&apos;s premium pre-booked transfer
@@ -252,7 +252,7 @@ export default function DriveWithUsPage() {
                     value={dob} onChange={(e) => setDob(e.target.value)} required
                   />
                   <SelectField
-                    id="driven-before" label="Driven for BTS before?"
+                    id="driven-before" label="Driven for London Airport Taxi Services before?"
                     value={drivenBefore} onChange={(e) => setDrivenBefore(e.target.value)}
                   >
                     <option value="">Select</option>
@@ -365,7 +365,7 @@ export default function DriveWithUsPage() {
                     className="mt-0.5 h-4 w-4 rounded border border-[rgba(192,192,192,0.22)] bg-[rgba(13,13,15,0.6)] accent-[#999999]"
                   />
                   <span>
-                    I agree that BTS may contact me using the details provided above for the
+                    I agree that London Airport Taxi Services may contact me using the details provided above for the
                     purpose of processing this application.
                   </span>
                 </label>

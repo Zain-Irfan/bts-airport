@@ -78,7 +78,7 @@ export function CustomerSignupForm() {
             <div className="absolute rounded-full" style={{ width: 90, height: 90, border: "2px solid transparent", borderTopColor: "#999999", borderRightColor: "rgba(153, 153, 153,0.3)", animation: "rl-spin 1s linear infinite", filter: "drop-shadow(0 0 8px rgba(153, 153, 153,0.6))" }} />
             <div className="absolute rounded-full" style={{ width: 70, height: 70, border: "1.5px solid transparent", borderBottomColor: "#C084FC", borderLeftColor: "rgba(192,132,252,0.25)", animation: "rl-spin-reverse 1.5s linear infinite" }} />
             <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl" style={{ boxShadow: "0 0 24px rgba(51, 51, 51,0.6)" }}>
-              <img src="/assets/logo.png" alt="BTS" className="h-12 w-12 object-cover" />
+              <img src="/assets/logo.png" alt="London Airport Taxi Services" className="h-12 w-12 object-cover" />
             </div>
           </div>
           <div className="flex items-center gap-2">

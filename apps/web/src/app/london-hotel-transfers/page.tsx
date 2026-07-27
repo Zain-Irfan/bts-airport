@@ -26,7 +26,7 @@ const hotels = [
 
 const faqs = [
   {
-    q: "Does BTS provide hotel transfers across London?",
+    q: "Does London Airport Taxi Services provide hotel transfers across London?",
     a: "Yes — fixed-fare hotel pickups and drop-offs across central and greater London.",
   },
   {
@@ -34,15 +34,15 @@ const faqs = [
     a: "Yes — single or return airport↔hotel transfers at a guaranteed fare.",
   },
   {
-    q: "Are BTS hotel transfers on fixed fare?",
+    q: "Are London Airport Taxi Services hotel transfers on fixed fare?",
     a: "Yes. Your quote is locked at booking — taxes, tolls and parking included.",
   },
   {
-    q: "How do I book a hotel transfer with BTS?",
+    q: "How do I book a hotel transfer with London Airport Taxi Services?",
     a: "Enter pickup hotel and destination, choose your vehicle, and confirm. We handle the rest.",
   },
   {
-    q: "Do BTS transfers run 24/7 from hotels?",
+    q: "Do London Airport Taxi Services transfers run 24/7 from hotels?",
     a: "Yes — 24/7 service for late-night arrivals and early-morning departures.",
   },
   {
@@ -50,7 +50,7 @@ const faqs = [
     a: "Saloon, Estate, Executive, MPV, 8-Seater and Chauffeur classes.",
   },
   {
-    q: "Does BTS offer meet and greet service at hotels?",
+    q: "Does London Airport Taxi Services offer meet and greet service at hotels?",
     a: "Yes — meet-and-greet with name board on request.",
   },
   {
@@ -58,11 +58,11 @@ const faqs = [
     a: "Yes — 8-seater and multi-vehicle group transfers for any London hotel.",
   },
   {
-    q: "Do BTS hotel transfers cover tourist attractions and shopping areas?",
+    q: "Do London Airport Taxi Services hotel transfers cover tourist attractions and shopping areas?",
     a: "Yes — hourly chauffeur hire is available for shopping, dining and sightseeing routes.",
   },
   {
-    q: "Why should I choose BTS for London hotel transfers?",
+    q: "Why should I choose London Airport Taxi Services for London hotel transfers?",
     a: "Premium fleet, executive drivers, fixed fares, monitored journeys, and 24/7 concierge support.",
   },
 ];

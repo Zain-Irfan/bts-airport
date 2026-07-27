@@ -14,25 +14,25 @@ export const serviceContent = {
     section2: "Finding an Exclusive Taxi Service",
     section2Paragraphs: [
       "Trust our exclusive A to B cabs that are designed for comfort and convenience.",
-      "BTS delivers a premium ride experience that handles the stress for you, so you can focus on what matters most. With our A to B airport transfer, you expect modern vehicles, professional drivers, and seamless pickups.",
+      "London Airport Taxi Services delivers a premium ride experience that handles the stress for you, so you can focus on what matters most. With our A to B airport transfer, you expect modern vehicles, professional drivers, and seamless pickups.",
       "Choose a taxi service that values your time or safety and offers you services that go the extra mile. Our drivers are committed to providing service that meets your expectations for a smooth experience. We are committed to providing exclusive taxi experiences that give you total peace of mind.",
     ],
     section3: "Experience the Difference - Every Mile, Made for You",
     section3Paragraphs: [
-      "Booking a taxi in London from BTS means choosing refinement, reliability, and comfort. Our A to B taxi services turn your ordinary travel into tailored experiences. Whether it's a business or normal airport connection, we provide precision with every mile that you cover. With our stylish and modern fleet, you can elevate your trip to the airport in style.",
-      "We transform your ordinary journey into a truly bespoke experience. BTS proudly delivers the taxi services with an exotic fleet that allows you to feel the difference every mile. Get professional drivers every time who you can trust and rely on.",
+      "Booking a taxi in London from London Airport Taxi Services means choosing refinement, reliability, and comfort. Our A to B taxi services turn your ordinary travel into tailored experiences. Whether it's a business or normal airport connection, we provide precision with every mile that you cover. With our stylish and modern fleet, you can elevate your trip to the airport in style.",
+      "We transform your ordinary journey into a truly bespoke experience. London Airport Taxi Services proudly delivers the taxi services with an exotic fleet that allows you to feel the difference every mile. Get professional drivers every time who you can trust and rely on.",
     ],
     gatewayLabel: "Your Gateway to London and Beyond",
     gatewayHeading: "Connecting Every Point in London",
     gatewayParagraphs: [
       "With our trusted fleet of A to B cabs, reserve your ride for a smooth and effective journey. From Croydon to Sudbury or Letchworth to Harrow, connect with every stop in London with our taxi service. Whether you are heading out for your town or catching a flight, tell us your needs and travel with confidence.",
-      "We offer smart fleet solutions across Hertford, Watford, and every point in London, so you can travel in style. BTS puts in control with professional drivers who know every route to reach safely. We understand the value of punctuality and manage your booking with precision.",
+      "We offer smart fleet solutions across Hertford, Watford, and every point in London, so you can travel in style. London Airport Taxi Services puts in control with professional drivers who know every route to reach safely. We understand the value of punctuality and manage your booking with precision.",
     ],
     benefitsTitle: "Transfers from A to B Points Efficiently",
     benefitsItems: [
       {
         title: "Transfer Information",
-        desc: "BTS provides seamless transfer from point A to point B across London cities or airports. Make your travel smooth with our reliable and fast transfer service. We designed these A to B transfer services to get your from any point to your destination safely. Our drivers are professional and fully vetted; they deliver duties that align with your expectations.",
+        desc: "London Airport Taxi Services provides seamless transfer from point A to point B across London cities or airports. Make your travel smooth with our reliable and fast transfer service. We designed these A to B transfer services to get your from any point to your destination safely. Our drivers are professional and fully vetted; they deliver duties that align with your expectations.",
         icon: Plane,
       },
       {
@@ -42,12 +42,12 @@ export const serviceContent = {
       },
       {
         title: "Our Advantages",
-        desc: "Choose us BTS for your A to B transfer allows you to enjoy the benefits of stress-free and memorable travel experiences. Our drivers are fully insured and licensed, and they provide 24/7 customer service with care. With transparent prices, a modern fleet, a meet and greet service, and luggage assistance, we are committed to delivering a premium travel experience.",
+        desc: "Choose us London Airport Taxi Services for your A to B transfer allows you to enjoy the benefits of stress-free and memorable travel experiences. Our drivers are fully insured and licensed, and they provide 24/7 customer service with care. With transparent prices, a modern fleet, a meet and greet service, and luggage assistance, we are committed to delivering a premium travel experience.",
         icon: ThumbsUp,
       },
       {
         title: "Our Rates",
-        desc: "With BTS, rest assured you'll find the best rates for your transfer, all-inclusive at a fixed price. Your fare covers local taxes, tolls, parking, and VAT, offering a transparent and reliable service. Our pricing is transparent, and you won't be surprised by additional costs. Get fixed and upfront prices that offer real value without compromising on quality service.",
+        desc: "With London Airport Taxi Services, rest assured you'll find the best rates for your transfer, all-inclusive at a fixed price. Your fare covers local taxes, tolls, parking, and VAT, offering a transparent and reliable service. Our pricing is transparent, and you won't be surprised by additional costs. Get fixed and upfront prices that offer real value without compromising on quality service.",
         icon: BadgeDollarSign,
       },
     ],
@@ -65,12 +65,12 @@ export const serviceContent = {
     section2: "Finding an Exclusive Business Taxi Service",
     section2Paragraphs: [
       "Trust our exclusive Business Taxi Services designed for comfort, privacy, and convenience.",
-      "BTS delivers a premium executive ride experience that removes travel stress and supports productivity. With modern vehicles, trained drivers, and seamless pickups, you can maintain focus from departure to destination.",
+      "London Airport Taxi Services delivers a premium executive ride experience that removes travel stress and supports productivity. With modern vehicles, trained drivers, and seamless pickups, you can maintain focus from departure to destination.",
       "Choose a business taxi service that values punctuality, professionalism, and discretion. Our drivers are committed to delivering service that meets high corporate expectations for a smooth experience.",
     ],
     section3: "Experience the Difference - Every Mile, Made for Business",
     section3Paragraphs: [
-      "Booking a business taxi with BTS means choosing reliability, refinement, and performance. Our executive transfer services turn ordinary trips into tailored travel experiences with precise timing and route planning.",
+      "Booking a business taxi with London Airport Taxi Services means choosing reliability, refinement, and performance. Our executive transfer services turn ordinary trips into tailored travel experiences with precise timing and route planning.",
       "We deliver consistent premium service with a modern fleet and professional chauffeurs you can rely on for every business mile.",
     ],
     gatewayLabel: "Your Gateway to London and Beyond",
@@ -83,7 +83,7 @@ export const serviceContent = {
     benefitsItems: [
       {
         title: "Transfer Information",
-        desc: "BTS provides seamless transfer from point A to point B across London cities or airports. Make your travel smooth with our reliable and fast transfer service. We designed these business transfer services to get you from any point to your destination safely. Our drivers are professional and fully vetted; they deliver duties that align with your expectations.",
+        desc: "London Airport Taxi Services provides seamless transfer from point A to point B across London cities or airports. Make your travel smooth with our reliable and fast transfer service. We designed these business transfer services to get you from any point to your destination safely. Our drivers are professional and fully vetted; they deliver duties that align with your expectations.",
         icon: Plane,
       },
       {
@@ -93,12 +93,12 @@ export const serviceContent = {
       },
       {
         title: "Our Advantages",
-        desc: "Choosing BTS for your business transfer allows you to enjoy the benefits of trusted and memorable travel experiences. Our drivers are fully insured and licensed, and they provide 24/7 customer service with care. With transparent prices, a modern fleet, meet and greet service, and luggage assistance, we are committed to delivering a premium travel experience.",
+        desc: "Choosing London Airport Taxi Services for your business transfer allows you to enjoy the benefits of trusted and memorable travel experiences. Our drivers are fully insured and licensed, and they provide 24/7 customer service with care. With transparent prices, a modern fleet, meet and greet service, and luggage assistance, we are committed to delivering a premium travel experience.",
         icon: ThumbsUp,
       },
       {
         title: "Our Rates",
-        desc: "With BTS, rest assured, you'll find the best rates for your transfer, all-inclusive at a fixed price. Your fare covers local taxes, tolls, parking, and VAT, offering a transparent and reliable service. Our pricing is transparent, and you won't be surprised by additional costs. Get fixed and upfront prices that offer real value without compromising on quality service.",
+        desc: "With London Airport Taxi Services, rest assured, you'll find the best rates for your transfer, all-inclusive at a fixed price. Your fare covers local taxes, tolls, parking, and VAT, offering a transparent and reliable service. Our pricing is transparent, and you won't be surprised by additional costs. Get fixed and upfront prices that offer real value without compromising on quality service.",
         icon: BadgeDollarSign,
       },
     ],
@@ -116,12 +116,12 @@ export const serviceContent = {
     section2: "Finding an Exclusive Dial a Cab Service",
     section2Paragraphs: [
       "Trust our exclusive Dial a Cab service designed for comfort, convenience, and speed.",
-      "BTS delivers a premium ride experience with modern vehicles, professional drivers, and smooth pickups so you can travel stress-free.",
+      "London Airport Taxi Services delivers a premium ride experience with modern vehicles, professional drivers, and smooth pickups so you can travel stress-free.",
       "Choose a cab service that values your time and safety while delivering dependable support for every journey.",
     ],
     section3: "Experience the Difference - Every Mile, Made for You",
     section3Paragraphs: [
-      "Dial a Cab with BTS means choosing reliability, comfort, and precision. We turn routine travel into a smooth tailored experience with every mile.",
+      "Dial a Cab with London Airport Taxi Services means choosing reliability, comfort, and precision. We turn routine travel into a smooth tailored experience with every mile.",
       "Our professional drivers and modern fleet help you feel the difference on every journey, whether for personal or airport travel.",
     ],
     gatewayLabel: "Your Gateway to London and Beyond",
@@ -134,7 +134,7 @@ export const serviceContent = {
     benefitsItems: [
       {
         title: "Transfer Information",
-        desc: "BTS provides seamless transfer from point A to point B across London cities or airports. Make your travel smooth with our reliable and fast transfer service. We designed these Dial a Cab transfer services to get you from any point to your destination safely. Our drivers are professional and fully vetted; they deliver duties that align with your expectations.",
+        desc: "London Airport Taxi Services provides seamless transfer from point A to point B across London cities or airports. Make your travel smooth with our reliable and fast transfer service. We designed these Dial a Cab transfer services to get you from any point to your destination safely. Our drivers are professional and fully vetted; they deliver duties that align with your expectations.",
         icon: Plane,
       },
       {
@@ -144,12 +144,12 @@ export const serviceContent = {
       },
       {
         title: "Our Advantages",
-        desc: "Choosing BTS for your A to B transfer allows you to enjoy the benefits of trusted and memorable travel experiences. Our drivers are fully insured and licensed, and they provide 24/7 customer service with care. With transparent prices, a modern fleet, meet and greet service, and luggage assistance, we are committed to delivering a premium travel experience.",
+        desc: "Choosing London Airport Taxi Services for your A to B transfer allows you to enjoy the benefits of trusted and memorable travel experiences. Our drivers are fully insured and licensed, and they provide 24/7 customer service with care. With transparent prices, a modern fleet, meet and greet service, and luggage assistance, we are committed to delivering a premium travel experience.",
         icon: ThumbsUp,
       },
       {
         title: "Our Rates",
-        desc: "With BTS, rest assured, you'll find the best rates for your transfer, all-inclusive at a fixed price. Your fare covers local taxes, tolls, parking, and VAT, offering a transparent and reliable service. Our pricing is transparent, and you won't be surprised by additional costs. Get fixed and upfront prices that offer real value without compromising on quality service.",
+        desc: "With London Airport Taxi Services, rest assured, you'll find the best rates for your transfer, all-inclusive at a fixed price. Your fare covers local taxes, tolls, parking, and VAT, offering a transparent and reliable service. Our pricing is transparent, and you won't be surprised by additional costs. Get fixed and upfront prices that offer real value without compromising on quality service.",
         icon: BadgeDollarSign,
       },
     ],

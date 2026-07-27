@@ -21,7 +21,7 @@ export default function AboutUsPage() {
               Trusted London transfers, built around you
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-[#D1D5DB]">
-              BTS delivers dependable taxi and airport transfer services
+              London Airport Taxi Services delivers dependable taxi and airport transfer services
               across London — combining professional drivers, transparent
               pricing, and a modern booking experience.
             </p>
@@ -34,7 +34,7 @@ export default function AboutUsPage() {
             <div className="BTS-purple-glow relative overflow-hidden rounded-3xl">
               <img
                 src="/images/heathrow-driver-loading.jpg"
-                alt="BTS professional transfer"
+                alt="London Airport Taxi Services professional transfer"
                 className="h-[420px] w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(13,13,15,0.4)_100%)]" />
@@ -71,7 +71,7 @@ export default function AboutUsPage() {
           <div className="container mx-auto px-4">
             <div className="mx-auto mb-12 max-w-2xl text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
-                Why BTS
+                Why London Airport Taxi Services
               </p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
                 The standards behind every ride
@@ -112,7 +112,7 @@ export default function AboutUsPage() {
               Precision, punctuality, professionalism
             </h2>
             <p className="mt-5 text-[#D1D5DB] leading-8">
-              Every BTS booking is handled with care. Airport transfers,
+              Every London Airport Taxi Services booking is handled with care. Airport transfers,
               business rides, or point-to-point travel — we deliver a smooth,
               premium experience every mile.
             </p>

@@ -121,11 +121,11 @@ export default function HomePageClient() {
             <span className="BTS-pill">Our promise</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight md:text-4xl">
               <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">Why Choose</span>{" "}
-              <span className="text-[#F8F8F8]">BTS</span>
+              <span className="text-[#F8F8F8]">London Airport Taxi Services</span>
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />
             <p className="mt-6 text-lg leading-relaxed text-[#CFCFCF]">
-              Every journey with BTS comes with our commitment to quality,
+              Every journey with London Airport Taxi Services comes with our commitment to quality,
               reliability, and the best value in London.
             </p>
           </div>
@@ -149,7 +149,7 @@ export default function HomePageClient() {
               {
                 icon: <CheckCircle2 className="h-6 w-6" />,
                 title: "Lowest Price Guaranteed",
-                desc: "Best prices on the market — guaranteed when you book with BTS.",
+                desc: "Best prices on the market — guaranteed when you book with London Airport Taxi Services.",
               },
             ].map((item, i) => (
               <div
@@ -247,11 +247,11 @@ export default function HomePageClient() {
           <span className="BTS-pill mb-6">Pre-book online</span>
           <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
             <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">Pre-Book Taxis Online</span>{" "}
-            <span className="text-[#F8F8F8]">with BTS</span>
+            <span className="text-[#F8F8F8]">with London Airport Taxi Services</span>
           </h2>
           <div className="BTS-divider mx-auto mt-6 w-24" />
           <p className="mt-8 text-lg leading-relaxed text-[#CFCFCF]">
-            BTS is your trusted partner for executive transport across
+            London Airport Taxi Services is your trusted partner for executive transport across
             London and its major airports. Whether you&apos;re heading to a
             crucial business meeting, catching a flight from Heathrow, or
             simply exploring the city, our pre-booking platform ensures a
@@ -317,28 +317,28 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      {/* 7. Why BTS Section */}
+      {/* 7. Why London Airport Taxi Services Section */}
       <section className="relative border-t border-[rgba(192,192,192,0.2)] bg-[linear-gradient(160deg,rgba(192,192,192,0.06)_0%,rgba(13,13,15,0.99)_35%,rgba(22,18,28,0.98)_100%)] py-28 text-foreground md:py-36">
         <div className="container mx-auto px-4">
           <div className="grid items-center gap-12 md:grid-cols-2 flex-row-reverse">
             <div className="BTS-purple-glow order-2 md:order-1 relative h-[500px] rounded-2xl overflow-hidden">
               <img
                 src="/images/heathrow-driver-loading.jpg"
-                alt="BTS Fleet"
+                alt="London Airport Taxi Services Fleet"
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
             </div>
             <div className="order-1 space-y-6 md:order-2">
-              <span className="BTS-pill">Why BTS</span>
+              <span className="BTS-pill">Why London Airport Taxi Services</span>
               <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                <span className="text-[#F8F8F8]">Why BTS is the</span>{" "}
+                <span className="text-[#F8F8F8]">Why London Airport Taxi Services is the</span>{" "}
                 <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">Right Choice</span>
               </h2>
               <p className="text-lg leading-relaxed text-[#CFCFCF]">
                 We don&apos;t just provide a ride; we provide a reliable
                 transport partnership. With a focus on professionalism,
-                punctuality, and comfort, BTS stands out as London&apos;s
+                punctuality, and comfort, London Airport Taxi Services stands out as London&apos;s
                 premier transfer service.
               </p>
               <ul className="space-y-4 pt-4">
@@ -515,12 +515,12 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      {/* 10. Why Choose BTS Section */}
+      {/* 10. Why Choose London Airport Taxi Services Section */}
       <section className="relative border-t border-[rgba(192,192,192,0.2)] bg-[linear-gradient(135deg,rgba(30,28,35,0.98)_0%,rgba(192,192,192,0.05)_50%,rgba(26,26,29,0.99)_100%)] py-28 text-foreground md:py-36">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <span className="BTS-pill mb-6">Local expertise</span>
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-            Why Choose BTS for Your London Travel?
+            Why Choose London Airport Taxi Services for Your London Travel?
           </h2>
           <div className="BTS-divider mx-auto mt-6 w-24" />
           <p className="mt-8 text-lg leading-relaxed text-[#CFCFCF]">
@@ -534,7 +534,7 @@ export default function HomePageClient() {
           <p className="mt-4 text-lg leading-relaxed text-[#CFCFCF]">
             Whether you are a solo traveler, a family on vacation, or a
             corporate team, we have the right vehicle and the right driver for
-            you. Experience the BTS difference today.
+            you. Experience the London Airport Taxi Services difference today.
           </p>
         </div>
       </section>
@@ -544,9 +544,9 @@ export default function HomePageClient() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-7">
-              <span className="BTS-pill">BTS app</span>
+              <span className="BTS-pill">London Airport Taxi Services app</span>
               <h2 className="text-3xl font-bold text-[#F8F8F8] md:text-5xl">
-                Get an Instant Quote with the BTS App
+                Get an Instant Quote with the London Airport Taxi Services App
               </h2>
               <p className="text-lg text-[#CFCFCF]">
                 Book your ride faster, track your driver in real-time, and
@@ -605,7 +605,7 @@ export default function HomePageClient() {
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />
             <p className="mt-6 text-lg leading-relaxed text-[#CFCFCF]">
-              Everything you need to know about booking with BTS.
+              Everything you need to know about booking with London Airport Taxi Services.
             </p>
           </div>
 
@@ -621,7 +621,7 @@ export default function HomePageClient() {
               },
               {
                 q: "Are your prices fixed or metered?",
-                a: "All BTS airport and pre-booked transfers are quoted at a fixed fare. The price you confirm at booking is the price you pay — taxes, tolls and parking included.",
+                a: "All London Airport Taxi Services airport and pre-booked transfers are quoted at a fixed fare. The price you confirm at booking is the price you pay — taxes, tolls and parking included.",
               },
               {
                 q: "Do you provide child seats?",
@@ -629,7 +629,7 @@ export default function HomePageClient() {
               },
               {
                 q: "How do I find my driver at the airport?",
-                a: "Standard pickups meet you at the designated terminal pickup zone. Meet-and-greet drivers wait inside arrivals with a BTS name board.",
+                a: "Standard pickups meet you at the designated terminal pickup zone. Meet-and-greet drivers wait inside arrivals with a London Airport Taxi Services name board.",
               },
               {
                 q: "What payment methods do you accept?",

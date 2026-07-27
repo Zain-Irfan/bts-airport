@@ -56,7 +56,7 @@ export default async function ContactsPage() {
                       {c.createdAt.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}
                     </span>
                     <a
-                      href={`mailto:${c.email}?subject=Re: Your enquiry — BTS&body=Hi ${c.name.split(" ")[0]},%0A%0AThank you for contacting BTS.%0A%0A`}
+                      href={`mailto:${c.email}?subject=Re: Your enquiry — London Airport Taxi Services&body=Hi ${c.name.split(" ")[0]},%0A%0AThank you for contacting London Airport Taxi Services.%0A%0A`}
                       className="inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[10px] font-semibold transition hover:opacity-80"
                       style={{ borderColor: "var(--adm-border)", color: "var(--adm-text-muted)", background: "var(--adm-surface-2)" }}
                     >

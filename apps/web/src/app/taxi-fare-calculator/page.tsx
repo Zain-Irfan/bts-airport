@@ -84,11 +84,11 @@ const faqs = [
   },
   {
     q: "Are there any hidden fees in the quoted price?",
-    a: "No. BTS quotes include taxes, road tolls, parking on standard airport pickups, and VAT. Optional add-ons are shown clearly before confirmation.",
+    a: "No. London Airport Taxi Services quotes include taxes, road tolls, parking on standard airport pickups, and VAT. Optional add-ons are shown clearly before confirmation.",
   },
   {
     q: "Can I get a quote for airport transfers?",
-    a: "Yes — enter your terminal and destination and we'll show a fixed fare across all BTS airports.",
+    a: "Yes — enter your terminal and destination and we'll show a fixed fare across all London Airport Taxi Services airports.",
   },
   {
     q: "How far in advance should I book?",
@@ -248,7 +248,7 @@ export default async function TaxiFareCalculatorPage() {
             <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8]">Compare taxi fares &amp; save money</h2>
             <p className="text-[15px] leading-relaxed text-[#CFCFCF]">
               Use our calculator to understand your route cost before you
-              commit. BTS helps you plan smarter with upfront pricing
+              commit. London Airport Taxi Services helps you plan smarter with upfront pricing
               tailored to your pickup, drop-off, and vehicle choice.
             </p>
           </div>
@@ -304,7 +304,7 @@ export default async function TaxiFareCalculatorPage() {
       <section className="BTS-section-onyx relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="BTS-pill">Why BTS</span>
+            <span className="BTS-pill">Why London Airport Taxi Services</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               Built around your London journey
             </h2>

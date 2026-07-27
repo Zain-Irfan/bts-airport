@@ -38,7 +38,7 @@ export default function AdminLoginPage() {
         {/* Logo */}
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-16 w-48 items-center justify-center rounded-2xl bg-[#0D0D0F] px-4">
-            <Image src="/assets/logo.png" alt="BTS Logo" width={160} height={56} className="h-12 w-auto object-contain" />
+            <Image src="/assets/logo.png" alt="London Airport Taxi Services Logo" width={160} height={56} className="h-12 w-auto object-contain" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#111827" }}>Admin Panel</h1>
           <p className="mt-2 text-sm" style={{ color: "#6B7280" }}>Sign in to manage your platform</p>

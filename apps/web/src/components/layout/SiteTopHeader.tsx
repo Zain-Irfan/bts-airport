@@ -14,7 +14,7 @@ export function SiteTopHeader() {
         >
           <Image
             src="/assets/logo.png"
-            alt="BTS Logo"
+            alt="London Airport Taxi Services Logo"
             width={160}
             height={56}
             className="h-14 w-auto object-contain"

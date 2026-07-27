@@ -24,15 +24,15 @@ export function SiteHeader() {
     <header className="BTS-glass-nav sticky top-0 z-50">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4">
         <Link href="/" className="group flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#333333_0%,#242424_100%)] text-sm font-extrabold tracking-tight text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_8px_24px_-8px_rgba(51, 51, 51,0.55)] transition-all duration-300 group-hover:border-[rgba(192,192,192,0.4)] group-hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),0_12px_32px_-8px_rgba(51, 51, 51,0.75)]">
-            UR
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#333333_0%,#242424_100%)] text-sm font-extrabold tracking-tight text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_8px_24px_-8px_rgba(51, 51, 51,0.55)] transition-all duration-300 group-hover:border-[rgba(192,192,192,0.4)] group-hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),0_12px_32px_-8px_rgba(51, 51, 51,0.75)]">
+            LA
           </span>
           <div className="leading-tight">
-            <div className="text-sm font-bold tracking-tight text-[#F8F8F8]">
-              BTS
+            <div className="text-sm font-bold tracking-tight text-[#F8F8F8] whitespace-nowrap">
+              London Airport Taxi Services
             </div>
             <div className="text-[10px] uppercase tracking-[0.22em] text-[#A5A7AA]">
-              London transfers
+              Executive travel · 24/7
             </div>
           </div>
         </Link>

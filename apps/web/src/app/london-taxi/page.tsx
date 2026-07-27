@@ -99,7 +99,7 @@ export default async function LondonTaxiPage() {
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />
             <p className="mt-6 text-[15px] leading-relaxed text-[#CFCFCF]">
-              BTS covers every London neighbourhood with safe, reliable
+              London Airport Taxi Services covers every London neighbourhood with safe, reliable
               transfers for station journeys, hotel pickups, airport routes,
               and business travel.
             </p>

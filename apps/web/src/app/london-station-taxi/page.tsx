@@ -17,7 +17,7 @@ const stations = [
   { name: "Victoria Station", image: "/images/luxury-car-interior.jpg", desc: "Private rides from Victoria to all London zones." },
   { name: "Paddington Station", image: "/images/heathrow-driver-loading.jpg", desc: "Reliable rides to hotels, airports, and offices." },
   { name: "Liverpool Street Station", image: "/images/hotel-chauffeur.jpg", desc: "Business-ready transfers with fixed rates." },
-  { name: "London Bridge", image: "/images/mpv-airport-boarding.jpg", desc: "Book 24/7 station taxi service with BTS." },
+  { name: "London Bridge", image: "/images/mpv-airport-boarding.jpg", desc: "Book 24/7 station taxi service with London Airport Taxi Services." },
   { name: "St Pancras International", image: "/images/heathrow-terminal5-couple.jpg", desc: "Seamless Eurostar and city transfer support." },
   { name: "Waterloo Station", image: "/images/heathrow-mpv-family.jpg", desc: "Efficient pickups around Waterloo and South Bank." },
 ];
@@ -25,7 +25,7 @@ const stations = [
 const faqs = [
   {
     q: "Can I book taxis to major train terminals?",
-    a: "Yes — BTS covers Euston, King's Cross, St Pancras, Victoria, Paddington, Liverpool Street, London Bridge, Waterloo and more, 24/7.",
+    a: "Yes — London Airport Taxi Services covers Euston, King's Cross, St Pancras, Victoria, Paddington, Liverpool Street, London Bridge, Waterloo and more, 24/7.",
   },
   {
     q: "Do you provide transfers from station to home/hotel?",

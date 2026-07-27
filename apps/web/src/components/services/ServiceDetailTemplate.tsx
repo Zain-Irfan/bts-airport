@@ -245,7 +245,7 @@ export async function ServiceDetailTemplate({ content }: { content: ServiceConte
       <section className="BTS-section-onyx relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="BTS-pill">Why BTS</span>
+            <span className="BTS-pill">Why London Airport Taxi Services</span>
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
               {content.benefitsTitle}
             </h2>

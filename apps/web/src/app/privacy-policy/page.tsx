@@ -5,8 +5,8 @@ const policySections = [
   {
     title: "1. What does this notice cover?",
     paragraphs: [
-      "This Privacy Notice explains how BTS collects, uses, stores, and protects your personal information when you use our website, mobile services, and booking platforms.",
-      "It applies to all users, including passengers, account holders, and visitors who interact with BTS through digital channels or customer support.",
+      "This Privacy Notice explains how London Airport Taxi Services collects, uses, stores, and protects your personal information when you use our website, mobile services, and booking platforms.",
+      "It applies to all users, including passengers, account holders, and visitors who interact with London Airport Taxi Services through digital channels or customer support.",
     ],
   },
   {
@@ -47,7 +47,7 @@ const policySections = [
   {
     title: "7. How do we keep your data safe?",
     paragraphs: [
-      "BTS applies technical and organisational safeguards to protect your information, including secure data transmission, restricted access controls, and monitored systems.",
+      "London Airport Taxi Services applies technical and organisational safeguards to protect your information, including secure data transmission, restricted access controls, and monitored systems.",
       "While no platform is completely risk-free, we continuously improve our protections to reduce the chance of unauthorized access or misuse.",
     ],
   },
@@ -87,7 +87,7 @@ export default function PrivacyPolicyPage() {
           </h1>
           <div className="BTS-divider mx-auto mt-6 w-24" />
           <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-[#CFCFCF]">
-            How BTS collects, uses, and protects the data you share when
+            How London Airport Taxi Services collects, uses, and protects the data you share when
             booking, browsing, or contacting us.
           </p>
         </div>

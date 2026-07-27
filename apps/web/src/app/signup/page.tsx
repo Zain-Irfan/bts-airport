@@ -16,7 +16,7 @@ export default function SignupPage() {
               Create account
             </p>
             <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              Join BTS
+              Join London Airport Taxi Services
             </h1>
             <p className="mt-3 text-sm leading-6 text-[#D1D5DB]">
               Register to book faster and see all your journeys in one place.

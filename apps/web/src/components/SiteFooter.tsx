@@ -19,7 +19,7 @@ export function SiteFooter() {
           <div className="space-y-4">
             <Image
               src="/assets/logo.png"
-              alt="BTS Logo"
+              alt="London Airport Taxi Services Logo"
               width={140}
               height={50}
               className="h-10 w-auto object-contain"
@@ -78,7 +78,7 @@ export function SiteFooter() {
 
         <div className="BTS-divider-silver mt-10" aria-hidden />
         <div className="mt-6 flex flex-col gap-2 text-xs text-[#A5A7AA] md:flex-row md:items-center md:justify-between">
-          <div>© {new Date().getFullYear()} BTS. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} London Airport Taxi Services. All rights reserved.</div>
           <div className="flex gap-5">
             <Link
               className="text-[#A5A7AA] transition-colors hover:text-[#F8F8F8]"

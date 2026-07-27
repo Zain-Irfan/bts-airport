@@ -20,7 +20,7 @@ export default function HelpAndSupportPage() {
               We&apos;re here, around the clock
             </h1>
             <p className="mt-5 text-lg leading-7 text-[#D1D5DB]">
-              Reach the BTS team 24/7. Send us a message below and we&apos;ll
+              Reach the London Airport Taxi Services team 24/7. Send us a message below and we&apos;ll
               respond as quickly as possible — usually within the hour.
             </p>
           </div>
