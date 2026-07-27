@@ -61,7 +61,7 @@ export function FullFooterSection() {
         <div className="container relative mx-auto px-4">
           {/* Logo top-left */}
           <div className="mb-10">
-            <Image src="/assets/logo.png" alt="London Airport Taxi Services Logo" width={160} height={56} className="h-14 w-auto object-contain" />
+            <Image src="/assets/logo.jpeg" alt="London Airport Taxi Services Logo" width={160} height={56} className="h-14 w-auto object-contain" />
           </div>
 
           {/* Column grid */}

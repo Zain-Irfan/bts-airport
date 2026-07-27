@@ -115,7 +115,7 @@ export function RouteLoadingBar() {
             className="relative flex h-12 w-12 items-center justify-center rounded-xl overflow-hidden"
             style={{ boxShadow: "0 0 24px rgba(51, 51, 51,0.6)" }}
           >
-            <Image src="/assets/logo.png" alt="London Airport Taxi Services" width={48} height={48} className="h-12 w-12 object-cover" />
+            <Image src="/assets/logo.jpeg" alt="London Airport Taxi Services" width={48} height={48} className="h-12 w-12 object-cover" />
           </div>
         </div>
 

@@ -13,7 +13,7 @@ export function SiteTopHeader() {
           className="group flex shrink-0 items-center gap-2.5 sm:gap-3"
         >
           <Image
-            src="/assets/logo.png"
+            src="/assets/logo.jpeg"
             alt="London Airport Taxi Services Logo"
             width={160}
             height={56}

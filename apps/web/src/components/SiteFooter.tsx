@@ -18,7 +18,7 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-4">
           <div className="space-y-4">
             <Image
-              src="/assets/logo.png"
+              src="/assets/logo.jpeg"
               alt="London Airport Taxi Services Logo"
               width={140}
               height={50}
