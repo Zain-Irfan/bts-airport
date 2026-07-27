@@ -30,7 +30,7 @@ import { HomeBookingForm } from "@/components/forms/HomeBookingForm";
 import { TestimonialsSlider } from "@/components/home/TestimonialsSlider";
 
 export default function HomePageClient() {
-  const { whatsapp } = useSiteSettings();
+  const { whatsapp, phone } = useSiteSettings();
   return (
     <div className="min-h-screen overflow-x-hidden bg-background font-sans">
       <a
@@ -103,7 +103,7 @@ export default function HomePageClient() {
                     <p className="text-xs text-highlight/90 uppercase tracking-wider">
                       Support
                     </p>
-                    <p className="text-base font-bold sm:text-lg">+44 2080 5090 14</p>
+                    <p className="text-base font-bold sm:text-lg">{phone}</p>
                   </div>
                 </div>
               </div>

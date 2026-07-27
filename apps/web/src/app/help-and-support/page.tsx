@@ -2,8 +2,11 @@
 import { ContactForm } from "@/components/forms/ContactForm";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
+import { getSiteSettings } from "@/lib/site-settings";
+import { telHref } from "@/lib/phone";
 
-export default function HelpAndSupportPage() {
+export default async function HelpAndSupportPage() {
+  const { phone } = await getSiteSettings();
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteTopHeader />
@@ -53,9 +56,9 @@ export default function HelpAndSupportPage() {
                 <ChannelCard
                   icon={<Phone className="h-5 w-5" />}
                   label="Support line"
-                  primary="+44 2080 5090 14"
+                  primary={phone}
                   secondary="Existing journey support"
-                  href="tel:+442080509014"
+                  href={telHref(phone)}
                 />
                 <ChannelCard
                   icon={<Mail className="h-5 w-5" />}

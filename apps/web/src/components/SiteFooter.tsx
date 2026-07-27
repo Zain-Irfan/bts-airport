@@ -3,9 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useSiteSettings } from "@/components/providers/SiteSettingsProvider";
+import { telHref } from "@/lib/phone";
 
 export function SiteFooter() {
-  const { whatsapp, email } = useSiteSettings();
+  const { whatsapp, phone, email } = useSiteSettings();
   return (
     <footer className="relative overflow-hidden border-t border-[rgba(192,192,192,0.1)] bg-[linear-gradient(180deg,#0D0D0F_0%,#0A0A0D_100%)] text-[#D1D5DB]">
       {/* Subtle purple top wash */}
@@ -65,9 +66,9 @@ export function SiteFooter() {
             <li>
               <a
                 className="text-[#D1D5DB] transition-colors duration-300 hover:text-[#F8F8F8]"
-                href="tel:+442080509014"
+                href={telHref(phone)}
               >
-                +44 2080 5090 14
+                {phone}
               </a>
             </li>
             <li className="pt-1 text-xs leading-5 text-[#A5A7AA]">

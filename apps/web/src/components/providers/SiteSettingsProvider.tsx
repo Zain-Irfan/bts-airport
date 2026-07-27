@@ -5,6 +5,7 @@ import type { SiteSettings } from "@/lib/site-settings";
 
 const SiteSettingsContext = createContext<SiteSettings>({
   whatsapp: "447700140900",
+  phone: "+44 2080 5090 14",
   email: "support@BTS.uk",
 });
 

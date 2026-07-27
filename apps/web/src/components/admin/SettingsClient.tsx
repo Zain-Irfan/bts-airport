@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Save, MessageCircle, Mail, KeyRound, Eye, EyeOff } from "lucide-react";
+import { Save, MessageCircle, Mail, Phone, KeyRound, Eye, EyeOff } from "lucide-react";
 import { useAdminLayout } from "@/components/admin/AdminLayoutContext";
 
 export function SettingsClient({
@@ -22,6 +22,7 @@ export function SettingsClient({
   const labelColor  = isLight ? "#6B7280" : "#A5A7AA";
 
   const [whatsapp,    setWhatsapp]    = useState(initial["whatsapp_number"]   ?? "447700140900");
+  const [phone,       setPhone]       = useState(initial["contact_phone"]     ?? "+44 2080 5090 14");
   const [email,       setEmail]       = useState(initial["contact_email"]     ?? "support@BTS.uk");
   // Pre-fill with the DB value only (env var stays in .env — don't expose it in the input)
   const [revolutKey,  setRevolutKey]  = useState(initial["revolut_secret_key"] ?? "");
@@ -36,6 +37,7 @@ export function SettingsClient({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         whatsapp_number:    whatsapp,
+        contact_phone:      phone,
         contact_email:      email,
         revolut_secret_key: revolutKey,
       }),
@@ -75,6 +77,33 @@ export function SettingsClient({
         </div>
         <div className="rounded-lg px-3 py-2 text-xs" style={{ background: "var(--adm-surface-2)", color: labelColor }}>
           Preview: <span className="font-mono" style={{ color: "var(--adm-text-sub)" }}>https://wa.me/{whatsapp}</span>
+        </div>
+      </div>
+
+      {/* Call / Phone number */}
+      <div className="rounded-xl border p-6 space-y-4" style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}>
+        <div className="flex items-center gap-2">
+          <Phone className="h-4 w-4" style={{ color: "#999999" }} />
+          <h2 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Call / Phone Number</h2>
+        </div>
+        <div>
+          <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.15em]" style={{ color: labelColor }}>
+            Phone number (as you want it displayed)
+          </label>
+          <input
+            type="text"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="+44 2080 5090 14"
+            className="h-10 w-full rounded-lg border px-3 text-sm outline-none font-mono"
+            style={{ background: inputBg, borderColor: inputBorder, color: inputColor }}
+          />
+          <p className="mt-1.5 text-xs" style={{ color: labelColor }}>
+            Used in: footer &ldquo;Support&rdquo; line, homepage phone card, help &amp; support page — as the clickable call (tel:) number
+          </p>
+        </div>
+        <div className="rounded-lg px-3 py-2 text-xs" style={{ background: "var(--adm-surface-2)", color: labelColor }}>
+          Preview: <span className="font-mono" style={{ color: "var(--adm-text-sub)" }}>tel:{phone.replace(/[^\d+]/g, "")}</span>
         </div>
       </div>
 

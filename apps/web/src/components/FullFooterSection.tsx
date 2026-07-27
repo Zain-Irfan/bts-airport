@@ -5,9 +5,10 @@ import Image from "next/image";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { MapPin, Mail, Phone } from "lucide-react";
 import { useSiteSettings } from "@/components/providers/SiteSettingsProvider";
+import { telHref } from "@/lib/phone";
 
 export function FullFooterSection() {
-  const { whatsapp, email } = useSiteSettings();
+  const { whatsapp, phone, email } = useSiteSettings();
   return (
     <>
       {/* ── Pre-footer CTA — cinematic onyx → royal-purple band ── */}
@@ -82,8 +83,8 @@ export function FullFooterSection() {
               <ContactRow
                 icon={<Phone className="h-4 w-4" />}
                 label="Support"
-                value="+44 2080 5090 14"
-                href="tel:+442080509014"
+                value={phone}
+                href={telHref(phone)}
               />
               <ContactRow
                 icon={<MapPin className="h-4 w-4" />}
