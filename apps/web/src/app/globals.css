@@ -1899,16 +1899,16 @@ input.BTS-booking-time::-webkit-clear-button {
 /* ─── Admin panel theme variables ─────────────────────────────────────────── */
 
 .admin-dark {
-  --adm-bg:           #0D0D0F;
-  --adm-surface:      #1E1E23;
-  --adm-surface-2:    #141416;
+  --adm-bg:           #1F1F1F;
+  --adm-surface:      #333333;
+  --adm-surface-2:    #262626;
   --adm-border:       rgba(192,192,192,0.12);
   --adm-border-soft:  rgba(192,192,192,0.05);
   --adm-text:         #F8F8F8;
   --adm-text-muted:   #A5A7AA;
   --adm-text-sub:     #CFCFCF;
   --adm-row-hover:    rgba(192,192,192,0.03);
-  --adm-input-bg:     #0D0D0F;
+  --adm-input-bg:     #262626;
   --adm-input-border: rgba(192,192,192,0.12);
   --adm-input-text:   #F8F8F8;
   --adm-active-bg:    rgba(51, 51, 51,0.2);
@@ -1930,9 +1930,9 @@ input.BTS-booking-time::-webkit-clear-button {
   --adm-input-bg:     #FFFFFF;
   --adm-input-border: #D1D5DB;
   --adm-input-text:   #111827;
-  --adm-active-bg:    #EDE9FE;
-  --adm-active-ring:  rgba(109,40,217,0.2);
-  --adm-active-icon:  #7C3AED;
+  --adm-active-bg:    #E5E7EB;
+  --adm-active-ring:  rgba(51, 51, 51,0.2);
+  --adm-active-icon:  #333333;
   --adm-img-placeholder: #E5E7EB;
 }
 

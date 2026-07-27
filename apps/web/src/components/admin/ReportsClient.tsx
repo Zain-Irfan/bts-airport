@@ -21,7 +21,7 @@ const STATUS_COLORS: Record<string, string> = {
   COMPLETED:   "#3B82F6",
   PENDING:     "#F59E0B",
   CANCELLED:   "#EF4444",
-  IN_PROGRESS: "#8B5CF6",
+  IN_PROGRESS: "#6B7280",
 };
 
 export function ReportsClient({ data }: Props) {
@@ -67,7 +67,7 @@ export function ReportsClient({ data }: Props) {
                     className="w-full rounded-t-md transition-all duration-300"
                     style={{
                       height: `${Math.max(h, 2)}%`,
-                      background: "linear-gradient(180deg,#7C3AED,#333333)",
+                      background: "linear-gradient(180deg,#4A4A4A,#262626)",
                       opacity: m.count === 0 ? 0.25 : 1,
                     }}
                   />
@@ -154,7 +154,7 @@ export function ReportsClient({ data }: Props) {
           <div className="space-y-3">
             {data.vehicleBreakdown.map((v, i) => {
               const pct = totalVehicleCount ? Math.round((v.count / totalVehicleCount) * 100) : 0;
-              const colors = ["#999999","#3B82F6","#10B981","#F59E0B","#EF4444","#8B5CF6","#EC4899","#14B8A6"];
+              const colors = ["#999999","#3B82F6","#10B981","#F59E0B","#EF4444","#6B7280","#94A3B8","#14B8A6"];
               return (
                 <div key={v.vehicle}>
                   <div className="mb-1 flex justify-between text-xs">

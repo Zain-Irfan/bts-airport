@@ -312,7 +312,7 @@ export function HomeBookingForm() {
                   className={cn(
                     "relative inline-flex h-6 w-11 shrink-0 items-center rounded-full border-2 transition-colors duration-300",
                     returnEnabled
-                      ? "border-[#7C3AED] bg-[#7C3AED]"
+                      ? "border-[#333333] bg-[#333333]"
                       : "border-[rgba(192,192,192,0.3)] bg-[rgba(45,45,51,0.8)]",
                   )}
                   aria-checked={returnEnabled}

@@ -55,7 +55,7 @@ export function AdminSidebar() {
   const textMuted = isLight ? "text-gray-500" : "text-[#A5A7AA]";
   const dividerBorder = isLight ? "border-gray-200" : "border-[rgba(192,192,192,0.08)]";
   const activeItem = isLight
-    ? "bg-zinc-50 text-zinc-900 shadow-[inset_0_0_0_1px_rgba(109,40,217,0.2)]"
+    ? "bg-zinc-50 text-zinc-900 shadow-[inset_0_0_0_1px_rgba(51, 51, 51,0.2)]"
     : "bg-[rgba(51, 51, 51,0.2)] text-[#F8F8F8] shadow-[inset_0_0_0_1px_rgba(153, 153, 153,0.25)]";
   const inactiveItem = isLight
     ? "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
