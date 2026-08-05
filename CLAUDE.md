@@ -3,6 +3,10 @@
 > Read this first. It captures the operational knowledge that is **not** obvious from the
 > code — deployment quirks, gotchas, and current state — so a fresh session can be productive
 > immediately. (There is also `apps/web/CLAUDE.md` → `AGENTS.md` with a Next.js warning; read that too.)
+>
+> 📘 **For anything about hosting/deploying (Cloudways, `.htaccess` proxy, PM2, 503 errors,
+> "changes not showing", first-time server setup, troubleshooting), read [`DEPLOYMENT.md`](DEPLOYMENT.md)
+> — it is the complete runbook. The summary in section "Deployment" below is just an overview.**
 
 ## What this is
 A booking website + admin panel for a London airport-taxi / private-transfer company.
