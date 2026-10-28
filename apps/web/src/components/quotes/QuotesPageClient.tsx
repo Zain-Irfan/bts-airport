@@ -12,7 +12,8 @@ import { FullFooterSection } from "@/components/FullFooterSection";
 import { FaWhatsapp } from "react-icons/fa";
 import type { VehicleTypeDTO } from "@/lib/vehicle-types";
 import type { VehicleCategoryDTO } from "@/lib/vehicle-category";
-import { applyPromoPrice, calculateListPriceGbp, formatGbp } from "@/lib/quote-calculations";
+import { formatGbp } from "@/lib/quote-calculations";
+import { meetFeeFor, priceJourney } from "@/lib/booking-pricing";
 import { QuoteJourneyCard } from "@/components/quotes/QuoteJourneyCard";
 import { useJourneyRoute } from "@/components/quotes/useJourneyRoute";
 
@@ -121,6 +122,8 @@ export function QuotesPageClient() {
 
   const activeCats = useMemo(() => categories.filter((c) => c.isActive), [categories]);
 
+  const meetFee = meetFeeFor(params.pickup, params.meet);
+
   const whenLabel = formatWhen(params.dateStr, params.time);
   const returnDateForLabel = useMemo(() => {
     if (params.returnDateStr) return params.returnDateStr;
@@ -143,7 +146,7 @@ export function QuotesPageClient() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-[60] flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-all duration-300 hover:bg-[#1ebe5d] hover:shadow-[0_8px_28px_-4px_rgba(37,211,102,0.45)]"
+        className="fixed bottom-6 right-6 z-[60] flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-all duration-300 hover:bg-[#1ebe5d] hover:shadow-md"
       >
         <FaWhatsapp className="h-7 w-7" />
       </a>
@@ -151,12 +154,12 @@ export function QuotesPageClient() {
       <SiteTopHeader />
 
       <main className="container mx-auto max-w-6xl px-3 py-8 sm:px-4 sm:py-10 md:py-14">
-        <h1 className="mb-6 text-2xl font-extrabold tracking-tight text-[#F8F8F8] sm:mb-8 sm:text-3xl md:text-4xl">
+        <h1 className="mb-6 text-2xl font-extrabold tracking-tight text-foreground sm:mb-8 sm:text-3xl md:text-4xl">
           Quotes
         </h1>
 
         {!params.pickup || !params.dropoff ? (
-          <div className="rounded-xl border border-white/10 bg-card p-8 text-center text-muted-foreground">
+          <div className="rounded-xl border border-border bg-card p-8 text-center text-muted-foreground">
             <p className="mb-4">
               Missing pickup or dropoff. Go back to the home page and complete the booking form.
             </p>
@@ -207,8 +210,8 @@ export function QuotesPageClient() {
                 onClick={() => setCategoryKey("all")}
                 className={`shrink-0 cursor-pointer rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wide transition ${
                   categoryKey === "all"
-                    ? "border-accent/50 bg-accent text-accent-foreground shadow-[0_4px_20px_-6px_rgba(249,115,22,0.45)]"
-                    : "border-white/10 bg-secondary/60 text-muted-foreground hover:border-white/20 hover:text-foreground"
+                    ? "border-accent/50 bg-accent text-accent-foreground shadow-sm"
+                    : "border-border bg-secondary/60 text-muted-foreground hover:border-border hover:text-foreground"
                 }`}
               >
                 All Vehicles
@@ -220,8 +223,8 @@ export function QuotesPageClient() {
                   onClick={() => setCategoryKey(c.slug)}
                   className={`shrink-0 cursor-pointer rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wide transition ${
                     categoryKey === c.slug
-                      ? "border-accent/50 bg-accent text-accent-foreground shadow-[0_4px_20px_-6px_rgba(249,115,22,0.45)]"
-                      : "border-white/10 bg-secondary/60 text-muted-foreground hover:border-white/20 hover:text-foreground"
+                      ? "border-accent/50 bg-accent text-accent-foreground shadow-sm"
+                      : "border-border bg-secondary/60 text-muted-foreground hover:border-border hover:text-foreground"
                   }`}
                 >
                   {c.label}
@@ -234,81 +237,72 @@ export function QuotesPageClient() {
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-card shadow-[0_16px_48px_-20px_rgba(0,0,0,0.55)]"
+                    className="flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm"
                   >
-                    <div className="border-b border-white/[0.06] p-5 pb-3">
-                      <div className="h-5 w-2/3 animate-pulse rounded-md bg-white/10" />
-                      <div className="mt-2 h-3 w-1/2 animate-pulse rounded-md bg-white/[0.06]" />
+                    <div className="border-b border-border p-5 pb-3">
+                      <div className="h-5 w-2/3 animate-pulse rounded-md bg-muted" />
+                      <div className="mt-2 h-3 w-1/2 animate-pulse rounded-md bg-muted" />
                     </div>
-                    <div className="h-40 w-full animate-pulse bg-white/[0.04]" />
+                    <div className="h-40 w-full animate-pulse bg-muted" />
                     <div className="flex flex-1 flex-col gap-4 p-5">
                       <div className="flex gap-4">
-                        <div className="h-4 w-10 animate-pulse rounded bg-white/10" />
-                        <div className="h-4 w-10 animate-pulse rounded bg-white/10" />
-                        <div className="h-4 w-10 animate-pulse rounded bg-white/10" />
+                        <div className="h-4 w-10 animate-pulse rounded bg-muted" />
+                        <div className="h-4 w-10 animate-pulse rounded bg-muted" />
+                        <div className="h-4 w-10 animate-pulse rounded bg-muted" />
                       </div>
                       <div className="mt-auto space-y-2">
-                        <div className="h-7 w-24 animate-pulse rounded-md bg-white/10" />
+                        <div className="h-7 w-24 animate-pulse rounded-md bg-muted" />
                       </div>
-                      <div className="h-12 w-full animate-pulse rounded-lg bg-white/10" />
+                      <div className="h-12 w-full animate-pulse rounded-lg bg-muted" />
                     </div>
                   </div>
                 ))}
               </div>
             ) : filteredVehicles.length === 0 ? (
-              <p className="rounded-xl border border-white/10 bg-card py-16 text-center text-muted-foreground">
+              <p className="rounded-xl border border-border bg-card py-16 text-center text-muted-foreground">
                 No vehicles match your party size and category. Try &quot;All Vehicles&quot; or adjust luggage /
                 passengers.
               </p>
             ) : (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredVehicles.map((v) => {
-                  const promoPct = Number(v.promoDiscountPercent) || 0;
-
-                  const outboundList = calculateListPriceGbp(
+                  // Same maths the server charges with (lib/booking-pricing).
+                  const price = priceJourney(
+                    v,
                     outbound.milesUsed,
-                    v.baseFareGbp,
-                    v.perMileGbp,
-                    v.minimumFareGbp,
+                    params.hasReturn ? returnLeg.milesUsed : null,
+                    meetFee,
                   );
-                  const returnList = params.hasReturn
-                    ? calculateListPriceGbp(
-                        returnLeg.milesUsed,
-                        v.baseFareGbp,
-                        v.perMileGbp,
-                        v.minimumFareGbp,
-                      )
-                    : 0;
-
-                  const outboundPay = applyPromoPrice(outboundList, promoPct);
-                  const returnPay = params.hasReturn ? applyPromoPrice(returnList, promoPct) : 0;
-                  const totalList = outboundList + returnList;
-                  const totalPay = outboundPay + returnPay;
+                  const promoPct = price.promoPercent;
+                  const outboundPay = price.outboundPrice;
+                  const returnPay = price.returnPrice;
+                  const totalPay = price.totalPrice;
+                  const totalList = price.outboundList + price.returnList + meetFee;
                   const showPromo = promoPct > 0 && totalList > totalPay;
                   const img = v.imageUrl || "/images/saloon.jpeg";
 
                   return (
                     <article
                       key={v.id}
-                      className="relative flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-card shadow-[0_16px_48px_-20px_rgba(0,0,0,0.55)]"
+                      className="relative flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm"
                     >
                       {showPromo && (
                         <div className="absolute right-0 top-6 z-10 translate-x-8 rotate-45 bg-red-600 px-10 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-md">
                           {promoPct}% Off
                         </div>
                       )}
-                      <div className="border-b border-white/[0.06] p-5 pb-3">
-                        <h2 className="pr-12 text-lg font-bold text-[#F8F8F8]">{v.name}</h2>
+                      <div className="border-b border-border p-5 pb-3">
+                        <h2 className="pr-12 text-lg font-bold text-foreground">{v.name}</h2>
                         {v.subtitle && <p className="mt-1 text-xs text-muted-foreground">{v.subtitle}</p>}
                       </div>
-                      <div className="relative h-40 w-full bg-[#141416]">
+                      <div className="relative h-40 w-full bg-muted">
                         {/* eslint-disable-next-line @next/next/no-img-element -- dynamic admin URLs */}
                         <img src={img} alt="" className="h-full w-full object-contain object-center px-4" />
                       </div>
                       <div className="flex flex-1 flex-col gap-4 p-5">
                         <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                           <span className="flex items-center gap-1.5">
-                            <Users className="h-4 w-4 text-highlight" />
+                            <Users className="h-4 w-4 text-gold-ink" />
                             {v.maxPassengers}
                           </span>
                           <span className="flex items-center gap-1.5">
@@ -322,22 +316,25 @@ export function QuotesPageClient() {
                         </div>
                         <div className="mt-auto space-y-2">
                           {params.hasReturn && (
-                            <span className="inline-block rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-400">
+                            <span className="inline-block rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-700">
                               Round Trip
                             </span>
                           )}
                           {showPromo && (
-                            <p className="text-sm text-red-400 line-through">Was {formatGbp(totalList)}</p>
+                            <p className="text-sm text-red-700 line-through">Was {formatGbp(totalList)}</p>
                           )}
-                          <p className="text-2xl font-extrabold text-emerald-400">{formatGbp(totalPay)}</p>
+                          <p className="text-2xl font-extrabold text-foreground">{formatGbp(totalPay)}</p>
+                          {meetFee > 0 && (
+                            <p className="text-xs text-muted-foreground">Includes {formatGbp(meetFee)} meet &amp; greet</p>
+                          )}
                           {params.hasReturn && (
-                            <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-100/90">
+                            <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-800">
                               <p>
-                                <span className="font-semibold text-emerald-300">Outbound:</span>{" "}
+                                <span className="font-semibold text-emerald-700">Outbound:</span>{" "}
                                 {formatGbp(outboundPay)}
                               </p>
                               <p className="mt-1">
-                                <span className="font-semibold text-emerald-300">Return:</span> {formatGbp(returnPay)}
+                                <span className="font-semibold text-emerald-700">Return:</span> {formatGbp(returnPay)}
                               </p>
                             </div>
                           )}
@@ -349,9 +346,9 @@ export function QuotesPageClient() {
                             outboundPrice: outboundPay,
                             returnPrice: returnPay,
                             totalPrice: totalPay,
-                            meetFee: Number(searchParams.get("meetFee")) || 0,
+                            meetFee,
                           })}
-                          className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-lg border border-highlight/35 bg-accent text-sm font-extrabold text-accent-foreground shadow-[0_6px_24px_-8px_rgba(249,115,22,0.35)] transition hover:brightness-105"
+                          className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-lg border border-highlight/35 bg-accent text-sm font-extrabold text-accent-foreground shadow-sm transition hover:brightness-105"
                         >
                           Book Now
                         </Link>

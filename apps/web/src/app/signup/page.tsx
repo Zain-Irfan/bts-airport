@@ -1,7 +1,13 @@
-﻿import { Sparkles } from "lucide-react";
+﻿import type { Metadata } from "next";
+import { Sparkles } from "lucide-react";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { CustomerSignupForm } from "@/components/auth/CustomerSignupForm";
+
+export const metadata: Metadata = {
+  title: "Create an Account",
+  robots: { index: false, follow: false },
+};
 
 export default function SignupPage() {
   return (
@@ -15,10 +21,10 @@ export default function SignupPage() {
               <Sparkles className="h-3.5 w-3.5" />
               Create account
             </p>
-            <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              Join London Airport Taxi Services
+            <h1 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Join MRM Executive Voyage
             </h1>
-            <p className="mt-3 text-sm leading-6 text-[#D1D5DB]">
+            <p className="mt-3 text-sm leading-6 text-body">
               Register to book faster and see all your journeys in one place.
             </p>
           </div>

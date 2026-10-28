@@ -10,7 +10,7 @@ type Props = {
 export function FormField({ label, children, className }: Props) {
   return (
     <div className={className ?? "space-y-1.5"}>
-      <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+      <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {label}
       </span>
       {children}

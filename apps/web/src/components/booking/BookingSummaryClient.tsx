@@ -19,6 +19,7 @@ import { FullFooterSection } from "@/components/FullFooterSection";
 import { FaWhatsapp } from "react-icons/fa";
 import { BookingPhoneField } from "@/components/booking/BookingPhoneField";
 import { formatGbp } from "@/lib/quote-calculations";
+import type { ServerQuote } from "@/lib/booking-quote";
 import {
   buildQuotesUrl,
   parseBookingPricingParams,
@@ -35,8 +36,8 @@ function SummaryCard({
   children: ReactNode;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]">
-      <div className="flex items-center gap-2 border-b border-gray-100 bg-accent px-5 py-3.5 text-base font-bold text-accent-foreground">
+    <div className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+      <div className="flex items-center gap-2 border-b border-border bg-navy px-5 py-3.5 text-base font-bold text-white [&_svg]:text-gold">
         {icon}
         {title}
       </div>
@@ -74,9 +75,45 @@ export function BookingSummaryClient() {
   const [paymentError, setPaymentError] = useState<string | null>(null);
 
   const quotesHref = buildQuotesUrl(sp);
-  const subtotal = pricing ? pricing.outboundPrice + pricing.returnPrice : 0;
-  const meetFee = pricing?.meetFee ?? 0;
-  const total = pricing?.totalPrice ?? subtotal + meetFee;
+
+  // The price shown here (and charged) comes from the server, not from the URL.
+  const [confirmed, setConfirmed] = useState<ServerQuote | null>(null);
+  const [quoteError, setQuoteError] = useState<string | null>(null);
+  // Keyed on the serialized request (a string), because useSearchParams yields a new object
+  // each render — depending on `quote` directly re-fired this request in a loop.
+  const quoteRequestBody =
+    pricing?.vehicleId && quote.pickup && quote.dropoff
+      ? JSON.stringify({ quote, vehicleId: pricing.vehicleId })
+      : null;
+
+  useEffect(() => {
+    if (!quoteRequestBody) return;
+    let cancelled = false;
+    fetch("/api/quote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: quoteRequestBody,
+    })
+      .then(async (res) => {
+        const data = (await res.json().catch(() => ({}))) as { quote?: ServerQuote; error?: string };
+        if (cancelled) return;
+        if (!res.ok || !data.quote) {
+          setQuoteError(data.error || "We couldn't confirm the price. Please go back and try again.");
+          return;
+        }
+        setQuoteError(null);
+        setConfirmed(data.quote);
+      })
+      .catch(() => {
+        if (!cancelled) setQuoteError("Network error — couldn't confirm the price. Please try again.");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [quoteRequestBody]);
+
+  const priceChanged =
+    confirmed && pricing ? Math.abs(confirmed.totalPrice - pricing.totalPrice) >= 0.01 : false;
 
   const formValid =
     firstName.trim() &&
@@ -90,14 +127,22 @@ export function BookingSummaryClient() {
       setShowTermsWarning(true);
       return;
     }
-    if (!formValid || !pricing) return;
+    if (!formValid || !pricing || !confirmed) return;
 
     setSubmitting(true);
     setPaymentError(null);
 
     const checkout = {
       quote,
-      pricing,
+      // Informational only — the payment API recalculates the amount itself.
+      pricing: {
+        vehicleId: confirmed.vehicleId,
+        vehicleName: confirmed.vehicleName,
+        outboundPrice: confirmed.outboundPrice,
+        returnPrice: confirmed.returnPrice,
+        meetFee: confirmed.meetFee,
+        totalPrice: confirmed.totalPrice,
+      },
       customer: {
         firstName: firstName.trim(),
         lastName: lastName.trim(),
@@ -132,10 +177,10 @@ export function BookingSummaryClient() {
 
   if (!quote.pickup || !quote.dropoff || !pricing) {
     return (
-      <div className="min-h-screen bg-[#f3f4f6] font-sans">
+      <div className="min-h-screen bg-muted font-sans">
         <SiteTopHeader />
         <main className="container mx-auto max-w-lg px-4 py-20 text-center">
-          <p className="mb-4 text-gray-600">Missing booking details. Please select a vehicle from quotes first.</p>
+          <p className="mb-4 text-muted-foreground">Missing booking details. Please select a vehicle from quotes first.</p>
           <Link
             href="/"
             className="inline-flex rounded-lg bg-accent px-5 py-2.5 text-sm font-bold text-accent-foreground"
@@ -149,7 +194,7 @@ export function BookingSummaryClient() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3f4f6] font-sans text-gray-900">
+    <div className="min-h-screen bg-muted font-sans text-foreground">
       <a
         href={`https://wa.me/${whatsapp}`}
         target="_blank"
@@ -164,13 +209,13 @@ export function BookingSummaryClient() {
 
       <main className="container mx-auto max-w-6xl px-4 py-8 sm:py-10 md:py-12">
 <div className="mb-8 text-center sm:mb-10">
-          <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
+          <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl md:text-4xl">
             Booking Summary
           </h1>
-          <p className="mt-2 text-sm text-gray-600 sm:text-base">
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
             Review your booking details and complete your reservation
           </p>
-          <p className="mt-1 text-xs font-medium text-accent">
+          <p className="mt-1 text-xs font-medium text-gold-ink">
             {pricing.vehicleName}
             {quote.hasReturn ? " · Round trip" : ""}
           </p>
@@ -181,41 +226,41 @@ export function BookingSummaryClient() {
             <div className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1.5 block text-sm font-semibold text-gray-800">First Name</label>
+                  <label className="mb-1.5 block text-sm font-semibold text-foreground">First Name</label>
                   <input
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     required
-                    className="h-11 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+                    className="h-11 w-full rounded-lg border border-border bg-white px-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-semibold text-gray-800">Last Name</label>
+                  <label className="mb-1.5 block text-sm font-semibold text-foreground">Last Name</label>
                   <input
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     required
-                    className="h-11 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+                    className="h-11 w-full rounded-lg border border-border bg-white px-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
                   />
                 </div>
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-gray-800">Email Address</label>
+                <label className="mb-1.5 block text-sm font-semibold text-foreground">Email Address</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="h-11 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+                  className="h-11 w-full rounded-lg border border-border bg-white px-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
                 />
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 text-xs text-muted-foreground">
                   Booking confirmation will be sent to this email
                 </p>
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-gray-800">Phone Number</label>
+                <label className="mb-1.5 block text-sm font-semibold text-foreground">Phone Number</label>
                 <BookingPhoneField value={phone} onChange={setPhone} required />
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 text-xs text-muted-foreground">
                   For booking updates and driver communication
                 </p>
               </div>
@@ -228,30 +273,51 @@ export function BookingSummaryClient() {
 
           <SummaryCard title="Price Breakdown" icon={<FileText className="h-5 w-5" />}>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between gap-4 border-b border-gray-100 pb-3">
-                <span className="text-gray-600">Outbound Journey</span>
-                <span className="font-semibold text-gray-900">{formatGbp(pricing.outboundPrice)}</span>
-              </div>
-              {quote.hasReturn && (
-                <div className="flex justify-between gap-4 border-b border-gray-100 pb-3">
-                  <span className="text-gray-600">Return Journey</span>
-                  <span className="font-semibold text-gray-900">{formatGbp(pricing.returnPrice)}</span>
+              {!confirmed && !quoteError && (
+                <div className="space-y-3" aria-live="polite">
+                  <p className="text-muted-foreground">Confirming your price…</p>
+                  <div className="BTS-shimmer h-5 w-full" />
+                  <div className="BTS-shimmer h-5 w-2/3" />
+                  <div className="BTS-shimmer h-14 w-full" />
                 </div>
               )}
-              <div className="flex justify-between gap-4 border-b border-gray-100 pb-3">
-                <span className="text-gray-600">Subtotal</span>
-                <span className="font-semibold text-gray-900">{formatGbp(subtotal)}</span>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-gray-100 pb-3">
-                <span className="text-gray-600">Meet &amp; Greet</span>
-                <span className="font-semibold text-gray-900">{formatGbp(meetFee)}</span>
-              </div>
-              <div className="rounded-lg border border-orange-200 bg-orange-50 px-4 py-4">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="font-bold text-gray-900">Total Amount</span>
-                  <span className="text-2xl font-extrabold text-gray-900">{formatGbp(total)}</span>
-                </div>
-              </div>
+              {quoteError && (
+                <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">
+                  {quoteError}
+                </p>
+              )}
+              {confirmed && (
+                <>
+                  <div className="flex justify-between gap-4 border-b border-border pb-3">
+                    <span className="text-muted-foreground">Outbound Journey</span>
+                    <span className="font-semibold text-foreground">{formatGbp(confirmed.outboundPrice)}</span>
+                  </div>
+                  {quote.hasReturn && (
+                    <div className="flex justify-between gap-4 border-b border-border pb-3">
+                      <span className="text-muted-foreground">Return Journey</span>
+                      <span className="font-semibold text-foreground">{formatGbp(confirmed.returnPrice)}</span>
+                    </div>
+                  )}
+                  {confirmed.meetFee > 0 && (
+                    <div className="flex justify-between gap-4 border-b border-border pb-3">
+                      <span className="text-muted-foreground">Meet &amp; Greet</span>
+                      <span className="font-semibold text-foreground">{formatGbp(confirmed.meetFee)}</span>
+                    </div>
+                  )}
+                  <div className="rounded-lg border border-gold/40 bg-gold/10 px-4 py-4">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="font-bold text-foreground">Total Amount</span>
+                      <span className="text-2xl font-extrabold text-foreground">{formatGbp(confirmed.totalPrice)}</span>
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground">Fixed price — taxes and tolls included</p>
+                  </div>
+                  {priceChanged && (
+                    <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                      Your price was updated to reflect the latest route and rates.
+                    </p>
+                  )}
+                </>
+              )}
 
               <label className="flex cursor-pointer items-start gap-2 pt-1">
                 <input
@@ -263,9 +329,9 @@ export function BookingSummaryClient() {
                   }}
                   className="mt-1 h-4 w-4 accent-accent"
                 />
-                <span className="text-sm text-gray-700">
+                <span className="text-sm text-body">
                   I agree to the{" "}
-                  <Link href="/terms-and-conditions" className="font-semibold text-accent hover:underline">
+                  <Link href="/terms-and-conditions" className="font-semibold text-gold-ink hover:underline">
                     Terms and Conditions
                   </Link>
                 </span>
@@ -274,15 +340,15 @@ export function BookingSummaryClient() {
               <div className="grid gap-3 pt-2 sm:grid-cols-2">
                 <Link
                   href={quotesHref}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-accent/40 bg-accent text-sm font-bold text-accent-foreground transition hover:brightness-105"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border-strong text-sm font-semibold text-foreground transition hover:border-gold"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back to Quotes
                 </Link>
                 <button
                   type="submit"
-                  disabled={submitting || !formValid}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-gray-800 text-sm font-bold text-white transition hover:bg-gray-900 disabled:cursor-not-allowed disabled:opacity-50"
+                  disabled={submitting || !formValid || !confirmed}
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-gold text-sm font-bold text-gold-foreground transition hover:bg-gold-hover disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <CreditCard className="h-4 w-4" />
                   {submitting ? "Please wait…" : "Proceed to Payment"}
@@ -303,7 +369,7 @@ export function BookingSummaryClient() {
           </SummaryCard>
         </form>
 
-        <p className="mt-8 text-center text-xs text-gray-500">
+        <p className="mt-8 text-center text-xs text-muted-foreground">
           Your personal information is secure and will only be used for booking purposes
         </p>
       </main>

@@ -8,10 +8,10 @@ import { telHref } from "@/lib/phone";
 export function SiteFooter() {
   const { whatsapp, phone, email } = useSiteSettings();
   return (
-    <footer className="relative overflow-hidden border-t border-[rgba(192,192,192,0.1)] bg-[linear-gradient(180deg,#0D0D0F_0%,#0A0A0D_100%)] text-[#D1D5DB]">
+    <footer className="relative overflow-hidden border-t border-border theme-navy bg-navy-deep text-body">
       {/* Subtle purple top wash */}
       <div
-        className="pointer-events-none absolute -top-32 left-1/2 h-56 w-[60vw] max-w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(51, 51, 51,0.28),transparent_65%)] blur-[110px]"
+        className="pointer-events-none absolute -top-32 left-1/2 h-56 w-[60vw] max-w-[900px] -translate-x-1/2 rounded-full bg-transparent blur-[110px]"
         aria-hidden
       />
 
@@ -19,13 +19,13 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-4">
           <div className="space-y-4">
             <Image
-              src="/assets/logo.jpeg"
-              alt="London Airport Taxi Services Logo"
+              src="/assets/logo-mrm.png"
+              alt="MRM Executive Voyage Logo"
               width={140}
               height={50}
               className="h-10 w-auto object-contain"
             />
-            <p className="max-w-xs text-sm leading-6 text-[#A5A7AA]">
+            <p className="max-w-xs text-sm leading-6 text-muted-foreground">
               Pre-booked London transfers with transparent pricing and premium
               vehicles.
             </p>
@@ -49,7 +49,7 @@ export function SiteFooter() {
           <FooterCol title="Contact">
             <li>
               <a
-                className="text-[#D1D5DB] transition-colors duration-300 hover:text-[#F8F8F8]"
+                className="text-body transition-colors duration-300 hover:text-foreground"
                 href={`mailto:${email}`}
               >
                 {email}
@@ -57,7 +57,7 @@ export function SiteFooter() {
             </li>
             <li>
               <a
-                className="text-[#D1D5DB] transition-colors duration-300 hover:text-[#F8F8F8]"
+                className="text-body transition-colors duration-300 hover:text-foreground"
                 href={`https://wa.me/${whatsapp}`}
               >
                 WhatsApp: +{whatsapp}
@@ -65,30 +65,30 @@ export function SiteFooter() {
             </li>
             <li>
               <a
-                className="text-[#D1D5DB] transition-colors duration-300 hover:text-[#F8F8F8]"
+                className="text-body transition-colors duration-300 hover:text-foreground"
                 href={telHref(phone)}
               >
                 {phone}
               </a>
             </li>
-            <li className="pt-1 text-xs leading-5 text-[#A5A7AA]">
+            <li className="pt-1 text-xs leading-5 text-muted-foreground">
               450 Bath Rd, London UB7 0EB, United Kingdom
             </li>
           </FooterCol>
         </div>
 
         <div className="BTS-divider-silver mt-10" aria-hidden />
-        <div className="mt-6 flex flex-col gap-2 text-xs text-[#A5A7AA] md:flex-row md:items-center md:justify-between">
-          <div>© {new Date().getFullYear()} London Airport Taxi Services. All rights reserved.</div>
+        <div className="mt-6 flex flex-col gap-2 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <div>© {new Date().getFullYear()} MRM Executive Voyage. All rights reserved.</div>
           <div className="flex gap-5">
             <Link
-              className="text-[#A5A7AA] transition-colors hover:text-[#F8F8F8]"
+              className="text-muted-foreground transition-colors hover:text-foreground"
               href="/privacy-policy"
             >
               Privacy Policy
             </Link>
             <Link
-              className="text-[#A5A7AA] transition-colors hover:text-[#F8F8F8]"
+              className="text-muted-foreground transition-colors hover:text-foreground"
               href="/terms-and-conditions"
             >
               Terms & Conditions
@@ -109,7 +109,7 @@ function FooterCol({
 }) {
   return (
     <div className="space-y-3">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
+      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-ink">
         {title}
       </div>
       <ul className="space-y-2 text-sm">{children}</ul>
@@ -127,7 +127,7 @@ function FooterLi({
   return (
     <li>
       <Link
-        className="text-[#D1D5DB] transition-colors duration-300 hover:text-[#F8F8F8]"
+        className="text-body transition-colors duration-300 hover:text-foreground"
         href={href}
       >
         {children}

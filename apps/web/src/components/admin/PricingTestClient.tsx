@@ -17,7 +17,7 @@ type VehicleType = {
 export function PricingTestClient({ vehicleTypes }: { vehicleTypes: VehicleType[] }) {
   const { theme } = useAdminLayout();
   const isLight = theme === "light";
-  const inputBg     = isLight ? "#FFFFFF" : "#0D0D0F";
+  const inputBg     = isLight ? "#FFFFFF" : "#071427";
   const inputBorder = isLight ? "#D1D5DB" : "rgba(192,192,192,0.18)";
   const inputColor  = isLight ? "#111827" : "#F8F8F8";
   const labelColor  = isLight ? "#6B7280" : "#A5A7AA";
@@ -46,7 +46,7 @@ export function PricingTestClient({ vehicleTypes }: { vehicleTypes: VehicleType[
     <div className="space-y-6">
       <div className="rounded-xl border p-6" style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}>
         <div className="flex items-center gap-2 mb-5">
-          <Calculator className="h-4 w-4" style={{ color: "#999999" }} />
+          <Calculator className="h-4 w-4" style={{ color: "var(--adm-accent-ink)" }} />
           <h2 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Fare Calculator</h2>
         </div>
         <p className="text-xs mb-5" style={{ color: labelColor }}>
@@ -131,7 +131,7 @@ export function PricingTestClient({ vehicleTypes }: { vehicleTypes: VehicleType[
                     </td>
                     <td className="px-4 py-3">
                       {v.discounted !== null ? (
-                        <span className="font-semibold" style={{ color: "#999999" }}>
+                        <span className="font-semibold" style={{ color: "var(--adm-accent-ink)" }}>
                           £{v.discounted.toFixed(2)}
                           <span className="ml-1 text-[10px]" style={{ color: labelColor }}>(-{v.promoDiscountPercent}%)</span>
                         </span>

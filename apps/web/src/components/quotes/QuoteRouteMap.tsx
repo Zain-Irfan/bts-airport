@@ -79,7 +79,7 @@ export function QuoteRouteMap({ apiKey, directions, loading, hasAddresses }: Pro
 
   if (loading) {
     return (
-      <div className="flex h-48 w-full items-center justify-center rounded-lg border border-white/10 bg-[#141416] sm:h-56 md:h-64">
+      <div className="flex h-48 w-full items-center justify-center rounded-lg border border-border bg-muted sm:h-56 md:h-64">
         <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" aria-label="Loading map" />
       </div>
     );
@@ -87,7 +87,7 @@ export function QuoteRouteMap({ apiKey, directions, loading, hasAddresses }: Pro
 
   if (!directions) {
     return (
-      <div className="flex h-48 w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-white/15 bg-[#141416] px-4 text-center sm:h-56 md:h-64">
+      <div className="flex h-48 w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-muted px-4 text-center sm:h-56 md:h-64">
         <MapPin className="h-8 w-8 text-muted-foreground/60" />
         <p className="text-xs text-muted-foreground">Route map unavailable — distance estimate still shown below</p>
       </div>
@@ -97,7 +97,7 @@ export function QuoteRouteMap({ apiKey, directions, loading, hasAddresses }: Pro
   return (
     <div
       ref={containerRef}
-      className="h-48 w-full overflow-hidden rounded-lg border border-white/10 sm:h-56 md:h-64"
+      className="h-48 w-full overflow-hidden rounded-lg border border-border sm:h-56 md:h-64"
       role="img"
       aria-label="Journey route map from pickup to dropoff"
     />

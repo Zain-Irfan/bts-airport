@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Building2, Bus, Loader2, MapPin, Plane, TrainFront } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -179,7 +179,8 @@ export function GooglePlacesInput({
   const [activeIndex, setActiveIndex] = useState(0);
 
   const isControlled = typeof value === "string";
-  const listboxId = useMemo(() => `ukride-places-${Math.random().toString(36).slice(2, 9)}`, []);
+  // useId is stable between server and client render (Math.random caused a hydration mismatch)
+  const listboxId = `ukride-places-${useId().replace(/:/g, "")}`;
 
   useEffect(() => { setActiveIndex(0); }, [rows]);
 

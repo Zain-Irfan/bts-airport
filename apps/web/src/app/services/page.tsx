@@ -1,4 +1,5 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import {
   ArrowRight,
   Car,
@@ -8,6 +9,11 @@ import {
 } from "lucide-react";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
+
+export const metadata: Metadata = {
+  title: "Our Services",
+  description: "Airport transfers, business travel, chauffeur and A-to-B taxi services across London, all at fixed prices with licensed drivers.",
+};
 
 const services = [
   {
@@ -54,10 +60,10 @@ export default function ServicesPage() {
                 <Sparkles className="h-3.5 w-3.5" />
                 Services
               </p>
-              <h1 className="text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)] md:text-5xl lg:text-6xl">
+              <h1 className="text-4xl font-extrabold tracking-tight text-foreground drop-shadow-sm md:text-5xl lg:text-6xl">
                 Built for every London journey
               </h1>
-              <p className="mx-auto max-w-2xl text-lg leading-7 text-[#D1D5DB]">
+              <p className="mx-auto max-w-2xl text-lg leading-7 text-body">
                 The same booking engine powers airport transfers, business
                 travel, and point-to-point rides — with transparent pricing and
                 premium vehicles across every category.
@@ -79,14 +85,14 @@ export default function ServicesPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-ink">
                   Coverage
                 </p>
-                <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+                <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                   A service for every journey
                 </h2>
               </div>
-              <p className="max-w-md text-sm leading-6 text-[#A5A7AA]">
+              <p className="max-w-md text-sm leading-6 text-muted-foreground">
                 From quick city hops to executive transport — each service
                 shares one booking engine, one fleet, one quality bar.
               </p>
@@ -101,20 +107,20 @@ export default function ServicesPage() {
                     href={s.href}
                     className="BTS-card group flex items-start gap-5 p-7 transition-all"
                   >
-                    <span className="BTS-icon-halo h-14 w-14 flex-none transition-all duration-300 group-hover:bg-[linear-gradient(135deg,rgba(192,192,192,0.18)_0%,rgba(51, 51, 51,0.35)_100%)] group-hover:border-[rgba(192,192,192,0.45)] group-hover:shadow-[0_0_16px_-4px_rgba(192,192,192,0.25)]">
+                    <span className="BTS-icon-halo h-14 w-14 flex-none transition-all duration-300 group-hover:bg-card group-hover:border-gold/50 group-hover:shadow-md">
                       <Icon className="h-6 w-6" />
                     </span>
                     <div className="flex-1">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#A5A7AA]">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
                         {s.tag}
                       </p>
                       <div className="mt-1 flex items-center justify-between gap-2">
-                        <h3 className="text-xl font-bold tracking-tight text-[#F8F8F8]">
+                        <h3 className="text-xl font-bold tracking-tight text-foreground">
                           {s.title}
                         </h3>
-                        <ArrowRight className="h-4 w-4 text-[#C0C0C0] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#F8F8F8]" />
+                        <ArrowRight className="h-4 w-4 text-gold-ink transition-all duration-300 group-hover:translate-x-1 group-hover:text-foreground" />
                       </div>
-                      <p className="mt-3 text-sm leading-6 text-[#D1D5DB]">
+                      <p className="mt-3 text-sm leading-6 text-body">
                         {s.desc}
                       </p>
                     </div>

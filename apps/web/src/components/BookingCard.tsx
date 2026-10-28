@@ -22,7 +22,7 @@ export function BookingCard({ title = "Get an instant quote" }: Props) {
   return (
     <section
       id="quote"
-      className="rounded-2xl border border-white/[0.08] bg-card p-5 text-card-foreground shadow-[0_24px_64px_-16px_rgba(0,0,0,0.65)] md:p-6"
+      className="rounded-2xl border border-border bg-card p-5 text-card-foreground shadow-sm md:p-6"
     >
       <div className="flex flex-col gap-2">
         <h2 className="text-base font-bold tracking-tight text-foreground">
@@ -118,7 +118,7 @@ export function BookingCard({ title = "Get an instant quote" }: Props) {
             />
           </Field>
           <Field label="Return journey">
-            <label className="flex h-10 items-center gap-2 rounded-lg border border-white/10 bg-secondary px-3 text-sm text-foreground">
+            <label className="flex h-10 items-center gap-2 rounded-lg border border-border bg-secondary px-3 text-sm text-foreground">
               <input
                 name="returnJourney"
                 type="checkbox"
@@ -132,7 +132,7 @@ export function BookingCard({ title = "Get an instant quote" }: Props) {
         <div className="md:col-span-2">
           <button
             type="submit"
-            className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-lg border border-highlight/30 bg-accent px-4 text-sm font-extrabold text-accent-foreground shadow-[0_4px_24px_-6px_rgba(192,192,192,0.35)] transition-all duration-300 hover:brightness-[1.04]"
+            className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-lg border border-highlight/30 bg-accent px-4 text-sm font-extrabold text-accent-foreground shadow-sm transition-all duration-300 hover:brightness-[1.04]"
           >
             Get quote & book now
           </button>

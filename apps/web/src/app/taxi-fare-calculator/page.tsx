@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   BadgeDollarSign,
@@ -23,6 +24,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+export const metadata: Metadata = {
+  title: "Taxi Fare Calculator",
+  description: "Get an instant fixed-price fare for any London journey or airport transfer, with taxes and tolls included and no hidden fees.",
+};
 
 const featureRow = [
   {
@@ -84,11 +90,11 @@ const faqs = [
   },
   {
     q: "Are there any hidden fees in the quoted price?",
-    a: "No. London Airport Taxi Services quotes include taxes, road tolls, parking on standard airport pickups, and VAT. Optional add-ons are shown clearly before confirmation.",
+    a: "No. MRM Executive Voyage quotes include taxes, road tolls, parking on standard airport pickups, and VAT. Optional add-ons are shown clearly before confirmation.",
   },
   {
     q: "Can I get a quote for airport transfers?",
-    a: "Yes — enter your terminal and destination and we'll show a fixed fare across all London Airport Taxi Services airports.",
+    a: "Yes — enter your terminal and destination and we'll show a fixed fare across all MRM Executive Voyage airports.",
   },
   {
     q: "How far in advance should I book?",
@@ -141,21 +147,21 @@ export default async function TaxiFareCalculatorPage() {
         <div className="container mx-auto px-4">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center rounded-full border border-[rgba(192,192,192,0.22)] bg-[rgba(45,45,51,0.55)] px-3 py-1 text-sm shadow-[0_4px_18px_-6px_rgba(0,0,0,0.4)] backdrop-blur">
-                <Star className="mr-2 h-4 w-4 fill-[#C0C0C0] text-[#C0C0C0]" />
-                <span className="font-semibold text-[#F8F8F8]">4.9</span>
-                <span className="mx-2 text-[#C0C0C0]/60">|</span>
-                <span className="text-[#CFCFCF]">1538+ Google reviews</span>
+              <div className="inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-sm shadow-sm backdrop-blur">
+                <Star className="mr-2 h-4 w-4 fill-gold text-gold-ink" />
+                <span className="font-semibold text-foreground">4.9</span>
+                <span className="mx-2 text-muted-foreground/60">|</span>
+                <span className="text-body">1538+ Google reviews</span>
               </div>
               <span className="BTS-pill">Fare calculator</span>
-              <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
+              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
                 Smarter quotes for every London journey
               </h1>
-              <p className="max-w-xl text-[15px] leading-relaxed text-[#CFCFCF]">
+              <p className="max-w-xl text-[15px] leading-relaxed text-body">
                 Enter your route for an instant fixed-fare estimate. Premium
                 vehicles, transparent pricing, professional drivers.
               </p>
-              <div className="flex items-center gap-2 pt-1 text-sm text-[#C0C0C0]">
+              <div className="flex items-center gap-2 pt-1 text-sm text-gold-ink">
                 <Phone className="h-4 w-4" />
                 {phone}
               </div>
@@ -178,8 +184,8 @@ export default async function TaxiFareCalculatorPage() {
                   <div className="BTS-icon-halo mb-4 h-14 w-14">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-base font-semibold text-[#F8F8F8]">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#CFCFCF]">{item.desc}</p>
+                  <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-body">{item.desc}</p>
                 </div>
               );
             })}
@@ -192,11 +198,11 @@ export default async function TaxiFareCalculatorPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <span className="BTS-pill">Choose a vehicle</span>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Select the right car for your group
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />
-            <p className="mt-6 text-[15px] leading-relaxed text-[#CFCFCF]">
+            <p className="mt-6 text-[15px] leading-relaxed text-body">
               Every option shows passenger and luggage capacity at a glance.
             </p>
           </div>
@@ -208,8 +214,8 @@ export default async function TaxiFareCalculatorPage() {
                   <img src={v.img} alt={v.name} className="h-full w-full object-cover" />
                 </div>
                 <div className="space-y-3 p-5">
-                  <h3 className="text-lg font-semibold tracking-tight text-[#F8F8F8]">{v.name}</h3>
-                  <div className="flex gap-4 text-sm text-[#A5A7AA]">
+                  <h3 className="text-lg font-semibold tracking-tight text-foreground">{v.name}</h3>
+                  <div className="flex gap-4 text-sm text-muted-foreground">
                     <span className="flex items-center gap-1.5">
                       <Users className="h-4 w-4" /> {v.pax}
                     </span>
@@ -241,14 +247,14 @@ export default async function TaxiFareCalculatorPage() {
               alt="Compare taxi fares"
               className="h-full w-full object-cover"
             />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(7,20,39,0.70)_100%)]" />
           </div>
           <div className="space-y-5">
             <span className="BTS-pill">Compare &amp; save</span>
-            <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8]">Compare taxi fares &amp; save money</h2>
-            <p className="text-[15px] leading-relaxed text-[#CFCFCF]">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">Compare taxi fares &amp; save money</h2>
+            <p className="text-[15px] leading-relaxed text-body">
               Use our calculator to understand your route cost before you
-              commit. London Airport Taxi Services helps you plan smarter with upfront pricing
+              commit. MRM Executive Voyage helps you plan smarter with upfront pricing
               tailored to your pickup, drop-off, and vehicle choice.
             </p>
           </div>
@@ -260,8 +266,8 @@ export default async function TaxiFareCalculatorPage() {
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="order-2 space-y-5 md:order-1">
             <span className="BTS-pill">No surprises</span>
-            <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8]">Transparent pricing</h2>
-            <p className="text-[15px] leading-relaxed text-[#CFCFCF]">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">Transparent pricing</h2>
+            <p className="text-[15px] leading-relaxed text-body">
               Your quote reflects the journey you book. We focus on clarity so
               you always know what you&apos;re paying for, from airport runs to
               cross-town trips.
@@ -273,7 +279,7 @@ export default async function TaxiFareCalculatorPage() {
               alt="Airport transfer"
               className="h-full w-full object-cover"
             />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(7,20,39,0.70)_100%)]" />
           </div>
         </div>
       </section>
@@ -287,12 +293,12 @@ export default async function TaxiFareCalculatorPage() {
               alt="Book in seconds"
               className="h-full w-full object-cover"
             />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(7,20,39,0.70)_100%)]" />
           </div>
           <div className="space-y-5">
             <span className="BTS-pill">Fast booking</span>
-            <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8]">Book your ride in seconds</h2>
-            <p className="text-[15px] leading-relaxed text-[#CFCFCF]">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">Book your ride in seconds</h2>
+            <p className="text-[15px] leading-relaxed text-body">
               Once you&apos;re happy with the fare, confirm your details and
               lock your driver. Fast, simple, and built for busy schedules.
             </p>
@@ -304,8 +310,8 @@ export default async function TaxiFareCalculatorPage() {
       <section className="BTS-section-onyx relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="BTS-pill">Why London Airport Taxi Services</span>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <span className="BTS-pill">Why MRM Executive Voyage</span>
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Built around your London journey
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />
@@ -318,8 +324,8 @@ export default async function TaxiFareCalculatorPage() {
                   <div className="BTS-icon-halo mx-auto mb-5 h-14 w-14">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-lg font-semibold text-[#F8F8F8]">{item.title}</h3>
-                  <p className="mx-auto mt-3 max-w-md text-[14.5px] leading-relaxed text-[#CFCFCF]">
+                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                  <p className="mx-auto mt-3 max-w-md text-[14.5px] leading-relaxed text-body">
                     {item.desc}
                   </p>
                 </div>
@@ -334,7 +340,7 @@ export default async function TaxiFareCalculatorPage() {
         <div className="container mx-auto max-w-3xl px-4">
           <div className="mb-12 text-center">
             <span className="BTS-pill">FAQs</span>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Frequently asked questions
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />

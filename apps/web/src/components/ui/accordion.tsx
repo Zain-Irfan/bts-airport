@@ -27,8 +27,7 @@ const AccordionTrigger = React.forwardRef<
       ref={ref}
       className={cn(
         "group flex flex-1 cursor-pointer items-center justify-between gap-4 px-5 py-5 text-left text-[15px] font-medium leading-snug transition-all duration-300 ease-out md:px-6 md:py-6 md:text-base",
-        "text-[#F8F8F8] hover:text-[#E5E7EB]",
-        "[&[data-state=open]]:text-[#F8F8F8]",
+        "text-foreground hover:text-gold-ink",
         className
       )}
       {...props}
@@ -36,7 +35,7 @@ const AccordionTrigger = React.forwardRef<
       <span className="flex-1">{children}</span>
       <span
         aria-hidden
-        className="relative grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[rgba(192,192,192,0.28)] bg-[linear-gradient(135deg,rgba(192,192,192,0.12)_0%,rgba(45,45,51,0.65)_100%)] text-[#C0C0C0] shadow-[inset_0_1px_0_rgba(192,192,192,0.18)] transition-all duration-500 ease-out group-hover:border-[rgba(192,192,192,0.45)] group-hover:text-white group-data-[state=open]:rotate-45 group-data-[state=open]:border-[rgba(192,192,192,0.55)] group-data-[state=open]:bg-[linear-gradient(135deg,rgba(192,192,192,0.2)_0%,rgba(45,45,51,0.7)_100%)] group-data-[state=open]:text-white"
+        className="relative grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border bg-muted text-gold-ink transition-all duration-300 ease-out group-hover:border-gold/50 group-data-[state=open]:rotate-45 group-data-[state=open]:border-gold group-data-[state=open]:bg-gold group-data-[state=open]:text-gold-foreground"
       >
         <Plus className="h-4 w-4" />
       </span>
@@ -56,7 +55,7 @@ const AccordionContent = React.forwardRef<
   >
     <div
       className={cn(
-        "px-5 pb-5 pt-0 text-[14.5px] leading-[1.85] text-[#CFCFCF] md:px-6 md:pb-6 md:text-[15px]",
+        "px-5 pb-5 pt-0 text-[14.5px] leading-[1.85] text-body md:px-6 md:pb-6 md:text-[15px]",
         className,
       )}
     >

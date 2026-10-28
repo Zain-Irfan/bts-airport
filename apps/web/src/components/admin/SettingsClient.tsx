@@ -16,7 +16,7 @@ export function SettingsClient({
   const { theme } = useAdminLayout();
   const isLight = theme === "light";
 
-  const inputBg     = isLight ? "#FFFFFF" : "#0D0D0F";
+  const inputBg     = isLight ? "#FFFFFF" : "#071427";
   const inputBorder = isLight ? "#D1D5DB" : "rgba(192,192,192,0.18)";
   const inputColor  = isLight ? "#111827" : "#F8F8F8";
   const labelColor  = isLight ? "#6B7280" : "#A5A7AA";
@@ -83,7 +83,7 @@ export function SettingsClient({
       {/* Call / Phone number */}
       <div className="rounded-xl border p-6 space-y-4" style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}>
         <div className="flex items-center gap-2">
-          <Phone className="h-4 w-4" style={{ color: "#999999" }} />
+          <Phone className="h-4 w-4" style={{ color: "var(--adm-accent-ink)" }} />
           <h2 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Call / Phone Number</h2>
         </div>
         <div>
@@ -110,7 +110,7 @@ export function SettingsClient({
       {/* Email */}
       <div className="rounded-xl border p-6 space-y-4" style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}>
         <div className="flex items-center gap-2">
-          <Mail className="h-4 w-4" style={{ color: "#999999" }} />
+          <Mail className="h-4 w-4" style={{ color: "var(--adm-accent-ink)" }} />
           <h2 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Contact Email</h2>
         </div>
         <div>
@@ -197,8 +197,8 @@ export function SettingsClient({
       <button
         onClick={handleSave}
         disabled={saving}
-        className="flex items-center gap-2 rounded-xl px-6 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
-        style={{ background: "linear-gradient(135deg,#404040,#333333)" }}
+        className="flex items-center gap-2 rounded-xl px-6 py-2.5 text-sm font-semibold text-[#0B1F3A] transition hover:brightness-95 disabled:opacity-50"
+        style={{ background: "#F5B21B" }}
       >
         <Save className="h-4 w-4" />
         {saving ? "Saving…" : saved ? "✓ Saved" : "Save Settings"}

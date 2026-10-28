@@ -18,7 +18,7 @@ function AdminShellInner({ children }: { children: React.ReactNode }) {
   }, [theme]);
 
   return (
-    <div className={`flex min-h-screen overflow-x-hidden ${theme === "light" ? "bg-[#F3F4F6]" : "bg-[#0D0D0F]"}`}>
+    <div className={`flex min-h-screen overflow-x-hidden ${theme === "light" ? "bg-[#F5F4F0]" : "bg-[#071427]"}`}>
       <AdminSidebar />
       <main className={`min-w-0 flex-1 transition-[padding] duration-300 ${mainOffsetClass}`}>
         {children}

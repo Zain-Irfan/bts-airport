@@ -7,10 +7,28 @@ import { SessionProvider } from "@/components/providers/SessionProvider";
 import { SiteSettingsProvider } from "@/components/providers/SiteSettingsProvider";
 import { getSiteSettings } from "@/lib/site-settings";
 
+function siteUrl(): URL {
+  try {
+    return new URL(process.env.NEXT_PUBLIC_APP_URL?.trim() || "https://londonairporttaxiservices.co.uk");
+  } catch {
+    return new URL("https://londonairporttaxiservices.co.uk");
+  }
+}
+
 export const metadata: Metadata = {
-  title: "London Airport Taxi Services | Book Airport Transfers 24/7",
+  metadataBase: siteUrl(),
+  // Pages set their own title; it becomes "<Page> | MRM Executive Voyage".
+  title: {
+    default: "MRM Executive Voyage | London Airport Transfers & Chauffeur Service 24/7",
+    template: "%s | MRM Executive Voyage",
+  },
   description:
     "Pre-booked London taxi and airport transfers with transparent pricing and premium vehicles.",
+  openGraph: {
+    siteName: "MRM Executive Voyage",
+    locale: "en_GB",
+    type: "website",
+  },
 };
 
 export const viewport = {

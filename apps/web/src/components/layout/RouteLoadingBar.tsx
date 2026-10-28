@@ -82,7 +82,7 @@ export function RouteLoadingBar() {
         <div className="relative flex items-center justify-center">
           {/* Outer slow ring */}
           <div
-            className="absolute rounded-full border border-[rgba(153, 153, 153,0.2)]"
+            className="absolute rounded-full border border-gold/50"
             style={{ width: 110, height: 110, animation: "rl-pulse 2s ease-in-out infinite" }}
           />
           {/* Mid spinning ring */}
@@ -92,7 +92,7 @@ export function RouteLoadingBar() {
               width: 90,
               height: 90,
               border: "2px solid transparent",
-              borderTopColor: "#999999",
+              borderTopColor: "#F5B21B",
               borderRightColor: "rgba(153, 153, 153,0.3)",
               animation: "rl-spin 1s linear infinite",
               filter: "drop-shadow(0 0 8px rgba(153, 153, 153,0.6))",
@@ -105,17 +105,16 @@ export function RouteLoadingBar() {
               width: 70,
               height: 70,
               border: "1.5px solid transparent",
-              borderBottomColor: "#C084FC",
-              borderLeftColor: "rgba(192,132,252,0.25)",
+              borderBottomColor: "#F9C543",
+              borderLeftColor: "rgba(220,192,122,0.25)",
               animation: "rl-spin-reverse 1.5s linear infinite",
             }}
           />
           {/* Logo in center */}
           <div
-            className="relative flex h-12 w-12 items-center justify-center rounded-xl overflow-hidden"
-            style={{ boxShadow: "0 0 24px rgba(51, 51, 51,0.6)" }}
+            className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full"
           >
-            <Image src="/assets/logo.jpeg" alt="London Airport Taxi Services" width={48} height={48} className="h-12 w-12 object-cover" />
+            <Image src="/assets/logo-mrm.png" alt="MRM Executive Voyage" width={96} height={96} className="h-12 w-12 object-contain" />
           </div>
         </div>
 
@@ -126,7 +125,7 @@ export function RouteLoadingBar() {
               key={i}
               className="h-1.5 w-1.5 rounded-full"
               style={{
-                background: "#999999",
+                background: "#F5B21B",
                 animation: "rl-dot 1.2s ease-in-out infinite",
                 animationDelay: `${i * 0.2}s`,
               }}

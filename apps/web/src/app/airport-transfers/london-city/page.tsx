@@ -1,4 +1,10 @@
-﻿import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+﻿import type { Metadata } from "next";
+import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+
+export const metadata: Metadata = {
+  title: "London City Airport Transfers",
+  description: "Fast, fixed-price London City Airport transfers for business and leisure travellers, with flight monitoring and professional drivers.",
+};
 
 export default function LondonCityAirportTransfersPage() {
   return (
@@ -9,8 +15,8 @@ export default function LondonCityAirportTransfersPage() {
         headline: (
           <>
             Book your London City
-            <br />
-            <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">
+            {" "}<br />
+            <span className="text-foreground">
               airport transfer
             </span>
           </>
@@ -42,7 +48,7 @@ export default function LondonCityAirportTransfersPage() {
         gateway: [
           "Navigate London City Airport transfers with confidence through our pre-booked, professional taxi service.",
           "We simplify pickups, luggage support, and timely drop-offs across London locations.",
-          "Choose London Airport Taxi Services for a smooth, premium, and dependable transfer experience.",
+          "Choose MRM Executive Voyage for a smooth, premium, and dependable transfer experience.",
         ],
         faqs: [
           {

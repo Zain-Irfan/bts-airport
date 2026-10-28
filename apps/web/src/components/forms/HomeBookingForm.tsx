@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { format, startOfDay } from "date-fns";
 import { ArrowLeftRight, Briefcase, CalendarIcon, MapPin, Users, ShieldCheck } from "lucide-react";
@@ -14,7 +14,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { GooglePlacesInput } from "@/components/forms/GooglePlacesInput";
 import { BookingTimeField } from "@/components/forms/BookingTimeField";
 import { isLikelyAirportPickup } from "@/lib/airport-pickup";
+import { MEET_AND_GREET_FEE_GBP } from "@/lib/booking-pricing";
 import {
+  earliestPickup,
   getOutboundDatetimeError,
   getReturnDatetimeError,
   startOfToday,
@@ -40,7 +42,7 @@ export function HomeBookingForm() {
   const [handcarry, setHandcarry] = useState("0");
   const [suitcase, setSuitcase] = useState("0");
   const [meetAndGreet, setMeetAndGreet] = useState(true);
-  const MEET_FEE = 16;
+  const MEET_FEE = MEET_AND_GREET_FEE_GBP;
   const [flightNumber, setFlightNumber] = useState("");
   const [returnEnabled, setReturnEnabled] = useState(false);
   const [returnDate, setReturnDate] = useState<Date>(() => {
@@ -51,10 +53,20 @@ export function HomeBookingForm() {
   });
   const [time, setTime] = useState("12:00");
   const [returnTime, setReturnTime] = useState("12:00");
+  // The server can't know the visitor's clock/time zone, so the earliest valid pickup is
+  // applied after mount; until then the lead-time error and disabled state are held back.
+  const [defaultsReady, setDefaultsReady] = useState(false);
+
+  useEffect(() => {
+    const earliest = earliestPickup();
+    setDate(earliest.date);
+    setTime(earliest.time);
+    setDefaultsReady(true);
+  }, []);
 
   const outboundDateTimeError = useMemo(
-    () => getOutboundDatetimeError(date, time),
-    [date, time],
+    () => (defaultsReady ? getOutboundDatetimeError(date, time) : null),
+    [defaultsReady, date, time],
   );
   const returnDateTimeError = useMemo(
     () =>
@@ -127,17 +139,18 @@ export function HomeBookingForm() {
   }
 
   return (
-    <Card className="text-foreground">
+    <Card className="theme-light text-foreground shadow-2xl">
       <CardContent className="space-y-5 p-4 sm:space-y-6 sm:p-6 md:p-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
-            <div className="border-b border-[rgba(192,192,192,0.12)] pb-4">
-              <h3 className="text-lg font-bold text-foreground sm:text-xl">Book Your Transfer</h3>
+            <div className="border-b border-border pb-4">
+              <h3 className="text-lg font-bold text-foreground sm:text-xl">Get an instant fixed quote</h3>
+              <p className="mt-1 text-sm text-muted-foreground">Fixed price, taxes and tolls included — no hidden fees</p>
             </div>
 
             <div className="space-y-3">
               <div className="relative">
-                <MapPin className="pointer-events-none absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                <MapPin className="pointer-events-none absolute left-3 top-3.5 z-10 h-5 w-5 text-muted-foreground" />
                 <GooglePlacesInput
                   name="pickup"
                   placeholder="Pickup Address or Airport"
@@ -151,7 +164,7 @@ export function HomeBookingForm() {
                   type="button"
                   onClick={addViaLocation}
                   disabled={viaLocations.length >= 5}
-                  className="cursor-pointer rounded-md border border-highlight/50 bg-highlight px-2 py-1 text-xs font-medium text-highlight-foreground transition-all duration-300 hover:bg-highlight/90 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="cursor-pointer rounded-md px-2 py-1 text-xs font-semibold text-gold-ink transition-colors duration-200 hover:bg-gold/10 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   + Add Via
                 </button>
@@ -160,7 +173,7 @@ export function HomeBookingForm() {
                 <div key={via.id} className="relative z-20 space-y-1">
                   <label className="text-xs font-medium text-muted-foreground">Via Location</label>
                   <div className="relative">
-                    <MapPin className="pointer-events-none absolute left-3 top-3 z-10 h-5 w-5 text-muted-foreground" />
+                    <MapPin className="pointer-events-none absolute left-3 top-3.5 z-10 h-5 w-5 text-muted-foreground" />
                     <GooglePlacesInput
                       name={`via-${index + 1}`}
                       placeholder={`Via Address ${index + 1}`}
@@ -171,7 +184,7 @@ export function HomeBookingForm() {
                     <button
                       type="button"
                       onClick={() => removeViaLocation(via.id)}
-                      className="absolute right-3 top-1/2 z-10 -translate-y-1/2 cursor-pointer text-lg font-bold leading-none text-rose-400 transition-colors hover:text-rose-300"
+                      className="absolute right-3 top-1/2 z-10 -translate-y-1/2 cursor-pointer text-lg font-bold leading-none text-rose-500 transition-colors hover:text-rose-600"
                       aria-label={`Remove via ${index + 1}`}
                     >
                       ×
@@ -180,7 +193,7 @@ export function HomeBookingForm() {
                 </div>
               ))}
               <div className="relative">
-                <MapPin className="pointer-events-none absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                <MapPin className="pointer-events-none absolute left-3 top-3.5 z-10 h-5 w-5 text-muted-foreground" />
                 <GooglePlacesInput
                   name="dropoff"
                   placeholder="Dropoff Address or Airport"
@@ -197,7 +210,7 @@ export function HomeBookingForm() {
                 <Select value={passengers} onValueChange={setPassengers}>
                   <SelectTrigger className="booking-field h-10 w-full shadow-none data-[placeholder]:text-muted-foreground">
                     <Users className="mr-2 h-4 w-4 text-muted-foreground" />
-                    <SelectValue placeholder="1" />
+                    <span className="flex-1 truncate text-left text-foreground"><SelectValue placeholder="1" /></span>
                   </SelectTrigger>
                   <SelectContent>
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
@@ -296,15 +309,15 @@ export function HomeBookingForm() {
             </div>
 
             {/* ── Return Journey Toggle Row ── */}
-            <div className="rounded-xl border border-[rgba(192,192,192,0.18)] bg-[rgba(20,18,26,0.7)] overflow-hidden">
+            <div className="rounded-xl border border-border bg-muted/50 overflow-hidden">
               {/* Toggle row */}
               <button
                 type="button"
                 onClick={toggleReturnJourney}
-                className="flex w-full cursor-pointer items-center justify-between px-4 py-3 transition-colors duration-200 hover:bg-[rgba(192,192,192,0.04)]"
+                className="flex w-full cursor-pointer items-center justify-between px-4 py-3 transition-colors duration-200 hover:bg-muted"
               >
-                <span className="flex items-center gap-2.5 text-sm font-semibold text-[#E5E7EB]">
-                  <ArrowLeftRight className="h-4 w-4 text-[#C0C0C0]" />
+                <span className="flex items-center gap-2.5 text-sm font-semibold text-foreground/90">
+                  <ArrowLeftRight className="h-4 w-4 text-muted-foreground" />
                   Return Journey
                 </span>
                 {/* Toggle switch */}
@@ -312,8 +325,8 @@ export function HomeBookingForm() {
                   className={cn(
                     "relative inline-flex h-6 w-11 shrink-0 items-center rounded-full border-2 transition-colors duration-300",
                     returnEnabled
-                      ? "border-[#333333] bg-[#333333]"
-                      : "border-[rgba(192,192,192,0.3)] bg-[rgba(45,45,51,0.8)]",
+                      ? "border-transparent bg-gold"
+                      : "border-transparent bg-border-strong",
                   )}
                   aria-checked={returnEnabled}
                   role="switch"
@@ -329,10 +342,10 @@ export function HomeBookingForm() {
 
               {/* Return Journey Details — shown when enabled */}
               {returnEnabled && (
-                <div className="border-t border-[rgba(192,192,192,0.12)] bg-[rgba(15,13,20,0.85)] px-4 pb-4 pt-3">
+                <div className="border-t border-border bg-card px-4 pb-4 pt-3">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-medium text-[#A5A7AA]">Return Date</label>
+                      <label className="text-xs font-medium text-muted-foreground">Return Date</label>
                       <Popover>
                         <PopoverTrigger asChild>
                           <Button
@@ -358,7 +371,7 @@ export function HomeBookingForm() {
                       </Popover>
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-xs font-medium text-[#A5A7AA]">Return Time</label>
+                      <label className="text-xs font-medium text-muted-foreground">Return Time</label>
                       <BookingTimeField
                         name="returnTime"
                         className={cn(
@@ -383,13 +396,13 @@ export function HomeBookingForm() {
             {showAirportFields && (
               <div className="space-y-3">
                 {/* Meet & Greet toggle */}
-                <div className="rounded-xl border border-[rgba(192,192,192,0.15)] bg-[rgba(255,255,255,0.04)] px-4 py-3">
+                <div className="rounded-xl border border-border bg-muted/60 px-4 py-3">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2.5">
-                      <ShieldCheck className="h-5 w-5 shrink-0 text-white" />
+                      <ShieldCheck className="h-5 w-5 shrink-0 text-muted-foreground" />
                       <div>
-                        <p className="text-sm font-semibold text-[#F8F8F8]">Meet &amp; Greet Service</p>
-                        <p className="text-xs text-[#A5A7AA]">Driver meets you at arrivals with a name board</p>
+                        <p className="text-sm font-semibold text-foreground">Meet &amp; Greet Service</p>
+                        <p className="text-xs text-muted-foreground">Driver meets you at arrivals with a name board</p>
                       </div>
                     </div>
                     {/* Toggle switch */}
@@ -398,13 +411,13 @@ export function HomeBookingForm() {
                       role="switch"
                       aria-checked={meetAndGreet}
                       onClick={() => setMeetAndGreet((v) => !v)}
-                      className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none ${meetAndGreet ? "bg-highlight" : "bg-[rgba(192,192,192,0.2)]"}`}
+                      className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none ${meetAndGreet ? "bg-gold" : "bg-border-strong"}`}
                     >
                       <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform duration-200 ${meetAndGreet ? "translate-x-5" : "translate-x-0.5"}`} />
                     </button>
                   </div>
                   {meetAndGreet && (
-                    <p className="mt-2.5 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-xs font-semibold text-white">
+                    <p className="mt-2.5 rounded-lg border border-gold/30 bg-gold/10 px-3 py-2 text-xs font-semibold text-foreground">
                       Meet &amp; Greet charge: £{MEET_FEE.toFixed(2)}
                     </p>
                   )}
@@ -429,7 +442,7 @@ export function HomeBookingForm() {
               type="submit"
               size="lg"
               disabled={Boolean(outboundDateTimeError || returnDateTimeError)}
-              className="h-14 w-full cursor-pointer border border-highlight/45 text-lg font-bold shadow-[0_8px_32px_-8px_hsl(var(--highlight)/0.35)] bg-accent text-accent-foreground transition-all duration-300 hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="h-14 w-full cursor-pointer text-base font-bold disabled:cursor-not-allowed disabled:opacity-60"
             >
               Get Quote & Book Now
             </Button>

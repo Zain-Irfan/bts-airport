@@ -1,8 +1,14 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { ShieldCheck, Clock3, BadgeCheck, Users, Sparkles } from "lucide-react";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Meet MRM Executive Voyage: a licensed, fully insured London airport transfer and chauffeur service with fixed fares and professional drivers.",
+};
 
 export default function AboutUsPage() {
   return (
@@ -17,11 +23,11 @@ export default function AboutUsPage() {
               <Sparkles className="h-3.5 w-3.5" />
               About us
             </p>
-            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)] md:text-5xl lg:text-6xl">
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-foreground drop-shadow-sm md:text-5xl lg:text-6xl">
               Trusted London transfers, built around you
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-[#D1D5DB]">
-              London Airport Taxi Services delivers dependable taxi and airport transfer services
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-body">
+              MRM Executive Voyage delivers dependable taxi and airport transfer services
               across London — combining professional drivers, transparent
               pricing, and a modern booking experience.
             </p>
@@ -34,25 +40,25 @@ export default function AboutUsPage() {
             <div className="BTS-purple-glow relative overflow-hidden rounded-3xl">
               <img
                 src="/images/heathrow-driver-loading.jpg"
-                alt="London Airport Taxi Services professional transfer"
+                alt="MRM Executive Voyage professional transfer"
                 className="h-[420px] w-full object-cover"
               />
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(13,13,15,0.4)_100%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(7,20,39,0.40)_100%)]" />
             </div>
             <div className="space-y-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-ink">
                 Who we are
               </p>
-              <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                 London-focused transport, finished with care
               </h2>
-              <p className="text-[#D1D5DB]">
+              <p className="text-body">
                 We are a London-focused transport team dedicated to premium
                 airport and city transfers. From early-morning flights to
                 late-night pickups, every journey is managed with reliability
                 and care.
               </p>
-              <p className="text-[#A5A7AA]">
+              <p className="text-muted-foreground">
                 Our mission is simple: make travel effortless. With licensed
                 drivers, quality vehicles, and responsive support, passengers
                 arrive on time and in comfort.
@@ -70,10 +76,10 @@ export default function AboutUsPage() {
         <section className="BTS-section-onyx relative py-24 md:py-28">
           <div className="container mx-auto px-4">
             <div className="mx-auto mb-12 max-w-2xl text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
-                Why London Airport Taxi Services
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-ink">
+                Why MRM Executive Voyage
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                 The standards behind every ride
               </h2>
             </div>
@@ -105,14 +111,14 @@ export default function AboutUsPage() {
         {/* ── Promise ── */}
         <section className="BTS-section-charcoal relative py-24 md:py-32">
           <div className="container mx-auto max-w-3xl px-4 text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-ink">
               Our promise
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Precision, punctuality, professionalism
             </h2>
-            <p className="mt-5 text-[#D1D5DB] leading-8">
-              Every London Airport Taxi Services booking is handled with care. Airport transfers,
+            <p className="mt-5 text-body leading-8">
+              Every MRM Executive Voyage booking is handled with care. Airport transfers,
               business rides, or point-to-point travel — we deliver a smooth,
               premium experience every mile.
             </p>
@@ -137,10 +143,10 @@ function AboutCard({
   return (
     <div className="BTS-card p-6">
       <span className="BTS-icon-halo mb-4 h-11 w-11">{icon}</span>
-      <h3 className="text-lg font-semibold tracking-tight text-[#F8F8F8]">
+      <h3 className="text-lg font-semibold tracking-tight text-foreground">
         {title}
       </h3>
-      <p className="mt-2 text-sm leading-6 text-[#D1D5DB]">{desc}</p>
+      <p className="mt-2 text-sm leading-6 text-body">{desc}</p>
     </div>
   );
 }

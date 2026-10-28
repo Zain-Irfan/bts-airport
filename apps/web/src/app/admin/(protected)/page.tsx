@@ -17,7 +17,7 @@ export default async function AdminDashboardPage() {
     ]);
 
   const stats = [
-    { label: "Total Bookings", value: bookingCount, icon: CalendarCheck, color: "#999999" },
+    { label: "Total Bookings", value: bookingCount, icon: CalendarCheck, color: "#F5B21B" },
     { label: "Driver Applications", value: driverCount, icon: CarFront, color: "#3B82F6" },
     { label: "Users", value: userCount, icon: Users, color: "#10B981" },
     { label: "Messages", value: contactCount, icon: MessageSquare, color: "#F59E0B" },

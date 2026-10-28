@@ -41,7 +41,7 @@ export function ReportsClient({ data }: Props) {
       {/* KPI cards */}
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-5">
         {[
-          { label: "Total Bookings",    value: data.totals.bookings,                          color: "#999999" },
+          { label: "Total Bookings",    value: data.totals.bookings,                          color: "var(--adm-accent-ink)" },
           { label: "Booking Revenue",   value: `£${data.totals.revenue.toFixed(2)}`,           color: "#10B981" },
           { label: "Payment Revenue",   value: `£${data.totals.paymentRevenue.toFixed(2)}`,    color: "#3B82F6" },
           { label: "Completed",         value: data.totals.completed,                          color: "#10B981" },
@@ -67,7 +67,7 @@ export function ReportsClient({ data }: Props) {
                     className="w-full rounded-t-md transition-all duration-300"
                     style={{
                       height: `${Math.max(h, 2)}%`,
-                      background: "linear-gradient(180deg,#4A4A4A,#262626)",
+                      background: "linear-gradient(180deg,#F9C543,#F5B21B)",
                       opacity: m.count === 0 ? 0.25 : 1,
                     }}
                   />
@@ -154,7 +154,7 @@ export function ReportsClient({ data }: Props) {
           <div className="space-y-3">
             {data.vehicleBreakdown.map((v, i) => {
               const pct = totalVehicleCount ? Math.round((v.count / totalVehicleCount) * 100) : 0;
-              const colors = ["#999999","#3B82F6","#10B981","#F59E0B","#EF4444","#6B7280","#94A3B8","#14B8A6"];
+              const colors = ["#F5B21B","#3B82F6","#10B981","#F59E0B","#EF4444","#6B7280","#94A3B8","#14B8A6"];
               return (
                 <div key={v.vehicle}>
                   <div className="mb-1 flex justify-between text-xs">

@@ -12,7 +12,7 @@ import {
   serviceLinks,
 } from "@/lib/site-nav-data";
 
-const ROUTE_START_EVENT = "BTS-route-start";
+const ROUTE_START_EVENT = "ukride-route-start";
 
 function startRouteLoading() {
   window.dispatchEvent(new Event(ROUTE_START_EVENT));
@@ -43,16 +43,16 @@ export function SiteMobileNav() {
     cn(
       "block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
       pathname === href || (href !== "/" && pathname.startsWith(href))
-        ? "bg-[rgba(51, 51, 51,0.25)] text-[#F8F8F8]"
-        : "text-[#D1D5DB] hover:bg-[rgba(51, 51, 51,0.15)] hover:text-[#F8F8F8]",
+        ? "bg-gold/15 text-foreground"
+        : "text-body hover:bg-gold/10 hover:text-foreground",
     );
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-[rgba(192,192,192,0.15)] bg-[rgba(13,13,15,0.6)] text-[#F8F8F8] transition hover:bg-[rgba(51, 51, 51,0.2)]"
+        className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-border bg-input-bg text-foreground transition hover:bg-gold/15"
         aria-expanded={open}
         aria-controls="site-mobile-nav-panel"
         aria-label={open ? "Close menu" : "Open menu"}
@@ -64,20 +64,20 @@ export function SiteMobileNav() {
         <>
           <button
             type="button"
-            className="fixed inset-0 z-[60] cursor-pointer bg-black/60 backdrop-blur-[2px]"
+            className="fixed inset-0 z-[60] cursor-pointer bg-navy-deep/60 backdrop-blur-[2px]"
             aria-label="Close menu"
             onClick={() => setOpen(false)}
           />
           <nav
             id="site-mobile-nav-panel"
-            className="fixed inset-y-0 right-0 z-[70] flex w-[min(100vw-3rem,20rem)] flex-col overflow-y-auto border-l border-[rgba(192,192,192,0.12)] bg-[#0D0D0F] shadow-2xl"
+            className="theme-light fixed inset-y-0 right-0 z-[70] flex w-[min(100vw-3rem,20rem)] flex-col overflow-y-auto border-l border-border bg-background shadow-2xl"
           >
-            <div className="flex items-center justify-between border-b border-[rgba(192,192,192,0.22)] px-4 py-4">
-              <span className="text-sm font-bold text-[#F8F8F8]">Menu</span>
+            <div className="flex items-center justify-between border-b border-border px-4 py-4">
+              <span className="text-sm font-bold text-foreground">Menu</span>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg text-[#A5A7AA] hover:bg-[rgba(192,192,192,0.08)] hover:text-[#F8F8F8]"
+                className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
                 aria-label="Close menu"
               >
                 <X className="h-5 w-5" />
@@ -92,7 +92,7 @@ export function SiteMobileNav() {
               <button
                 type="button"
                 onClick={() => setAirportOpen((v) => !v)}
-                className="flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm font-medium text-[#D1D5DB] hover:bg-[rgba(51, 51, 51,0.15)] hover:text-[#F8F8F8]"
+                className="flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm font-medium text-body hover:bg-gold/10 hover:text-foreground"
               >
                 Airport Transfers
                 <ChevronDown
@@ -100,7 +100,7 @@ export function SiteMobileNav() {
                 />
               </button>
               {airportOpen && (
-                <div className="mb-1 space-y-0.5 border-l border-[rgba(192,192,192,0.1)] pl-3">
+                <div className="mb-1 space-y-0.5 border-l border-border pl-3">
                   <Link
                     href="/airport-transfers"
                     onClick={startRouteLoading}
@@ -124,7 +124,7 @@ export function SiteMobileNav() {
               <button
                 type="button"
                 onClick={() => setServicesOpen((v) => !v)}
-                className="flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm font-medium text-[#D1D5DB] hover:bg-[rgba(51, 51, 51,0.15)] hover:text-[#F8F8F8]"
+                className="flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm font-medium text-body hover:bg-gold/10 hover:text-foreground"
               >
                 Services
                 <ChevronDown
@@ -132,7 +132,7 @@ export function SiteMobileNav() {
                 />
               </button>
               {servicesOpen && (
-                <div className="mb-1 space-y-0.5 border-l border-[rgba(192,192,192,0.1)] pl-3">
+                <div className="mb-1 space-y-0.5 border-l border-border pl-3">
                   <Link
                     href="/services"
                     onClick={startRouteLoading}
@@ -166,16 +166,24 @@ export function SiteMobileNav() {
                   </Link>
                 ))}
 
-              <div className="mt-4 space-y-2 border-t border-[rgba(192,192,192,0.22)] pt-4">
-                <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6b7280]">
+              <div className="mt-4 space-y-2 border-t border-border pt-4">
+                <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   Account
                 </p>
                 <CustomerAuthNav
                   className="flex flex-col gap-2 md:hidden"
-                  linkClassName="block rounded-lg px-3 py-2.5 text-left text-sm font-semibold text-[#D1D5DB] hover:bg-[rgba(51, 51, 51,0.15)] hover:text-[#F8F8F8]"
+                  linkClassName="block rounded-lg px-3 py-2.5 text-left text-sm font-semibold text-body hover:bg-gold/10 hover:text-foreground"
                   onNavigate={startRouteLoading}
                 />
               </div>
+
+              <Link
+                href="/#quote"
+                onClick={() => setOpen(false)}
+                className="mt-4 inline-flex h-11 items-center justify-center rounded-lg bg-gold text-sm font-bold text-gold-foreground transition-colors hover:bg-gold-hover"
+              >
+                Book now
+              </Link>
             </div>
           </nav>
         </>

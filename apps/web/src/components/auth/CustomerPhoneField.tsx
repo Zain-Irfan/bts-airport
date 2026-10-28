@@ -116,26 +116,26 @@ export function CustomerPhoneField({
   const boxClass = cn(
     "phone-field-box grid w-full min-w-0 grid-cols-[auto_1fr] overflow-hidden rounded-lg border text-sm transition",
     isLight
-      ? "border-[#e5e7eb] bg-white"
-      : "border-[rgba(192,192,192,0.25)] bg-[rgba(13,13,15,0.65)]",
+      ? "border-border bg-white"
+      : "border-border bg-input-bg",
     open &&
       (isLight
-        ? "border-[#333333]/40 ring-2 ring-[#333333]/15"
+        ? "border-gold/40 ring-2 ring-gold/20"
         : "border-[hsl(var(--highlight-soft)/0.55)] ring-2 ring-[hsl(var(--highlight)/0.28)]"),
   );
 
   const triggerClass = cn(
     "phone-field-trigger inline-flex h-11 items-center gap-2 border-r px-3",
     isLight
-      ? "border-[#e5e7eb] bg-[#f9fafb] text-[#111827] hover:bg-[#f3f4f6]"
-      : "border-[rgba(192,192,192,0.25)] bg-[rgba(13,13,15,0.75)] text-[#f8f8f8] hover:bg-[rgba(26,26,29,0.85)]",
+      ? "border-border bg-muted text-foreground hover:bg-muted"
+      : "border-border bg-input-bg text-foreground hover:bg-input-bg",
   );
 
   const inputClass = cn(
     "phone-field-input h-11 min-w-0 w-full border-0 bg-transparent px-3 text-sm outline-none",
     isLight
-      ? "text-[#111827] placeholder:text-[#9ca3af]"
-      : "text-[#f8f8f8] placeholder:text-[#A5A7AA]",
+      ? "text-foreground placeholder:text-muted-foreground"
+      : "text-foreground placeholder:text-muted-foreground",
   );
 
   return (

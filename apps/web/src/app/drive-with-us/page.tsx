@@ -143,14 +143,14 @@ export default function DriveWithUsPage() {
         <section className="BTS-hero-ambient BTS-luxury-section-3 BTS-grid-bg relative flex min-h-[70vh] items-center justify-center overflow-hidden py-20">
           <div className="container mx-auto max-w-lg px-4 text-center">
             <div className="BTS-card p-10">
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[rgba(51, 51, 51,0.25)] ring-1 ring-[rgba(153, 153, 153,0.35)]">
-                <CheckCircle2 className="h-10 w-10 text-[#999999]" />
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gold/15 ring-1 ring-gold/40">
+                <CheckCircle2 className="h-10 w-10 text-muted-foreground" />
               </div>
-              <h2 className="mb-3 text-2xl font-semibold text-[#F8F8F8]">Application Received!</h2>
-              <p className="mb-8 text-sm leading-relaxed text-[#CFCFCF]">{message}</p>
+              <h2 className="mb-3 text-2xl font-semibold text-foreground">Application Received!</h2>
+              <p className="mb-8 text-sm leading-relaxed text-body">{message}</p>
               <a
                 href="/"
-                className="inline-flex h-11 items-center justify-center rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] px-8 text-sm font-semibold text-[#F8F8F8] transition-all hover:-translate-y-[1px]"
+                className="inline-flex h-11 items-center justify-center rounded-xl border border-gold bg-gold hover:bg-gold-hover px-8 text-sm font-semibold text-gold-foreground transition-all hover:-translate-y-[1px]"
               >
                 Back to home
               </a>
@@ -173,15 +173,15 @@ export default function DriveWithUsPage() {
 
             {/* Left — perks */}
             <div className="space-y-6">
-              <span className="BTS-pill">Drive with London Airport Taxi Services</span>
-              <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] md:text-5xl">
-                Come Drive With London Airport Taxi Services
+              <span className="BTS-pill">Drive with MRM Executive Voyage</span>
+              <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+                Come Drive With MRM Executive Voyage
               </h1>
-              <p className="max-w-xl text-[15px] leading-relaxed text-[#CFCFCF]">
+              <p className="max-w-xl text-[15px] leading-relaxed text-body">
                 Apply today to join London&apos;s premium pre-booked transfer
                 network. Steady demand. Professional brand. Fair pay.
               </p>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-ink">
                 Currently accepting drivers based in London
               </p>
 
@@ -191,13 +191,13 @@ export default function DriveWithUsPage() {
                   return (
                     <div
                       key={perk.title}
-                      className="rounded-2xl border border-[rgba(192,192,192,0.28)] bg-[linear-gradient(135deg,rgba(192,192,192,0.07)_0%,rgba(26,26,29,0.65)_50%,rgba(13,13,15,0.78)_100%)] p-5 shadow-[inset_0_1px_0_rgba(192,192,192,0.12)] backdrop-blur-md"
+                      className="rounded-2xl border border-border bg-card p-5 shadow-sm backdrop-blur-md"
                     >
                       <div className="BTS-icon-halo mb-3 h-10 w-10">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <h3 className="text-[15px] font-semibold text-[#F8F8F8]">{perk.title}</h3>
-                      <p className="mt-1.5 text-xs leading-relaxed text-[#A5A7AA]">{perk.desc}</p>
+                      <h3 className="text-[15px] font-semibold text-foreground">{perk.title}</h3>
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{perk.desc}</p>
                     </div>
                   );
                 })}
@@ -207,13 +207,13 @@ export default function DriveWithUsPage() {
             {/* Right — form */}
             <div className="BTS-card p-6 md:p-8">
               <div className="mb-6">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   Driver application
                 </span>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[#F8F8F8]">
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
                   Start your application
                 </h2>
-                <p className="mt-2 text-sm text-[#CFCFCF]">
+                <p className="mt-2 text-sm text-body">
                   Tell us about you — our driver team will reach out within 48 hours.
                 </p>
               </div>
@@ -252,7 +252,7 @@ export default function DriveWithUsPage() {
                     value={dob} onChange={(e) => setDob(e.target.value)} required
                   />
                   <SelectField
-                    id="driven-before" label="Driven for London Airport Taxi Services before?"
+                    id="driven-before" label="Driven for MRM Executive Voyage before?"
                     value={drivenBefore} onChange={(e) => setDrivenBefore(e.target.value)}
                   >
                     <option value="">Select</option>
@@ -312,23 +312,23 @@ export default function DriveWithUsPage() {
 
                 {/* Licence file upload */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+                  <label className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                     Licence photo / document
-                    <span className="ml-1.5 normal-case tracking-normal text-[#6B7280]">
+                    <span className="ml-1.5 normal-case tracking-normal text-muted-foreground">
                       (JPEG, PNG, WebP or PDF · max 5 MB)
                     </span>
                   </label>
 
                   {licenseFile ? (
-                    <div className="flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-lg border border-[rgba(153, 153, 153,0.4)] bg-[rgba(153, 153, 153,0.08)] px-4 py-3">
-                      <FileText className="h-5 w-5 flex-none text-[#999999]" />
-                      <span className="w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-sm text-[#F8F8F8]">{licenseFile.name}</span>
-                      <span className="flex-none text-xs text-[#A5A7AA]">
+                    <div className="flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-lg border border-gold/50 bg-gold/10 px-4 py-3">
+                      <FileText className="h-5 w-5 flex-none text-muted-foreground" />
+                      <span className="w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-sm text-foreground">{licenseFile.name}</span>
+                      <span className="flex-none text-xs text-muted-foreground">
                         {(licenseFile.size / 1024).toFixed(0)} KB
                       </span>
                       <button
                         type="button" onClick={removeFile}
-                        className="flex-none rounded p-0.5 text-[#A5A7AA] transition hover:text-[#F8F8F8]"
+                        className="flex-none rounded p-0.5 text-muted-foreground transition hover:text-foreground"
                         aria-label="Remove file"
                       >
                         <X className="h-4 w-4" />
@@ -337,14 +337,14 @@ export default function DriveWithUsPage() {
                   ) : (
                     <label
                       htmlFor="license-upload"
-                      className="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[rgba(192,192,192,0.25)] bg-[rgba(13,13,15,0.5)] px-4 py-8 transition hover:border-[rgba(153, 153, 153,0.5)] hover:bg-[rgba(153, 153, 153,0.06)]"
+                      className="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-input-bg px-4 py-8 transition hover:border-gold/50 hover:bg-gold/10"
                     >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(51, 51, 51,0.2)] ring-1 ring-[rgba(153, 153, 153,0.3)] transition group-hover:bg-[rgba(51, 51, 51,0.3)]">
-                        <Upload className="h-5 w-5 text-[#999999]" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/15 ring-1 ring-gold/40 transition group-hover:bg-gold/15">
+                        <Upload className="h-5 w-5 text-muted-foreground" />
                       </div>
                       <div className="text-center">
-                        <p className="text-sm font-medium text-[#F8F8F8]">Click to upload your licence</p>
-                        <p className="mt-0.5 text-xs text-[#A5A7AA]">or drag and drop</p>
+                        <p className="text-sm font-medium text-foreground">Click to upload your licence</p>
+                        <p className="mt-0.5 text-xs text-muted-foreground">or drag and drop</p>
                       </div>
                       <input
                         id="license-upload" ref={fileRef} type="file"
@@ -358,14 +358,14 @@ export default function DriveWithUsPage() {
                 </div>
 
                 {/* ── Agreement ── */}
-                <label className="flex items-start gap-3 pt-1 text-xs leading-relaxed text-[#A5A7AA]">
+                <label className="flex items-start gap-3 pt-1 text-xs leading-relaxed text-muted-foreground">
                   <input
                     type="checkbox" name="agree"
                     checked={agreed} onChange={(e) => setAgreed(e.target.checked)}
-                    className="mt-0.5 h-4 w-4 rounded border border-[rgba(192,192,192,0.22)] bg-[rgba(13,13,15,0.6)] accent-[#999999]"
+                    className="mt-0.5 h-4 w-4 rounded border border-border bg-input-bg accent-[#F5B21B]"
                   />
                   <span>
-                    I agree that London Airport Taxi Services may contact me using the details provided above for the
+                    I agree that MRM Executive Voyage may contact me using the details provided above for the
                     purpose of processing this application.
                   </span>
                 </label>
@@ -373,7 +373,7 @@ export default function DriveWithUsPage() {
                 <button
                   type="submit"
                   disabled={!agreed || status === "loading"}
-                  className="mt-2 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] text-sm font-semibold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),inset_0_0_0_1px_rgba(51, 51, 51,0.4),0_10px_32px_-10px_rgba(51, 51, 51,0.55)] transition-all duration-500 hover:-translate-y-[1px] hover:border-[rgba(192,192,192,0.4)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),inset_0_0_0_1px_rgba(153, 153, 153,0.5),0_18px_48px_-10px_rgba(51, 51, 51,0.7),0_0_0_4px_rgba(51, 51, 51,0.18)] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-2 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-gold bg-gold hover:bg-gold-hover text-sm font-semibold tracking-wide text-gold-foreground shadow-sm transition-all duration-500 hover:-translate-y-[1px] hover:border-gold-hover hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {status === "loading" ? (
                     <><Loader2 className="h-4 w-4 animate-spin" />Submitting…</>
@@ -398,10 +398,10 @@ export default function DriveWithUsPage() {
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3 pt-1">
-      <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#999999]">
+      <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground">
         {children}
       </span>
-      <span className="h-px flex-1 bg-[rgba(153, 153, 153,0.25)]" />
+      <span className="h-px flex-1 bg-gold/10" />
     </div>
   );
 }
@@ -414,7 +414,7 @@ function Field({
 }) {
   return (
     <div className="space-y-2">
-      <label htmlFor={id} className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+      <label htmlFor={id} className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {label}
       </label>
       <input
@@ -435,7 +435,7 @@ function SelectField({
 }) {
   return (
     <div className="space-y-2">
-      <label htmlFor={id} className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+      <label htmlFor={id} className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {label}
       </label>
       <select
@@ -456,7 +456,7 @@ function TextareaField({
 }) {
   return (
     <div className="space-y-2">
-      <label htmlFor={id} className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+      <label htmlFor={id} className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {label}
       </label>
       <textarea

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Phone, ShieldCheck, Star } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FullFooterSection } from "@/components/FullFooterSection";
@@ -10,6 +11,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+export const metadata: Metadata = {
+  title: "London Hotel Transfers",
+  description: "Comfortable, fixed-price transfers between London hotels, airports and stations, with professional drivers available 24/7.",
+};
 
 const hotels = [
   { name: "The Savoy Hotel", image: "/images/hotel-chauffeur.jpg" },
@@ -26,7 +32,7 @@ const hotels = [
 
 const faqs = [
   {
-    q: "Does London Airport Taxi Services provide hotel transfers across London?",
+    q: "Does MRM Executive Voyage provide hotel transfers across London?",
     a: "Yes — fixed-fare hotel pickups and drop-offs across central and greater London.",
   },
   {
@@ -34,15 +40,15 @@ const faqs = [
     a: "Yes — single or return airport↔hotel transfers at a guaranteed fare.",
   },
   {
-    q: "Are London Airport Taxi Services hotel transfers on fixed fare?",
+    q: "Are MRM Executive Voyage hotel transfers on fixed fare?",
     a: "Yes. Your quote is locked at booking — taxes, tolls and parking included.",
   },
   {
-    q: "How do I book a hotel transfer with London Airport Taxi Services?",
+    q: "How do I book a hotel transfer with MRM Executive Voyage?",
     a: "Enter pickup hotel and destination, choose your vehicle, and confirm. We handle the rest.",
   },
   {
-    q: "Do London Airport Taxi Services transfers run 24/7 from hotels?",
+    q: "Do MRM Executive Voyage transfers run 24/7 from hotels?",
     a: "Yes — 24/7 service for late-night arrivals and early-morning departures.",
   },
   {
@@ -50,7 +56,7 @@ const faqs = [
     a: "Saloon, Estate, Executive, MPV, 8-Seater and Chauffeur classes.",
   },
   {
-    q: "Does London Airport Taxi Services offer meet and greet service at hotels?",
+    q: "Does MRM Executive Voyage offer meet and greet service at hotels?",
     a: "Yes — meet-and-greet with name board on request.",
   },
   {
@@ -58,11 +64,11 @@ const faqs = [
     a: "Yes — 8-seater and multi-vehicle group transfers for any London hotel.",
   },
   {
-    q: "Do London Airport Taxi Services hotel transfers cover tourist attractions and shopping areas?",
+    q: "Do MRM Executive Voyage hotel transfers cover tourist attractions and shopping areas?",
     a: "Yes — hourly chauffeur hire is available for shopping, dining and sightseeing routes.",
   },
   {
-    q: "Why should I choose London Airport Taxi Services for London hotel transfers?",
+    q: "Why should I choose MRM Executive Voyage for London hotel transfers?",
     a: "Premium fleet, executive drivers, fixed fares, monitored journeys, and 24/7 concierge support.",
   },
 ];
@@ -96,26 +102,26 @@ export default async function LondonHotelTransfersPage() {
         <div className="container relative z-10 mx-auto px-4">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center rounded-full border border-[rgba(192,192,192,0.22)] bg-[rgba(45,45,51,0.55)] px-3 py-1 text-sm shadow-[0_4px_18px_-6px_rgba(0,0,0,0.4)] backdrop-blur">
-                <Star className="mr-2 h-4 w-4 fill-[#C0C0C0] text-[#C0C0C0]" />
-                <span className="font-semibold text-[#F8F8F8]">4.9</span>
-                <span className="mx-2 text-[#C0C0C0]/60">|</span>
-                <span className="text-[#CFCFCF]">1538+ Google reviews</span>
+              <div className="inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-sm shadow-sm backdrop-blur">
+                <Star className="mr-2 h-4 w-4 fill-gold text-gold-ink" />
+                <span className="font-semibold text-foreground">4.9</span>
+                <span className="mx-2 text-muted-foreground/60">|</span>
+                <span className="text-body">1538+ Google reviews</span>
               </div>
               <span className="BTS-pill">Hotel transfers</span>
-              <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
+              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
                 Seamless hotel transfers across London
               </h1>
-              <p className="max-w-xl text-[15px] leading-relaxed text-[#CFCFCF]">
+              <p className="max-w-xl text-[15px] leading-relaxed text-body">
                 Hotel-to-airport, airport-to-hotel, or hotel-to-anywhere — book
                 a premium fixed-fare transfer in minutes.
               </p>
-              <div className="flex flex-col gap-3 text-sm text-[#C0C0C0] sm:flex-row sm:items-center">
+              <div className="flex flex-col gap-3 text-sm text-gold-ink sm:flex-row sm:items-center">
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4" />
                   {phone}
                 </div>
-                <div className="hidden h-4 w-px bg-[rgba(192,192,192,0.22)] sm:block" />
+                <div className="hidden h-4 w-px bg-border sm:block" />
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4" />
                   24/7 monitored journeys
@@ -132,11 +138,11 @@ export default async function LondonHotelTransfersPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl text-center">
             <span className="BTS-pill">London hotels</span>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Choose your hotel for seamless transfers
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />
-            <p className="mt-6 text-[15px] leading-relaxed text-[#CFCFCF]">
+            <p className="mt-6 text-[15px] leading-relaxed text-body">
               From Heathrow to Gatwick, Luton, Stansted, and London City — we
               handle pickup, route planning, and on-time arrivals for every
               journey.
@@ -153,7 +159,7 @@ export default async function LondonHotelTransfersPage() {
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <p className="px-3 py-3 text-center text-xs font-semibold tracking-tight text-[#E5E7EB]">
+                <p className="px-3 py-3 text-center text-xs font-semibold tracking-tight text-foreground/90">
                   {hotel.name}
                 </p>
               </article>
@@ -167,7 +173,7 @@ export default async function LondonHotelTransfersPage() {
         <div className="container mx-auto max-w-3xl px-4">
           <div className="mb-12 text-center">
             <span className="BTS-pill">FAQs</span>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Frequently asked questions
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />

@@ -1,4 +1,10 @@
-﻿import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+﻿import type { Metadata } from "next";
+import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+
+export const metadata: Metadata = {
+  title: "Stansted Airport Transfers",
+  description: "Reliable, fixed-price Stansted Airport transfers to and from London, with flight monitoring, free waiting time and meet & greet.",
+};
 
 export default function StanstedAirportTransfersPage() {
   return (
@@ -9,8 +15,8 @@ export default function StanstedAirportTransfersPage() {
         headline: (
           <>
             Book your Stansted
-            <br />
-            <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">
+            {" "}<br />
+            <span className="text-foreground">
               airport transfer
             </span>
           </>
@@ -42,7 +48,7 @@ export default function StanstedAirportTransfersPage() {
         gateway: [
           "Plan your Stansted ride in advance and travel with confidence from terminal to destination.",
           "Our service includes flight tracking, professional support, and smooth pickups.",
-          "Choose London Airport Taxi Services for a reliable and comfortable Stansted airport transfer.",
+          "Choose MRM Executive Voyage for a reliable and comfortable Stansted airport transfer.",
         ],
         faqs: [
           {

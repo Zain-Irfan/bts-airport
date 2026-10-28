@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import { QuotesPageClient } from "@/components/quotes/QuotesPageClient";
+
+export const metadata: Metadata = {
+  title: "Your Quotes",
+  robots: { index: false, follow: false },
+};
 
 function QuotesFallback() {
   return (

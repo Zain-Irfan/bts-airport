@@ -105,7 +105,7 @@ const VALUE_PROPS = [
     icon: Car,
   },
   {
-    title: "Why choose London Airport Taxi Services",
+    title: "Why choose MRM Executive Voyage",
     desc: "Licensed drivers, premium fleet, monitored journeys — built around your trip.",
     icon: ThumbsUp,
   },
@@ -147,25 +147,25 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
         <div className="container relative z-10 mx-auto px-4">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center rounded-full border border-[rgba(192,192,192,0.22)] bg-[rgba(45,45,51,0.55)] px-3 py-1 text-sm shadow-[0_4px_18px_-6px_rgba(0,0,0,0.4)] backdrop-blur">
-                <Star className="mr-2 h-4 w-4 fill-[#C0C0C0] text-[#C0C0C0]" />
-                <span className="font-semibold text-[#F8F8F8]">4.9</span>
-                <span className="mx-2 text-[#C0C0C0]/60">|</span>
-                <span className="text-[#CFCFCF]">1538+ Google reviews</span>
+              <div className="inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-sm shadow-sm backdrop-blur">
+                <Star className="mr-2 h-4 w-4 fill-gold text-gold-ink" />
+                <span className="font-semibold text-foreground">4.9</span>
+                <span className="mx-2 text-muted-foreground/60">|</span>
+                <span className="text-body">1538+ Google reviews</span>
               </div>
               <span className="BTS-pill">{content.pillLabel}</span>
-              <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F8] sm:text-5xl">
+              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
                 {content.headline}
               </h1>
-              <p className="max-w-xl text-[15px] leading-relaxed text-[#CFCFCF]">
+              <p className="max-w-xl text-[15px] leading-relaxed text-body">
                 {content.subtitle}
               </p>
-              <div className="flex flex-col gap-3 text-sm text-[#C0C0C0] sm:flex-row sm:items-center">
+              <div className="flex flex-col gap-3 text-sm text-gold-ink sm:flex-row sm:items-center">
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4" />
                   {phone}
                 </div>
-                <div className="hidden h-4 w-px bg-[rgba(192,192,192,0.22)] sm:block" />
+                <div className="hidden h-4 w-px bg-border sm:block" />
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4" />
                   Flight-monitored journeys
@@ -188,10 +188,10 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
                   <div className="BTS-icon-halo h-12 w-12">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-xl font-semibold tracking-tight text-[#F8F8F8]">
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground">
                     {item.title}
                   </h3>
-                  <p className="text-[14.5px] leading-relaxed text-[#CFCFCF]">{item.desc}</p>
+                  <p className="text-[14.5px] leading-relaxed text-body">{item.desc}</p>
                 </div>
               );
             })}
@@ -204,15 +204,15 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="BTS-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
             <img src={story.intro} alt="" className="h-full w-full object-cover" />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(7,20,39,0.70)_100%)]" />
           </div>
           <div className="space-y-5">
             <span className="BTS-pill">Premium service</span>
-            <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               A smooth {content.airportName} transfer, anywhere in London
             </h2>
             {content.intro.map((p, i) => (
-              <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
+              <p key={i} className="text-[15px] leading-relaxed text-body">
                 {p}
               </p>
             ))}
@@ -228,7 +228,7 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <span className="BTS-pill">Choose your ride</span>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               The right car for every destination
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />
@@ -240,7 +240,7 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
                   <img src={car.img} alt={car.name} className="h-full w-full object-cover" />
                 </div>
                 <div className="space-y-3 p-5">
-                  <h3 className="text-lg font-semibold tracking-tight text-[#F8F8F8]">
+                  <h3 className="text-lg font-semibold tracking-tight text-foreground">
                     {car.name}
                   </h3>
                   <Button asChild className="w-full">
@@ -258,11 +258,11 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="order-2 space-y-5 md:order-1">
             <span className="BTS-pill">Reliable &amp; comfortable</span>
-            <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               {content.airportName} airport taxis built around your journey
             </h2>
             {content.reliable.map((p, i) => (
-              <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
+              <p key={i} className="text-[15px] leading-relaxed text-body">
                 {p}
               </p>
             ))}
@@ -272,7 +272,7 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
           </div>
           <div className="BTS-purple-glow relative order-1 h-[340px] overflow-hidden rounded-2xl md:order-2">
             <img src={story.reliable} alt="" className="h-full w-full object-cover" />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(7,20,39,0.70)_100%)]" />
           </div>
         </div>
       </section>
@@ -282,15 +282,15 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="BTS-purple-glow relative h-[340px] overflow-hidden rounded-2xl">
             <img src={story.inter} alt="" className="h-full w-full object-cover" />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(7,20,39,0.70)_100%)]" />
           </div>
           <div className="space-y-5">
             <span className="BTS-pill">Inter-airport</span>
-            <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Moving from {content.airportName} to another airport?
             </h2>
             {content.interAirport.map((p, i) => (
-              <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
+              <p key={i} className="text-[15px] leading-relaxed text-body">
                 {p}
               </p>
             ))}
@@ -306,22 +306,22 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
         <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2">
           <div className="space-y-5">
             <span className="BTS-pill">Gateway</span>
-            <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
-              London Airport Taxi Services: your gateway to {content.airportName}
+            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              MRM Executive Voyage: your gateway to {content.airportName}
             </h2>
             {content.gateway.map((p, i) => (
-              <p key={i} className="text-[15px] leading-relaxed text-[#CFCFCF]">
+              <p key={i} className="text-[15px] leading-relaxed text-body">
                 {p}
               </p>
             ))}
             {content.terminals ? (
-              <ul className="grid grid-cols-2 gap-2.5 pt-2 text-[14.5px] text-[#CFCFCF]">
+              <ul className="grid grid-cols-2 gap-2.5 pt-2 text-[14.5px] text-body">
                 {content.terminals.map((t) => (
                   <li
                     key={t}
-                    className="flex items-center gap-2.5 rounded-lg border border-[rgba(192,192,192,0.25)] bg-[linear-gradient(135deg,rgba(192,192,192,0.06)_0%,rgba(13,13,15,0.7)_100%)] px-3 py-2"
+                    className="flex items-center gap-2.5 rounded-lg border border-border bg-card px-3 py-2"
                   >
-                    <span className="block h-1.5 w-1.5 rounded-full bg-[#C0C0C0]" />
+                    <span className="block h-1.5 w-1.5 rounded-full bg-gold" />
                     {t}
                   </li>
                 ))}
@@ -333,7 +333,7 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
           </div>
           <div className="BTS-purple-glow relative h-[400px] overflow-hidden rounded-2xl">
             <img src={story.gateway} alt="" className="h-full w-full object-cover" />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(13,13,15,0.85)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(7,20,39,0.70)_100%)]" />
           </div>
         </div>
       </section>
@@ -342,8 +342,8 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
       <section className="BTS-section-charcoal relative py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="BTS-pill">Why London Airport Taxi Services</span>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <span className="BTS-pill">Why MRM Executive Voyage</span>
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Transfers to and from {content.airportName}
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />
@@ -356,8 +356,8 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
                   <div className="BTS-icon-halo mx-auto mb-5 h-14 w-14">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#F8F8F8]">{item.title}</h3>
-                  <p className="mx-auto mt-3 max-w-md text-[14.5px] leading-relaxed text-[#CFCFCF]">
+                  <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
+                  <p className="mx-auto mt-3 max-w-md text-[14.5px] leading-relaxed text-body">
                     {item.desc}
                   </p>
                 </div>
@@ -372,7 +372,7 @@ export async function AirportCityPageTemplate({ content }: { content: AirportCit
         <div className="container mx-auto max-w-3xl px-4">
           <div className="mb-12 text-center">
             <span className="BTS-pill">FAQs</span>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Frequently asked questions
             </h2>
             <div className="BTS-divider mx-auto mt-6 w-24" />

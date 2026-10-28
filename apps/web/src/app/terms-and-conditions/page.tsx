@@ -1,5 +1,11 @@
-﻿import { FullFooterSection } from "@/components/FullFooterSection";
+﻿import type { Metadata } from "next";
+import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description: "The terms that apply to bookings, payments, cancellations and journeys with MRM Executive Voyage.",
+};
 
 const sections = [
   {
@@ -47,12 +53,12 @@ export default function TermsAndConditionsPage() {
       <section className="BTS-hero-ambient BTS-section-onyx BTS-grid-bg relative overflow-hidden pb-12 pt-20 md:pb-16 md:pt-28">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <span className="BTS-pill">Legal</span>
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-5xl">
+          <h1 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
             Terms &amp; Conditions
           </h1>
           <div className="BTS-divider mx-auto mt-6 w-24" />
-          <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-[#CFCFCF]">
-            The agreements and policies that govern every London Airport Taxi Services booking,
+          <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-body">
+            The agreements and policies that govern every MRM Executive Voyage booking,
             cancellation, and customer interaction.
           </p>
         </div>
@@ -62,10 +68,10 @@ export default function TermsAndConditionsPage() {
       <main className="BTS-section-charcoal relative py-16 md:py-24">
         <div className="container mx-auto max-w-4xl px-4">
           <div className="BTS-card p-8 md:p-12">
-            <div className="space-y-12 text-[15px] leading-[1.95] text-[#CFCFCF]">
+            <div className="space-y-12 text-[15px] leading-[1.95] text-body">
               {sections.map((section, index) => (
                 <section key={section.title}>
-                  <h2 className="text-2xl font-semibold tracking-tight text-[#F8F8F8] md:text-3xl">
+                  <h2 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
                     {section.title}
                   </h2>
                   <div className="BTS-divider-silver mt-4 mb-6 w-16" />

@@ -17,7 +17,7 @@ export function AdminModal({ open, onClose, title, children, panelClassName = "m
   const { theme } = useAdminLayout();
   const isLight = theme === "light";
 
-  const panelBg = isLight ? "#FFFFFF" : "#1E1E23";
+  const panelBg = isLight ? "#FFFFFF" : "#0F2443";
   const panelBorder = isLight ? "#E5E7EB" : "rgba(192,192,192,0.12)";
   const titleColor = isLight ? "#111827" : "#F8F8F8";
   const closeColor = isLight ? "#6B7280" : "#A5A7AA";

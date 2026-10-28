@@ -45,19 +45,19 @@ export function CustomerLoginForm() {
     <>
     {loading && (
       <>
-        <div className="fixed inset-0 z-[9998] bg-[rgba(5,5,8,0.75)] backdrop-blur-[6px]" />
+        <div className="fixed inset-0 z-[9998] bg-navy-deep/70 backdrop-blur-[6px]" />
         <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-6">
           <div className="relative flex items-center justify-center">
-            <div className="absolute rounded-full border border-[rgba(153, 153, 153,0.2)]" style={{ width: 110, height: 110, animation: "rl-pulse 2s ease-in-out infinite" }} />
-            <div className="absolute rounded-full" style={{ width: 90, height: 90, border: "2px solid transparent", borderTopColor: "#999999", borderRightColor: "rgba(153, 153, 153,0.3)", animation: "rl-spin 1s linear infinite", filter: "drop-shadow(0 0 8px rgba(153, 153, 153,0.6))" }} />
-            <div className="absolute rounded-full" style={{ width: 70, height: 70, border: "1.5px solid transparent", borderBottomColor: "#C084FC", borderLeftColor: "rgba(192,132,252,0.25)", animation: "rl-spin-reverse 1.5s linear infinite" }} />
-            <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl" style={{ boxShadow: "0 0 24px rgba(51, 51, 51,0.6)" }}>
-              <img src="/assets/logo.jpeg" alt="London Airport Taxi Services" className="h-12 w-12 object-cover" />
+            <div className="absolute rounded-full border border-gold/50" style={{ width: 110, height: 110, animation: "rl-pulse 2s ease-in-out infinite" }} />
+            <div className="absolute rounded-full" style={{ width: 90, height: 90, border: "2px solid transparent", borderTopColor: "#F5B21B", borderRightColor: "rgba(153, 153, 153,0.3)", animation: "rl-spin 1s linear infinite", filter: "drop-shadow(0 0 8px rgba(153, 153, 153,0.6))" }} />
+            <div className="absolute rounded-full" style={{ width: 70, height: 70, border: "1.5px solid transparent", borderBottomColor: "#F9C543", borderLeftColor: "rgba(220,192,122,0.25)", animation: "rl-spin-reverse 1.5s linear infinite" }} />
+            <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full">
+              <img src="/assets/logo-mrm.png" alt="MRM Executive Voyage" className="h-12 w-12 object-contain" />
             </div>
           </div>
           <div className="flex items-center gap-2">
             {[0, 1, 2].map((i) => (
-              <div key={i} className="h-1.5 w-1.5 rounded-full" style={{ background: "#999999", animation: "rl-dot 1.2s ease-in-out infinite", animationDelay: `${i * 0.2}s` }} />
+              <div key={i} className="h-1.5 w-1.5 rounded-full" style={{ background: "#F5B21B", animation: "rl-dot 1.2s ease-in-out infinite", animationDelay: `${i * 0.2}s` }} />
             ))}
           </div>
         </div>
@@ -106,24 +106,24 @@ export function CustomerLoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-xl border border-[rgba(192,192,192,0.25)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] text-sm font-bold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_10px_32px_-10px_rgba(51, 51, 51,0.6)] transition-all duration-300 hover:-translate-y-px disabled:opacity-60"
+        className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-xl border border-gold bg-gold hover:bg-gold-hover text-sm font-bold tracking-wide text-gold-foreground shadow-sm transition-all duration-300 hover:-translate-y-px disabled:opacity-60"
       >
         {loading ? "Signing in…" : "Sign in"}
       </button>
 
-      <div className="mt-6 flex flex-col items-center gap-2 text-sm text-[#A5A7AA]">
+      <div className="mt-6 flex flex-col items-center gap-2 text-sm text-muted-foreground">
         <p>
           Don&apos;t have an account?{" "}
           <Link
             href="/signup"
-            className="font-semibold text-[#C0C0C0] transition-colors hover:text-[#F8F8F8]"
+            className="font-semibold text-gold-ink transition-colors hover:text-foreground"
           >
             Sign up
           </Link>
         </p>
         <Link
           href="/forgot-password"
-          className="font-semibold text-[#C0C0C0] transition-colors hover:text-[#F8F8F8]"
+          className="font-semibold text-gold-ink transition-colors hover:text-foreground"
         >
           Forgot password?
         </Link>
@@ -142,7 +142,7 @@ function Field({
 }) {
   return (
     <label className="block space-y-1.5">
-      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {label}
       </span>
       {children}

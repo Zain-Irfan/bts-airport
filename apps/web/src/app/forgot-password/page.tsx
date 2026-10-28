@@ -1,6 +1,12 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
+
+export const metadata: Metadata = {
+  title: "Reset Your Password",
+  robots: { index: false, follow: false },
+};
 
 export default function ForgotPasswordPage() {
   return (
@@ -11,10 +17,10 @@ export default function ForgotPasswordPage() {
         <div className="mx-auto w-full max-w-md px-4">
           <div className="mb-8 text-center">
             <span className="BTS-pill">Account recovery</span>
-            <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+            <h1 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Forgot Password
             </h1>
-            <p className="mt-4 text-[15px] leading-relaxed text-[#CFCFCF]">
+            <p className="mt-4 text-[15px] leading-relaxed text-body">
               Enter your email address to receive a secure reset code.
             </p>
           </div>
@@ -22,9 +28,9 @@ export default function ForgotPasswordPage() {
           <div className="BTS-card p-8">
             <div className="mb-8 flex items-center justify-center gap-3">
               <StepCircle active>1</StepCircle>
-              <div className="h-px w-10 bg-[rgba(192,192,192,0.18)]" />
+              <div className="h-px w-10 bg-border" />
               <StepCircle>2</StepCircle>
-              <div className="h-px w-10 bg-[rgba(192,192,192,0.18)]" />
+              <div className="h-px w-10 bg-border" />
               <StepCircle>3</StepCircle>
             </div>
 
@@ -32,7 +38,7 @@ export default function ForgotPasswordPage() {
               <div className="space-y-2">
                 <label
                   htmlFor="email"
-                  className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]"
+                  className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground"
                 >
                   Email address
                 </label>
@@ -46,13 +52,13 @@ export default function ForgotPasswordPage() {
 
               <button
                 type="submit"
-                className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-xl border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] text-sm font-semibold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),inset_0_0_0_1px_rgba(51, 51, 51,0.4),0_10px_32px_-10px_rgba(51, 51, 51,0.55)] transition-all duration-500 hover:-translate-y-[1px] hover:border-[rgba(192,192,192,0.4)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),inset_0_0_0_1px_rgba(153, 153, 153,0.5),0_18px_48px_-10px_rgba(51, 51, 51,0.7),0_0_0_4px_rgba(51, 51, 51,0.18)]"
+                className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-xl border border-gold bg-gold hover:bg-gold-hover text-sm font-semibold tracking-wide text-gold-foreground shadow-sm transition-all duration-500 hover:-translate-y-[1px] hover:border-gold-hover hover:shadow-md"
               >
                 Send reset code
               </button>
             </form>
 
-            <div className="mt-8 text-center text-sm text-[#A5A7AA]">
+            <div className="mt-8 text-center text-sm text-muted-foreground">
               <Link href="/login" className="BTS-link">
                 Back to login
               </Link>
@@ -77,8 +83,8 @@ function StepCircle({
     <div
       className={
         active
-          ? "grid h-11 w-11 place-items-center rounded-full border border-[rgba(192,192,192,0.22)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] text-sm font-semibold text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.2),0_8px_24px_-8px_rgba(51, 51, 51,0.55)]"
-          : "grid h-11 w-11 place-items-center rounded-full border border-[rgba(192,192,192,0.14)] bg-[rgba(13,13,15,0.6)] text-sm font-semibold text-[#A5A7AA]"
+          ? "grid h-11 w-11 place-items-center rounded-full border border-gold bg-gold hover:bg-gold-hover text-sm font-semibold text-gold-foreground shadow-sm"
+          : "grid h-11 w-11 place-items-center rounded-full border border-border bg-input-bg text-sm font-semibold text-muted-foreground"
       }
     >
       {children}

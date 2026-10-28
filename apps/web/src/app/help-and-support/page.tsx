@@ -1,10 +1,16 @@
-﻿import { Mail, Phone, Clock, Headphones } from "lucide-react";
+﻿import type { Metadata } from "next";
+import { Mail, Phone, Clock, Headphones } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { getSiteSettings } from "@/lib/site-settings";
 import { telHref } from "@/lib/phone";
+
+export const metadata: Metadata = {
+  title: "Help & Support",
+  description: "Questions about a booking? Contact MRM Executive Voyage 24/7 by phone, WhatsApp or email, and find answers to common questions.",
+};
 
 export default async function HelpAndSupportPage() {
   const { phone, whatsapp, email } = await getSiteSettings();
@@ -20,11 +26,11 @@ export default async function HelpAndSupportPage() {
               <Headphones className="h-3.5 w-3.5" />
               Help &amp; support
             </p>
-            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-[#F8F8F8] drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)] md:text-5xl">
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-foreground drop-shadow-sm md:text-5xl">
               We&apos;re here, around the clock
             </h1>
-            <p className="mt-5 text-lg leading-7 text-[#D1D5DB]">
-              Reach the London Airport Taxi Services team 24/7. Send us a message below and we&apos;ll
+            <p className="mt-5 text-lg leading-7 text-body">
+              Reach the MRM Executive Voyage team 24/7. Send us a message below and we&apos;ll
               respond as quickly as possible — usually within the hour.
             </p>
           </div>
@@ -35,13 +41,13 @@ export default async function HelpAndSupportPage() {
           <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[1fr_1.4fr]">
             {/* Contact channels */}
             <div className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-ink">
                 Reach us directly
               </p>
-              <h2 className="text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                 Talk to a real person
               </h2>
-              <p className="text-[#A5A7AA]">
+              <p className="text-muted-foreground">
                 Pick the channel that suits you. Our team is available day and
                 night for bookings, changes, and any questions.
               </p>
@@ -79,10 +85,10 @@ export default async function HelpAndSupportPage() {
 
             {/* Form card */}
             <div className="BTS-card p-7 md:p-9">
-              <h3 className="text-2xl font-bold tracking-tight text-[#F8F8F8]">
+              <h3 className="text-2xl font-bold tracking-tight text-foreground">
                 Send a message
               </h3>
-              <p className="mt-2 text-sm text-[#A5A7AA]">
+              <p className="mt-2 text-sm text-muted-foreground">
                 Tell us what you need and we&apos;ll get back to you fast.
               </p>
 
@@ -114,14 +120,14 @@ function ChannelCard({
     <div className="BTS-card group flex items-start gap-4 p-5 transition-all">
       <span className="BTS-icon-halo h-11 w-11 flex-none">{icon}</span>
       <div className="min-w-0 flex-1">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
           {label}
         </p>
-        <p className="mt-1 text-base font-semibold text-[#F8F8F8] transition-colors group-hover:text-[#F8F8F8]">
+        <p className="mt-1 text-base font-semibold text-foreground transition-colors group-hover:text-foreground">
           {primary}
         </p>
         <p
-          className="text-xs leading-5 text-[#A5A7AA]"
+          className="text-xs leading-5 text-muted-foreground"
           dangerouslySetInnerHTML={{ __html: secondary }}
         />
       </div>

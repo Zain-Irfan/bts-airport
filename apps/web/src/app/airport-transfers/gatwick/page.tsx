@@ -1,4 +1,10 @@
-﻿import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+﻿import type { Metadata } from "next";
+import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+
+export const metadata: Metadata = {
+  title: "Gatwick Airport Transfers",
+  description: "Fixed-price Gatwick taxi transfers for North and South Terminal, with flight monitoring, free waiting time and meet & greet.",
+};
 
 export default function GatwickAirportTransfersPage() {
   return (
@@ -9,8 +15,8 @@ export default function GatwickAirportTransfersPage() {
         headline: (
           <>
             Book your Gatwick
-            <br />
-            <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">
+            {" "}<br />
+            <span className="text-foreground">
               airport transfer
             </span>
           </>
@@ -25,7 +31,7 @@ export default function GatwickAirportTransfersPage() {
           gateway: "/images/mpv-airport-boarding.jpg",
         },
         intro: [
-          "With London Airport Taxi Services, book Gatwick transfers in minutes and travel with complete peace of mind. We coordinate pickups around your flight details and terminal timing.",
+          "With MRM Executive Voyage, book Gatwick transfers in minutes and travel with complete peace of mind. We coordinate pickups around your flight details and terminal timing.",
           "Whether you are heading into Central London or any nearby city, our professional drivers make your journey comfortable and punctual.",
           "Enjoy fixed pricing and reliable support from booking to drop-off.",
         ],

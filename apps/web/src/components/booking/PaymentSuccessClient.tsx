@@ -52,23 +52,23 @@ export function PaymentSuccessClient({ sessionId, initial }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3f4f6] font-sans text-gray-900">
+    <div className="min-h-screen bg-muted font-sans text-foreground">
       <SiteTopHeader />
       <main className="container mx-auto max-w-lg px-4 py-16 text-center">
         {refreshing ? (
           <>
-            <Loader2 className="mx-auto h-12 w-12 animate-spin text-accent" />
-            <p className="mt-4 text-gray-600">Confirming your payment…</p>
+            <Loader2 className="mx-auto h-12 w-12 animate-spin text-gold-ink" />
+            <p className="mt-4 text-muted-foreground">Confirming your payment…</p>
           </>
         ) : paid ? (
           <>
             <CheckCircle2 className="mx-auto h-16 w-16 text-emerald-500" />
-            <h1 className="mt-4 text-2xl font-extrabold text-gray-900">Payment successful</h1>
-            <p className="mt-3 text-gray-600">
+            <h1 className="mt-4 text-2xl font-extrabold text-foreground">Payment successful</h1>
+            <p className="mt-3 text-muted-foreground">
               Thank you! Your booking is confirmed. We&apos;ve sent details to your email.
             </p>
             {status.bookingId && (
-              <p className="mt-2 text-xs text-gray-500">Reference: {status.bookingId}</p>
+              <p className="mt-2 text-xs text-muted-foreground">Reference: {status.bookingId}</p>
             )}
             <Link
               href="/"
@@ -80,8 +80,8 @@ export function PaymentSuccessClient({ sessionId, initial }: Props) {
         ) : (
           <>
             <XCircle className="mx-auto h-16 w-16 text-amber-500" />
-            <h1 className="mt-4 text-2xl font-extrabold text-gray-900">Payment pending</h1>
-            <p className="mt-3 text-gray-600">
+            <h1 className="mt-4 text-2xl font-extrabold text-foreground">Payment pending</h1>
+            <p className="mt-3 text-muted-foreground">
               {status.message ||
                 "We could not confirm payment yet. If you completed payment, refresh this page."}
             </p>
@@ -97,7 +97,7 @@ export function PaymentSuccessClient({ sessionId, initial }: Props) {
               ) : null}
               <Link
                 href="/"
-                className="inline-flex h-11 items-center justify-center rounded-lg border border-gray-300 bg-white px-6 text-sm font-bold text-gray-800"
+                className="inline-flex h-11 items-center justify-center rounded-lg border border-border bg-white px-6 text-sm font-bold text-foreground"
               >
                 Home
               </Link>

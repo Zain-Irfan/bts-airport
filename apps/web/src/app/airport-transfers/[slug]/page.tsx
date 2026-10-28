@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { Button } from "@/components/ui/button";
@@ -74,6 +75,8 @@ export default async function AirportTransferDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  // Real airports have their own route folders; anything else is an unknown URL.
+  if (!airportBySlug[slug]) notFound();
   const airport =
     airportBySlug[slug] ??
     ({
@@ -95,7 +98,7 @@ export default async function AirportTransferDetailPage({
         <div className="container relative z-10 mx-auto max-w-5xl px-4">
           <Link
             href="/airport-transfers"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#A5A7AA] transition hover:text-[#F8F8F8]"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground transition hover:text-foreground"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             All airports
@@ -103,18 +106,18 @@ export default async function AirportTransferDetailPage({
 
           <div className="mt-6 flex items-center gap-3">
             <span className="ukride-pill">
-              <span className="block h-1.5 w-1.5 rounded-full bg-[#C0C0C0]" />
+              <span className="block h-1.5 w-1.5 rounded-full bg-gold" />
               Airport transfers
             </span>
           </div>
 
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-[#F8F8F8] md:text-5xl">
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
             {airport.name}{" "}
-            <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">
+            <span className="text-foreground">
               airport transfers
             </span>
           </h1>
-          <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-[#CFCFCF]">
+          <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-body">
             {airport.blurb}
           </p>
 
@@ -135,10 +138,10 @@ export default async function AirportTransferDetailPage({
                 <div className="ukride-icon-halo h-10 w-10">
                   <CheckCircle2 className="h-5 w-5" />
                 </div>
-                <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C0C0C0]">
+                <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-ink">
                   Included
                 </div>
-                <div className="mt-2 text-[14.5px] leading-relaxed text-[#CFCFCF]">{b}</div>
+                <div className="mt-2 text-[14.5px] leading-relaxed text-body">{b}</div>
               </div>
             ))}
           </div>
@@ -149,10 +152,10 @@ export default async function AirportTransferDetailPage({
                 <Plane className="h-5 w-5" />
               </div>
               <div className="flex-1">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C0C0C0]">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-ink">
                   Next step
                 </div>
-                <p className="mt-2 text-[14.5px] leading-relaxed text-[#CFCFCF]">
+                <p className="mt-2 text-[14.5px] leading-relaxed text-body">
                   When you&apos;re ready, the booking flow connects to live
                   pricing, payment, and confirmed driver allocation.
                 </p>

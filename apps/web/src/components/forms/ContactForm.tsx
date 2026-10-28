@@ -52,14 +52,14 @@ export function ContactForm() {
         className="mt-6 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-6 text-center"
         role="status"
       >
-        <p className="text-sm font-semibold text-emerald-200">Message sent</p>
-        <p className="mt-2 text-sm text-[#D1D5DB]">
-          Thanks for contacting London Airport Taxi Services. We&apos;ll get back to you as soon as we can.
+        <p className="text-sm font-semibold text-emerald-800">Message sent</p>
+        <p className="mt-2 text-sm text-body">
+          Thanks for contacting MRM Executive Voyage. We&apos;ll get back to you as soon as we can.
         </p>
         <button
           type="button"
           onClick={() => setSuccess(false)}
-          className="mt-4 text-sm font-semibold text-[#C0C0C0] underline-offset-2 hover:text-[#F8F8F8] hover:underline"
+          className="mt-4 text-sm font-semibold text-gold-ink underline-offset-2 hover:text-foreground hover:underline"
         >
           Send another message
         </button>
@@ -70,7 +70,7 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="mt-6 space-y-4">
       {error ? (
-        <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+        <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-700">
           {error}
         </div>
       ) : null}
@@ -146,7 +146,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={loading}
-        className="inline-flex h-12 w-full items-center justify-center rounded-xl border border-[rgba(192,192,192,0.25)] bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] text-sm font-bold tracking-wide text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.18),0_10px_32px_-10px_rgba(51, 51, 51,0.6)] transition-all duration-300 hover:-translate-y-px hover:border-[rgba(192,192,192,0.4)] hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),0_18px_44px_-12px_rgba(51, 51, 51,0.8),0_0_0_3px_rgba(51, 51, 51,0.18)] disabled:opacity-60"
+        className="inline-flex h-12 w-full items-center justify-center rounded-xl border border-gold bg-gold hover:bg-gold-hover text-sm font-bold tracking-wide text-gold-foreground shadow-sm transition-all duration-300 hover:-translate-y-px hover:border-gold-hover hover:shadow-md disabled:opacity-60"
       >
         {loading ? "Sending…" : "Submit"}
       </button>
@@ -163,7 +163,7 @@ function Field({
 }) {
   return (
     <label className="block space-y-1.5">
-      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A5A7AA]">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {label}
       </span>
       {children}

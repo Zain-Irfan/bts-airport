@@ -107,8 +107,8 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
             </a>
             <button
               onClick={() => setCreating(true)}
-              className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110"
-              style={{ background: "linear-gradient(135deg,#404040,#333333)" }}
+              className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-[#0B1F3A] transition hover:brightness-95"
+              style={{ background: "#F5B21B" }}
             >
               <Plus className="h-4 w-4" />
               New Booking
@@ -263,7 +263,7 @@ export function BookingsClient({ bookings: initial, drivers }: { bookings: Booki
               <button
                 onClick={() => handleDeleteConfirmed(confirmDeleteBooking.id)}
                 disabled={deleting}
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
+                className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition hover:brightness-95 disabled:opacity-50"
                 style={{ background: "#dc2626" }}
               >
                 <Trash2 className="h-4 w-4" />

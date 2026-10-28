@@ -28,7 +28,7 @@ export async function createBookingFromCheckout(
   const notes = [
     quote.flight ? `Flight: ${quote.flight}` : null,
     quote.vias.length ? `Via: ${quote.vias.join(" → ")}` : null,
-    `Meet & greet: ${quote.meet}`,
+    `Meet & greet: ${pricing.meetFee > 0 ? `yes (£${pricing.meetFee.toFixed(2)})` : "no"}`,
     `Handcarry: ${quote.handcarry}, Suitcases: ${quote.suitcase}`,
   ]
     .filter(Boolean)

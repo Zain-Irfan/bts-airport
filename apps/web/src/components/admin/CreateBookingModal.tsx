@@ -30,12 +30,12 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
   const { theme } = useAdminLayout();
   const isLight = theme === "light";
 
-  const panelBg = isLight ? "#FFFFFF" : "#1E1E23";
+  const panelBg = isLight ? "#FFFFFF" : "#0F2443";
   const panelBorder = isLight ? "#E5E7EB" : "rgba(192,192,192,0.12)";
   const textPrimary = isLight ? "#111827" : "#F8F8F8";
   const textMuted = isLight ? "#6B7280" : "#A5A7AA";
   const sectionBorder = isLight ? "#E5E7EB" : "rgba(192,192,192,0.08)";
-  const inputBg = isLight ? "#FFFFFF" : "#0D0D0F";
+  const inputBg = isLight ? "#FFFFFF" : "#071427";
   const inputBorder = isLight ? "#D1D5DB" : "rgba(192,192,192,0.12)";
   const textSub = isLight ? "#374151" : "#CFCFCF";
 
@@ -261,7 +261,7 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
           <button type="button" onClick={onClose} className="rounded-lg border px-4 py-2 text-sm font-medium transition hover:opacity-80" style={{ borderColor: inputBorder, background: "transparent", color: textSub }}>
             Cancel
           </button>
-          <button type="button" onClick={handleSubmit} disabled={saving} className="inline-flex items-center gap-2 rounded-lg px-5 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50" style={{ background: "linear-gradient(135deg,#404040,#333333)" }}>
+          <button type="button" onClick={handleSubmit} disabled={saving} className="inline-flex items-center gap-2 rounded-lg px-5 py-2 text-sm font-semibold text-[#0B1F3A] transition hover:brightness-95 disabled:opacity-50" style={{ background: "#F5B21B" }}>
             <Plus className="h-4 w-4" />
             {saving ? "Creating…" : "Create Booking"}
           </button>

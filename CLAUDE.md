@@ -1,4 +1,4 @@
-# Project handoff — London Airport Taxi Services
+# Project handoff — MRM Executive Voyage
 
 > Read this first. It captures the operational knowledge that is **not** obvious from the
 > code — deployment quirks, gotchas, and current state — so a fresh session can be productive
@@ -14,7 +14,7 @@ Public marketing site, an online booking/quote flow with Revolut payments, and a
 panel (staff) to manage bookings, drivers, vehicle types, contacts, and site settings.
 
 - **Live domain:** https://londonairporttaxiservices.co.uk
-- **Brand name:** "London Airport Taxi Services" (was previously "BTS" — fully renamed).
+- **Brand name:** "MRM Executive Voyage" (renamed from "London Airport Taxi Services", which itself replaced "BTS"). The domain is still `londonairporttaxiservices.co.uk`.
 - **Git remote:** `github.com/Zain-Irfan/bts-airport` (repo still named bts-airport), branch `main`.
 
 ## Tech stack
@@ -102,18 +102,39 @@ cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
 - All phone/WhatsApp/email displays site-wide are wired to these settings — no hardcoded
   contact info remains in the pages.
 
+## Pricing (server is the source of truth)
+- Fare = vehicle rates (DB `VehicleType`: base, per-mile, minimum, promo %) × route miles, plus a
+  **£16 Meet & Greet** fee for airport pickups (unless the customer opts out). Maths lives in
+  `src/lib/booking-pricing.ts` and is shared by the quotes page, booking summary and payment API.
+- Route miles come from the server (`src/lib/route-distance.ts` → Google Directions REST, cached),
+  exposed at `/api/route-distance`; if Google fails, every side uses the same 28-mile fallback.
+- `/api/quote` returns the confirmed price shown on the booking summary, and
+  `/api/payments/revolut/create-order` **recalculates it again** (`src/lib/booking-quote.ts`) —
+  prices in the URL / request body are never charged.
+- Set `GOOGLE_MAPS_SERVER_API_KEY` (unrestricted-by-referrer key) in production so real distances
+  are used server-side; a browser key with HTTP-referrer restrictions is rejected by Google.
+
 ## Design system
 - Everything is themed through **CSS variables in `apps/web/src/app/globals.css`** (`:root`,
   `.dark`, and the `.admin-dark` / admin `--adm-*` tokens). Change colors there, not per-page.
-- Current palette is **monochrome, charcoal-dominant** (`#333333` primary surface, `#1F1F1F`
-  page bg, `#F8F8F8` text, `#999999` secondary). No purple anywhere — it was fully removed.
+- Current palette is **navy & gold on ivory**: navy `#0B1F3A` (header, hero, bands, footer
+  `#071427`), gold `#F5B21B` (matches the MRM logo) for CTAs/highlights only — `text-gold-ink` is `#8A5D00` on light, `#F9C543` on navy, ivory `#F7F5F0` page bg, white cards.
+  Headings use Plus Jakarta Sans (the old Cormorant serif was dropped).
+- **Theming model:** `:root` = light content. Add `theme-navy` to a section (the legacy
+  `.BTS-luxury-section-*`, `.BTS-glass-nav`, `.BTS-section-onyx` and `.admin-dark` get it
+  automatically) to flip tokens to white-on-navy; `theme-light` flips back (e.g. the white
+  booking card inside the hero). So use semantic classes — `text-foreground`, `text-body`,
+  `text-muted-foreground`, `bg-card`, `bg-surface`, `border-border`, `text-gold-ink` (gold
+  text with AA contrast), `bg-gold text-gold-foreground` (CTA) — **never hardcoded hex**.
 - `.BTS-*` class names are the (legacy-named) design-system utilities — **keep the prefix**,
   it is just a CSS namespace, not the brand.
 
 ## Current state / recently done
-- Rebranded BTS → "London Airport Taxi Services" (name, titles, alt text, emails, logo).
-- Full monochrome recolor (removed all purple).
-- Logo is `public/assets/logo.jpeg` (256×256), shown on a white "chip" in the header.
+- Rebranded BTS → "London Airport Taxi Services" → **"MRM Executive Voyage"** (name, titles, alt text, emails, Revolut order description, logo).
+- Full monochrome recolor (removed all purple), then replaced by the navy/gold system.
+- Homepage re-laid out: utility bar + header with "Book now", hero with white quote card,
+  stats/accreditation strip, how-it-works, airport + fleet grids, two-column FAQ, new footer.
+- Logo is `public/assets/logo-mrm.png` (512×512, round, transparent outside the circle) — also `app/icon.png` / `app/apple-icon.png`. Old `logo.jpeg` is unused.
 - Admin Create/Edit/Delete bookings (modal + confirm), vehicle-type dropdown.
 - Call/Phone number added to Admin Settings and wired site-wide.
 
@@ -121,16 +142,29 @@ cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
 - **WhatsApp number** (default `447700140900` — placeholder)
 - **Call/Phone number** (default `+44 2080 5090 14` — placeholder)
 - **Contact email** (still `support@BTS.uk` — placeholder, old brand)
+- **Email sender**: set `EMAIL_FROM` env (fallback is `MRM Executive Voyage <bookings@bts.uk>`, a placeholder address)
 - Revolut: confirm the **live** secret key + set up the webhook for production.
 - If the logo graphic still reads oddly, supply a cleaner/transparent logo.
 
 ## Known open items / watch-list
 - Revolut auth had intermittent failures — a DB-stored key overrides the env var
   (`getRevolutSecretKeyAsync()` checks DB first); make sure only the correct key is set.
-- Google Maps key: route map on the booking-summary page needs a valid
+- Google Maps: billing must be enabled on the Cloud project — until then route maps fail and
+  **all prices use the 28-mile fallback**. Route map on the booking-summary page needs a valid
   `NEXT_PUBLIC_*` Maps key (baked at build time — rebuild after changing).
 - Import local DB data to live + create the live admin user if not done.
 - Social links in the footer are still placeholder URLs.
+
+## Rendering / SEO gotchas
+- **Don't add a root `app/loading.tsx`** (or one on indexed public pages). It wraps the page in a
+  Suspense boundary, so the server HTML hides the content in a `<div hidden id="S:0">` until JS reveals
+  it, and `notFound()` returns HTTP 200 instead of 404. Navigation feedback comes from
+  `RouteLoadingBar` (listens for the `ukride-route-start` event). Admin keeps its own loading.tsx.
+- Every page sets `export const metadata = { title, description }`; the root layout turns the title
+  into "<title> | MRM Executive Voyage". Private/step pages (login, quotes, booking-summary, payment,
+  account, admin) are `noindex`. Client pages put metadata in a sibling `layout.tsx` (see drive-with-us).
+- React 19.2 reveals streamed boundaries on the next animation frame, so in a **hidden/background
+  browser tab** you may see a leftover hidden `S:0` copy — that's a test artefact, not a bug.
 
 ## Conventions
 - Commit only when asked; branch off `main` if needed. Co-author trailer used on commits.

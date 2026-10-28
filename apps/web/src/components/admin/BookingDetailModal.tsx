@@ -91,14 +91,14 @@ export function BookingDetailModal({ booking, drivers, onClose, onUpdated, onDel
 
   if (!booking) return null;
 
-  const panelBg = isLight ? "#FFFFFF" : "#1E1E23";
+  const panelBg = isLight ? "#FFFFFF" : "#0F2443";
   const panelBorder = isLight ? "#E5E7EB" : "rgba(192,192,192,0.12)";
   const textPrimary = isLight ? "#111827" : "#F8F8F8";
   const textMuted = isLight ? "#6B7280" : "#A5A7AA";
   const textSub = isLight ? "#374151" : "#CFCFCF";
   const sectionBg = isLight ? "#F9FAFB" : "rgba(255,255,255,0.03)";
   const sectionBorder = isLight ? "#E5E7EB" : "rgba(192,192,192,0.08)";
-  const inputBg = isLight ? "#FFFFFF" : "#0D0D0F";
+  const inputBg = isLight ? "#FFFFFF" : "#071427";
   const inputBorder = isLight ? "#D1D5DB" : "rgba(192,192,192,0.12)";
 
   async function handleDelete() {
@@ -252,7 +252,7 @@ export function BookingDetailModal({ booking, drivers, onClose, onUpdated, onDel
                 type="button"
                 onClick={handleDelete}
                 disabled={deleting}
-                className="rounded-lg px-3 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
+                className="rounded-lg px-3 py-2 text-sm font-semibold text-white transition hover:brightness-95 disabled:opacity-50"
                 style={{ background: "#dc2626" }}
               >
                 {deleting ? "Deleting…" : "Yes, delete"}
@@ -281,8 +281,8 @@ export function BookingDetailModal({ booking, drivers, onClose, onUpdated, onDel
               type="button"
               onClick={save}
               disabled={saving}
-              className="rounded-lg px-5 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
-              style={{ background: "linear-gradient(135deg,#404040,#333333)" }}
+              className="rounded-lg px-5 py-2 text-sm font-semibold text-[#0B1F3A] transition hover:brightness-95 disabled:opacity-50"
+              style={{ background: "#F5B21B" }}
             >
               {saving ? "Saving…" : "Save changes"}
             </button>

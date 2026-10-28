@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+
+export const metadata: Metadata = {
+  title: "Luton Airport Transfers",
+  description: "Pre-book fixed-price Luton Airport taxi transfers for early flights and late arrivals, with flight monitoring and free waiting time.",
+};
 
 export default function LutonAirportTransfersPage() {
   return (
@@ -9,8 +15,8 @@ export default function LutonAirportTransfersPage() {
         headline: (
           <>
             Book your Luton
-            <br />
-            <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">
+            {" "}<br />
+            <span className="text-foreground">
               airport transfer
             </span>
           </>

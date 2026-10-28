@@ -1,4 +1,10 @@
-﻿import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+﻿import type { Metadata } from "next";
+import { AirportCityPageTemplate } from "@/components/airports/AirportCityPageTemplate";
+
+export const metadata: Metadata = {
+  title: "Southend Airport Transfers",
+  description: "Pre-book fixed-price Southend Airport taxi transfers to and from London, with flight monitoring and professional drivers.",
+};
 
 export default function SouthendAirportTransfersPage() {
   return (
@@ -9,8 +15,8 @@ export default function SouthendAirportTransfersPage() {
         headline: (
           <>
             Book your Southend
-            <br />
-            <span className="bg-[linear-gradient(135deg,#C0C0C0_0%,#F8F8F8_50%,#A5A7AA_100%)] bg-clip-text text-transparent">
+            {" "}<br />
+            <span className="text-foreground">
               airport transfer
             </span>
           </>
@@ -40,9 +46,9 @@ export default function SouthendAirportTransfersPage() {
           "Book ahead to stay fully in control of every transfer leg.",
         ],
         gateway: [
-          "London Airport Taxi Services makes Southend transfers simple — one pre-booked ride from terminal to your destination.",
+          "MRM Executive Voyage makes Southend transfers simple — one pre-booked ride from terminal to your destination.",
           "Our team coordinates timing and logistics so you can focus on travelling, not on transport.",
-          "Choose London Airport Taxi Services for a reliable, comfortable, and well-priced Southend airport transfer.",
+          "Choose MRM Executive Voyage for a reliable, comfortable, and well-priced Southend airport transfer.",
         ],
         faqs: [
           {

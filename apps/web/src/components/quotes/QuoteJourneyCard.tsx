@@ -37,8 +37,8 @@ export function QuoteJourneyCard({
   const milesLabel = miles != null ? miles.toFixed(2) : "—";
 
   return (
-    <section className="overflow-hidden rounded-xl border border-white/[0.1] bg-card shadow-lg">
-      <div className="border-b border-white/10 bg-[#1a1a1c] px-4 py-3 text-sm font-bold text-[#F8F8F8]">
+    <section className="overflow-hidden rounded-xl border border-border bg-card shadow-lg">
+      <div className="border-b border-border bg-muted px-4 py-3 text-sm font-bold text-foreground">
         {title}
       </div>
       <div className="space-y-4 p-4 sm:p-5 md:p-6">
@@ -53,14 +53,14 @@ export function QuoteJourneyCard({
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Pickup</p>
-            <p className="flex items-start gap-2 text-sm font-medium text-[#E5E7EB]">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-highlight" />
+            <p className="flex items-start gap-2 text-sm font-medium text-foreground/90">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-ink" />
               {pickup}
             </p>
           </div>
           <div>
             <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Dropoff</p>
-            <p className="flex items-start gap-2 text-sm font-medium text-[#E5E7EB]">
+            <p className="flex items-start gap-2 text-sm font-medium text-foreground/90">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
               {dropoff}
             </p>
@@ -69,12 +69,12 @@ export function QuoteJourneyCard({
         {vias.length > 0 && (
           <div>
             <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Via</p>
-            <ul className="space-y-1 text-sm text-[#CFCFCF]">
+            <ul className="space-y-1 text-sm text-body">
               {vias.map((v, i) => (
                 <li key={`${v}-${i}`} className="flex items-start gap-2">
-                  <Route className="mt-0.5 h-4 w-4 shrink-0 text-highlight/80" />
+                  <Route className="mt-0.5 h-4 w-4 shrink-0 text-gold-ink/80" />
                   <span>
-                    <span className="font-semibold text-[#E5E7EB]">Stop {i + 1}: </span>
+                    <span className="font-semibold text-foreground/90">Stop {i + 1}: </span>
                     {v}
                   </span>
                 </li>
@@ -82,34 +82,34 @@ export function QuoteJourneyCard({
             </ul>
           </div>
         )}
-        <div className="flex flex-wrap items-center gap-3 border-t border-white/[0.06] pt-4">
+        <div className="flex flex-wrap items-center gap-3 border-t border-border pt-4">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Pickup date</p>
-          <p className="text-sm font-semibold text-[#F8F8F8]">{whenLabel}</p>
+          <p className="text-sm font-semibold text-foreground">{whenLabel}</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-secondary/80 px-3 py-1 text-xs font-semibold text-[#E5E7EB]">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/80 px-3 py-1 text-xs font-semibold text-foreground/90">
             <Users className="h-3.5 w-3.5" />
             {passengers} Pax
           </span>
           {routeLoading ? (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-secondary/80 px-3 py-1 text-xs font-semibold text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/80 px-3 py-1 text-xs font-semibold text-muted-foreground">
               <Loader2 className="h-3.5 w-3.5 animate-spin" />
               Route…
             </span>
           ) : (
             <>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-secondary/80 px-3 py-1 text-xs font-semibold text-[#E5E7EB]">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/80 px-3 py-1 text-xs font-semibold text-foreground/90">
                 <Clock className="h-3.5 w-3.5" />
                 {minutes != null ? `${minutes.toFixed(0)} min` : "—"}
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-secondary/80 px-3 py-1 text-xs font-semibold text-[#E5E7EB]">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/80 px-3 py-1 text-xs font-semibold text-foreground/90">
                 <MapPin className="h-3.5 w-3.5" />
                 {milesLabel} mi
               </span>
             </>
           )}
         </div>
-        {routeNote && <p className="text-xs text-amber-400/90">{routeNote}</p>}
+        {routeNote && <p className="text-xs text-amber-700">{routeNote}</p>}
       </div>
     </section>
   );

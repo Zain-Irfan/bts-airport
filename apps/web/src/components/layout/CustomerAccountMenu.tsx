@@ -23,7 +23,7 @@ type Props = {
 };
 
 const menuItemClass =
-  "flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-[#D1D5DB] transition-colors hover:bg-[rgba(51, 51, 51,0.22)] hover:text-[#F8F8F8]";
+  "flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-body transition-colors hover:bg-gold/15 hover:text-foreground";
 
 export function CustomerAccountMenu({ onNavigate, className }: Props) {
   const { data: session } = useSession();
@@ -38,16 +38,16 @@ export function CustomerAccountMenu({ onNavigate, className }: Props) {
         <button
           type="button"
           className={cn(
-            "inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border border-[rgba(192,192,192,0.22)]",
-            "bg-[rgba(13,13,15,0.6)] px-2 py-1.5 text-sm font-semibold text-[#F8F8F8] shadow-[inset_0_1px_0_rgba(192,192,192,0.08)]",
-            "transition hover:border-[rgba(192,192,192,0.38)] hover:bg-[rgba(51, 51, 51,0.18)]",
+            "inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border border-border",
+            "bg-input-bg px-2 py-1.5 text-sm font-semibold text-foreground shadow-sm",
+            "transition hover:border-gold/50 hover:bg-gold/15",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--highlight)/0.4)]",
             className,
           )}
           aria-label="Account menu"
         >
           <span
-            className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[linear-gradient(135deg,#404040_0%,#333333_100%)] text-[11px] font-bold tracking-tight text-[#F8F8F8]"
+            className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gold hover:bg-gold-hover text-[11px] font-bold tracking-tight text-gold-foreground"
             aria-hidden
           >
             {initials}
@@ -61,10 +61,10 @@ export function CustomerAccountMenu({ onNavigate, className }: Props) {
         sideOffset={10}
         className="site-account-menu w-60 p-0"
       >
-        <div className="border-b border-[rgba(192,192,192,0.12)] px-3 py-3">
-          <p className="truncate text-sm font-semibold text-[#F8F8F8]">{name}</p>
+        <div className="border-b border-border px-3 py-3">
+          <p className="truncate text-sm font-semibold text-foreground">{name}</p>
           {email ? (
-            <p className="mt-0.5 truncate text-xs text-[#A5A7AA]">{email}</p>
+            <p className="mt-0.5 truncate text-xs text-muted-foreground">{email}</p>
           ) : null}
         </div>
         <nav className="flex flex-col gap-0.5 p-2" aria-label="Account">
@@ -96,15 +96,15 @@ export function StaffAccountMenu({ onNavigate, className }: Props) {
         <button
           type="button"
           className={cn(
-            "inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border border-[rgba(192,192,192,0.22)]",
-            "bg-[rgba(13,13,15,0.6)] px-3 py-1.5 text-sm font-semibold text-[#F8F8F8]",
-            "transition hover:border-[rgba(192,192,192,0.38)] hover:bg-[rgba(51, 51, 51,0.18)]",
+            "inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border border-border",
+            "bg-input-bg px-3 py-1.5 text-sm font-semibold text-foreground",
+            "transition hover:border-gold/50 hover:bg-gold/15",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--highlight)/0.4)]",
             className,
           )}
           aria-label="Staff menu"
         >
-          <Shield className="h-4 w-4 shrink-0 text-[#C0C0C0]" aria-hidden />
+          <Shield className="h-4 w-4 shrink-0 text-gold-ink" aria-hidden />
           <span>Staff</span>
           <ChevronDown className="h-4 w-4 shrink-0 opacity-70" aria-hidden />
         </button>

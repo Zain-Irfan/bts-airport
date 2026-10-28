@@ -1,12 +1,18 @@
-﻿import { FullFooterSection } from "@/components/FullFooterSection";
+﻿import type { Metadata } from "next";
+import { FullFooterSection } from "@/components/FullFooterSection";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "How MRM Executive Voyage collects, uses and protects your personal information when you book with us.",
+};
 
 const policySections = [
   {
     title: "1. What does this notice cover?",
     paragraphs: [
-      "This Privacy Notice explains how London Airport Taxi Services collects, uses, stores, and protects your personal information when you use our website, mobile services, and booking platforms.",
-      "It applies to all users, including passengers, account holders, and visitors who interact with London Airport Taxi Services through digital channels or customer support.",
+      "This Privacy Notice explains how MRM Executive Voyage collects, uses, stores, and protects your personal information when you use our website, mobile services, and booking platforms.",
+      "It applies to all users, including passengers, account holders, and visitors who interact with MRM Executive Voyage through digital channels or customer support.",
     ],
   },
   {
@@ -47,7 +53,7 @@ const policySections = [
   {
     title: "7. How do we keep your data safe?",
     paragraphs: [
-      "London Airport Taxi Services applies technical and organisational safeguards to protect your information, including secure data transmission, restricted access controls, and monitored systems.",
+      "MRM Executive Voyage applies technical and organisational safeguards to protect your information, including secure data transmission, restricted access controls, and monitored systems.",
       "While no platform is completely risk-free, we continuously improve our protections to reduce the chance of unauthorized access or misuse.",
     ],
   },
@@ -82,12 +88,12 @@ export default function PrivacyPolicyPage() {
       <section className="BTS-hero-ambient BTS-section-onyx BTS-grid-bg relative overflow-hidden pb-12 pt-20 md:pb-16 md:pt-28">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <span className="BTS-pill">Privacy</span>
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-[#F8F8F8] md:text-5xl">
+          <h1 className="mt-6 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
             Privacy Policy
           </h1>
           <div className="BTS-divider mx-auto mt-6 w-24" />
-          <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-[#CFCFCF]">
-            How London Airport Taxi Services collects, uses, and protects the data you share when
+          <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-body">
+            How MRM Executive Voyage collects, uses, and protects the data you share when
             booking, browsing, or contacting us.
           </p>
         </div>
@@ -96,10 +102,10 @@ export default function PrivacyPolicyPage() {
       <main className="BTS-section-charcoal relative py-16 md:py-24">
         <div className="container mx-auto max-w-4xl px-4">
           <div className="BTS-card p-8 md:p-12">
-            <div className="space-y-12 text-[15px] leading-[1.95] text-[#CFCFCF]">
+            <div className="space-y-12 text-[15px] leading-[1.95] text-body">
               {policySections.map((section, index) => (
                 <section key={section.title}>
-                  <h2 className="text-xl font-semibold uppercase tracking-[0.08em] text-[#F8F8F8] md:text-[1.4rem]">
+                  <h2 className="text-xl font-semibold uppercase tracking-[0.08em] text-foreground md:text-[1.4rem]">
                     {section.title}
                   </h2>
                   <div className="BTS-divider-silver mt-4 mb-6 w-16" />

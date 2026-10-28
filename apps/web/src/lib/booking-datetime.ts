@@ -51,6 +51,23 @@ export function getReturnDatetimeError(
   return null;
 }
 
+/**
+ * Earliest bookable pickup: now + lead time, rounded up to the next `stepMinutes`.
+ * Returns the calendar day (time zeroed) plus `HH:mm`, ready for the booking form state.
+ */
+export function earliestPickup(
+  now = new Date(),
+  hours = BOOKING_MIN_LEAD_HOURS,
+  stepMinutes = 15,
+): { date: Date; time: string } {
+  const step = stepMinutes * 60 * 1000;
+  const earliest = new Date(Math.ceil((now.getTime() + hours * 60 * 60 * 1000) / step) * step);
+  const date = new Date(earliest);
+  date.setHours(0, 0, 0, 0);
+  const time = `${String(earliest.getHours()).padStart(2, "0")}:${String(earliest.getMinutes()).padStart(2, "0")}`;
+  return { date, time };
+}
+
 /** Start of today in local time (for calendar `disabled.before`). */
 export function startOfToday(): Date {
   const d = new Date();

@@ -50,18 +50,18 @@ export function AdminSidebar() {
   } = useAdminLayout();
 
   const isLight = theme === "light";
-  const sidebarBg = isLight ? "bg-white border-gray-200" : "bg-[#0D0D0F] border-[rgba(192,192,192,0.08)]";
+  const sidebarBg = isLight ? "bg-white border-gray-200" : "bg-[#071427] border-[rgba(192,192,192,0.08)]";
   const textPrimary = isLight ? "text-gray-900" : "text-[#F8F8F8]";
   const textMuted = isLight ? "text-gray-500" : "text-[#A5A7AA]";
   const dividerBorder = isLight ? "border-gray-200" : "border-[rgba(192,192,192,0.08)]";
   const activeItem = isLight
-    ? "bg-zinc-50 text-zinc-900 shadow-[inset_0_0_0_1px_rgba(51, 51, 51,0.2)]"
-    : "bg-[rgba(51, 51, 51,0.2)] text-[#F8F8F8] shadow-[inset_0_0_0_1px_rgba(153, 153, 153,0.25)]";
+    ? "bg-zinc-50 text-zinc-900 shadow-[inset_0_0_0_1px_rgba(245,178,27,0.2)]"
+    : "bg-[rgba(245,178,27,0.2)] text-[#F8F8F8] shadow-[inset_0_0_0_1px_rgba(245,178,27,0.25)]";
   const inactiveItem = isLight
     ? "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
     : "text-[#A5A7AA] hover:bg-[rgba(192,192,192,0.06)] hover:text-[#F8F8F8]";
-  const activeIcon = isLight ? "text-zinc-600" : "text-[#999999]";
-  const activeDot = isLight ? "bg-zinc-500" : "bg-[#999999]";
+  const activeIcon = isLight ? "text-zinc-600" : "text-[#F5B21B]";
+  const activeDot = isLight ? "bg-zinc-500" : "bg-[#F5B21B]";
 
   useEffect(() => {
     closeMobileNav();
@@ -101,12 +101,12 @@ export function AdminSidebar() {
       >
         <div className={`flex h-14 shrink-0 items-center justify-between border-b px-3 sm:h-16 sm:px-4 ${dividerBorder}`}>
           <Link href="/admin" className="flex min-w-0 items-center gap-3" onClick={closeMobileNav}>
-            <div className="flex h-9 w-9 flex-none items-center justify-center overflow-hidden rounded-lg bg-white ring-1 ring-black/10">
-              <Image src="/assets/logo.jpeg" alt="London Airport Taxi Services Logo" width={36} height={36} className="h-9 w-9 object-contain" />
+            <div className="flex h-10 w-10 flex-none items-center justify-center">
+              <Image src="/assets/logo-mrm.png" alt="MRM Executive Voyage Logo" width={80} height={80} className="h-10 w-10 object-contain" />
             </div>
             {(!sidebarCollapsed || mobileNavOpen) && (
               <div className="min-w-0 leading-tight">
-                <div className={`truncate text-sm font-bold ${textPrimary}`}>London Airport Taxi Services Admin</div>
+                <div className={`truncate text-sm font-bold ${textPrimary}`}>MRM Executive Voyage Admin</div>
                 <div className={`truncate text-[10px] ${textMuted}`}>Management Panel</div>
               </div>
             )}

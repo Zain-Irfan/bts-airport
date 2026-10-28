@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { PaymentSuccessClient } from "@/components/booking/PaymentSuccessClient";
 import { getPaymentSessionStatus } from "@/lib/get-payment-session-status";
 import { paymentSessionIdFromUrl } from "@/lib/payment-session-param";
+
+export const metadata: Metadata = {
+  title: "Booking Confirmed",
+  robots: { index: false, follow: false },
+};
 
 export const dynamic = "force-dynamic";
 

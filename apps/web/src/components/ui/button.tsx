@@ -5,28 +5,24 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold tracking-[0.01em] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/45 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0" +
+  "relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold tracking-[0.01em] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0" +
 " hover-elevate active-elevate-2",
   {
     variants: {
       variant: {
-        // Premium deep-purple gradient CTA with silver/white text and luxury glow
+        // Gold primary CTA with navy text
         default:
-          "border border-[rgba(192,192,192,0.22)] text-[#F8F8F8] " +
-          "bg-[linear-gradient(135deg,#404040_0%,#333333_55%,#262626_100%)] " +
-          "shadow-[inset_0_1px_0_rgba(192,192,192,0.18),inset_0_0_0_1px_rgba(51, 51, 51,0.4),0_10px_32px_-10px_rgba(51, 51, 51,0.55),0_4px_14px_-4px_rgba(0,0,0,0.55)] " +
-          "hover:border-[rgba(192,192,192,0.4)] hover:brightness-[1.08] " +
-          "hover:shadow-[inset_0_1px_0_rgba(192,192,192,0.22),inset_0_0_0_1px_rgba(153, 153, 153,0.5),0_18px_48px_-10px_rgba(51, 51, 51,0.7),0_8px_22px_-4px_rgba(0,0,0,0.6),0_0_0_4px_rgba(51, 51, 51,0.18)] " +
-          "active:brightness-[0.98]",
+          "border border-gold bg-gold text-gold-foreground shadow-[0_6px_18px_-8px_hsl(var(--gold)/0.7)] " +
+          "hover:border-gold-hover hover:bg-gold-hover",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm border-destructive-border",
         outline:
-          "btn-outline border border-[rgba(192,192,192,0.25)] bg-[rgba(51, 51, 51,0.08)] text-foreground shadow-none backdrop-blur-sm hover:border-[rgba(192,192,192,0.4)] hover:bg-[rgba(51, 51, 51,0.16)] active:shadow-none",
+          "btn-outline border border-border-strong bg-transparent text-foreground shadow-none hover:border-gold hover:bg-gold/10 active:shadow-none",
         secondary:
-          "border border-secondary-border bg-secondary text-secondary-foreground hover:bg-[rgba(51, 51, 51,0.18)] hover:border-[rgba(192,192,192,0.22)]",
+          "border border-secondary-border bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground",
         ghost:
-          "border border-transparent text-foreground hover:bg-[rgba(51, 51, 51,0.12)] hover:text-foreground",
-        link: "border-transparent text-highlight underline-offset-4 hover:underline",
+          "border border-transparent text-foreground hover:bg-muted hover:text-foreground",
+        link: "border-transparent text-gold-ink underline-offset-4 hover:underline",
       },
       size: {
         // @replit changed sizes

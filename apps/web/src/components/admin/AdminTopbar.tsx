@@ -20,10 +20,10 @@ export function AdminTopbar({ title, left }: { title: string; left?: React.React
   const btnBase = isLight
     ? "border-gray-200 bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900"
     : "border-[rgba(192,192,192,0.12)] text-[#A5A7AA] hover:bg-[rgba(192,192,192,0.08)] hover:text-[#F8F8F8]";
-  const avatarBg = isLight ? "bg-gray-200 border-gray-300 text-gray-700" : "bg-[rgba(45,45,51,0.5)] border-[rgba(192,192,192,0.15)] text-[#F8F8F8]";
+  const avatarBg = isLight ? "bg-gray-200 border-gray-300 text-gray-700" : "bg-[rgba(255,255,255,0.06)] border-[rgba(192,192,192,0.15)] text-[#F8F8F8]";
   const signOutBtn = isLight
     ? "border-gray-200 bg-gray-100 text-gray-600 hover:border-red-300 hover:bg-red-50 hover:text-red-600"
-    : "border-[rgba(192,192,192,0.15)] bg-[rgba(45,45,51,0.35)] text-[#CFCFCF] hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400";
+    : "border-[rgba(192,192,192,0.15)] bg-[rgba(255,255,255,0.06)] text-[#CFCFCF] hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400";
 
   return (
     <header className={`sticky top-0 z-30 flex h-14 min-w-0 items-center justify-between gap-2 border-b px-3 backdrop-blur-xl sm:h-16 sm:gap-3 sm:px-4 lg:px-6 ${headerBg}`}>
