@@ -23,7 +23,7 @@ export function PaymentSuccessClient({ sessionId, initial }: Props) {
     setRefreshing(true);
     try {
       const res = await fetch(
-        `/api/payments/revolut/session?sessionId=${encodeURIComponent(sessionId)}`,
+        `/api/payments/session?sessionId=${encodeURIComponent(sessionId)}`,
         { cache: "no-store" },
       );
       const data = (await res.json()) as PaymentSessionStatus & { error?: string };

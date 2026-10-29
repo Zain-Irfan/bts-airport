@@ -1,17 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { Save, MessageCircle, Mail, Phone, KeyRound, Eye, EyeOff } from "lucide-react";
+import { Save, MessageCircle, Mail, Phone, CreditCard } from "lucide-react";
 import { useAdminLayout } from "@/components/admin/AdminLayoutContext";
+
+type StripeStatus = {
+  mode: "test" | "live" | "none";
+  maskedKey: string | null;
+  webhookConfigured: boolean;
+};
 
 export function SettingsClient({
   initial,
-  revolutActiveKey = "",
-  revolutActiveSource = "none",
+  stripe,
 }: {
   initial: Record<string, string>;
-  revolutActiveKey?: string;
-  revolutActiveSource?: "db" | "env" | "none";
+  stripe: StripeStatus;
 }) {
   const { theme } = useAdminLayout();
   const isLight = theme === "light";
@@ -24,9 +28,6 @@ export function SettingsClient({
   const [whatsapp,    setWhatsapp]    = useState(initial["whatsapp_number"]   ?? "447700140900");
   const [phone,       setPhone]       = useState(initial["contact_phone"]     ?? "+44 2080 5090 14");
   const [email,       setEmail]       = useState(initial["contact_email"]     ?? "support@BTS.uk");
-  // Pre-fill with the DB value only (env var stays in .env — don't expose it in the input)
-  const [revolutKey,  setRevolutKey]  = useState(initial["revolut_secret_key"] ?? "");
-  const [showKey,     setShowKey]     = useState(false);
   const [saving,      setSaving]      = useState(false);
   const [saved,       setSaved]       = useState(false);
 
@@ -39,7 +40,6 @@ export function SettingsClient({
         whatsapp_number:    whatsapp,
         contact_phone:      phone,
         contact_email:      email,
-        revolut_secret_key: revolutKey,
       }),
     });
     setSaving(false);
@@ -134,64 +134,37 @@ export function SettingsClient({
         </div>
       </div>
 
-      {/* Revolut */}
+      {/* Stripe (read-only: keys are set as server env vars) */}
       <div className="rounded-xl border p-6 space-y-4" style={{ background: "var(--adm-surface)", borderColor: "var(--adm-border)" }}>
         <div className="flex items-center gap-2">
-          <KeyRound className="h-4 w-4" style={{ color: "#F59E0B" }} />
-          <h2 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Revolut Secret Key</h2>
+          <CreditCard className="h-4 w-4" style={{ color: "var(--adm-accent-ink)" }} />
+          <h2 className="text-sm font-semibold" style={{ color: "var(--adm-text)" }}>Stripe Payments</h2>
         </div>
-        <div>
-          <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.15em]" style={{ color: labelColor }}>
-            Merchant secret key
-          </label>
-          <div className="relative">
-            <input
-              type={showKey ? "text" : "password"}
-              value={revolutKey}
-              onChange={(e) => setRevolutKey(e.target.value.trim())}
-              placeholder="sk_live_… or sk_sandbox_…"
-              className="h-10 w-full rounded-lg border px-3 pr-10 text-sm outline-none font-mono"
-              style={{ background: inputBg, borderColor: inputBorder, color: inputColor }}
-            />
-            <button
-              type="button"
-              onClick={() => setShowKey((v) => !v)}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded p-0.5 transition hover:opacity-70"
-              style={{ color: labelColor }}
-              aria-label={showKey ? "Hide key" : "Show key"}
-            >
-              {showKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </button>
-          </div>
-          <p className="mt-1.5 text-xs" style={{ color: labelColor }}>
-            Found in your Revolut merchant dashboard → API keys. DB value overrides the server env var.
-          </p>
-        </div>
-        <div className="rounded-lg px-3 py-2 text-xs space-y-1" style={{ background: "var(--adm-surface-2)", color: labelColor }}>
+        <div className="rounded-lg px-3 py-2 text-xs space-y-1.5" style={{ background: "var(--adm-surface-2)", color: labelColor }}>
           <div>
-            Active source:{" "}
-            {revolutActiveSource === "db" && (
-              <span className="font-semibold text-emerald-500">Database (this field) ✓</span>
-            )}
-            {revolutActiveSource === "env" && (
-              <span className="font-semibold text-amber-500">Server env var — override by saving a key here</span>
-            )}
-            {revolutActiveSource === "none" && (
-              <span className="font-semibold text-red-400">Not configured — payments will fail</span>
-            )}
+            Status:{" "}
+            {stripe.mode === "live" && <span className="font-semibold text-emerald-500">Live — taking real payments</span>}
+            {stripe.mode === "test" && <span className="font-semibold text-amber-500">Test mode — no real money is taken</span>}
+            {stripe.mode === "none" && <span className="font-semibold text-red-400">Not configured — customers can&apos;t pay online</span>}
           </div>
-          {revolutActiveSource !== "none" && (
+          {stripe.maskedKey && (
             <div>
-              Active key:{" "}
-              <span className="font-mono" style={{ color: "var(--adm-text-sub)" }}>
-                {showKey
-                  ? revolutActiveKey
-                  : `${revolutActiveKey.slice(0, 10)}${"•".repeat(Math.min(24, Math.max(0, revolutActiveKey.length - 10)))}`
-                }
-              </span>
+              Secret key: <span className="font-mono" style={{ color: "var(--adm-text-sub)" }}>{stripe.maskedKey}</span>
             </div>
           )}
+          <div>
+            Webhook:{" "}
+            {stripe.webhookConfigured ? (
+              <span className="font-semibold text-emerald-500">Connected ✓</span>
+            ) : (
+              <span className="font-semibold text-amber-500">Not set — bookings are still created on the success page</span>
+            )}
+          </div>
         </div>
+        <p className="text-xs" style={{ color: labelColor }}>
+          Keys are set on the server as <span className="font-mono">STRIPE_SECRET_KEY</span> and{" "}
+          <span className="font-mono">STRIPE_WEBHOOK_SECRET</span> (Stripe Dashboard → Developers). They are never shown in full here.
+        </p>
       </div>
 
       <button

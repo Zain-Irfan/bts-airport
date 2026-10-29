@@ -60,7 +60,7 @@ export default async function PaymentsPage() {
           <table className="w-full min-w-[700px] text-left text-sm">
             <thead>
               <tr style={{ borderBottom: "1px solid var(--adm-border)" }}>
-                {["Session ID", "Revolut Order", "Booking ID", "Amount", "Currency", "Status", "Created"].map((h) => (
+                {["Session ID", "Stripe Ref", "Booking ID", "Amount", "Currency", "Status", "Created"].map((h) => (
                   <th key={h} className="px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: "var(--adm-text-muted)" }}>
                     {h}
                   </th>
@@ -84,7 +84,7 @@ export default async function PaymentsPage() {
                     </td>
                     <td className="px-4 py-3">
                       <span className="font-mono text-xs" style={{ color: "var(--adm-text-sub)" }}>
-                        {p.revolutOrderId ? `${p.revolutOrderId.slice(0, 14)}…` : "—"}
+                        {(p.stripeSessionId ?? p.revolutOrderId) ? `${(p.stripeSessionId ?? p.revolutOrderId ?? "").slice(0, 14)}…` : "—"}
                       </span>
                     </td>
                     <td className="px-4 py-3">

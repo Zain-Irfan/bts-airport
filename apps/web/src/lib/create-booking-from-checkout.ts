@@ -1,10 +1,12 @@
 import { parseISO } from "date-fns";
 import type { CheckoutPayload } from "@/lib/checkout-payload";
 import { prisma } from "@/lib/prisma";
+import type { Prisma } from "@/generated/prisma/client";
 
 export async function createBookingFromCheckout(
   payload: CheckoutPayload,
   userId?: string | null,
+  db: Prisma.TransactionClient = prisma,
 ) {
   const { quote, pricing, customer } = payload;
   const name = `${customer.firstName} ${customer.lastName}`.trim();
@@ -34,7 +36,7 @@ export async function createBookingFromCheckout(
     .filter(Boolean)
     .join("\n");
 
-  return prisma.booking.create({
+  return db.booking.create({
     data: {
       userId: userId ?? undefined,
       customerName: name,

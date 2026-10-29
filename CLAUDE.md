@@ -10,7 +10,7 @@
 
 ## What this is
 A booking website + admin panel for a London airport-taxi / private-transfer company.
-Public marketing site, an online booking/quote flow with Revolut payments, and an admin
+Public marketing site, an online booking/quote flow with Stripe payments, and an admin
 panel (staff) to manage bookings, drivers, vehicle types, contacts, and site settings.
 
 - **Live domain:** https://londonairporttaxiservices.co.uk
@@ -27,7 +27,7 @@ panel (staff) to manage bookings, drivers, vehicle types, contacts, and site set
 | ORM | **Prisma 7.8** — ⚠️ requires a driver adapter (see below) |
 | DB | **MySQL / MariaDB** |
 | Email | **Resend** (`apps/web/src/lib/email.ts`, lazy-initialised) |
-| Payments | **Revolut** merchant API |
+| Payments | **Stripe** Checkout (`stripe` SDK v23) |
 | Node | **20.19.0** (Prisma 7 needs ≥ 20.19) |
 | Hosting | **Cloudways** (managed DigitalOcean), Apache "Hybrid" stack + PM2 |
 
@@ -52,7 +52,7 @@ npm install
 npm run dev        # → http://localhost:3000  (Turbopack)
 ```
 - `.env` / `.env.local` in `apps/web` hold `DATABASE_URL`, `RESEND_API_KEY`,
-  `REVOLUT_MERCHANT_SECRET_KEY`, `NEXT_PUBLIC_*`, etc. **Never commit real secrets.**
+  `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `NEXT_PUBLIC_*`, etc. **Never commit real secrets.**
 - Local DB is MySQL via Laragon (`mysql://root:@localhost:3306/ukride` style).
 
 ## Database — Prisma 7 (IMPORTANT)
@@ -96,7 +96,7 @@ cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
 ## Admin panel & site settings
 - Admin at `/admin` (login `/admin/login`). Auth via `authStaff()` in `@/lib/auth`.
 - **Admin → Settings** edits DB-backed values that update the whole site **instantly, no
-  redeploy**: WhatsApp number, **Call/Phone number**, contact email, Revolut secret key.
+  redeploy**: WhatsApp number, **Call/Phone number**, contact email. (Stripe keys are env vars only; Settings shows a masked status.)
   Backed by the `Setting` model; read via `getSiteSettings()` (server) / `useSiteSettings()`
   (client) / `SiteSettingsProvider`.
 - All phone/WhatsApp/email displays site-wide are wired to these settings — no hardcoded
@@ -109,10 +109,18 @@ cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
 - Route miles come from the server (`src/lib/route-distance.ts` → Google Directions REST, cached),
   exposed at `/api/route-distance`; if Google fails, every side uses the same 28-mile fallback.
 - `/api/quote` returns the confirmed price shown on the booking summary, and
-  `/api/payments/revolut/create-order` **recalculates it again** (`src/lib/booking-quote.ts`) —
+  `/api/payments/stripe/checkout` **recalculates it again** (`src/lib/booking-quote.ts`) —
   prices in the URL / request body are never charged.
 - Set `GOOGLE_MAPS_SERVER_API_KEY` (unrestricted-by-referrer key) in production so real distances
   are used server-side; a browser key with HTTP-referrer restrictions is rejected by Google.
+
+## Payments (Stripe Checkout)
+- Flow: booking summary → `POST /api/payments/stripe/checkout` (server re-prices, creates a
+  `PaymentSession`, opens a Stripe Checkout page) → Stripe → `/payment/success/<paymentSessionId>`.
+- The booking is created by `fulfilPaymentSession()` once Stripe says the session is **paid** and the
+  amount matches — from the webhook (`/api/payments/stripe/webhook`, signature-verified) *or* the
+  success page, whichever comes first. A `SELECT … FOR UPDATE` lock stops double bookings.
+- Local testing: Stripe test keys + card `4242 4242 4242 4242`; webhooks via `stripe listen`.
 
 ## Design system
 - Everything is themed through **CSS variables in `apps/web/src/app/globals.css`** (`:root`,
@@ -130,7 +138,7 @@ cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
   it is just a CSS namespace, not the brand.
 
 ## Current state / recently done
-- Rebranded BTS → "London Airport Taxi Services" → **"MRM Executive Voyage"** (name, titles, alt text, emails, Revolut order description, logo).
+- Rebranded BTS → "London Airport Taxi Services" → **"MRM Executive Voyage"** (name, titles, alt text, emails, payment description, logo).
 - Full monochrome recolor (removed all purple), then replaced by the navy/gold system.
 - Homepage re-laid out: utility bar + header with "Book now", hero with white quote card,
   stats/accreditation strip, how-it-works, airport + fleet grids, two-column FAQ, new footer.
@@ -143,12 +151,13 @@ cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
 - **Call/Phone number** (default `+44 2080 5090 14` — placeholder)
 - **Contact email** (still `support@BTS.uk` — placeholder, old brand)
 - **Email sender**: set `EMAIL_FROM` env (fallback is `MRM Executive Voyage <bookings@bts.uk>`, a placeholder address)
-- Revolut: confirm the **live** secret key + set up the webhook for production.
+- Stripe: set the **live** `STRIPE_SECRET_KEY` and create a webhook endpoint
+  `https://<domain>/api/payments/stripe/webhook` → put its signing secret in `STRIPE_WEBHOOK_SECRET`.
 - If the logo graphic still reads oddly, supply a cleaner/transparent logo.
 
 ## Known open items / watch-list
-- Revolut auth had intermittent failures — a DB-stored key overrides the env var
-  (`getRevolutSecretKeyAsync()` checks DB first); make sure only the correct key is set.
+- Payments switched from Revolut to Stripe. The `payment_sessions.revolutOrderId` column is kept only
+  for old records; new payments use `stripeSessionId`.
 - Google Maps: billing must be enabled on the Cloud project — until then route maps fail and
   **all prices use the 28-mile fallback**. Route map on the booking-summary page needs a valid
   `NEXT_PUBLIC_*` Maps key (baked at build time — rebuild after changing).

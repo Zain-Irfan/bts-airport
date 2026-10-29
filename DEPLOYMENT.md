@@ -108,8 +108,8 @@ Then hard-refresh the site.
 - `rm -rf .next` matters: **Turbopack can serve a stale cached build** and you'll swear your
   changes "aren't showing" even though the source is correct. Wiping `.next` forces a clean
   compile. (We hit this exact trap; it wasted real time.)
-- Only **code** changes need `npm run build`. **Admin-panel settings** (phone, WhatsApp, email,
-  Revolut key) are DB-driven and update **instantly with no build/deploy**.
+- Only **code** changes need `npm run build`. **Admin-panel settings** (phone, WhatsApp, email)
+  are DB-driven and update **instantly with no build/deploy**. Stripe keys are env vars (restart needed).
 - `NEXT_PUBLIC_*` env vars are **baked in at build time** → changing one needs a full rebuild.
 
 ---
@@ -133,7 +133,8 @@ npm install                      # if it fails on prisma/dotenv: `npm install do
 # 3. Environment file — create apps/web/.env with the live values (NOT in git):
 #    DATABASE_URL=mysql://<user>:<pass>@127.0.0.1:3306/<dbname>
 #    RESEND_API_KEY=...
-#    REVOLUT_MERCHANT_SECRET_KEY=...   (or set via Admin → Settings)
+#    STRIPE_SECRET_KEY=sk_live_...     (Stripe Dashboard → Developers → API keys)
+#    STRIPE_WEBHOOK_SECRET=whsec_...   (webhook endpoint https://<domain>/api/payments/stripe/webhook)
 #    NEXT_PUBLIC_*=...                 (e.g. Google Maps key, app URL)
 
 # 4. Prisma (Prisma 7 needs the mariadb adapter — already wired in src/lib/prisma.ts)
@@ -210,9 +211,10 @@ package is installed and `npx prisma generate` ran.
 **Build crashes on Resend** — handled: `src/lib/email.ts` lazily initialises Resend so a
 missing `RESEND_API_KEY` doesn't crash the build. Set the real key for emails to actually send.
 
-**Revolut "Authentication failed" (502)** — usually a stale build or wrong key. Note a
-**DB-stored key overrides the env var** (`getRevolutSecretKeyAsync()` checks DB first), so make
-sure only the correct key is set (in Admin → Settings or `.env`). Rebuild after changing.
+**Stripe: "Online payments are not set up yet"** — `STRIPE_SECRET_KEY` is missing; set it and restart.
+**Stripe: paid but no booking** — the success page also creates the booking, but check the webhook in
+Stripe Dashboard → Webhooks (events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`,
+`checkout.session.expired`, `checkout.session.async_payment_failed`) and that `STRIPE_WEBHOOK_SECRET` matches.
 
 **Server "expired"/restored → different URL/IP** — do the full section 5 bring-up again; the
 `<APP_ID>` and SSH user will have changed.

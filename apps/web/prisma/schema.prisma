@@ -88,8 +88,11 @@ enum PaymentSessionStatus {
 }
 
 model PaymentSession {
-  id             String               @id @default(cuid())
-  revolutOrderId String?              @unique @db.VarChar(64)
+  id              String               @id @default(cuid())
+  /// Stripe Checkout Session id (cs_…) — current payment provider
+  stripeSessionId String?              @unique @db.VarChar(255)
+  /// Legacy: orders created before the switch to Stripe
+  revolutOrderId  String?              @unique @db.VarChar(64)
   status         PaymentSessionStatus @default(PENDING)
   amountMinor    Int
   currency       String               @default("GBP") @db.VarChar(3)

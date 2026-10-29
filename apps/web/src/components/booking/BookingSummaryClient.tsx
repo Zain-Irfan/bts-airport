@@ -152,10 +152,11 @@ export function BookingSummaryClient() {
     };
 
     try {
-      const res = await fetch("/api/payments/revolut/create-order", {
+      const res = await fetch("/api/payments/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ checkout }),
+        // Cancelling on Stripe brings the customer back to this summary.
+        body: JSON.stringify({ checkout, cancelPath: `/booking-summary?${sp.toString()}` }),
       });
       const data = (await res.json().catch(() => ({}))) as {
         checkoutUrl?: string;
@@ -370,7 +371,7 @@ export function BookingSummaryClient() {
         </form>
 
         <p className="mt-8 text-center text-xs text-muted-foreground">
-          Your personal information is secure and will only be used for booking purposes
+          Secure card payment powered by Stripe — your card details never touch our servers.
         </p>
       </main>
 

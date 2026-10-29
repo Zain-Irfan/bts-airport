@@ -35,7 +35,7 @@ export default async function PaymentSuccessPage({ searchParams }: Props) {
           paid: false,
           status: "missing",
           bookingId: null,
-          message: "Missing payment session. Use the link from Revolut after payment.",
+          message: "Missing payment session. Please use the link you were sent back to after paying.",
         }}
       />
     );

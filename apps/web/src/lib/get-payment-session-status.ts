@@ -18,7 +18,19 @@ export async function getPaymentSessionStatus(
   }
 
   if (session.status !== "COMPLETED") {
-    const result = await fulfilPaymentSession(sessionId);
+    let result: Awaited<ReturnType<typeof fulfilPaymentSession>>;
+    try {
+      result = await fulfilPaymentSession(sessionId);
+    } catch (err) {
+      console.error("[payments] could not verify payment:", err);
+      return {
+        sessionId,
+        status: session.status,
+        paid: false,
+        bookingId: null,
+        message: "We couldn't confirm your payment yet. Please refresh in a moment.",
+      };
+    }
     if (!result.ok) {
       return {
         sessionId,

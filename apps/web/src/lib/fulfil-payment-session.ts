@@ -1,13 +1,11 @@
 import { parseCheckoutPayload } from "@/lib/checkout-payload";
 import { createBookingFromCheckout } from "@/lib/create-booking-from-checkout";
 import { prisma } from "@/lib/prisma";
-import { retrieveRevolutOrder } from "@/lib/revolut";
+import { getStripe, isCheckoutPaid } from "@/lib/stripe";
 import { sendBookingConfirmationEmail } from "@/lib/email";
 import { format } from "date-fns";
 
-const PAID_STATES = new Set(["completed", "authorised", "processing"]);
-
-/** Idempotent: confirm payment session and create booking when Revolut order is paid. */
+/** Idempotent: confirm payment session and create the booking once Stripe reports it paid. */
 export async function fulfilPaymentSession(sessionId: string) {
   const session = await prisma.paymentSession.findUnique({ where: { id: sessionId } });
   if (!session) {
@@ -18,15 +16,18 @@ export async function fulfilPaymentSession(sessionId: string) {
     return { ok: true as const, session, alreadyDone: true };
   }
 
-  if (!session.revolutOrderId) {
-    return { ok: false as const, error: "No Revolut order linked" };
+  if (!session.stripeSessionId) {
+    return { ok: false as const, error: "No Stripe payment linked" };
   }
 
-  const order = await retrieveRevolutOrder(session.revolutOrderId);
-  const state = order.state?.toLowerCase() ?? "";
-
-  if (!PAID_STATES.has(state)) {
-    return { ok: false as const, error: "Payment not completed", orderState: state };
+  const checkout = await getStripe().checkout.sessions.retrieve(session.stripeSessionId);
+  if (!isCheckoutPaid(checkout)) {
+    return { ok: false as const, error: "Payment not completed", orderState: checkout.payment_status };
+  }
+  // Belt and braces: the paid amount must match what we priced on the server.
+  if (checkout.amount_total !== session.amountMinor || checkout.currency?.toLowerCase() !== session.currency.toLowerCase()) {
+    console.error("[stripe] amount mismatch", { sessionId, paid: checkout.amount_total, expected: session.amountMinor });
+    return { ok: false as const, error: "Payment amount mismatch — please contact us" };
   }
 
   const rawPayload = JSON.parse(session.payload) as { userId?: string };
@@ -40,20 +41,25 @@ export async function fulfilPaymentSession(sessionId: string) {
       ? rawPayload.userId.trim()
       : undefined;
 
-  let bookingId = session.bookingId;
-  let isNewBooking = false;
-  if (!bookingId) {
-    const booking = await createBookingFromCheckout(payload, userId);
-    bookingId = booking.id;
-    isNewBooking = true;
-  }
+  // The webhook and the success page can arrive at the same moment: lock the payment row so
+  // only one of them creates the booking.
+  const { updated, bookingId, isNewBooking } = await prisma.$transaction(async (tx) => {
+    await tx.$queryRaw`SELECT id FROM payment_sessions WHERE id = ${sessionId} FOR UPDATE`;
+    const locked = await tx.paymentSession.findUniqueOrThrow({ where: { id: sessionId } });
 
-  const updated = await prisma.paymentSession.update({
-    where: { id: sessionId },
-    data: {
-      status: "COMPLETED",
-      bookingId,
-    },
+    let bookingId = locked.bookingId;
+    let isNewBooking = false;
+    if (!bookingId) {
+      const booking = await createBookingFromCheckout(payload, userId, tx);
+      bookingId = booking.id;
+      isNewBooking = true;
+    }
+
+    const updated = await tx.paymentSession.update({
+      where: { id: sessionId },
+      data: { status: "COMPLETED", bookingId },
+    });
+    return { updated, bookingId, isNewBooking };
   });
 
   // Send confirmation email for new bookings only (idempotent)
@@ -76,7 +82,7 @@ export async function fulfilPaymentSession(sessionId: string) {
       vehicleType: pricing.vehicleName,
       fare: pricing.totalPrice,
       flightNumber: quote.flight || null,
-      meetGreet: quote.meet === "yes",
+      meetGreet: pricing.meetFee > 0,
     }).catch((err) => console.error("[email] booking confirmation failed:", err));
   }
 
