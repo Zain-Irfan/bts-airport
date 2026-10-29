@@ -42,6 +42,53 @@ async function fetchFromGoogle(origin: string, destination: string, vias: string
   const key = apiKey();
   if (!key) return FALLBACK;
 
+  // Routes API is what new Google Cloud projects can enable; the legacy Directions API
+  // is only tried for older projects that still have it.
+  return (await fromRoutesApi(key, origin, destination, vias)) ?? (await fromLegacyDirections(key, origin, destination, vias));
+}
+
+/** Google Routes API (computeRoutes). Returns null on any failure so the caller can try the next source. */
+async function fromRoutesApi(key: string, origin: string, destination: string, vias: string[]): Promise<RouteDistance | null> {
+  try {
+    const res = await fetch("https://routes.googleapis.com/directions/v2:computeRoutes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": key,
+        // Only ask for what we price on (keeps the request in the cheapest billing tier).
+        "X-Goog-FieldMask": "routes.distanceMeters,routes.duration",
+      },
+      body: JSON.stringify({
+        origin: { address: origin },
+        destination: { address: destination },
+        intermediates: vias.map((address) => ({ address })),
+        travelMode: "DRIVE",
+        routingPreference: "TRAFFIC_UNAWARE",
+        regionCode: "gb",
+      }),
+      signal: AbortSignal.timeout(8000),
+      cache: "no-store",
+    });
+    const data = (await res.json()) as {
+      routes?: { distanceMeters?: number; duration?: string }[];
+      error?: { status?: string; message?: string };
+    };
+    if (!res.ok) {
+      console.warn("[route-distance] Routes API:", data.error?.status ?? res.status, data.error?.message ?? "");
+      return null;
+    }
+    const route = data.routes?.[0];
+    const meters = route?.distanceMeters ?? 0;
+    if (meters <= 0) return null;
+    const secs = Number.parseFloat(route?.duration ?? "0"); // e.g. "1830s"
+    return { miles: meters / 1609.344, minutes: (Number.isFinite(secs) ? secs : 0) / 60, estimated: false };
+  } catch {
+    return null;
+  }
+}
+
+/** Legacy Directions API (older projects only). */
+async function fromLegacyDirections(key: string, origin: string, destination: string, vias: string[]): Promise<RouteDistance> {
   const params = new URLSearchParams({ origin, destination, mode: "driving", region: "uk", key });
   if (vias.length) params.set("waypoints", vias.join("|"));
 

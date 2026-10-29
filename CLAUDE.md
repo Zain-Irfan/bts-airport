@@ -106,12 +106,12 @@ cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
 - Fare = vehicle rates (DB `VehicleType`: base, per-mile, minimum, promo %) × route miles, plus a
   **£16 Meet & Greet** fee for airport pickups (unless the customer opts out). Maths lives in
   `src/lib/booking-pricing.ts` and is shared by the quotes page, booking summary and payment API.
-- Route miles come from the server (`src/lib/route-distance.ts` → Google Directions REST, cached),
+- Route miles come from the server (`src/lib/route-distance.ts` → Google **Routes API** `computeRoutes`, falling back to the legacy Directions API for old projects; cached),
   exposed at `/api/route-distance`; if Google fails, every side uses the same 28-mile fallback.
 - `/api/quote` returns the confirmed price shown on the booking summary, and
   `/api/payments/stripe/checkout` **recalculates it again** (`src/lib/booking-quote.ts`) —
   prices in the URL / request body are never charged.
-- Set `GOOGLE_MAPS_SERVER_API_KEY` (unrestricted-by-referrer key) in production so real distances
+- Enable **Routes API** + **Maps JavaScript API** (new projects cannot enable the legacy Directions API) and set `GOOGLE_MAPS_SERVER_API_KEY` (unrestricted-by-referrer key) in production so real distances
   are used server-side; a browser key with HTTP-referrer restrictions is rejected by Google.
 
 ## Payments (Stripe Checkout)
