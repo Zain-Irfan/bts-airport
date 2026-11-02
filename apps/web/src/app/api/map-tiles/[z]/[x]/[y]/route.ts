@@ -21,7 +21,8 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ z: 
     return new Response(res.body, {
       headers: {
         "Content-Type": res.headers.get("Content-Type") ?? "image/png",
-        "Cache-Control": "public, max-age=604800, immutable",
+        // s-maxage lets a CDN (e.g. Vercel's) serve repeat tiles without re-running this route.
+        "Cache-Control": "public, max-age=604800, s-maxage=604800, immutable",
       },
     });
   } catch {
