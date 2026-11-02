@@ -4,16 +4,16 @@
 > code — deployment quirks, gotchas, and current state — so a fresh session can be productive
 > immediately. (There is also `apps/web/CLAUDE.md` → `AGENTS.md` with a Next.js warning; read that too.)
 >
-> 📘 **For anything about hosting/deploying (Cloudways, `.htaccess` proxy, PM2, 503 errors,
-> "changes not showing", first-time server setup, troubleshooting), read [`DEPLOYMENT.md`](DEPLOYMENT.md)
-> — it is the complete runbook. The summary in section "Deployment" below is just an overview.**
+> 🚀 **Hosting is Vercel** (Cloudways is no longer used — `DEPLOYMENT.md` is the old Cloudways
+> runbook, kept for reference only). See "Deployment — Vercel" below.
 
 ## What this is
 A booking website + admin panel for a London airport-taxi / private-transfer company.
 Public marketing site, an online booking/quote flow with Stripe payments, and an admin
 panel (staff) to manage bookings, drivers, vehicle types, contacts, and site settings.
 
-- **Live domain:** https://londonairporttaxiservices.co.uk
+- **Live site:** https://bts-airport.vercel.app (Vercel production). The domain `londonairporttaxiservices.co.uk`
+  still points at the retired Cloudways server (206.189.112.199) — repoint its DNS to Vercel when ready.
 - **Brand name:** "MRM Executive Voyage" (renamed from "London Airport Taxi Services", which itself replaced "BTS"). The domain is still `londonairporttaxiservices.co.uk`.
 - **Git remote:** `github.com/Zain-Irfan/bts-airport` (repo still named bts-airport), branch `main`.
 
@@ -29,7 +29,7 @@ panel (staff) to manage bookings, drivers, vehicle types, contacts, and site set
 | Email | **Resend** (`apps/web/src/lib/email.ts`, lazy-initialised) |
 | Payments | **Stripe** Checkout (`stripe` SDK v23) |
 | Node | **20.19.0** (Prisma 7 needs ≥ 20.19) |
-| Hosting | **Cloudways** (managed DigitalOcean), Apache "Hybrid" stack + PM2 |
+| Hosting | **Vercel** (Git integration; hosted MySQL required) |
 
 ## Repo layout
 Monorepo-ish (root name `ukride-clone`, no npm workspaces). The real app is **`apps/web`**.
@@ -41,7 +41,7 @@ apps/web/
   src/app/globals.css # ⭐ the whole design system (CSS variables / tokens)
   prisma/schema.prisma
   public/assets/      # logo.jpeg lives here
-  public/.htaccess    # ⭐ git-tracked Apache proxy rule (see Deployment)
+  public/.htaccess    # legacy Cloudways Apache proxy rule (unused on Vercel)
   .claude/launch.json # dev server config (npm run dev, port 3000)
 ```
 
@@ -65,33 +65,21 @@ See `apps/web/src/lib/prisma.ts`: it parses `DATABASE_URL` and passes
   `@/lib/prisma`) into a client component — it drags the mariadb driver into the browser
   bundle and fails with `Can't resolve 'fs'`. Client-safe phone helper lives in `@/lib/phone.ts`.
 
-## Deployment — Cloudways (the tricky part)
-Cloudways runs an **Apache "Hybrid" stack**. Apache serves port 80 and **proxies to the
-Next.js app on port 3000** via a `.htaccess` mod_proxy rule. PM2 keeps Next.js alive.
-
-**Cloudways git deploy only PULLS code — it does NOT build or restart.** You must SSH in and
-do it manually every time:
-```bash
-cd apps/web
-rm -rf .next        # avoids Turbopack serving a stale cached build (see gotchas)
-npm run build
-pm2 restart bts-web            # (or: pm2 start npm --name bts-web -- start && pm2 save)
-cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
-```
-- **PM2 process name:** `bts-web`. Serves `npm start` (= `next start`) on port 3000.
-- `.htaccess` lives in `apps/web/public/.htaccess` (git-tracked) and must be copied into
-  `public_html/` after each deploy because Cloudways overwrites `public_html`.
-- The Cloudways **`<APP_ID>` and SSH user change** when the server is restored/rebuilt — do
-  not hardcode them; confirm the current path with the Cloudways panel each time.
-- Node must be 20.19 via **nvm** (`nvm use 20.19.0`); set `nvm alias default 20.19.0`.
-
-### build vs run (common confusion)
-- **`npm run build`** = compile source → `.next/`. Needed **only when code changed**.
-- **`pm2 start/restart`** = run/serve the built app. Needed whenever the process is down.
-- A reboot that kills PM2 only needs a **restart** (the `.next` build survives). New code needs
-  a **build then restart**. Admin-panel setting changes need **neither** (DB-driven, instant).
-- Run `pm2 startup` (then the sudo cmd it prints) + `pm2 save` so the app **auto-starts on
-  reboot** — otherwise a server reboot leaves nothing on port 3000 and Apache returns **503**.
+## Deployment — Vercel
+- Vercel builds **every push** to GitHub automatically (`vercel.json`: `npm install` + `npm run build`).
+  Pushes to `mrm-redesign` currently deploy as **Production** → https://bts-airport.vercel.app.
+  Other deployment URLs (`bts-airport-<hash>-…vercel.app`) are behind Vercel login (deployment protection).
+- **Env vars live in Vercel → Project → Settings → Environment Variables** (none in git). Vercel reads
+  them **only at deploy time** → after adding/changing one, **Redeploy**.
+- **The database must be hosted** (Vercel can't reach Laragon's `localhost` MySQL). Hosted MySQL over TLS:
+  `DATABASE_SSL=true` + `DATABASE_SSL_CA` (PEM) — see `src/lib/prisma.ts`.
+- **DB = Aiven for MySQL (free plan), MySQL 8.4, in Singapore (DigitalOcean)**, db `defaultdb`, TLS with the Aiven CA.
+  `vercel.json` pins functions to `sin1` to sit next to it — if the DB moves (e.g. to Europe for UK customers),
+  change `regions` too. `prisma.ts` sets `connectTimeout: 10_000` (the mariadb driver's 1s default times out on TLS to Aiven).
+  Local copies of the Aiven creds: `apps/web/.env.aiven` + `.env.aiven-ca.pem` (git-ignored).
+- In-memory caches (route distance, geocode, autocomplete) are per serverless instance — fine, just fewer hits.
+- Deployment history/status is visible without a Vercel login via GitHub's deployments API
+  (`api.github.com/repos/Zain-Irfan/bts-airport/deployments`).
 
 ## Admin panel & site settings
 - Admin at `/admin` (login `/admin/login`). Auth via `authStaff()` in `@/lib/auth`.

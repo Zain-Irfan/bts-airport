@@ -21,6 +21,8 @@ function parseDatabaseUrl(url: string) {
       password: u.password ? decodeURIComponent(u.password) : undefined,
       database: u.pathname.replace(/^\//, "") || undefined,
       ssl: sslConfig(),
+      // The driver's 1s default is too short for a TLS handshake to a hosted DB (e.g. Aiven) on a cold start.
+      connectTimeout: 10_000,
     };
   } catch {
     return { host: "localhost", port: 3306, user: "root", password: undefined, database: "ukride" };
