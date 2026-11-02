@@ -1,7 +1,7 @@
 "use client";
 
 import { Clock, Loader2, MapPin, Route, Users } from "lucide-react";
-import { QuoteRouteMap } from "@/components/quotes/QuoteRouteMap";
+import { QuoteRouteMap, type RoutePath } from "@/components/quotes/QuoteRouteMap";
 
 type Props = {
   title: string;
@@ -14,8 +14,7 @@ type Props = {
   minutes: number | null;
   routeLoading: boolean;
   routeNote?: string | null;
-  apiKey?: string;
-  directions: google.maps.DirectionsResult | null;
+  path: RoutePath | null;
   showMap?: boolean;
 };
 
@@ -30,8 +29,7 @@ export function QuoteJourneyCard({
   minutes,
   routeLoading,
   routeNote,
-  apiKey,
-  directions,
+  path,
   showMap = true,
 }: Props) {
   const milesLabel = miles != null ? miles.toFixed(2) : "—";
@@ -44,8 +42,7 @@ export function QuoteJourneyCard({
       <div className="space-y-4 p-4 sm:p-5 md:p-6">
         {showMap && (
           <QuoteRouteMap
-            apiKey={apiKey}
-            directions={directions}
+            path={path}
             loading={routeLoading}
             hasAddresses={Boolean(pickup && dropoff)}
           />

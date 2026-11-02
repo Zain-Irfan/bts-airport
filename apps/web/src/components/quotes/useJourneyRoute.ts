@@ -1,12 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { fetchDrivingRoute } from "@/lib/directions-route";
 import { DEFAULT_ROUTE_MILES as DEFAULT_MILES, DEFAULT_ROUTE_MINUTES as DEFAULT_MINUTES } from "@/lib/booking-pricing";
+import type { RoutePath } from "@/components/quotes/QuoteRouteMap";
 
-type ServerDistance = { miles: number; minutes: number; estimated: boolean };
+type ServerDistance = { miles: number; minutes: number; estimated: boolean; path?: RoutePath };
 
-/** Distance used for prices comes from the server (the same figure payment is charged on). */
+/** Distance used for prices comes from the server (the same figure payment is charged on), plus the map line. */
 async function fetchServerDistance(origin: string, destination: string, vias: string[]): Promise<ServerDistance | null> {
   const p = new URLSearchParams({ origin, destination });
   vias.forEach((v) => p.append("via", v));
@@ -20,7 +20,6 @@ async function fetchServerDistance(origin: string, destination: string, vias: st
 }
 
 export function useJourneyRoute(
-  apiKey: string | undefined,
   pickup: string,
   dropoff: string,
   vias: string[],
@@ -28,7 +27,7 @@ export function useJourneyRoute(
 ) {
   const [miles, setMiles] = useState<number | null>(null);
   const [minutes, setMinutes] = useState<number | null>(null);
-  const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
+  const [path, setPath] = useState<RoutePath | null>(null);
   const [loading, setLoading] = useState(false);
   const [note, setNote] = useState<string | null>(null);
 
@@ -39,7 +38,7 @@ export function useJourneyRoute(
     if (!enabled || !pickup.trim() || !dropoff.trim()) {
       setMiles(null);
       setMinutes(null);
-      setDirections(null);
+      setPath(null);
       setNote(null);
       setLoading(false);
       return;
@@ -48,17 +47,12 @@ export function useJourneyRoute(
     const requestId = ++requestIdRef.current;
     setLoading(true);
     setNote(null);
-    setDirections(null);
+    setPath(null);
 
     try {
-      // The browser route only draws the map; pricing distance comes from the server.
-      const [server, stats] = await Promise.all([
-        fetchServerDistance(pickup, dropoff, vias),
-        fetchDrivingRoute(apiKey, pickup, dropoff, vias).catch(() => null),
-      ]);
+      const server = await fetchServerDistance(pickup, dropoff, vias);
       if (requestId !== requestIdRef.current) return;
 
-      if (stats) setDirections(stats.directions);
       if (!server || server.estimated) {
         setMiles(server?.miles ?? DEFAULT_MILES);
         setMinutes(server?.minutes ?? DEFAULT_MINUTES);
@@ -67,6 +61,7 @@ export function useJourneyRoute(
       }
       setMiles(server.miles);
       setMinutes(server.minutes);
+      setPath(server.path?.length ? server.path : null);
     } catch {
       if (requestId !== requestIdRef.current) return;
       setMiles(DEFAULT_MILES);
@@ -77,7 +72,7 @@ export function useJourneyRoute(
         setLoading(false);
       }
     }
-  }, [apiKey, dropoff, enabled, pickup, viasKey, vias]);
+  }, [dropoff, enabled, pickup, viasKey, vias]);
 
   useEffect(() => {
     void load();
@@ -86,7 +81,7 @@ export function useJourneyRoute(
   return {
     miles,
     minutes,
-    directions,
+    path,
     loading,
     note,
     milesUsed: miles ?? DEFAULT_MILES,

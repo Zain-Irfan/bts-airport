@@ -11,7 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { GooglePlacesInput } from "@/components/forms/GooglePlacesInput";
+import { AddressInput } from "@/components/forms/AddressInput";
 import { BookingTimeField } from "@/components/forms/BookingTimeField";
 import { isLikelyAirportPickup } from "@/lib/airport-pickup";
 import { MEET_AND_GREET_FEE_GBP } from "@/lib/booking-pricing";
@@ -151,7 +151,7 @@ export function HomeBookingForm() {
             <div className="space-y-3">
               <div className="relative">
                 <MapPin className="pointer-events-none absolute left-3 top-3.5 z-10 h-5 w-5 text-muted-foreground" />
-                <GooglePlacesInput
+                <AddressInput
                   name="pickup"
                   placeholder="Pickup Address or Airport"
                   className="booking-field flex h-12 w-full px-3 py-1 pl-10 text-base md:text-sm"
@@ -174,7 +174,7 @@ export function HomeBookingForm() {
                   <label className="text-xs font-medium text-muted-foreground">Via Location</label>
                   <div className="relative">
                     <MapPin className="pointer-events-none absolute left-3 top-3.5 z-10 h-5 w-5 text-muted-foreground" />
-                    <GooglePlacesInput
+                    <AddressInput
                       name={`via-${index + 1}`}
                       placeholder={`Via Address ${index + 1}`}
                       className="booking-field flex h-12 w-full px-3 py-1 pl-10 pr-10 text-base md:text-sm"
@@ -194,7 +194,7 @@ export function HomeBookingForm() {
               ))}
               <div className="relative">
                 <MapPin className="pointer-events-none absolute left-3 top-3.5 z-10 h-5 w-5 text-muted-foreground" />
-                <GooglePlacesInput
+                <AddressInput
                   name="dropoff"
                   placeholder="Dropoff Address or Airport"
                   className="booking-field flex h-12 w-full px-3 py-1 pl-10 text-base md:text-sm"

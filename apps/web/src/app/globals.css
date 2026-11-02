@@ -1392,51 +1392,6 @@
   }
 }
 
-/* Google Places Autocomplete — Google sets black inline text; force readable light UI */
-.pac-container {
-  z-index: 99999 !important;
-  margin-top: 4px;
-  border-radius: 0.75rem;
-  border: 1px solid #E5E0D5 !important;
-  background: #ffffff !important;
-  box-shadow: 0 12px 32px -8px rgba(11, 31, 58, 0.18) !important;
-  font-family: var(--app-font-sans) !important;
-  backdrop-filter: blur(18px) saturate(150%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
-}
-
-.pac-item {
-  padding: 10px 12px !important;
-  border-top: 1px solid #EFEBE2 !important;
-  color: #0B1F3A !important;
-  cursor: pointer;
-}
-
-.pac-item:first-child {
-  border-top: 0 !important;
-}
-
-.pac-item:hover,
-.pac-item-selected,
-.pac-item-selected:hover {
-  background: rgba(11, 31, 58, 0.05) !important;
-}
-
-.pac-item-query,
-.pac-item span,
-.pac-item .pac-item-query {
-  color: #0B1F3A !important;
-}
-
-.pac-item-selected .pac-item-query {
-  color: #0B1F3A !important;
-}
-
-.pac-matched {
-  color: #8A5D00 !important;
-  font-weight: 600 !important;
-}
-
 /* Outside @layer: wins over Tailwind so Chromium never shows a second time-picker icon */
 input.BTS-booking-time::-webkit-calendar-picker-indicator {
   display: none !important;

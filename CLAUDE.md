@@ -106,13 +106,15 @@ cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
 - Fare = vehicle rates (DB `VehicleType`: base, per-mile, minimum, promo %) × route miles, plus a
   **£16 Meet & Greet** fee for airport pickups (unless the customer opts out). Maths lives in
   `src/lib/booking-pricing.ts` and is shared by the quotes page, booking summary and payment API.
-- Route miles come from the server (`src/lib/route-distance.ts` → Google **Routes API** `computeRoutes`, falling back to the legacy Directions API for old projects; cached),
-  exposed at `/api/route-distance`; if Google fails, every side uses the same 28-mile fallback.
+- Route miles come from the server (`src/lib/route-distance.ts` → **Geoapify** geocoding + routing via `src/lib/geoapify.ts`; cached),
+  exposed at `/api/route-distance` (also returns the route line for the map); if Geoapify fails, every side uses the same 28-mile fallback.
 - `/api/quote` returns the confirmed price shown on the booking summary, and
   `/api/payments/stripe/checkout` **recalculates it again** (`src/lib/booking-quote.ts`) —
   prices in the URL / request body are never charged.
-- Enable **Routes API** + **Maps JavaScript API** (new projects cannot enable the legacy Directions API) and set `GOOGLE_MAPS_SERVER_API_KEY` (unrestricted-by-referrer key) in production so real distances
-  are used server-side; a browser key with HTTP-referrer restrictions is rejected by Google.
+- **Maps = Geoapify, not Google** (Google now needs a billing deposit). One server-side key, `GEOAPIFY_API_KEY`
+  (free plan ~3,000 credits/day, no card), powers routing, address autocomplete (`/api/places/autocomplete`
+  → `AddressInput`) and the Leaflet route map's tiles (`/api/map-tiles/...`). The key never reaches the browser,
+  so changing it needs only a restart, not a rebuild. Don't restrict that key by HTTP referrer (calls are server-side).
 
 ## Payments (Stripe Checkout)
 - Flow: booking summary → `POST /api/payments/stripe/checkout` (server re-prices, creates a
@@ -158,9 +160,8 @@ cp public/.htaccess /home/master/applications/<APP_ID>/public_html/.htaccess
 ## Known open items / watch-list
 - Payments switched from Revolut to Stripe. The `payment_sessions.revolutOrderId` column is kept only
   for old records; new payments use `stripeSessionId`.
-- Google Maps: billing must be enabled on the Cloud project — until then route maps fail and
-  **all prices use the 28-mile fallback**. Route map on the booking-summary page needs a valid
-  `NEXT_PUBLIC_*` Maps key (baked at build time — rebuild after changing).
+- Geoapify: until `GEOAPIFY_API_KEY` is set there are no address suggestions, no route map, and
+  **all prices use the 28-mile fallback**.
 - Import local DB data to live + create the live admin user if not done.
 - Social links in the footer are still placeholder URLs.
 

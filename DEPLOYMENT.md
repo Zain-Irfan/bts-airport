@@ -135,7 +135,8 @@ npm install                      # if it fails on prisma/dotenv: `npm install do
 #    RESEND_API_KEY=...
 #    STRIPE_SECRET_KEY=sk_live_...     (Stripe Dashboard → Developers → API keys)
 #    STRIPE_WEBHOOK_SECRET=whsec_...   (webhook endpoint https://<domain>/api/payments/stripe/webhook)
-#    NEXT_PUBLIC_*=...                 (e.g. Google Maps key, app URL)
+#    GEOAPIFY_API_KEY=...              (myprojects.geoapify.com — routing, autocomplete, map tiles)
+#    NEXT_PUBLIC_*=...                 (e.g. app URL)
 
 # 4. Prisma (Prisma 7 needs the mariadb adapter — already wired in src/lib/prisma.ts)
 npx prisma generate

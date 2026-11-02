@@ -76,11 +76,8 @@ export function QuotesPageClient() {
   const [loadingList, setLoadingList] = useState(true);
   const [categoryKey, setCategoryKey] = useState<string>("all");
 
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
-
-  const outbound = useJourneyRoute(apiKey, params.pickup, params.dropoff, params.vias, true);
+  const outbound = useJourneyRoute(params.pickup, params.dropoff, params.vias, true);
   const returnLeg = useJourneyRoute(
-    apiKey,
     params.dropoff,
     params.pickup,
     NO_VIAS,
@@ -184,8 +181,7 @@ export function QuotesPageClient() {
                 minutes={outbound.minutes}
                 routeLoading={outbound.loading}
                 routeNote={outbound.note}
-                apiKey={apiKey}
-                directions={outbound.directions}
+                path={outbound.path}
               />
               {params.hasReturn && (
                 <QuoteJourneyCard
@@ -198,8 +194,7 @@ export function QuotesPageClient() {
                   minutes={returnLeg.minutes}
                   routeLoading={returnLeg.loading}
                   routeNote={returnLeg.note}
-                  apiKey={apiKey}
-                  directions={returnLeg.directions}
+                  path={returnLeg.path}
                 />
               )}
             </div>

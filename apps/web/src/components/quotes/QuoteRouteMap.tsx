@@ -1,79 +1,56 @@
 "use client";
 
+import "leaflet/dist/leaflet.css";
 import { useEffect, useRef } from "react";
 import { Loader2, MapPin } from "lucide-react";
-import { loadGooglePlacesScript } from "@/lib/google-maps-script";
 
-const DARK_MAP_STYLES: google.maps.MapTypeStyle[] = [
-  { elementType: "geometry", stylers: [{ color: "#1a1a1c" }] },
-  { elementType: "labels.text.stroke", stylers: [{ color: "#1a1a1c" }] },
-  { elementType: "labels.text.fill", stylers: [{ color: "#9ca3af" }] },
-  { featureType: "administrative", elementType: "geometry.stroke", stylers: [{ color: "#2d2d33" }] },
-  { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#6b7280" }] },
-  { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#1f2937" }] },
-  { featureType: "road", elementType: "geometry", stylers: [{ color: "#2d2d33" }] },
-  { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#1f1f23" }] },
-  { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#3f3f46" }] },
-  { featureType: "transit", elementType: "geometry", stylers: [{ color: "#27272a" }] },
-  { featureType: "water", elementType: "geometry", stylers: [{ color: "#0f172a" }] },
-];
+export type RoutePath = [lat: number, lng: number][];
 
 type Props = {
-  apiKey: string | undefined;
-  directions: google.maps.DirectionsResult | null;
+  path: RoutePath | null;
   loading?: boolean;
   hasAddresses: boolean;
 };
 
-export function QuoteRouteMap({ apiKey, directions, loading, hasAddresses }: Props) {
+const NAVY = "#0B1F3A";
+const GOLD = "#F5B21B";
+
+export function QuoteRouteMap({ path, loading, hasAddresses }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<google.maps.Map | null>(null);
-  const rendererRef = useRef<google.maps.DirectionsRenderer | null>(null);
 
   useEffect(() => {
-    if (!apiKey || !directions || !containerRef.current) return;
+    if (!path || path.length < 2 || !containerRef.current) return;
 
     let cancelled = false;
+    let map: import("leaflet").Map | null = null;
 
     (async () => {
-      try {
-        await loadGooglePlacesScript(apiKey);
-      } catch {
-        return;
-      }
-      if (cancelled || !containerRef.current || !window.google?.maps) return;
+      // Leaflet touches `window` on import, so load it only in the browser.
+      const L = await import("leaflet");
+      if (cancelled || !containerRef.current) return;
 
-      if (!mapRef.current) {
-        mapRef.current = new google.maps.Map(containerRef.current, {
-          zoom: 7,
-          center: { lat: 54.5, lng: -3.5 },
-          mapTypeControl: false,
-          streetViewControl: false,
-          fullscreenControl: true,
-          styles: DARK_MAP_STYLES,
-        });
-      }
+      map = L.map(containerRef.current, { scrollWheelZoom: false, attributionControl: true });
+      L.tileLayer("/api/map-tiles/{z}/{x}/{y}{r}", {
+        maxZoom: 19,
+        attribution:
+          'Powered by <a href="https://www.geoapify.com/" target="_blank" rel="noopener">Geoapify</a> | © <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+      }).addTo(map);
 
-      if (!rendererRef.current) {
-        rendererRef.current = new google.maps.DirectionsRenderer({
-          map: mapRef.current,
-          suppressMarkers: false,
-          preserveViewport: false,
-          polylineOptions: {
-            strokeColor: "#F97316",
-            strokeWeight: 5,
-            strokeOpacity: 0.92,
-          },
-        });
-      }
-
-      rendererRef.current.setDirections(directions);
+      const line = L.polyline(path, { color: NAVY, weight: 5, opacity: 0.9 }).addTo(map);
+      L.circleMarker(path[0], { radius: 7, color: NAVY, weight: 2, fillColor: GOLD, fillOpacity: 1 })
+        .bindTooltip("Pickup")
+        .addTo(map);
+      L.circleMarker(path[path.length - 1], { radius: 7, color: GOLD, weight: 2, fillColor: NAVY, fillOpacity: 1 })
+        .bindTooltip("Dropoff")
+        .addTo(map);
+      map.fitBounds(line.getBounds(), { padding: [24, 24] });
     })();
 
     return () => {
       cancelled = true;
+      map?.remove();
     };
-  }, [apiKey, directions]);
+  }, [path]);
 
   if (!hasAddresses) return null;
 
@@ -85,7 +62,7 @@ export function QuoteRouteMap({ apiKey, directions, loading, hasAddresses }: Pro
     );
   }
 
-  if (!directions) {
+  if (!path || path.length < 2) {
     return (
       <div className="flex h-48 w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-muted px-4 text-center sm:h-56 md:h-64">
         <MapPin className="h-8 w-8 text-muted-foreground/60" />
@@ -97,7 +74,7 @@ export function QuoteRouteMap({ apiKey, directions, loading, hasAddresses }: Pro
   return (
     <div
       ref={containerRef}
-      className="h-48 w-full overflow-hidden rounded-lg border border-border sm:h-56 md:h-64"
+      className="relative z-0 h-48 w-full overflow-hidden rounded-lg border border-border sm:h-56 md:h-64"
       role="img"
       aria-label="Journey route map from pickup to dropoff"
     />

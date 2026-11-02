@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { X, Plus } from "lucide-react";
 import { useAdminLayout } from "@/components/admin/AdminLayoutContext";
-import { GooglePlacesInput } from "@/components/forms/GooglePlacesInput";
+import { AddressInput } from "@/components/forms/AddressInput";
 
 type Driver = {
   id: string;
@@ -162,7 +162,7 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
           <div className="grid gap-3">
             <div>
               <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Pickup Address <span className="text-red-400">*</span></label>
-              <GooglePlacesInput
+              <AddressInput
                 value={form.pickup}
                 onChange={(v) => set("pickup", v)}
                 placeholder="Search pickup address…"
@@ -171,7 +171,7 @@ export function CreateBookingModal({ drivers, onCreated, onClose }: Props) {
             </div>
             <div>
               <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-widest" style={{ color: textMuted }}>Dropoff Address <span className="text-red-400">*</span></label>
-              <GooglePlacesInput
+              <AddressInput
                 value={form.dropoff}
                 onChange={(v) => set("dropoff", v)}
                 placeholder="Search dropoff address…"
