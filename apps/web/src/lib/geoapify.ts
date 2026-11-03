@@ -1,6 +1,8 @@
 // Server-only: Geoapify (geocoding, routing, autocomplete, map tiles). Keeps the API key off the browser.
 // Free plan: ~3,000 credits/day, no card — https://www.geoapify.com/pricing
 
+import { knownPlaceCoords } from "@/lib/known-places";
+
 const API = "https://api.geoapify.com/v1";
 const LONDON = { lat: 51.5074, lon: -0.1278 };
 
@@ -50,6 +52,9 @@ type GeocodeResponse = { results?: { lat?: number; lon?: number }[] };
 const geocodeCache = makeCache<LatLng>(24 * 60 * 60 * 1000, 1000);
 
 export async function geocode(address: string): Promise<LatLng | null> {
+  const known = knownPlaceCoords(address);
+  if (known) return known;
+
   const cacheKey = address.trim().toLowerCase();
   const hit = geocodeCache.get(cacheKey);
   if (hit) return hit;

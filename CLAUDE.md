@@ -103,6 +103,9 @@ See `apps/web/src/lib/prisma.ts`: it parses `DATABASE_URL` and passes
   (free plan ~3,000 credits/day, no card), powers routing, address autocomplete (`/api/places/autocomplete`
   → `AddressInput`) and the Leaflet route map's tiles (`/api/map-tiles/...`). The key never reaches the browser,
   so changing it needs only a restart, not a rebuild. Don't restrict that key by HTTP referrer (calls are server-side).
+- **Pinned places:** `src/lib/known-places.ts` lists London airports/terminals + main stations with verified coordinates.
+  They're shown first in suggestions (Geoapify ranks them below businesses named after them) and pricing uses their
+  exact coordinates when the address is one of their labels. Airport labels must contain "Airport" (meet & greet trigger).
 
 ## Payments (Stripe Checkout)
 - Flow: booking summary → `POST /api/payments/stripe/checkout` (server re-prices, creates a
