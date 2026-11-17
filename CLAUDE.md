@@ -101,9 +101,11 @@ See `apps/web/src/lib/prisma.ts`: it parses `DATABASE_URL` and passes
 - **Gotchas**: run PM2 as `mrm` *from /home/mrm* (`sudo -u mrm -H bash -lc "cd /home/mrm && pm2 …"`) — from /root it fails with `spawn node EACCES`.
   DB user `mrm` uses `mysql_native_password`: with MySQL 8's default `caching_sha2_password` the mariadb driver fails after every
   MySQL restart ("RSA public key is not available client side").
-- **Cutover done** (data copied from Aiven 16:32, DNS switched, URLs updated). Left: Stripe webhook
-  `https://mrmtaxi.co.uk/api/payments/stripe/webhook` → `STRIPE_WEBHOOK_SECRET` in the shared env; pause the Vercel project and Aiven.
-  `NEXT_PUBLIC_*` are baked at build → after changing the shared env, run `mrm-deploy`.
+- **Cutover done** (data copied from Aiven 16:32, DNS switched, URLs updated). **Stripe is LIVE** (`sk_live_`, UK/GBP): webhook
+  endpoint `https://mrmtaxi.co.uk/api/payments/stripe/webhook` (4 checkout.session.* events) + `STRIPE_WEBHOOK_SECRET` set.
+  Left: pause the Vercel project and Aiven.
+- **Changing a secret/setting**: `ssh … -t root@159.65.19.166 mrm-set-env NAME` — prompts with hidden input (keeps secrets out of
+  chat/history), validates Stripe key formats, backs up the env file, `pm2 reload`s. `NEXT_PUBLIC_*` are baked at build → run `mrm-deploy` after.
 
 ## Admin panel & site settings
 - Admin at `/admin` (login `/admin/login`). Auth via `authStaff()` in `@/lib/auth`.
@@ -171,8 +173,6 @@ See `apps/web/src/lib/prisma.ts`: it parses `DATABASE_URL` and passes
 - **Call/Phone number** (default `+44 2080 5090 14` — placeholder)
 - **Contact email** (still `support@BTS.uk` — placeholder, old brand)
 - **Email sender**: set `EMAIL_FROM` env (fallback is `MRM Executive Voyage <bookings@bts.uk>`, a placeholder address)
-- Stripe: set the **live** `STRIPE_SECRET_KEY` and create a webhook endpoint
-  `https://<domain>/api/payments/stripe/webhook` → put its signing secret in `STRIPE_WEBHOOK_SECRET`.
 - If the logo graphic still reads oddly, supply a cleaner/transparent logo.
 
 ## Known open items / watch-list
