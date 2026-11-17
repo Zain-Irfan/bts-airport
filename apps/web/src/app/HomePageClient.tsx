@@ -162,7 +162,7 @@ export default function HomePageClient({ fleet }: { fleet: HomeFleetVehicle[] })
               </div>
 
               <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-[3.5rem]">
-                MRM Taxi,{" "}
+                MRM Taxi{" "}
                 <span className="block text-gold">anytime you need.</span>
               </h1>
 
