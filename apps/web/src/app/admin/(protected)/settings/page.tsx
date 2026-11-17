@@ -4,9 +4,12 @@ import { prisma } from "@/lib/prisma";
 import { AdminTopbar } from "@/components/admin/AdminTopbar";
 import { AdminPageContent } from "@/components/admin/AdminPageContent";
 import { SettingsClient } from "@/components/admin/SettingsClient";
+import { AdminAccountCard } from "@/components/admin/AdminAccountCard";
+import { authStaff } from "@/lib/auth";
 import { maskedStripeKey, stripeMode } from "@/lib/stripe";
 
 export default async function SettingsPage() {
+  const session = await authStaff();
   const rows = await prisma.setting.findMany();
   const settings: Record<string, string> = {};
   for (const row of rows) settings[row.key] = row.value;
@@ -26,6 +29,7 @@ export default async function SettingsPage() {
           initial={settings}
           stripe={stripe}
         />
+        {session?.user?.email && <AdminAccountCard currentEmail={session.user.email} />}
       </AdminPageContent>
     </>
   );
