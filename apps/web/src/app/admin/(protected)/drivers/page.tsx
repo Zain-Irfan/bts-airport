@@ -72,6 +72,8 @@ export default async function DriversPage() {
                       >
                         <Image
                           src={d.licenseImageUrl}
+                          // Private (staff-only) file: the image optimizer would fetch it without the admin session.
+                          unoptimized
                           alt={`Licence for ${d.fullName}`}
                           width={400}
                           height={240}

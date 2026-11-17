@@ -5,7 +5,7 @@ import {
   parseRegisterFormData,
 } from "@/lib/mobile/driver-validation";
 import { toDriverProfile } from "@/lib/mobile/driver-response";
-import { savePublicImage } from "@/lib/upload-image";
+import { saveUpload } from "@/lib/upload-image";
 
 export const runtime = "nodejs";
 
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const saved = await savePublicImage(licenseFile, "driver-licenses");
+  const saved = await saveUpload(licenseFile, { isPrivate: true, allowPdf: true });
   if (!saved.ok) {
     return NextResponse.json({ error: saved.error }, { status: 400 });
   }

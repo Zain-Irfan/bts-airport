@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
-import { savePublicImage } from "@/lib/upload-image";
+import { saveUpload } from "@/lib/upload-image";
 import { sendDriverApplicationEmail, sendDriverApplicationAdminEmail } from "@/lib/email";
 
 export const runtime = "nodejs";
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
   let licenseImageUrl: string | undefined;
   const licenseFile = form.get("licenseImage");
   if (licenseFile instanceof File && licenseFile.size > 0) {
-    const saved = await savePublicImage(licenseFile, "driver-licenses");
+    const saved = await saveUpload(licenseFile, { isPrivate: true, allowPdf: true });
     if (!saved.ok) {
       return NextResponse.json({ error: saved.error }, { status: 400 });
     }

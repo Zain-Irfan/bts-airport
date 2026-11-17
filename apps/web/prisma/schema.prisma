@@ -204,3 +204,18 @@ model VehicleType {
 
   @@map("vehicle_types")
 }
+
+// ─── Uploaded files ─────────────────────────────────────────
+
+/// Uploaded images/PDFs, kept in the DB because Vercel's filesystem is read-only.
+/// Served by /api/uploads/<id>.<ext>; private files (driver licences) are staff-only.
+model Upload {
+  id          String   @id @default(cuid())
+  contentType String   @db.VarChar(100)
+  /// MEDIUMBLOB holds up to 16MB; uploads are capped at 5MB
+  data        Bytes    @db.MediumBlob
+  isPrivate   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@map("uploads")
+}

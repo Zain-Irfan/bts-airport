@@ -1,20 +1,27 @@
-import { randomBytes } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
+// Server-only: uploaded files are stored in the DB (`uploads` table) because Vercel's filesystem is
+// read-only — writing to public/ works locally but fails (500) when deployed.
+import { prisma } from "@/lib/prisma";
 
 export const IMAGE_UPLOAD_MAX_BYTES = 5 * 1024 * 1024;
 
-const ALLOWED = new Map<string, string>([
+const IMAGE_TYPES = new Map<string, string>([
   ["image/jpeg", ".jpg"],
   ["image/jpg", ".jpg"],
   ["image/png", ".png"],
   ["image/webp", ".webp"],
-  ["application/pdf", ".pdf"],
+  ["image/gif", ".gif"],
 ]);
 
-export async function savePublicImage(
+type SaveOptions = {
+  /** Private files (driver licences) are only served to signed-in staff. */
+  isPrivate?: boolean;
+  allowPdf?: boolean;
+};
+
+/** Saves an uploaded image (or PDF) and returns the URL it is served from, e.g. /api/uploads/<id>.jpg */
+export async function saveUpload(
   file: File,
-  subdir: string,
+  { isPrivate = false, allowPdf = false }: SaveOptions = {},
 ): Promise<{ ok: true; url: string } | { ok: false; error: string }> {
   if (file.size === 0) {
     return { ok: false, error: "Empty file" };
@@ -23,18 +30,25 @@ export async function savePublicImage(
     return { ok: false, error: "File too large (max 5MB)" };
   }
 
-  const ext = ALLOWED.get(file.type);
+  const ext = file.type === "application/pdf" && allowPdf ? ".pdf" : IMAGE_TYPES.get(file.type);
   if (!ext) {
     return {
       ok: false,
-      error: "Only JPEG, PNG, WebP, or PDF files are allowed",
+      error: allowPdf
+        ? "Only JPEG, PNG, WebP, GIF, or PDF files are allowed"
+        : "Only JPEG, PNG, WebP, or GIF images are allowed",
     };
   }
 
-  const name = `${Date.now()}-${randomBytes(8).toString("hex")}${ext}`;
-  const dir = path.join(process.cwd(), "public", "uploads", subdir);
-  await mkdir(dir, { recursive: true });
-  await writeFile(path.join(dir, name), Buffer.from(await file.arrayBuffer()));
+  const upload = await prisma.upload.create({
+    data: {
+      contentType: file.type === "image/jpg" ? "image/jpeg" : file.type,
+      data: new Uint8Array(await file.arrayBuffer()),
+      isPrivate,
+    },
+    select: { id: true },
+  });
 
-  return { ok: true, url: `/uploads/${subdir}/${name}` };
+  // The extension is cosmetic (the admin UI checks for ".pdf"); the id identifies the file.
+  return { ok: true, url: `/api/uploads/${upload.id}${ext}` };
 }

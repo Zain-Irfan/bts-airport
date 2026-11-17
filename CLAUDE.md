@@ -77,6 +77,9 @@ See `apps/web/src/lib/prisma.ts`: it parses `DATABASE_URL` and passes
   `vercel.json` pins functions to `sin1` to sit next to it — if the DB moves (e.g. to Europe for UK customers),
   change `regions` too. `prisma.ts` sets `connectTimeout: 10_000` (the mariadb driver's 1s default times out on TLS to Aiven).
   Local copies of the Aiven creds: `apps/web/.env.aiven` + `.env.aiven-ca.pem` (git-ignored).
+- **Uploads are stored in the DB** (`uploads` table, `src/lib/upload-image.ts` → `saveUpload`), served at
+  `/api/uploads/<id>.<ext>` — Vercel's filesystem is read-only, so writing to `public/` 500s there. Vehicle
+  images are public (CDN-cached); driver licences are `isPrivate` → staff-only (admin previews use `unoptimized`).
 - In-memory caches (route distance, geocode, autocomplete) are per serverless instance — fine, just fewer hits.
 - Deployment history/status is visible without a Vercel login via GitHub's deployments API
   (`api.github.com/repos/Zain-Irfan/bts-airport/deployments`).

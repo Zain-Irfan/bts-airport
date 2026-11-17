@@ -127,7 +127,8 @@ export default async function DriverDetailPage({ params }: { params: Promise<{ i
                   </a>
                 ) : (
                   <a href={driver.licenseImageUrl} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-lg border" style={{ borderColor: "var(--adm-border)" }}>
-                    <Image src={driver.licenseImageUrl} alt="Licence" width={400} height={240} className="h-44 w-full object-cover" />
+                    {/* unoptimized: private (staff-only) file — the image optimizer would fetch it without the admin session */}
+                    <Image src={driver.licenseImageUrl} unoptimized alt="Licence" width={400} height={240} className="h-44 w-full object-cover" />
                   </a>
                 )}
               </div>
