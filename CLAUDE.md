@@ -4,16 +4,17 @@
 > code — deployment quirks, gotchas, and current state — so a fresh session can be productive
 > immediately. (There is also `apps/web/CLAUDE.md` → `AGENTS.md` with a Next.js warning; read that too.)
 >
-> 🚀 **Hosting is Vercel** (Cloudways is no longer used — `DEPLOYMENT.md` is the old Cloudways
-> runbook, kept for reference only). See "Deployment — Vercel" below.
+> 🚀 **Hosting is a DigitalOcean server** — see "DigitalOcean server" below. The Vercel + Aiven sections are kept
+> for history only; `DEPLOYMENT.md` is the even older Cloudways runbook.
 
 ## What this is
 A booking website + admin panel for a London airport-taxi / private-transfer company.
 Public marketing site, an online booking/quote flow with Stripe payments, and an admin
 panel (staff) to manage bookings, drivers, vehicle types, contacts, and site settings.
 
-- **Live site:** https://bts-airport.vercel.app (Vercel production). The domain `londonairporttaxiservices.co.uk`
-  still points at the retired Cloudways server (206.189.112.199) — repoint its DNS to Vercel when ready.
+- **Live site:** **https://mrmtaxi.co.uk** (DigitalOcean server, since 2026-11-17; `www.` redirects to it). DNS + registration at
+  **Porkbun** (A `@` and `www` → 159.65.19.166). Old `bts-airport.vercel.app` (Vercel + Aiven) is retired — don't use it.
+  `londonairporttaxiservices.co.uk` (also Porkbun) still points at the dead Cloudways server (206.189.112.199).
 - **Brand name:** "MRM Executive Voyage" (renamed from "London Airport Taxi Services", which itself replaced "BTS"). The domain is still `londonairporttaxiservices.co.uk`.
 - **Git remote:** `github.com/Zain-Irfan/bts-airport` (repo still named bts-airport), branch `main`.
 
@@ -29,7 +30,7 @@ panel (staff) to manage bookings, drivers, vehicle types, contacts, and site set
 | Email | **Resend** (`apps/web/src/lib/email.ts`, lazy-initialised) |
 | Payments | **Stripe** Checkout (`stripe` SDK v23) |
 | Node | **20.19.0** (Prisma 7 needs ≥ 20.19) |
-| Hosting | **Vercel** (Git integration; hosted MySQL required) |
+| Hosting | **DigitalOcean droplet** (London) — Node + PM2 + Caddy + MySQL on one server |
 
 ## Repo layout
 Monorepo-ish (root name `ukride-clone`, no npm workspaces). The real app is **`apps/web`**.
@@ -65,7 +66,7 @@ See `apps/web/src/lib/prisma.ts`: it parses `DATABASE_URL` and passes
   `@/lib/prisma`) into a client component — it drags the mariadb driver into the browser
   bundle and fails with `Can't resolve 'fs'`. Client-safe phone helper lives in `@/lib/phone.ts`.
 
-## Deployment — Vercel
+## Deployment — Vercel (RETIRED — history only)
 - Vercel builds **every push** to GitHub automatically (`vercel.json`: `npm install` + `npm run build`).
   Pushes to `mrm-redesign` currently deploy as **Production** → https://bts-airport.vercel.app.
   Other deployment URLs (`bts-airport-<hash>-…vercel.app`) are behind Vercel login (deployment protection).
@@ -85,6 +86,24 @@ See `apps/web/src/lib/prisma.ts`: it parses `DATABASE_URL` and passes
 - In-memory caches (route distance, geocode, autocomplete) are per serverless instance — fine, just fewer hits.
 - Deployment history/status is visible without a Vercel login via GitHub's deployments API
   (`api.github.com/repos/Zain-Irfan/bts-airport/deployments`).
+
+## DigitalOcean server (LIVE since 2026-11-17 — replaced Vercel + Aiven)
+- **Droplet `mrm-web`**: London (LON1), Ubuntu 24.04, Basic Regular 1 vCPU / 2 GB / 50 GB, weekly DO backups. IP **159.65.19.166**.
+  SSH: `ssh -i ~/.ssh/mrm_digitalocean root@159.65.19.166` (key on the dev PC; password login disabled). ufw allows 22/80/443 only; fail2ban; unattended-upgrades; 2 GB swap; TZ Europe/London.
+- **Stack**: Node 22 + PM2 (process `mrm-web`, runs as user `mrm`, `pm2-mrm` systemd unit) → Caddy (`/etc/caddy/Caddyfile`, auto-HTTPS) →
+  MySQL 8.0 local, db/user `mrm`, password in `/home/mrm/secrets/db_password`. Caddy serves `mrmtaxi.co.uk` (+ `www` redirect) and
+  the test alias https://159-65-19-166.sslip.io. Site URL env (`NEXTAUTH_URL`, `NEXT_PUBLIC_APP_URL`) = https://mrmtaxi.co.uk.
+- **Layout**: `/home/mrm/releases/<ts>` (last 3 kept), `/home/mrm/current` → live release, env in `/home/mrm/shared/.env.production.local`
+  (symlinked into each release), PM2 config `/home/mrm/ecosystem.config.cjs`.
+- **Deploy**: push to GitHub, then `ssh … root@159.65.19.166 mrm-deploy` (clones `mrm-redesign`, builds beside the live release, switches the
+  symlink, `pm2 reload` — zero downtime; a failed build leaves the live site untouched). No auto-deploy from GitHub yet.
+- **Backups**: `/usr/local/bin/mrm-backup` nightly 02:30 → `/var/backups/mrm/*.sql.gz` (14 days). Restore: `gunzip -c FILE | mysql mrm`.
+- **Gotchas**: run PM2 as `mrm` *from /home/mrm* (`sudo -u mrm -H bash -lc "cd /home/mrm && pm2 …"`) — from /root it fails with `spawn node EACCES`.
+  DB user `mrm` uses `mysql_native_password`: with MySQL 8's default `caching_sha2_password` the mariadb driver fails after every
+  MySQL restart ("RSA public key is not available client side").
+- **Cutover done** (data copied from Aiven 16:32, DNS switched, URLs updated). Left: Stripe webhook
+  `https://mrmtaxi.co.uk/api/payments/stripe/webhook` → `STRIPE_WEBHOOK_SECRET` in the shared env; pause the Vercel project and Aiven.
+  `NEXT_PUBLIC_*` are baked at build → after changing the shared env, run `mrm-deploy`.
 
 ## Admin panel & site settings
 - Admin at `/admin` (login `/admin/login`). Auth via `authStaff()` in `@/lib/auth`.
