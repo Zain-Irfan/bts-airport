@@ -23,6 +23,11 @@ function parseDatabaseUrl(url: string) {
       ssl: sslConfig(),
       // The driver's 1s default is too short for a TLS handshake to a hosted DB (e.g. Aiven) on a cold start.
       connectTimeout: 10_000,
+      // Serverless: every instance gets its own pool. The driver defaults (10 connections, all opened up front,
+      // kept 30 min) quickly exhaust a small hosted DB's connection limit ("Too many connections").
+      connectionLimit: 3,
+      minimumIdle: 0,
+      idleTimeout: 60,
     };
   } catch {
     return { host: "localhost", port: 3306, user: "root", password: undefined, database: "ukride" };

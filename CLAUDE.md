@@ -76,6 +76,8 @@ See `apps/web/src/lib/prisma.ts`: it parses `DATABASE_URL` and passes
 - **DB = Aiven for MySQL (free plan), MySQL 8.4, in Singapore (DigitalOcean)**, db `defaultdb`, TLS with the Aiven CA.
   `vercel.json` pins functions to `sin1` to sit next to it — if the DB moves (e.g. to Europe for UK customers),
   change `regions` too. `prisma.ts` sets `connectTimeout: 10_000` (the mariadb driver's 1s default times out on TLS to Aiven).
+  It also caps the pool (`connectionLimit: 3`, `minimumIdle: 0`, `idleTimeout: 60`): Aiven free allows only ~46
+  connections and the driver's defaults (10 per instance, held 30 min) exhausted them ("Too many connections").
   Local copies of the Aiven creds: `apps/web/.env.aiven` + `.env.aiven-ca.pem` (git-ignored).
 - **Uploads are stored in the DB** (`uploads` table, `src/lib/upload-image.ts` → `saveUpload`), served at
   `/api/uploads/<id>.<ext>` — Vercel's filesystem is read-only, so writing to `public/` 500s there. Vehicle

@@ -28,8 +28,10 @@ export async function PATCH(req: NextRequest, ctx: Ctx) {
   if (body.perMileGbp != null) data.perMileGbp = String(body.perMileGbp);
   if (body.minimumFareGbp != null) data.minimumFareGbp = String(body.minimumFareGbp);
   if (body.promoDiscountPercent != null) data.promoDiscountPercent = String(body.promoDiscountPercent);
-  if (body.categoryKey != null) {
-    const nextKey = String(body.categoryKey).trim().toLowerCase();
+  const nextKey = body.categoryKey != null ? String(body.categoryKey).trim().toLowerCase() : "";
+  // An empty key (the form's select can send "") keeps the current category — saving "" would orphan the
+  // vehicle from every category filter on the quotes page.
+  if (nextKey) {
     const categoryErr = await assertActiveVehicleCategory(nextKey);
     if (categoryErr) {
       return Response.json({ error: categoryErr }, { status: 400 });
