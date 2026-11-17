@@ -25,8 +25,9 @@ function parseDatabaseUrl(url: string) {
       connectTimeout: 10_000,
       // Serverless: every instance gets its own pool. The driver defaults (10 connections, all opened up front,
       // kept 30 min) quickly exhaust a small hosted DB's connection limit ("Too many connections").
+      // Keep minimumIdle ≥ 1: with 0 the mariadb pool never opens a connection at all (pool timeout).
       connectionLimit: 3,
-      minimumIdle: 0,
+      minimumIdle: 1,
       idleTimeout: 60,
     };
   } catch {
