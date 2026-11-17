@@ -92,6 +92,9 @@ See `apps/web/src/lib/prisma.ts`: it parses `DATABASE_URL` and passes
   (client) / `SiteSettingsProvider`.
 - All phone/WhatsApp/email displays site-wide are wired to these settings — no hardcoded
   contact info remains in the pages.
+- Public pages are **prerendered and cached** (Vercel too), so admin saves to settings/vehicle types call
+  `refreshPublicPages()` (`src/lib/site-cache.ts` → `revalidatePath("/", "layout")`). New admin routes that change
+  public content must call it too. The homepage fleet comes from active vehicle types (`src/lib/home-fleet.ts`).
 
 ## Pricing (server is the source of truth)
 - Fare = vehicle rates (DB `VehicleType`: base, per-mile, minimum, promo %) × route miles, plus a

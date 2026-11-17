@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { authStaff } from "@/lib/auth";
+import { refreshPublicPages } from "@/lib/site-cache";
 
 export async function GET() {
   const session = await authStaff();
@@ -28,5 +29,6 @@ export async function POST(req: NextRequest) {
     ),
   );
 
+  refreshPublicPages();
   return NextResponse.json({ ok: true });
 }

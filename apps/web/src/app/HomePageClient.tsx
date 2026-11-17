@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSiteSettings } from "@/components/providers/SiteSettingsProvider";
 import { telHref } from "@/lib/phone";
+import type { HomeFleetVehicle } from "@/lib/home-fleet";
 import { SiteTopHeader } from "@/components/layout/SiteTopHeader";
 import { FullFooterSection } from "@/components/FullFooterSection";
 import { Button } from "@/components/ui/button";
@@ -43,16 +44,6 @@ const AIRPORTS = [
   { name: "Luton Airport", desc: "Budget airline connections", img: "/images/airport-fleet-aerial.jpg", slug: "luton" },
   { name: "Stansted Airport", desc: "Reliable northern hub transfers", img: "/images/british-airways-plane.jpg", slug: "stansted" },
   { name: "Southend Airport", desc: "Eastern connection specialist", img: "/images/mpv-airport-boarding.jpg", slug: "southend" },
-];
-
-const FLEET = [
-  { name: "Saloon", note: "Everyday comfort", pax: 4, hand: 1, lug: 2, img: "/images/saloon.jpeg" },
-  { name: "Executive", note: "Business-class travel", pax: 4, hand: 1, lug: 1, img: "/images/vehicle-sclass-new.jpg" },
-  { name: "Estate", note: "Extra boot space", pax: 4, hand: 2, lug: 3, img: "/images/vehicle-estate.jpg" },
-  { name: "MPV", note: "Ideal for families", pax: 6, hand: 3, lug: 4, img: "/images/vehicle-vclass-8seater.jpg" },
-  { name: "8 Seater Minibus", note: "Groups and tours", pax: 8, hand: 4, lug: 6, img: "/images/vehicle-transit.jpg" },
-  { name: "Electric", note: "Zero-emission travel", pax: 4, hand: 2, lug: 1, img: "/images/saloon.jpeg" },
-  { name: "Chauffeur", note: "Special occasions", pax: 4, hand: 1, lug: 2, img: "/images/vehicle-sclass-old.jpg" },
 ];
 
 const FAQS = [
@@ -127,7 +118,7 @@ function CheckList({ items }: { items: string[] }) {
   );
 }
 
-export default function HomePageClient() {
+export default function HomePageClient({ fleet }: { fleet: HomeFleetVehicle[] }) {
   const { whatsapp, phone } = useSiteSettings();
   return (
     <div className="min-h-screen overflow-x-hidden bg-background font-sans">
@@ -369,7 +360,7 @@ export default function HomePageClient() {
             description="From everyday saloons to spacious minibuses, our immaculately maintained fleet is ready to serve."
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {FLEET.map((vehicle) => (
+            {fleet.map((vehicle) => (
               <div key={vehicle.name} className="BTS-vehicle-card group flex flex-col">
                 <div className="relative h-40 overflow-hidden bg-white">
                   <img src={vehicle.img} alt={vehicle.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />

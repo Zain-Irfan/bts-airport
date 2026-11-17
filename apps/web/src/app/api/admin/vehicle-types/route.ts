@@ -2,6 +2,7 @@ import { authStaff } from "@/lib/auth";
 import { assertActiveVehicleCategory } from "@/lib/vehicle-category-validation";
 import { prisma } from "@/lib/prisma";
 import { vehicleTypeToDTO } from "@/lib/vehicle-types";
+import { refreshPublicPages } from "@/lib/site-cache";
 import { NextRequest } from "next/server";
 
 export async function GET() {
@@ -79,6 +80,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    refreshPublicPages();
     return Response.json(vehicleTypeToDTO(created));
   } catch (e: unknown) {
     const code = typeof e === "object" && e && "code" in e ? (e as { code?: string }).code : "";

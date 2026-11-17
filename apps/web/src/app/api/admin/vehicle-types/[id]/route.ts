@@ -2,6 +2,7 @@ import { authStaff } from "@/lib/auth";
 import { assertActiveVehicleCategory } from "@/lib/vehicle-category-validation";
 import { prisma } from "@/lib/prisma";
 import { vehicleTypeToDTO } from "@/lib/vehicle-types";
+import { refreshPublicPages } from "@/lib/site-cache";
 import { NextRequest } from "next/server";
 
 type Ctx = { params: Promise<{ id: string }> };
@@ -51,6 +52,7 @@ export async function PATCH(req: NextRequest, ctx: Ctx) {
       where: { id },
       data,
     });
+    refreshPublicPages();
     return Response.json(vehicleTypeToDTO(updated));
   } catch (e: unknown) {
     const code = typeof e === "object" && e && "code" in e ? (e as { code?: string }).code : "";
@@ -74,6 +76,7 @@ export async function DELETE(_req: NextRequest, ctx: Ctx) {
 
   try {
     await prisma.vehicleType.delete({ where: { id } });
+    refreshPublicPages();
     return Response.json({ ok: true });
   } catch (e: unknown) {
     const code = typeof e === "object" && e && "code" in e ? (e as { code?: string }).code : "";
